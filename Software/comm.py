@@ -6,56 +6,95 @@ import time
 def init_ser_port(port='COM8', baudrate=9600):
     """
     Args:
-    - port (str): The COM port for the serial connection (e.g., 'COM8' or '/dev/ttyUSB0').
-    - baudrate (int): Baud rate for the serial connection.
+    - port (str): The COM port for the serial connection
+    - baudrate (int): Baud rate for the serial connection
     
     Returns:
-    - ser (serial.Serial): The serial connection object if successful, otherwise None.
+    - ser (serial.Serial): The serial connection object if successful, otherwise None
     """
-    try:                                                                        # Initialize serial connection
-        ser = serial.Serial(port, baudrate, timeout=0.1)
+    try:
+        ser = serial.Serial(port, baudrate, timeout=0.1)                            # Attempt to open the serial connection
         print(f"Serial connection opened on {port} with baudrate {baudrate}")
         return ser
-    
-    except serial.SerialException as e:                                         # Handle error if the serial port fails to open
-        print(f"Error opening serial connection: {e}")
+    except serial.SerialException as e:
+        print(f"Error opening serial connection: {e}")                              # Print an error message if the connection fails
         return None
 
-# Monitor for integer keypress and send the value to serial connection and check for immeadiate response
-def send_value(ser):
-    """    
-    Args:
-    - ser (serial.Serial): The serial connection object.
+# Pack a 32-bit data: first 8 bits for the address, last 24 bits for data
+def pack_32bit(address, data):
     """
-    print("Press an integer key (0-9) to send the value over serial. Press 'q' to quit.")
+    Args:
+    - address (int): 8-bit address (0-255)
+    - data (int): 24-bit data (0-16777215)
     
-    while True:                                                         # Continuous loop to monitor for keypress events
-        for i in range(10):                                             # Loop over each integer key to check for press
-            if keyboard.is_pressed(str(i)):
-                ser.write(str(i).encode())                              # Send the pressed integer as a byte over serial
-                print(f"Sent: {i}")
+    Returns:
+    - bytes: Packed 32-bit value as a byte array
+    """
+    if not (0 <= address <= 255):                                       # Validate the address is within 8-bit range
+        raise ValueError("Address must be an 8-bit value (0-255).")
+    if not (0 <= data <= 16777215):                                     # Validate the data is within 24-bit range
+        raise ValueError("Data must be a 24-bit value (0-16777215).")
+    
+    value = (address << 24) | data                                      # Combine the address and data into a single 32-bit integer
+    return value.to_bytes(4, 'little')                                  # Convert the 32-bit value into a 4-byte array in little-endian order
 
-                time.sleep(0.1)
-                receive_value(ser)                                      # Call receive_value to check if there’s an incoming response
-                time.sleep(0.2)
-        
-        if keyboard.is_pressed('q'):                                    # Check if the 'q' key is pressed to exit the loop
+# Unpack the received 32-bit data into address and data
+def unpack_32bit(data_bytes):
+    """
+    Args:
+    - data_bytes (bytes): 4-byte array representing 32-bit packed data
+    
+    Returns:
+    - tuple (address, data): where address is 8 bits and data is 24 bits
+    """
+    if len(data_bytes) != 4:                                # Ensure the received data is 4 bytes
+        raise ValueError("Data must be 4 bytes long.")
+    
+    value = int.from_bytes(data_bytes, 'little')            # Convert the 4-byte array into a 32-bit integer
+    address = (value >> 24) & 0xFF                          # Extract the 8-bit address from the most significant byte
+    data = value & 0xFFFFFF                                 # Extract the 24-bit data from the least significant 3 bytes
+    return address, data
+
+# Send 32-bit values over serial
+def send_value(ser):
+    """
+    Args:
+    - ser (serial.Serial): The serial connection object
+    """
+    print("Enter an address (8-bits) and data (24 bits) to send. Press 'q' to quit.")
+    
+    while True:     
+        if keyboard.is_pressed('q'):                            # Check if the user pressed the 'q' to exit
             print("Exiting...")
             break
+        
+        try:
+            address = int(input("Enter address (0-255): "))     # Prompt user to enter the address
+            data = int(input("Enter data (0-16777215): "))      # Prompt user to enter the data
+            
+            packed_data = pack_32bit(address, data)             # Pack the address and data into a 32-bit format
+            ser.write(packed_data)                              # Send the packed data over the serial connection
+            print(f"Sent: Address={address}, Data={data}")
+            
+            time.sleep(0.1)                                     # Time delay to allow for data transmission
+            receive_value(ser)                                  # Check for and process any incoming response
+        except ValueError as e:
+            print(f"Invalid input: {e}")                        # Handle invalid inputs
 
-# Check for and reads any incoming data from the serial connection, then prints it.
+# Function to receive and unpack 32-bit data from the serial connection
 def receive_value(ser):
-    """    
-    Args:
-    - ser (serial.Serial): The serial connection object.
     """
-    if ser.in_waiting > 0:                                  # Check if there is data waiting in the serial buffer
-        received_data = ser.readline().decode().strip()     # Decode data read to a string, and strip whitespace
-        print(f"Received: {received_data}")
+    Args:
+    - ser (serial.Serial): The serial connection object
+    """
+    if ser.in_waiting >= 4:                                     # Check if there are at least 4 bytes of data available in the buffer
+        received_data = ser.read(4)                             # Read 4 bytes from the serial buffer
+        address, data = unpack_32bit(received_data)             # Unpack the 32-bit data into address and data components
+        print(f"Received: Address={address}, Data={data}")      # Display the received address and data
 
 # Example usage
-ser = init_ser_port(port='COM8', baudrate=9600)     # Open serial connection
+ser = init_ser_port(port='COM8', baudrate=9600)  # Initialize the serial connection
 
-if ser:                                             # Proceed if the serial connection was successfully opened
-    send_value(ser)                                 # Start monitoring for keypresses and sending values over serial
-    ser.close()                                     # Close the serial connection when done
+if ser:                                          # Proceed if the connection was successfully opened
+    send_value(ser)                              # Start monitoring for input
+    ser.close()                                  # Close the serial connection when done
