@@ -98,6 +98,8 @@ class MainWindow(QMainWindow):
         self.main_page = QWidget()
         self.page_widget.addWidget(self.main_page)
 
+        self.current_selected_measurement = None    # Initialize to track the selected measurement
+
     def add_measurement_selection(self, layout, section_title, options):
         # For each measurement section (2-probe, 3-probe and 4-probe)
         button = QPushButton(section_title)             # Create a button
