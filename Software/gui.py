@@ -1,5 +1,5 @@
 import sys
-from PyQt5.QtGui import QFont
+from PyQt5.QtGui import QFont, QPixmap, QIcon
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import (
     QApplication, QWidget, QLabel, QVBoxLayout, QHBoxLayout, QMainWindow,
@@ -10,30 +10,42 @@ class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         # Application window with basic settings
-        self.setWindowTitle("NAME")                             # Title of the window
-        self.setGeometry(100, 100, 800, 600)                    # Set position and size of the window
-        self.setStyleSheet("background-color: #d8cfcf;")        # Set background color for the main screen
-    
+        self.setWindowTitle("OrcaProbe")                                        # Title of the window
+        self.setGeometry(100, 100, 800, 600)                                    # Set position and size of the window
+        self.setStyleSheet("background-color: #d8cfcf;")                        # Set background color for the main screen
+        self.setWindowIcon(QIcon("C:/Users/User/Desktop/OrcaProbe_Logo.png"))   # Application icon path
+
         # Sidebar for measurement type selection
         sidebar = QWidget()
-        sidebar_layout = QVBoxLayout()                                              # Create a vertical layout for the sidebar
-        sidebar.setStyleSheet("background-color: #b7a9a9;")                         # Set sidebar background color
-        sidebar.setFixedWidth(300)                                                  # Set the width of the sidebar
+        sidebar_layout = QVBoxLayout()                          # Create a vertical layout for the sidebar
+        sidebar.setStyleSheet("background-color: #b7a9a9;")     # Set sidebar background color
+        sidebar.setFixedWidth(300)                              # Set the width of the sidebar
 
-        title_label = QLabel("Orca Advanced\nMaterial's Inc")                       # Sidebar title
-        title_label.setAlignment(Qt.AlignRight)                                     # Align the title
-        title_label.setFont(QFont("Arial", 12, QFont.Bold))                         # Set font style and size
-        title_label.setStyleSheet("color: #000000;")                                # Set text color
+        # Sidebar title with an image
+        image_label = QLabel()
+        image_label.setPixmap(QPixmap("C:/Users/User/Desktop/orcalogo.png").scaled(100, 100, Qt.KeepAspectRatio, Qt.SmoothTransformation))
 
-        subtitle_label = QLabel("NAME")                                             # Sidebar subtitle
-        subtitle_label.setAlignment(Qt.AlignRight)                                  # Align the title
+        title_label = QLabel("Orca\nAdvanced\nMaterial's\nInc")                  # Sidebar title
+        title_label.setAlignment(Qt.AlignLeft)                                   # Align the title
+        title_label.setFont(QFont("Arial", 12, QFont.Bold))                      # Set font style and size
+        title_label.setStyleSheet("color: #000000;")                             # Set text color
+
+        # Combine the image and title in a horizontal layout
+        title_layout = QHBoxLayout()
+        title_layout.addWidget(image_label, alignment=Qt.AlignLeft)
+        title_layout.addWidget(title_label, alignment=Qt.AlignRight)
+
+        title_widget = QWidget()
+        title_widget.setLayout(title_layout)
+
+        sidebar_layout.addWidget(title_widget)                                      # Add the combined widget to the sidebar
+
+        subtitle_label = QLabel("OrcaProbe")                                        # Sidebar subtitle
+        subtitle_label.setAlignment(Qt.AlignCenter)                                 # Align the title
         subtitle_label.setFont(QFont("Arial", 10, QFont.Bold))                      # Set font style and size
         subtitle_label.setStyleSheet("color: #000080;")                             # Set text color
 
-        sidebar_layout.addWidget(title_label)                                       # Add the title to the sidebar
         sidebar_layout.addWidget(subtitle_label)                                    # Add the subtitle to the sidebar
-
-        self.current_selected_measurement = None                                    # Initialize and track the currently selected measurement
 
         self.add_measurement_selection(sidebar_layout, "2-probe Measurements", [    # Add 2-probe measurement selections to the sidebar
             "DC Resistance",
@@ -85,6 +97,8 @@ class MainWindow(QMainWindow):
         # Blank main page
         self.main_page = QWidget()
         self.page_widget.addWidget(self.main_page)
+
+        self.current_selected_measurement = None    # Initialize to track the selected measurement
 
     def add_measurement_selection(self, layout, section_title, options):
         # For each measurement section (2-probe, 3-probe and 4-probe)
@@ -159,48 +173,538 @@ class MainWindow(QMainWindow):
         self.page_widget.setCurrentWidget(new_page)     # Display the new page
 
     def create_measurement_page(self, title):
-        # Create a new page for the selected measurement
-        page = QWidget()
+        page = QWidget()                                    # Create a new page for the selected measurement
         layout = QVBoxLayout()
 
-        # Title for the measurement type page
-        title_label = QLabel(f"{title}")
-        title_label.setFont(QFont("Arial", 14, QFont.Bold))
-        layout.addWidget(title_label)
+        self.customize_measurement_page(title, layout)      # Customize the layout for the specific measurement type
 
-        # Buttons to select a data logging format (CSV or JSON), radio button used so one can be selected at a time           
-        csv_radio = QRadioButton("Log data into a .CSV file")
-        json_radio = QRadioButton("Log data into a .JSON file")
-        csv_radio.setChecked(True)              # Default selection is CSV
-        radio_layout = QHBoxLayout()            # Create Selection/radio layout
-        radio_layout.addWidget(csv_radio)       # Add CSV button to the selection/radio layout
-        radio_layout.addWidget(json_radio)      # Add JSON button to the selection/radio layout
-        layout.addLayout(radio_layout)          # Add Selection/radio layout under the title of the measurement type
-
-        # Start/stop buttons
-        start_button = QPushButton("Start")
-        stop_button = QPushButton("Stop")
-        start_button.setStyleSheet("background-color: #4CAF50; color: white;")
-        stop_button.setStyleSheet("background-color: #f44336; color: white;")
-        button_layout = QHBoxLayout()           # Create button layout
-        button_layout.addWidget(start_button)   # Add start button
-        button_layout.addWidget(stop_button)    # Add stop button
-        layout.addLayout(button_layout)         # Add button layout under the title of the measurement type
-
-        # Text box for entering measurement values
-        value_layout = QHBoxLayout()
-        value_label = QLabel("VALUE")
-        value_input = QLineEdit()
-        value_input.setPlaceholderText("Enter value")
-        unit_label = QLabel("Ohms")
-        value_layout.addWidget(value_label)
-        value_layout.addWidget(value_input)
-        value_layout.addWidget(unit_label)
-        layout.addLayout(value_layout)
-
-        # Set layout for the page
-        page.setLayout(layout)
+        page.setLayout(layout)                              # Set the layout for the page
         return page
+
+    def customize_measurement_page(self, title, layout):
+        # Customize each measurement page based on the type
+        if title == "DC Resistance":
+            label = QLabel("DC Resistance Measurement")
+            label.setFont(QFont("Arial", 12, QFont.Bold))
+            layout.addWidget(label)
+
+            # Buttons to select a data logging format (CSV or JSON), radio button used so one can be selected at a time           
+            csv_radio = QRadioButton("Log data into a .CSV file")
+            json_radio = QRadioButton("Log data into a .JSON file")
+            csv_radio.setChecked(True)              # Default selection is CSV
+            radio_layout = QHBoxLayout()            # Create Selection/radio layout
+            radio_layout.addWidget(csv_radio)       # Add CSV button to the selection/radio layout
+            radio_layout.addWidget(json_radio)      # Add JSON button to the selection/radio layout
+            layout.addLayout(radio_layout)          # Add Selection/radio layout under the title of the measurement type
+
+            # Start/stop buttons
+            start_button = QPushButton("Start")
+            stop_button = QPushButton("Stop")
+            start_button.setStyleSheet("background-color: #4CAF50; color: white;")
+            stop_button.setStyleSheet("background-color: #f44336; color: white;")
+            button_layout = QHBoxLayout()           # Create button layout
+            button_layout.addWidget(start_button)   # Add start button
+            button_layout.addWidget(stop_button)    # Add stop button
+            layout.addLayout(button_layout)         # Add button layout under the title of the measurement type
+
+        elif title == "Current-Voltage":
+            label = QLabel("Current-Voltage (I-V) Measurement")
+            label.setFont(QFont("Arial", 12, QFont.Bold))
+            layout.addWidget(label)
+
+            # Buttons to select a data logging format (CSV or JSON), radio button used so one can be selected at a time           
+            csv_radio = QRadioButton("Log data into a .CSV file")
+            json_radio = QRadioButton("Log data into a .JSON file")
+            csv_radio.setChecked(True)              # Default selection is CSV
+            radio_layout = QHBoxLayout()            # Create Selection/radio layout
+            radio_layout.addWidget(csv_radio)       # Add CSV button to the selection/radio layout
+            radio_layout.addWidget(json_radio)      # Add JSON button to the selection/radio layout
+            layout.addLayout(radio_layout)          # Add Selection/radio layout under the title of the measurement type
+
+            # Text box for entering measurement values
+            value_layout = QHBoxLayout()
+            value_label = QLabel("Starting Voltage")
+            value_input = QLineEdit()
+            value_input.setPlaceholderText("Enter value")
+            unit_label = QLabel("V")
+            value_layout.addWidget(value_label)
+            value_layout.addWidget(value_input)
+            value_layout.addWidget(unit_label)
+            layout.addLayout(value_layout)
+
+            # Text box for entering measurement values
+            value_layout = QHBoxLayout()
+            value_label = QLabel("Ending Voltage")
+            value_input = QLineEdit()
+            value_input.setPlaceholderText("Enter value")
+            unit_label = QLabel("V")
+            value_layout.addWidget(value_label)
+            value_layout.addWidget(value_input)
+            value_layout.addWidget(unit_label)
+            layout.addLayout(value_layout)
+
+            # Text box for entering measurement values
+            value_layout = QHBoxLayout()
+            value_label = QLabel("Increment Voltage")
+            value_input = QLineEdit()
+            value_input.setPlaceholderText("Enter value")
+            unit_label = QLabel("V")
+            value_layout.addWidget(value_label)
+            value_layout.addWidget(value_input)
+            value_layout.addWidget(unit_label)
+            layout.addLayout(value_layout)
+
+            # Start button
+            start_button = QPushButton("Start Measurement")
+            start_button.setStyleSheet("background-color: #4CAF50; color: white;")
+            button_layout = QHBoxLayout()           # Create button layout
+            button_layout.addWidget(start_button)   # Add start button
+            layout.addLayout(button_layout)         # Add button layout under the title of the measurement type
+
+        elif title == "Capacitance-Voltage":
+            label = QLabel("Capacitance-Voltage Measurement")
+            label.setFont(QFont("Arial", 12, QFont.Bold))
+            layout.addWidget(label)
+
+            # Buttons to select a data logging format (CSV or JSON), radio button used so one can be selected at a time           
+            csv_radio = QRadioButton("Log data into a .CSV file")
+            json_radio = QRadioButton("Log data into a .JSON file")
+            csv_radio.setChecked(True)              # Default selection is CSV
+            radio_layout = QHBoxLayout()            # Create Selection/radio layout
+            radio_layout.addWidget(csv_radio)       # Add CSV button to the selection/radio layout
+            radio_layout.addWidget(json_radio)      # Add JSON button to the selection/radio layout
+            layout.addLayout(radio_layout)          # Add Selection/radio layout under the title of the measurement type
+
+            # Text box for entering measurement values
+            value_layout = QHBoxLayout()
+            value_label = QLabel("Starting Voltage")
+            value_input = QLineEdit()
+            value_input.setPlaceholderText("Enter value")
+            unit_label = QLabel("V")
+            value_layout.addWidget(value_label)
+            value_layout.addWidget(value_input)
+            value_layout.addWidget(unit_label)
+            layout.addLayout(value_layout)
+
+            # Text box for entering measurement values
+            value_layout = QHBoxLayout()
+            value_label = QLabel("Ending Voltage")
+            value_input = QLineEdit()
+            value_input.setPlaceholderText("Enter value")
+            unit_label = QLabel("V")
+            value_layout.addWidget(value_label)
+            value_layout.addWidget(value_input)
+            value_layout.addWidget(unit_label)
+            layout.addLayout(value_layout)
+
+            # Text box for entering measurement values
+            value_layout = QHBoxLayout()
+            value_label = QLabel("Increment Voltage")
+            value_input = QLineEdit()
+            value_input.setPlaceholderText("Enter value")
+            unit_label = QLabel("V")
+            value_layout.addWidget(value_label)
+            value_layout.addWidget(value_input)
+            value_layout.addWidget(unit_label)
+            layout.addLayout(value_layout)
+
+            # Start button
+            start_button = QPushButton("Start Measurement")
+            start_button.setStyleSheet("background-color: #4CAF50; color: white;")
+            button_layout = QHBoxLayout()           # Create button layout
+            button_layout.addWidget(start_button)   # Add start button
+            layout.addLayout(button_layout)         # Add button layout under the title of the measurement type
+
+        elif title == "Impedance Spectroscopy":
+            label = QLabel("Impedance Spectroscopy")
+            label.setFont(QFont("Arial", 12, QFont.Bold))
+            layout.addWidget(label)
+
+            # Buttons to select a data logging format (CSV or JSON), radio button used so one can be selected at a time           
+            csv_radio = QRadioButton("Log data into a .CSV file")
+            json_radio = QRadioButton("Log data into a .JSON file")
+            csv_radio.setChecked(True)              # Default selection is CSV
+            radio_layout = QHBoxLayout()            # Create Selection/radio layout
+            radio_layout.addWidget(csv_radio)       # Add CSV button to the selection/radio layout
+            radio_layout.addWidget(json_radio)      # Add JSON button to the selection/radio layout
+            layout.addLayout(radio_layout)          # Add Selection/radio layout under the title of the measurement type
+
+            # Text box for entering measurement values
+            value_layout = QHBoxLayout()
+            value_label = QLabel("Starting Frequency")
+            value_input = QLineEdit()
+            value_input.setPlaceholderText("Enter value")
+            unit_label = QLabel("Hz")
+            value_layout.addWidget(value_label)
+            value_layout.addWidget(value_input)
+            value_layout.addWidget(unit_label)
+            layout.addLayout(value_layout)
+
+            # Text box for entering measurement values
+            value_layout = QHBoxLayout()
+            value_label = QLabel("Ending Frequency")
+            value_input = QLineEdit()
+            value_input.setPlaceholderText("Enter value")
+            unit_label = QLabel("Hz")
+            value_layout.addWidget(value_label)
+            value_layout.addWidget(value_input)
+            value_layout.addWidget(unit_label)
+            layout.addLayout(value_layout)
+
+            # Text box for entering measurement values
+            value_layout = QHBoxLayout()
+            value_label = QLabel("Increment Frequency")
+            value_input = QLineEdit()
+            value_input.setPlaceholderText("Enter value")
+            unit_label = QLabel("Hz")
+            value_layout.addWidget(value_label)
+            value_layout.addWidget(value_input)
+            value_layout.addWidget(unit_label)
+            layout.addLayout(value_layout)
+
+            # Text box for entering measurement values
+            value_layout = QHBoxLayout()
+            value_label = QLabel("Max Peak Voltage")
+            value_input = QLineEdit()
+            value_input.setPlaceholderText("Enter value")
+            unit_label = QLabel("V")
+            value_layout.addWidget(value_label)
+            value_layout.addWidget(value_input)
+            value_layout.addWidget(unit_label)
+            layout.addLayout(value_layout)
+
+            # Text box for entering measurement values
+            value_layout = QHBoxLayout()
+            value_label = QLabel("Min Peak Voltage")
+            value_input = QLineEdit()
+            value_input.setPlaceholderText("Enter value")
+            unit_label = QLabel("V")
+            value_layout.addWidget(value_label)
+            value_layout.addWidget(value_input)
+            value_layout.addWidget(unit_label)
+            layout.addLayout(value_layout)
+
+            # Start button
+            start_button = QPushButton("Start Measurement")
+            start_button.setStyleSheet("background-color: #4CAF50; color: white;")
+            button_layout = QHBoxLayout()           # Create button layout
+            button_layout.addWidget(start_button)   # Add start button
+            layout.addLayout(button_layout)         # Add button layout under the title of the measurement type
+
+        elif title == "Transfer Characteristics":
+            label = QLabel("Transfer Characteristics Measurement")
+            label.setFont(QFont("Arial", 12, QFont.Bold))
+            layout.addWidget(label)
+
+            # Buttons to select a data logging format (CSV or JSON), radio button used so one can be selected at a time           
+            csv_radio = QRadioButton("Log data into a .CSV file")
+            json_radio = QRadioButton("Log data into a .JSON file")
+            csv_radio.setChecked(True)              # Default selection is CSV
+            radio_layout = QHBoxLayout()            # Create Selection/radio layout
+            radio_layout.addWidget(csv_radio)       # Add CSV button to the selection/radio layout
+            radio_layout.addWidget(json_radio)      # Add JSON button to the selection/radio layout
+            layout.addLayout(radio_layout)          # Add Selection/radio layout under the title of the measurement type
+
+            # Text box for entering measurement values
+            value_layout = QHBoxLayout()
+            value_label = QLabel("Starting Voltage")
+            value_input = QLineEdit()
+            value_input.setPlaceholderText("Enter value")
+            unit_label = QLabel("V")
+            value_layout.addWidget(value_label)
+            value_layout.addWidget(value_input)
+            value_layout.addWidget(unit_label)
+            layout.addLayout(value_layout)
+
+            # Text box for entering measurement values
+            value_layout = QHBoxLayout()
+            value_label = QLabel("Ending Voltage")
+            value_input = QLineEdit()
+            value_input.setPlaceholderText("Enter value")
+            unit_label = QLabel("V")
+            value_layout.addWidget(value_label)
+            value_layout.addWidget(value_input)
+            value_layout.addWidget(unit_label)
+            layout.addLayout(value_layout)
+
+            # Text box for entering measurement values
+            value_layout = QHBoxLayout()
+            value_label = QLabel("Increment Voltage")
+            value_input = QLineEdit()
+            value_input.setPlaceholderText("Enter value")
+            unit_label = QLabel("V")
+            value_layout.addWidget(value_label)
+            value_layout.addWidget(value_input)
+            value_layout.addWidget(unit_label)
+            layout.addLayout(value_layout)
+
+            # Start button
+            start_button = QPushButton("Start Measurement")
+            start_button.setStyleSheet("background-color: #4CAF50; color: white;")
+            button_layout = QHBoxLayout()           # Create button layout
+            button_layout.addWidget(start_button)   # Add start button
+            layout.addLayout(button_layout)         # Add button layout under the title of the measurement type
+
+        elif title == "Output Characteristics":
+            label = QLabel("Output Characteristics Measurement")
+            label.setFont(QFont("Arial", 12, QFont.Bold))
+            layout.addWidget(label)
+
+            # Buttons to select a data logging format (CSV or JSON), radio button used so one can be selected at a time           
+            csv_radio = QRadioButton("Log data into a .CSV file")
+            json_radio = QRadioButton("Log data into a .JSON file")
+            csv_radio.setChecked(True)              # Default selection is CSV
+            radio_layout = QHBoxLayout()            # Create Selection/radio layout
+            radio_layout.addWidget(csv_radio)       # Add CSV button to the selection/radio layout
+            radio_layout.addWidget(json_radio)      # Add JSON button to the selection/radio layout
+            layout.addLayout(radio_layout)          # Add Selection/radio layout under the title of the measurement type
+
+            # Text box for entering measurement values
+            value_layout = QHBoxLayout()
+            value_label = QLabel("Starting Voltage")
+            value_input = QLineEdit()
+            value_input.setPlaceholderText("Enter value")
+            unit_label = QLabel("V")
+            value_layout.addWidget(value_label)
+            value_layout.addWidget(value_input)
+            value_layout.addWidget(unit_label)
+            layout.addLayout(value_layout)
+
+            # Text box for entering measurement values
+            value_layout = QHBoxLayout()
+            value_label = QLabel("Ending Voltage")
+            value_input = QLineEdit()
+            value_input.setPlaceholderText("Enter value")
+            unit_label = QLabel("V")
+            value_layout.addWidget(value_label)
+            value_layout.addWidget(value_input)
+            value_layout.addWidget(unit_label)
+            layout.addLayout(value_layout)
+
+            # Text box for entering measurement values
+            value_layout = QHBoxLayout()
+            value_label = QLabel("Increment Voltage")
+            value_input = QLineEdit()
+            value_input.setPlaceholderText("Enter value")
+            unit_label = QLabel("V")
+            value_layout.addWidget(value_label)
+            value_layout.addWidget(value_input)
+            value_layout.addWidget(unit_label)
+            layout.addLayout(value_layout)
+
+            # Start button
+            start_button = QPushButton("Start Measurement")
+            start_button.setStyleSheet("background-color: #4CAF50; color: white;")
+            button_layout = QHBoxLayout()           # Create button layout
+            button_layout.addWidget(start_button)   # Add start button
+            layout.addLayout(button_layout)         # Add button layout under the title of the measurement type
+
+        elif title == "Electrochemical":
+            label = QLabel("Electrochemical Measurement")
+            label.setFont(QFont("Arial", 12, QFont.Bold))
+            layout.addWidget(label)
+
+            # Buttons to select a data logging format (CSV or JSON), radio button used so one can be selected at a time           
+            csv_radio = QRadioButton("Log data into a .CSV file")
+            json_radio = QRadioButton("Log data into a .JSON file")
+            csv_radio.setChecked(True)              # Default selection is CSV
+            radio_layout = QHBoxLayout()            # Create Selection/radio layout
+            radio_layout.addWidget(csv_radio)       # Add CSV button to the selection/radio layout
+            radio_layout.addWidget(json_radio)      # Add JSON button to the selection/radio layout
+            layout.addLayout(radio_layout)          # Add Selection/radio layout under the title of the measurement type
+
+            # Text box for entering measurement values
+            value_layout = QHBoxLayout()
+            value_label = QLabel("Starting Frequency")
+            value_input = QLineEdit()
+            value_input.setPlaceholderText("Enter value")
+            unit_label = QLabel("Hz")
+            value_layout.addWidget(value_label)
+            value_layout.addWidget(value_input)
+            value_layout.addWidget(unit_label)
+            layout.addLayout(value_layout)
+
+            # Text box for entering measurement values
+            value_layout = QHBoxLayout()
+            value_label = QLabel("Ending Frequency")
+            value_input = QLineEdit()
+            value_input.setPlaceholderText("Enter value")
+            unit_label = QLabel("Hz")
+            value_layout.addWidget(value_label)
+            value_layout.addWidget(value_input)
+            value_layout.addWidget(unit_label)
+            layout.addLayout(value_layout)
+
+            # Text box for entering measurement values
+            value_layout = QHBoxLayout()
+            value_label = QLabel("Increment Frequency")
+            value_input = QLineEdit()
+            value_input.setPlaceholderText("Enter value")
+            unit_label = QLabel("Hz")
+            value_layout.addWidget(value_label)
+            value_layout.addWidget(value_input)
+            value_layout.addWidget(unit_label)
+            layout.addLayout(value_layout)
+
+            # Text box for entering measurement values
+            value_layout = QHBoxLayout()
+            value_label = QLabel("Max Peak Voltage")
+            value_input = QLineEdit()
+            value_input.setPlaceholderText("Enter value")
+            unit_label = QLabel("V")
+            value_layout.addWidget(value_label)
+            value_layout.addWidget(value_input)
+            value_layout.addWidget(unit_label)
+            layout.addLayout(value_layout)
+
+            # Text box for entering measurement values
+            value_layout = QHBoxLayout()
+            value_label = QLabel("Min Peak Voltage")
+            value_input = QLineEdit()
+            value_input.setPlaceholderText("Enter value")
+            unit_label = QLabel("V")
+            value_layout.addWidget(value_label)
+            value_layout.addWidget(value_input)
+            value_layout.addWidget(unit_label)
+            layout.addLayout(value_layout)
+
+            # Start button
+            start_button = QPushButton("Start Measurement")
+            start_button.setStyleSheet("background-color: #4CAF50; color: white;")
+            button_layout = QHBoxLayout()           # Create button layout
+            button_layout.addWidget(start_button)   # Add start button
+            layout.addLayout(button_layout)         # Add button layout under the title of the measurement type
+
+        elif title == "Probe Resistance":
+            label = QLabel("Probe Resistance Measurement")
+            label.setFont(QFont("Arial", 12, QFont.Bold))
+            layout.addWidget(label)
+
+            # Buttons to select a data logging format (CSV or JSON), radio button used so one can be selected at a time           
+            csv_radio = QRadioButton("Log data into a .CSV file")
+            json_radio = QRadioButton("Log data into a .JSON file")
+            csv_radio.setChecked(True)              # Default selection is CSV
+            radio_layout = QHBoxLayout()            # Create Selection/radio layout
+            radio_layout.addWidget(csv_radio)       # Add CSV button to the selection/radio layout
+            radio_layout.addWidget(json_radio)      # Add JSON button to the selection/radio layout
+            layout.addLayout(radio_layout)          # Add Selection/radio layout under the title of the measurement type
+
+            # Start/stop buttons
+            start_button = QPushButton("Start")
+            stop_button = QPushButton("Stop")
+            start_button.setStyleSheet("background-color: #4CAF50; color: white;")
+            stop_button.setStyleSheet("background-color: #f44336; color: white;")
+            button_layout = QHBoxLayout()           # Create button layout
+            button_layout.addWidget(start_button)   # Add start button
+            button_layout.addWidget(stop_button)    # Add stop button
+            layout.addLayout(button_layout)         # Add button layout under the title of the measurement type
+
+        elif title == "Low-Resistance":
+            label = QLabel("Low-Resistance Measurement")
+            label.setFont(QFont("Arial", 12, QFont.Bold))
+            layout.addWidget(label)
+
+            # Buttons to select a data logging format (CSV or JSON), radio button used so one can be selected at a time           
+            csv_radio = QRadioButton("Log data into a .CSV file")
+            json_radio = QRadioButton("Log data into a .JSON file")
+            csv_radio.setChecked(True)              # Default selection is CSV
+            radio_layout = QHBoxLayout()            # Create Selection/radio layout
+            radio_layout.addWidget(csv_radio)       # Add CSV button to the selection/radio layout
+            radio_layout.addWidget(json_radio)      # Add JSON button to the selection/radio layout
+            layout.addLayout(radio_layout)          # Add Selection/radio layout under the title of the measurement type
+
+            # Start/stop buttons
+            start_button = QPushButton("Start")
+            stop_button = QPushButton("Stop")
+            start_button.setStyleSheet("background-color: #4CAF50; color: white;")
+            stop_button.setStyleSheet("background-color: #f44336; color: white;")
+            button_layout = QHBoxLayout()           # Create button layout
+            button_layout.addWidget(start_button)   # Add start button
+            button_layout.addWidget(stop_button)    # Add stop button
+            layout.addLayout(button_layout)         # Add button layout under the title of the measurement type
+
+        elif title == "Impedance Spectroscopy":
+            label = QLabel("Impedance Spectroscopy")
+            label.setFont(QFont("Arial", 12, QFont.Bold))
+            layout.addWidget(label)
+
+            # Buttons to select a data logging format (CSV or JSON), radio button used so one can be selected at a time           
+            csv_radio = QRadioButton("Log data into a .CSV file")
+            json_radio = QRadioButton("Log data into a .JSON file")
+            csv_radio.setChecked(True)              # Default selection is CSV
+            radio_layout = QHBoxLayout()            # Create Selection/radio layout
+            radio_layout.addWidget(csv_radio)       # Add CSV button to the selection/radio layout
+            radio_layout.addWidget(json_radio)      # Add JSON button to the selection/radio layout
+            layout.addLayout(radio_layout)          # Add Selection/radio layout under the title of the measurement type
+
+            # Text box for entering measurement values
+            value_layout = QHBoxLayout()
+            value_label = QLabel("Starting Frequency")
+            value_input = QLineEdit()
+            value_input.setPlaceholderText("Enter value")
+            unit_label = QLabel("Hz")
+            value_layout.addWidget(value_label)
+            value_layout.addWidget(value_input)
+            value_layout.addWidget(unit_label)
+            layout.addLayout(value_layout)
+
+            # Text box for entering measurement values
+            value_layout = QHBoxLayout()
+            value_label = QLabel("Ending Frequency")
+            value_input = QLineEdit()
+            value_input.setPlaceholderText("Enter value")
+            unit_label = QLabel("Hz")
+            value_layout.addWidget(value_label)
+            value_layout.addWidget(value_input)
+            value_layout.addWidget(unit_label)
+            layout.addLayout(value_layout)
+
+            # Text box for entering measurement values
+            value_layout = QHBoxLayout()
+            value_label = QLabel("Increment Frequency")
+            value_input = QLineEdit()
+            value_input.setPlaceholderText("Enter value")
+            unit_label = QLabel("Hz")
+            value_layout.addWidget(value_label)
+            value_layout.addWidget(value_input)
+            value_layout.addWidget(unit_label)
+            layout.addLayout(value_layout)
+
+            # Text box for entering measurement values
+            value_layout = QHBoxLayout()
+            value_label = QLabel("Max Peak Voltage")
+            value_input = QLineEdit()
+            value_input.setPlaceholderText("Enter value")
+            unit_label = QLabel("V")
+            value_layout.addWidget(value_label)
+            value_layout.addWidget(value_input)
+            value_layout.addWidget(unit_label)
+            layout.addLayout(value_layout)
+
+            # Text box for entering measurement values
+            value_layout = QHBoxLayout()
+            value_label = QLabel("Min Peak Voltage")
+            value_input = QLineEdit()
+            value_input.setPlaceholderText("Enter value")
+            unit_label = QLabel("V")
+            value_layout.addWidget(value_label)
+            value_layout.addWidget(value_input)
+            value_layout.addWidget(unit_label)
+            layout.addLayout(value_layout)
+
+            # Start button
+            start_button = QPushButton("Start Measurement")
+            start_button.setStyleSheet("background-color: #4CAF50; color: white;")
+            button_layout = QHBoxLayout()           # Create button layout
+            button_layout.addWidget(start_button)   # Add start button
+            layout.addLayout(button_layout)         # Add button layout under the title of the measurement type
+
+        else:
+            # Default layout for undefined measurement types
+            label = QLabel(f"Page for {title}")
+            label.setFont(QFont("Arial", 12, QFont.Bold))
+            layout.addWidget(label)
+
 
     def create_error_bar(self):
         # Create a status bar for error checks
