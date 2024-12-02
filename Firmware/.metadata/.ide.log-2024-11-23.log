@@ -1,0 +1,10 @@
+2024-11-23 00:25:49,421 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 0:25:49.411 ERROR Chromium process exit code: -2,147,483,645
+2024-11-23 00:25:49,435 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 
+2024-11-23 00:25:49,435 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 0:25:49.435 ERROR Crash dump dir: C:\Users\User\AppData\Local\JxBrowser\7.38.2\CrashReports
+2024-11-23 00:25:49,435 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 
+2024-11-23 00:25:49,441 [ERROR] WebApp:397 - JxBrowser engine crashed! Exit code: -2147483645
+2024-11-23 00:40:50,628 [ERROR] ConfigurationRetriever:142 - IOException on connection: sw-center.st.com
+2024-11-23 00:40:50,628 [ERROR] ConfigurationRetriever:142 - IOException on connection: sw-center.st.com
+2024-11-23 00:40:50,629 [ERROR] ConfigurationRetriever:142 - IOException on connection: sw-center.st.com
+2024-11-23 00:40:52,305 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 
+2024-11-23 00:40:52,306 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 

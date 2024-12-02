@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;DeviceProcessor/Core/Src/switch_network&apos; to &apos;switch_network.c&apos;" description="Rename resource &apos;switch_network&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="Core/Src/switch_network" name="switch_network.c" stamp="1731747556938" updateReferences="true"/>
+</session>

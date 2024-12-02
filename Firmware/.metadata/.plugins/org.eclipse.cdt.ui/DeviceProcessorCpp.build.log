@@ -1,0 +1,17 @@
+16:48:39 **** Incremental Build of configuration Debug for project DeviceProcessorCpp ****
+make -j12 all 
+arm-none-eabi-g++ "../Core/Src/run_device.cpp" -mcpu=cortex-m33 -std=gnu++14 -g3 -DDEBUG -DUSE_FULL_LL_DRIVER -DUSE_HAL_DRIVER -DSTM32U575xx -c -I../Core/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32U5xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -fno-use-cxa-atexit -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/run_device.d" -MT"Core/Src/run_device.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/run_device.o"
+arm-none-eabi-g++ -o "DeviceProcessorCpp.elf" @"objects.list"   -mcpu=cortex-m33 -T"C:\UBC_4TH_YEAR\ELEC-491\JY-85\project\JY85\Firmware\DeviceProcessorCpp\STM32U575ZITXQ_FLASH.ld" --specs=nosys.specs -Wl,-Map="DeviceProcessorCpp.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: DeviceProcessorCpp.elf
+ 
+arm-none-eabi-size  DeviceProcessorCpp.elf 
+arm-none-eabi-objdump -h -S DeviceProcessorCpp.elf  > "DeviceProcessorCpp.list"
+   text	   data	    bss	    dec	    hex	filename
+  35900	      9	   3108	  39017	   9869	DeviceProcessorCpp.elf
+Finished building: default.size.stdout
+ 
+Finished building: DeviceProcessorCpp.list
+ 
+
+16:48:40 Build Finished. 0 errors, 0 warnings. (took 1s.633ms)
+
