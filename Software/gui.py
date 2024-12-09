@@ -107,7 +107,7 @@ class MainWindow(QMainWindow):
         # For each measurement section (2-probe, 3-probe and 4-probe)
         button = QPushButton(section_title)             # Create a button
         button.setCheckable(True)                       # Make the buttons toggleable
-        button.setFont(QFont("Arial", 10))              # Set the font for the buttons
+        button.setFont(QFont("Arial", 10, QFont.Bold))  # Set the font for the buttons
         button.setStyleSheet("""                
             background-color: #ffffff;
             padding: 6px;
