@@ -93,7 +93,7 @@ def receive_value(ser):
         print(f"Received: Address={address}, Data={data}")      # Display the received address and data
 
 # Example usage
-ser = init_ser_port(port='COM8', baudrate=9600)  # Initialize the serial connection
+ser = init_ser_port(port='COM4', baudrate=115200)  # Initialize the serial connection
 
 if ser:                                          # Proceed if the connection was successfully opened
     send_value(ser)                              # Start monitoring for input

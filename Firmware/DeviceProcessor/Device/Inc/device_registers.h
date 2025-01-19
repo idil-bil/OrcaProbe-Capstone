@@ -19,8 +19,6 @@ typedef struct{
 
 typedef struct{
 	Register_TypeDef RegisterArray[DVC_TOTAL_REGISTER_NUMBER];
-//	void (*reg_write)(RegisterMap_TypeDef*, uint32_t, uint32_t);
-//	uint32_t (*reg_read)(RegisterMap_TypeDef*, uint32_t);
 } RegisterMap_TypeDef;
 
 void init_register_map(RegisterMap_TypeDef* RegMap);

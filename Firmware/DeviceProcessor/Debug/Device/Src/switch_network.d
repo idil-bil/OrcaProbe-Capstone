@@ -28,6 +28,8 @@ Device/Src/switch_network.o: ../Device/Src/switch_network.c \
  ../Drivers/STM32U5xx_HAL_Driver/Inc/stm32u5xx_hal_pwr_ex.h \
  ../Drivers/STM32U5xx_HAL_Driver/Inc/stm32u5xx_hal_spi.h \
  ../Drivers/STM32U5xx_HAL_Driver/Inc/stm32u5xx_hal_spi_ex.h \
+ ../Drivers/STM32U5xx_HAL_Driver/Inc/stm32u5xx_hal_tim.h \
+ ../Drivers/STM32U5xx_HAL_Driver/Inc/stm32u5xx_hal_tim_ex.h \
  ../Drivers/STM32U5xx_HAL_Driver/Inc/stm32u5xx_hal_uart.h \
  ../Drivers/STM32U5xx_HAL_Driver/Inc/stm32u5xx_hal_uart_ex.h \
  ../Drivers/STM32U5xx_HAL_Driver/Inc/stm32u5xx_hal_pcd.h \
@@ -43,7 +45,9 @@ Device/Src/switch_network.o: ../Device/Src/switch_network.c \
  ../Drivers/STM32U5xx_HAL_Driver/Inc/stm32u5xx_ll_pwr.h \
  ../Drivers/STM32U5xx_HAL_Driver/Inc/stm32u5xx_ll_gpio.h \
  ../Drivers/STM32U5xx_HAL_Driver/Inc/stm32u5xx_ll_dma.h \
- ../Drivers/STM32U5xx_HAL_Driver/Inc/stm32u5xx_ll_exti.h
+ ../Drivers/STM32U5xx_HAL_Driver/Inc/stm32u5xx_ll_exti.h \
+ ../Device/Src/../Inc/switch_network.h ../Device/Src/../Inc/run_device.h \
+ ../Device/Src/../Inc/DeviceConstants.h
 ../Core/Inc/main.h:
 ../Drivers/STM32U5xx_HAL_Driver/Inc/stm32u5xx_hal.h:
 ../Core/Inc/stm32u5xx_hal_conf.h:
@@ -74,6 +78,8 @@ Device/Src/switch_network.o: ../Device/Src/switch_network.c \
 ../Drivers/STM32U5xx_HAL_Driver/Inc/stm32u5xx_hal_pwr_ex.h:
 ../Drivers/STM32U5xx_HAL_Driver/Inc/stm32u5xx_hal_spi.h:
 ../Drivers/STM32U5xx_HAL_Driver/Inc/stm32u5xx_hal_spi_ex.h:
+../Drivers/STM32U5xx_HAL_Driver/Inc/stm32u5xx_hal_tim.h:
+../Drivers/STM32U5xx_HAL_Driver/Inc/stm32u5xx_hal_tim_ex.h:
 ../Drivers/STM32U5xx_HAL_Driver/Inc/stm32u5xx_hal_uart.h:
 ../Drivers/STM32U5xx_HAL_Driver/Inc/stm32u5xx_hal_uart_ex.h:
 ../Drivers/STM32U5xx_HAL_Driver/Inc/stm32u5xx_hal_pcd.h:
@@ -90,3 +96,6 @@ Device/Src/switch_network.o: ../Device/Src/switch_network.c \
 ../Drivers/STM32U5xx_HAL_Driver/Inc/stm32u5xx_ll_gpio.h:
 ../Drivers/STM32U5xx_HAL_Driver/Inc/stm32u5xx_ll_dma.h:
 ../Drivers/STM32U5xx_HAL_Driver/Inc/stm32u5xx_ll_exti.h:
+../Device/Src/../Inc/switch_network.h:
+../Device/Src/../Inc/run_device.h:
+../Device/Src/../Inc/DeviceConstants.h:

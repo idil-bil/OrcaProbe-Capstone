@@ -1,0 +1,3 @@
+../Device/Src/switch_network.c:16:6:DVC_Clear_Switch_Network	2
+../Device/Src/switch_network.c:26:6:DVC_Set_Switch_Network	3
+../Device/Src/switch_network.c:36:6:DVC_Map_Switch_Network	1

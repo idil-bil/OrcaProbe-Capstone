@@ -1,0 +1,565 @@
+2025-01-13 13:42:16,906 [INFO] NvicIntPanel:101 - NVIC parent = com.st.microxplorer.plugins.ip.nvic.MultiNvicIntPanel[,0,0,591x270,layout=javax.swing.BoxLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]
+2025-01-13 13:42:34,867 [WARN] IP:2191 - DATAEXCHANGEDESRCBYTE_GPDMACH12 not found: check if there is a RefParameter without a condition.
+2025-01-13 13:42:34,867 [WARN] IP:2191 - DATAEXCHANGEDESTHALFWORD_GPDMACH12 not found: check if there is a RefParameter without a condition.
+2025-01-13 13:43:26,379 [WARN] IP:2191 - DATAEXCHANGEDESRCBYTE_GPDMACH12 not found: check if there is a RefParameter without a condition.
+2025-01-13 13:43:26,379 [WARN] IP:2191 - DATAEXCHANGEDESTHALFWORD_GPDMACH12 not found: check if there is a RefParameter without a condition.
+2025-01-13 13:43:26,526 [WARN] IP:2191 - DATAEXCHANGEDESRCBYTE_GPDMACH12 not found: check if there is a RefParameter without a condition.
+2025-01-13 13:43:26,526 [WARN] IP:2191 - DATAEXCHANGEDESTHALFWORD_GPDMACH12 not found: check if there is a RefParameter without a condition.
+2025-01-13 13:43:26,537 [WARN] IP:2191 - DATAEXCHANGEDESRCBYTE_GPDMACH12 not found: check if there is a RefParameter without a condition.
+2025-01-13 13:43:26,537 [WARN] IP:2191 - DATAEXCHANGEDESTHALFWORD_GPDMACH12 not found: check if there is a RefParameter without a condition.
+2025-01-13 13:43:26,647 [WARN] IP:2191 - DATAEXCHANGEDESRCBYTE_GPDMACH12 not found: check if there is a RefParameter without a condition.
+2025-01-13 13:43:26,647 [WARN] IP:2191 - DATAEXCHANGEDESTHALFWORD_GPDMACH12 not found: check if there is a RefParameter without a condition.
+2025-01-13 13:46:47,893 [INFO] MainUpdater:2873 - connection check result : 10
+2025-01-13 13:46:47,893 [INFO] MainUpdater:2873 - connection check result : 10
+2025-01-13 13:46:47,981 [INFO] MicroXplorer:468 - Change Database Path : 
+2025-01-13 13:46:47,981 [INFO] MicroXplorer:498 - Change Database Version : DB.6.0.121
+2025-01-13 13:46:47,999 [ERROR] ProjectManagerView:394 - 
+java.lang.NullPointerException: Cannot invoke "javax.swing.JTextField.getText()" because the return value of "java.util.List.get(int)" is null
+	at com.st.microxplorer.plugins.projectmanager.gui.ProjectChoiceTab$10.caretUpdate(ProjectChoiceTab.java:2622) ~[filemanager.jar:?]
+	at javax.swing.text.JTextComponent.fireCaretUpdate(JTextComponent.java:412) ~[?:?]
+	at javax.swing.text.JTextComponent$MutableCaretEvent.fire(JTextComponent.java:4491) ~[?:?]
+	at javax.swing.text.JTextComponent$MutableCaretEvent.stateChanged(JTextComponent.java:4513) ~[?:?]
+	at javax.swing.text.DefaultCaret.fireStateChanged(DefaultCaret.java:842) ~[?:?]
+	at javax.swing.text.DefaultCaret.changeCaretPosition(DefaultCaret.java:1313) ~[?:?]
+	at javax.swing.text.DefaultCaret.handleSetDot(DefaultCaret.java:1212) ~[?:?]
+	at javax.swing.text.DefaultCaret.setDot(DefaultCaret.java:1193) ~[?:?]
+	at javax.swing.text.DefaultCaret$Handler.insertUpdate(DefaultCaret.java:1789) ~[?:?]
+	at javax.swing.text.AbstractDocument.fireInsertUpdate(AbstractDocument.java:226) ~[?:?]
+	at javax.swing.text.AbstractDocument.handleInsertString(AbstractDocument.java:780) ~[?:?]
+	at javax.swing.text.AbstractDocument.insertString(AbstractDocument.java:739) ~[?:?]
+	at javax.swing.text.PlainDocument.insertString(PlainDocument.java:131) ~[?:?]
+	at javax.swing.text.AbstractDocument.replace(AbstractDocument.java:698) ~[?:?]
+	at javax.swing.text.JTextComponent.setText(JTextComponent.java:1729) ~[?:?]
+	at com.st.microxplorer.plugins.projectmanager.gui.ProjectChoiceTab.createHeapStackFields(ProjectChoiceTab.java:972) ~[filemanager.jar:?]
+	at com.st.microxplorer.plugins.projectmanager.gui.ProjectChoiceTab.buildLinkSettingsPanel(ProjectChoiceTab.java:3597) ~[filemanager.jar:?]
+	at com.st.microxplorer.plugins.projectmanager.gui.ProjectChoiceTab.defineWindowsFields(ProjectChoiceTab.java:1940) ~[filemanager.jar:?]
+	at com.st.microxplorer.plugins.projectmanager.gui.ProjectChoiceTab.updateSettings(ProjectChoiceTab.java:550) ~[filemanager.jar:?]
+	at com.st.microxplorer.plugins.projectmanager.gui.ProjectSettingsPanel.UpdateDialog(ProjectSettingsPanel.java:245) ~[filemanager.jar:?]
+	at com.st.microxplorer.plugins.projectmanager.ProjectManagerView.propertyChange(ProjectManagerView.java:391) ~[filemanager.jar:?]
+	at java.beans.PropertyChangeSupport.fire(PropertyChangeSupport.java:343) ~[?:?]
+	at java.beans.PropertyChangeSupport.firePropertyChange(PropertyChangeSupport.java:335) ~[?:?]
+	at java.beans.PropertyChangeSupport.firePropertyChange(PropertyChangeSupport.java:268) ~[?:?]
+	at com.st.microxplorer.util.MXPropertyChangeSupport.firePropertyChange(MXPropertyChangeSupport.java:54) ~[STM32CubeMX.jar:?]
+	at com.st.microxplorer.mxsystem.MxSystem.closeConfig(MxSystem.java:900) ~[STM32CubeMX.jar:?]
+	at com.st.microxplorer.maingui.MainPanel.closeConfig(MainPanel.java:781) ~[STM32CubeMX.jar:?]
+	at com.st.microxplorer.plugins.filemanager.engine.OpenFileManager.loadConfigurationFile(OpenFileManager.java:265) ~[filemanager.jar:?]
+	at com.st.microxplorer.plugins.filemanager.engine.MainFileManager.userLoadConfig(MainFileManager.java:352) ~[filemanager.jar:?]
+	at com.st.microxplorer.plugins.filemanager.engine.MainFileManager.userLoadConfig(MainFileManager.java:330) ~[filemanager.jar:?]
+	at com.st.microxplorer.plugins.filemanager.FileManagerView.getSpecificTask(FileManagerView.java:246) ~[filemanager.jar:?]
+	at com.st.stm32cube.common.mx.editor.CubeMxEditor.getMxTabbedPaneInstance(CubeMxEditor.java:1198) ~[com.st.stm32cube.common.mx_6.12.1.202409122256/:?]
+	at com.st.stm32cube.common.mx.editor.CubeMxEditor$12$1.createSwingComponent(CubeMxEditor.java:1068) ~[com.st.stm32cube.common.mx_6.12.1.202409122256/:?]
+	at com.st.stm32cube.common.mx.oss.core.awtswtbridge.EmbeddedSwingComposite.doComponentCreation(EmbeddedSwingComposite.java:492) ~[com.st.stm32cube.common.mx.oss_6.12.1.202409122256/:?]
+	at com.st.stm32cube.common.mx.oss.core.awtswtbridge.EmbeddedSwingComposite$4.run(EmbeddedSwingComposite.java:291) ~[com.st.stm32cube.common.mx.oss_6.12.1.202409122256/:?]
+	at com.st.stm32cube.common.mx.oss.core.awtswtbridge.AwtEnvironment$2.run(AwtEnvironment.java:166) ~[com.st.stm32cube.common.mx.oss_6.12.1.202409122256/:?]
+	at java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:318) ~[?:?]
+	at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:773) ~[?:?]
+	at java.awt.EventQueue$4.run(EventQueue.java:720) ~[?:?]
+	at java.awt.EventQueue$4.run(EventQueue.java:714) ~[?:?]
+	at java.security.AccessController.doPrivileged(AccessController.java:399) ~[?:?]
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:86) ~[?:?]
+	at java.awt.EventQueue.dispatchEvent(EventQueue.java:742) ~[?:?]
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203) ~[?:?]
+	at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124) ~[?:?]
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113) ~[?:?]
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109) ~[?:?]
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101) ~[?:?]
+	at java.awt.EventDispatchThread.run(EventDispatchThread.java:90) ~[?:?]
+2025-01-13 13:46:48,001 [WARN] ThirdParty:871 - waiting for thirdparty lock release [close project]
+2025-01-13 13:46:48,001 [INFO] ThirdParty:873 - entering critical section [close project]
+2025-01-13 13:46:48,001 [INFO] ThirdParty:883 - exiting critical section [close project]
+2025-01-13 13:46:48,002 [INFO] PinOutPanel:1561 - setPackage(No Configuration,No Configuration)
+2025-01-13 13:46:48,006 [INFO] HwResourcesManager:1923 - RZone for current mcu STM32U575ZITxQ : STM32_DIE482_786_2048
+2025-01-13 13:46:48,018 [INFO] HwResourcesManager:210 - mpc SRAM1 added
+2025-01-13 13:46:48,019 [INFO] HwResourcesManager:210 - mpc SRAM2 added
+2025-01-13 13:46:48,019 [INFO] HwResourcesManager:210 - mpc SRAM3 added
+2025-01-13 13:46:48,019 [INFO] HwResourcesManager:210 - mpc SRAM4 added
+2025-01-13 13:46:48,019 [INFO] HwResourcesManager:210 - mpc Flash Bank1 added
+2025-01-13 13:46:48,021 [INFO] HwResourcesManager:210 - mpc Flash Bank2 added
+2025-01-13 13:46:48,022 [INFO] HwResourcesManager:231 - sau Non-Secure Code added
+2025-01-13 13:46:48,022 [INFO] HwResourcesManager:231 - sau Non-Secure RAM added
+2025-01-13 13:46:48,022 [INFO] HwResourcesManager:231 - sau Non-Secure Peripherals added
+2025-01-13 13:46:48,023 [INFO] HwResourcesManager:261 - mpcwm OctoSPI1 added
+2025-01-13 13:46:48,024 [INFO] HwResourcesManager:261 - mpcwm FMC Bank1 added
+2025-01-13 13:46:48,024 [INFO] HwResourcesManager:261 - mpcwm FMC Bank3 added
+2025-01-13 13:46:48,025 [INFO] HwResourcesManager:261 - mpcwm Backup SRAM added
+2025-01-13 13:46:48,025 [INFO] HwResourcesManager:261 - mpcwm OctoSPI2 added
+2025-01-13 13:46:48,026 [INFO] HwResourcesManager:261 - mpcwm Flash Bank1 added
+2025-01-13 13:46:48,026 [INFO] HwResourcesManager:261 - mpcwm Flash Bank2 added
+2025-01-13 13:46:48,027 [INFO] HwResourcesManager:461 - Memory Region Flash_Bank1_NS added
+2025-01-13 13:46:48,027 [INFO] HwResourcesManager:461 - Memory Region Flash_Bank2_NS added
+2025-01-13 13:46:48,027 [INFO] HwResourcesManager:461 - Memory Region SRAM1_C_NS added
+2025-01-13 13:46:48,027 [INFO] HwResourcesManager:461 - Memory Region SRAM2_C_NS added
+2025-01-13 13:46:48,027 [INFO] HwResourcesManager:461 - Memory Region SRAM3_C_NS added
+2025-01-13 13:46:48,028 [INFO] HwResourcesManager:461 - Memory Region Flash_Bank1_S added
+2025-01-13 13:46:48,028 [INFO] HwResourcesManager:461 - Memory Region Flash_Bank2_S added
+2025-01-13 13:46:48,028 [INFO] HwResourcesManager:461 - Memory Region SRAM1_C_S added
+2025-01-13 13:46:48,028 [INFO] HwResourcesManager:461 - Memory Region SRAM2_C_S added
+2025-01-13 13:46:48,028 [INFO] HwResourcesManager:461 - Memory Region SRAM3_C_S added
+2025-01-13 13:46:48,029 [INFO] HwResourcesManager:461 - Memory Region SRAM1_NS added
+2025-01-13 13:46:48,029 [INFO] HwResourcesManager:461 - Memory Region SRAM2_NS added
+2025-01-13 13:46:48,029 [INFO] HwResourcesManager:461 - Memory Region SRAM3_NS added
+2025-01-13 13:46:48,030 [INFO] HwResourcesManager:461 - Memory Region SRAM4_SRD_NS added
+2025-01-13 13:46:48,030 [INFO] HwResourcesManager:461 - Memory Region SRAM1_S added
+2025-01-13 13:46:48,030 [INFO] HwResourcesManager:461 - Memory Region SRAM2_S added
+2025-01-13 13:46:48,030 [INFO] HwResourcesManager:461 - Memory Region SRAM3_S added
+2025-01-13 13:46:48,031 [INFO] HwResourcesManager:461 - Memory Region SRAM4_SRD_S added
+2025-01-13 13:46:48,031 [INFO] HwResourcesManager:461 - Memory Region Backup_SRAM_NS added
+2025-01-13 13:46:48,032 [INFO] HwResourcesManager:461 - Memory Region Backup_SRAM_S added
+2025-01-13 13:46:48,038 [ERROR] MemInfoExtractor$FlashInfoExtractor:1999 - Read FLASH's parameter OB_DBANK return empty string!
+2025-01-13 13:46:50,197 [INFO] MemInfoExtractor:277 - EVENT_MCU_SET_IP_PARAMETER
+2025-01-13 13:46:50,229 [INFO] UtilMem:75 - Begin LoadConfig() Used Memory: 943102736 Bytes (1073741824)
+2025-01-13 13:46:50,230 [INFO] MicroXplorer:468 - Change Database Path : 
+2025-01-13 13:46:50,230 [INFO] MicroXplorer:498 - Change Database Version : DB.6.0.121
+2025-01-13 13:46:50,230 [INFO] OpenFileManager:332 - Change cursor
+2025-01-13 13:46:50,254 [INFO] RulesReader:64 - Compatibility file has been processed (297 Rules)
+2025-01-13 13:46:50,273 [INFO] Mcu:2032 - Initializing MCU STM32U575ZITxQ STM32U575ZITxQ STM32U575ZIT6Q
+2025-01-13 13:46:55,673 [INFO] Context:742 - Trying to add GPIOservice into a context  which must be forbidden
+2025-01-13 13:46:55,673 [INFO] Context:742 - Trying to add GPIOservice into a context  which must be forbidden
+2025-01-13 13:46:58,335 [WARN] ModelIntegratedComponent:63 - No mode defined for component null
+2025-01-13 13:46:58,335 [WARN] ModelIntegratedComponent:63 - No mode defined for component null
+2025-01-13 13:46:58,335 [WARN] ModelIntegratedComponent:63 - No mode defined for component null
+2025-01-13 13:46:58,335 [WARN] ModelIntegratedComponent:63 - No mode defined for component null
+2025-01-13 13:46:58,335 [WARN] ModelIntegratedComponent:63 - No mode defined for component null
+2025-01-13 13:46:58,335 [WARN] ModelIntegratedComponent:63 - No mode defined for component null
+2025-01-13 13:46:58,335 [WARN] ModelIntegratedComponent:63 - No mode defined for component null
+2025-01-13 13:46:58,335 [WARN] ModelIntegratedComponent:63 - No mode defined for component null
+2025-01-13 13:46:58,335 [WARN] ModelIntegratedComponent:63 - No mode defined for component null
+2025-01-13 13:46:58,335 [WARN] ModelIntegratedComponent:63 - No mode defined for component null
+2025-01-13 13:46:58,335 [WARN] ModelIntegratedComponent:63 - No mode defined for component null
+2025-01-13 13:46:58,335 [WARN] ModelIntegratedComponent:63 - No mode defined for component null
+2025-01-13 13:46:58,335 [WARN] ModelIntegratedComponent:63 - No mode defined for component null
+2025-01-13 13:46:58,335 [WARN] ModelIntegratedComponent:63 - No mode defined for component null
+2025-01-13 13:46:58,335 [WARN] ModelIntegratedComponent:63 - No mode defined for component null
+2025-01-13 13:46:58,335 [WARN] ModelIntegratedComponent:63 - No mode defined for component null
+2025-01-13 13:46:58,335 [WARN] ModelIntegratedComponent:63 - No mode defined for component null
+2025-01-13 13:46:58,335 [WARN] ModelIntegratedComponent:63 - No mode defined for component null
+2025-01-13 13:46:58,335 [WARN] ModelIntegratedComponent:63 - No mode defined for component null
+2025-01-13 13:46:58,335 [WARN] ModelIntegratedComponent:63 - No mode defined for component null
+2025-01-13 13:46:58,335 [WARN] ModelIntegratedComponent:63 - No mode defined for component null
+2025-01-13 13:46:58,335 [WARN] ModelIntegratedComponent:63 - No mode defined for component null
+2025-01-13 13:46:58,335 [WARN] ModelIntegratedComponent:63 - No mode defined for component null
+2025-01-13 13:46:58,335 [WARN] ModelIntegratedComponent:63 - No mode defined for component null
+2025-01-13 13:46:58,335 [WARN] ModelIntegratedComponent:63 - No mode defined for component null
+2025-01-13 13:46:58,335 [WARN] ModelIntegratedComponent:63 - No mode defined for component null
+2025-01-13 13:46:58,335 [WARN] ModelIntegratedComponent:63 - No mode defined for component null
+2025-01-13 13:46:58,335 [WARN] ModelIntegratedComponent:63 - No mode defined for component null
+2025-01-13 13:46:58,335 [WARN] ModelIntegratedComponent:63 - No mode defined for component null
+2025-01-13 13:46:58,335 [WARN] ModelIntegratedComponent:63 - No mode defined for component null
+2025-01-13 13:46:58,335 [WARN] ModelIntegratedComponent:63 - No mode defined for component null
+2025-01-13 13:46:58,335 [WARN] ModelIntegratedComponent:63 - No mode defined for component null
+2025-01-13 13:46:58,335 [WARN] ModelIntegratedComponent:63 - No mode defined for component null
+2025-01-13 13:46:58,335 [WARN] ModelIntegratedComponent:63 - No mode defined for component null
+2025-01-13 13:46:58,335 [WARN] ModelIntegratedComponent:63 - No mode defined for component null
+2025-01-13 13:46:58,335 [WARN] ModelPack:524 - Component already loaded: STMicroelectronics:HAL Drivers:0.0.0:STMicroelectronics:Device:STMicro_Driver:XSPI:HAL::0.0.1:HAL_XSPI
+2025-01-13 13:46:58,337 [INFO] RtosManager:555 - Registered RTOS mode: class=RTOS, group=ThreadX, mode=Core, owner=THREADX
+2025-01-13 13:46:58,400 [INFO] ThirdPartyModel:298 - Start build external matchings
+2025-01-13 13:46:58,979 [INFO] ThirdPartyModel:316 - End build external matchings
+2025-01-13 13:46:58,989 [INFO] ImportTextPane:205 - (OptionalMessage_ERROR) IP (ADC1) : Parameter (NbrOfConversion) has invalid value (1)
+2025-01-13 13:46:58,989 [INFO] ImportTextPane:205 - (OptionalMessage_ERROR) IP (ADC1) : Parameter (CommonPathInternal) has invalid value (null|null|null|null)
+2025-01-13 13:46:58,995 [WARN] IP:2191 - DATAEXCHANGEDESRCBYTE_GPDMACH12 not found: check if there is a RefParameter without a condition.
+2025-01-13 13:46:58,995 [WARN] IP:2191 - DATAEXCHANGEDESTHALFWORD_GPDMACH12 not found: check if there is a RefParameter without a condition.
+2025-01-13 13:46:58,997 [WARN] IP:2191 - SRAM5PowerDownInRunMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:46:58,997 [WARN] IP:2191 - SRAM6PowerDownInRunMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:46:58,997 [WARN] IP:2191 - RAM1Page4PowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:46:58,997 [WARN] IP:2191 - RAM1Page5PowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:46:58,997 [WARN] IP:2191 - RAM1Page6PowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:46:58,997 [WARN] IP:2191 - RAM1Page7PowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:46:58,997 [WARN] IP:2191 - RAM1Page8PowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:46:58,997 [WARN] IP:2191 - RAM1Page9PowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:46:58,997 [WARN] IP:2191 - RAM1Page10PowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:46:58,997 [WARN] IP:2191 - RAM1Page11PowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:46:58,997 [WARN] IP:2191 - RAM1Page12PowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:46:58,997 [WARN] IP:2191 - RAM3Page9PowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:46:58,997 [WARN] IP:2191 - RAM3Page10PowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:46:58,997 [WARN] IP:2191 - RAM3Page11PowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:46:58,998 [WARN] IP:2191 - RAM3Page12PowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:46:58,998 [WARN] IP:2191 - RAM3Page13PowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:46:58,998 [WARN] IP:2191 - RAM5Page1PowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:46:58,998 [WARN] IP:2191 - RAM5Page2PowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:46:58,998 [WARN] IP:2191 - RAM5Page3PowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:46:58,998 [WARN] IP:2191 - RAM5Page4PowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:46:58,998 [WARN] IP:2191 - RAM5Page5PowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:46:58,998 [WARN] IP:2191 - RAM5Page6PowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:46:58,998 [WARN] IP:2191 - RAM5Page7PowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:46:58,998 [WARN] IP:2191 - RAM5Page8PowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:46:58,998 [WARN] IP:2191 - RAM5Page9PowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:46:58,998 [WARN] IP:2191 - RAM5Page10PowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:46:58,998 [WARN] IP:2191 - RAM5Page11PowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:46:58,998 [WARN] IP:2191 - RAM5Page12PowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:46:58,998 [WARN] IP:2191 - RAM5Page13PowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:46:58,998 [WARN] IP:2191 - Dcache2PowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:46:58,998 [WARN] IP:2191 - GRAPHICPRAMPowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:46:58,998 [WARN] IP:2191 - DSIRAMPowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:46:58,999 [INFO] ImportTextPane:205 - (OptionalMessage_ERROR) IP (RCC) : Invalid parameter (FamilyName)
+2025-01-13 13:46:58,999 [INFO] ImportTextPane:205 - (OptionalMessage_ERROR) IP (RCC) : Parameter (SAI1Freq_Value) has invalid value (258000000)
+2025-01-13 13:46:58,999 [INFO] ImportTextPane:205 - (OptionalMessage_ERROR) IP (RCC) : Parameter (SAI2Freq_Value) has invalid value (258000000)
+2025-01-13 13:46:59,566 [INFO] UtilMem:75 - End LoadConfig() Used Memory: 893056392 Bytes (1073741824)
+2025-01-13 13:46:59,579 [WARN] ThirdParty:833 - waiting for thirdparty lock release [change project]
+2025-01-13 13:46:59,579 [INFO] ThirdParty:835 - entering critical section [change project]
+2025-01-13 13:46:59,579 [INFO] ThirdParty:1030 - CMSIS Pack Vendor :STMicroelectronics USBPD 4.1
+2025-01-13 13:46:59,579 [INFO] ThirdParty:1030 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-AZRTOS-H7 3.3.0
+2025-01-13 13:46:59,579 [INFO] ThirdParty:1030 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-NFC9 1.0.0
+2025-01-13 13:46:59,579 [INFO] ThirdParty:1030 - CMSIS Pack Vendor :STMicroelectronics USB_HOST 2.0.0
+2025-01-13 13:46:59,579 [INFO] ThirdParty:1030 - CMSIS Pack Vendor :STMicroelectronics FP-SNS-MOTENVWB1 1.4.0
+2025-01-13 13:46:59,579 [INFO] ThirdParty:1030 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-AZRTOS-F4 1.1.0
+2025-01-13 13:46:59,579 [INFO] ThirdParty:1030 - CMSIS Pack Vendor :STMicroelectronics LIBJPEG 8.0.0
+2025-01-13 13:46:59,581 [INFO] ThirdParty:1030 - CMSIS Pack Vendor :STMicroelectronics FP-ATR-ASTRA1 2.0.1
+2025-01-13 13:46:59,581 [INFO] ThirdParty:1030 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-SMBUS 2.1.0
+2025-01-13 13:46:59,581 [INFO] ThirdParty:1030 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-WB05N 1.1.0
+2025-01-13 13:46:59,581 [INFO] ThirdParty:1030 - CMSIS Pack Vendor :STMicroelectronics USB_DEVICE 3.0.0
+2025-01-13 13:46:59,581 [INFO] ThirdParty:1030 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-TCPP 4.1.0
+2025-01-13 13:46:59,581 [INFO] ThirdParty:1030 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-ISPU 2.1.0
+2025-01-13 13:46:59,581 [INFO] ThirdParty:1030 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-FREERTOS 1.2.0
+2025-01-13 13:46:59,581 [INFO] ThirdParty:1030 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-IPS 3.0.0
+2025-01-13 13:46:59,581 [INFO] ThirdParty:1030 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-AZRTOS-WB 2.0.0
+2025-01-13 13:46:59,581 [INFO] ThirdParty:1030 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-GNSS1 7.0.0
+2025-01-13 13:46:59,581 [INFO] ThirdParty:1030 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-GNSS1 7.0.1
+2025-01-13 13:46:59,581 [INFO] ThirdParty:1030 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-AZRTOS-F7 1.1.0
+2025-01-13 13:46:59,581 [INFO] ThirdParty:1030 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-AZRTOS-L5 2.0.0
+2025-01-13 13:46:59,581 [INFO] ThirdParty:1030 - CMSIS Pack Vendor :STMicroelectronics USB_DEVICE 2.0.0
+2025-01-13 13:46:59,581 [INFO] ThirdParty:1030 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-NFC6 3.1.0
+2025-01-13 13:46:59,581 [INFO] ThirdParty:1030 - CMSIS Pack Vendor :STMicroelectronics FP-SNS-STBOX1 2.0.0
+2025-01-13 13:46:59,581 [INFO] ThirdParty:1030 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-MEMS1 11.0.0
+2025-01-13 13:46:59,581 [INFO] ThirdParty:1030 - CMSIS Pack Vendor :STMicroelectronics FreeRTOS 0.0.1
+2025-01-13 13:46:59,581 [INFO] ThirdParty:1030 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-AZRTOS-G0 1.1.0
+2025-01-13 13:46:59,581 [INFO] ThirdParty:1030 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-SAFEA1 1.2.2
+2025-01-13 13:46:59,581 [INFO] ThirdParty:1030 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-NFC4 3.0.0
+2025-01-13 13:46:59,581 [INFO] ThirdParty:1030 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-DPower 1.2.0
+2025-01-13 13:46:59,581 [INFO] ThirdParty:1030 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-SUBG2 5.0.0
+2025-01-13 13:46:59,581 [INFO] ThirdParty:1030 - CMSIS Pack Vendor :STMicroelectronics STM32_WPAN 1.0.0
+2025-01-13 13:46:59,581 [INFO] ThirdParty:1030 - CMSIS Pack Vendor :EmbeddedOffice I-CUBE-FS-RTOS 1.0.1
+2025-01-13 13:46:59,581 [INFO] ThirdParty:1030 - CMSIS Pack Vendor :STMicroelectronics lwIP 2.0.3
+2025-01-13 13:46:59,581 [INFO] ThirdParty:1030 - CMSIS Pack Vendor :STMicroelectronics FP-SNS-FLIGHT1 5.0.2
+2025-01-13 13:46:59,581 [INFO] ThirdParty:1030 - CMSIS Pack Vendor :Cesanta I-CUBE-Mongoose 7.13.0
+2025-01-13 13:46:59,581 [INFO] ThirdParty:1030 - CMSIS Pack Vendor :STMicroelectronics USB_HOST 1.0.0
+2025-01-13 13:46:59,581 [INFO] ThirdParty:1030 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-AZRTOS-G4 2.0.0
+2025-01-13 13:46:59,581 [INFO] ThirdParty:1030 - CMSIS Pack Vendor :STMicroelectronics PDM2PCM 3.1.0
+2025-01-13 13:46:59,581 [INFO] ThirdParty:1030 - CMSIS Pack Vendor :STMicroelectronics PDM2PCM 3.3.0
+2025-01-13 13:46:59,581 [INFO] ThirdParty:1030 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-DISPLAY 3.0.0
+2025-01-13 13:46:59,581 [INFO] ThirdParty:1030 - CMSIS Pack Vendor :RealThread X-CUBE-RT-Thread_Nano 4.1.1
+2025-01-13 13:46:59,581 [INFO] ThirdParty:1030 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-BLE1 7.0.0
+2025-01-13 13:46:59,581 [INFO] ThirdParty:1030 - CMSIS Pack Vendor :STMicroelectronics FP-ATR-SIGFOX1 3.2.0
+2025-01-13 13:46:59,581 [INFO] ThirdParty:1030 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-NFC10 1.0.0
+2025-01-13 13:46:59,581 [INFO] ThirdParty:1030 - CMSIS Pack Vendor :quantropi X-CUBE-qispace-sdk-base 1.9.3
+2025-01-13 13:46:59,581 [INFO] ThirdParty:1030 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-BLEMGR 4.0.0
+2025-01-13 13:46:59,581 [INFO] ThirdParty:1030 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-EEPRMA1 5.1.0
+2025-01-13 13:46:59,581 [INFO] ThirdParty:1030 - CMSIS Pack Vendor :STMicroelectronics HAL Drivers 0.0.0
+2025-01-13 13:46:59,581 [INFO] ThirdParty:1030 - CMSIS Pack Vendor :STMicroelectronics MBEDTLS 2.16.2
+2025-01-13 13:46:59,581 [INFO] ThirdParty:1030 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-ALS 1.0.2
+2025-01-13 13:46:59,581 [INFO] ThirdParty:1030 - CMSIS Pack Vendor :emotas I-CUBE-CANOPEN 1.3.0
+2025-01-13 13:46:59,582 [INFO] ThirdParty:1030 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-FREERTOS 1.3.0
+2025-01-13 13:46:59,582 [INFO] ThirdParty:1030 - CMSIS Pack Vendor :wolfSSL I-CUBE-wolfSSL 5.7.4
+2025-01-13 13:46:59,582 [INFO] ThirdParty:1030 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-NFC7 1.0.1
+2025-01-13 13:46:59,582 [INFO] ThirdParty:1030 - CMSIS Pack Vendor :STMicroelectronics MBEDTLS 2.14.1
+2025-01-13 13:46:59,582 [INFO] ThirdParty:1030 - CMSIS Pack Vendor :ITTIA_DB I-CUBE-ITTIADB 8.9.0
+2025-01-13 13:46:59,582 [INFO] ThirdParty:1030 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-TOUCHGFX 4.24.1
+2025-01-13 13:46:59,582 [INFO] ThirdParty:1030 - CMSIS Pack Vendor :wolfSSL I-CUBE-wolfTPM 3.4.0
+2025-01-13 13:46:59,582 [INFO] ThirdParty:1030 - CMSIS Pack Vendor :portGmbH I-Cube-SoM-uGOAL 1.1.0
+2025-01-13 13:46:59,582 [INFO] ThirdParty:1030 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-BLEMGR 3.1.0
+2025-01-13 13:46:59,582 [INFO] ThirdParty:1030 - CMSIS Pack Vendor :STMicroelectronics ThreadX 1.0.0
+2025-01-13 13:46:59,582 [INFO] ThirdParty:1030 - CMSIS Pack Vendor :STMicroelectronics FP-SNS-SMARTAG2 1.2.0
+2025-01-13 13:46:59,582 [INFO] ThirdParty:1030 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-MEMS1 11.1.0
+2025-01-13 13:46:59,582 [INFO] ThirdParty:1030 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-AZRTOS-WL 2.0.0
+2025-01-13 13:46:59,582 [INFO] ThirdParty:1030 - CMSIS Pack Vendor :SEGGER I-CUBE-embOS 1.3.1
+2025-01-13 13:46:59,582 [INFO] ThirdParty:1030 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-ALGOBUILD 1.4.0
+2025-01-13 13:46:59,582 [INFO] ThirdParty:1030 - CMSIS Pack Vendor :STMicroelectronics FP-SNS-MOTENV1 5.0.0
+2025-01-13 13:46:59,582 [INFO] ThirdParty:1030 - CMSIS Pack Vendor :STMicroelectronics USB_DEVICE 1.0.0
+2025-01-13 13:46:59,582 [INFO] ThirdParty:1030 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-AZRTOS-H7RS 1.0.0
+2025-01-13 13:46:59,582 [INFO] ThirdParty:1030 - CMSIS Pack Vendor :wolfSSL I-CUBE-wolfMQTT 1.19.0
+2025-01-13 13:46:59,582 [INFO] ThirdParty:1030 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-AZRTOS-L4 2.0.0
+2025-01-13 13:46:59,582 [INFO] ThirdParty:1030 - CMSIS Pack Vendor :STMicroelectronics ThreadX 0.0.2
+2025-01-13 13:46:59,582 [INFO] ThirdParty:1030 - CMSIS Pack Vendor :WES I-CUBE-Cesium 1.3.0
+2025-01-13 13:46:59,582 [INFO] ThirdParty:1030 - CMSIS Pack Vendor :STMicroelectronics FP-ATR-ASTRA1 2.0.0
+2025-01-13 13:46:59,582 [INFO] ThirdParty:1030 - CMSIS Pack Vendor :STMicroelectronics lwIP 2.1.2
+2025-01-13 13:46:59,582 [INFO] ThirdParty:1030 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-SFXS2LP1 4.0.0
+2025-01-13 13:46:59,582 [INFO] ThirdParty:1030 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-BLE2 3.3.0
+2025-01-13 13:46:59,582 [INFO] ThirdParty:1030 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-TOF1 3.4.2
+2025-01-13 13:46:59,582 [INFO] ThirdParty:1030 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-AI 9.1.0
+2025-01-13 13:46:59,582 [INFO] ThirdParty:1030 - CMSIS Pack Vendor :Infineon AIROC-Wi-Fi-Bluetooth-STM32 1.6.1
+2025-01-13 13:46:59,582 [INFO] ThirdParty:1030 - CMSIS Pack Vendor :STMicroelectronics PDM2PCM 3.2.0
+2025-01-13 13:46:59,582 [INFO] ThirdParty:1030 - CMSIS Pack Vendor :wolfSSL I-CUBE-wolfSSH 1.4.17
+2025-01-13 13:46:59,582 [INFO] ThirdParty:841 - exiting critical section [change project]
+2025-01-13 13:46:59,844 [INFO] PinOutPanel:1561 - setPackage(No Configuration,No Configuration)
+2025-01-13 13:46:59,845 [INFO] PinOutPanel:1561 - setPackage(STM32U575ZITxQ,LQFP144)
+2025-01-13 13:47:00,567 [INFO] UtilMem:75 - Before build in PCC Used Memory: 854354432 Bytes (1073741824)
+2025-01-13 13:47:00,971 [INFO] UtilMem:75 - After build in PCC Used Memory: 891660600 Bytes (1073741824)
+2025-01-13 13:47:00,993 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:00,993 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:00,994 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:00,994 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:00,994 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:00,994 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:00,994 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:00,994 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:00,994 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:00,994 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:00,994 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:00,994 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:00,994 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:00,994 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:00,994 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:00,995 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:00,995 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:00,995 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:00,995 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:00,995 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:00,995 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:00,995 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:00,995 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:00,995 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:00,995 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:00,995 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:00,995 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:00,996 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:00,996 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:00,996 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:00,996 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:00,996 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:00,997 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:00,997 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:00,997 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:00,997 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:00,997 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:00,997 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:00,998 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:00,998 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:00,998 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:00,998 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:00,999 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:00,999 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:00,999 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:00,999 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:00,999 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:00,999 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:00,999 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:00,999 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:01,001 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:01,001 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:01,002 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:01,002 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:01,002 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:01,003 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:01,003 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:01,003 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:01,003 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:01,004 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:01,004 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:01,004 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:01,004 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:01,004 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:01,005 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:01,005 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:01,005 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:01,005 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:01,006 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:01,006 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:01,006 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:01,007 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:01,007 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:01,007 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:01,007 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:01,008 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:01,008 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:01,008 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:01,008 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:01,009 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:01,009 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:01,009 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:01,009 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:01,009 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:01,011 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:01,011 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:01,011 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:01,011 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:01,011 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:01,013 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:01,013 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:01,013 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:01,013 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:01,014 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:01,014 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:01,014 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:01,015 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:01,015 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:01,015 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:01,016 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:01,016 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:01,018 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:01,018 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:01,018 [INFO] IPUIPlugin:80 - create IPUIPlugin
+2025-01-13 13:47:01,119 [INFO] CADModel:165 - CPN selected for project levelSTM32U575ZIT6Q
+2025-01-13 13:47:01,119 [INFO] CADModel:114 - Register for checkConnection events
+2025-01-13 13:47:01,168 [INFO] OpenFileManager:363 - Restore cursor
+2025-01-13 13:47:01,419 [WARN] IP:2191 - DATAEXCHANGEDESRCBYTE_GPDMACH12 not found: check if there is a RefParameter without a condition.
+2025-01-13 13:47:01,419 [WARN] IP:2191 - DATAEXCHANGEDESTHALFWORD_GPDMACH12 not found: check if there is a RefParameter without a condition.
+2025-01-13 13:47:01,495 [WARN] IP:2191 - SRAM5PowerDownInRunMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:47:01,495 [WARN] IP:2191 - SRAM6PowerDownInRunMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:47:01,495 [WARN] IP:2191 - RAM1Page4PowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:47:01,495 [WARN] IP:2191 - RAM1Page5PowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:47:01,495 [WARN] IP:2191 - RAM1Page6PowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:47:01,495 [WARN] IP:2191 - RAM1Page7PowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:47:01,495 [WARN] IP:2191 - RAM1Page8PowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:47:01,495 [WARN] IP:2191 - RAM1Page9PowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:47:01,495 [WARN] IP:2191 - RAM1Page10PowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:47:01,495 [WARN] IP:2191 - RAM1Page11PowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:47:01,496 [WARN] IP:2191 - RAM1Page12PowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:47:01,496 [WARN] IP:2191 - RAM3Page9PowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:47:01,496 [WARN] IP:2191 - RAM3Page10PowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:47:01,496 [WARN] IP:2191 - RAM3Page11PowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:47:01,496 [WARN] IP:2191 - RAM3Page12PowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:47:01,496 [WARN] IP:2191 - RAM3Page13PowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:47:01,496 [WARN] IP:2191 - RAM5Page1PowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:47:01,496 [WARN] IP:2191 - RAM5Page2PowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:47:01,496 [WARN] IP:2191 - RAM5Page3PowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:47:01,496 [WARN] IP:2191 - RAM5Page4PowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:47:01,496 [WARN] IP:2191 - RAM5Page5PowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:47:01,496 [WARN] IP:2191 - RAM5Page6PowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:47:01,496 [WARN] IP:2191 - RAM5Page7PowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:47:01,496 [WARN] IP:2191 - RAM5Page8PowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:47:01,496 [WARN] IP:2191 - RAM5Page9PowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:47:01,496 [WARN] IP:2191 - RAM5Page10PowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:47:01,496 [WARN] IP:2191 - RAM5Page11PowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:47:01,496 [WARN] IP:2191 - RAM5Page12PowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:47:01,496 [WARN] IP:2191 - RAM5Page13PowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:47:01,496 [WARN] IP:2191 - Dcache2PowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:47:01,496 [WARN] IP:2191 - GRAPHICPRAMPowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:47:01,496 [WARN] IP:2191 - DSIRAMPowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:47:01,503 [WARN] IP:2191 - UserConfigCondition not found: check if there is a RefParameter without a condition.
+2025-01-13 13:47:01,503 [WARN] IP:2191 - OB_SWAP_BANK_UI not found: check if there is a RefParameter without a condition.
+2025-01-13 13:47:01,503 [WARN] IP:2191 - OB_DBANK_UI not found: check if there is a RefParameter without a condition.
+2025-01-13 13:47:01,503 [WARN] IP:2191 - OB_SRAM3_ECC_UI not found: check if there is a RefParameter without a condition.
+2025-01-13 13:47:01,672 [WARN] IP:2191 - DATAEXCHANGEDESRCBYTE_GPDMACH12 not found: check if there is a RefParameter without a condition.
+2025-01-13 13:47:01,672 [WARN] IP:2191 - DATAEXCHANGEDESTHALFWORD_GPDMACH12 not found: check if there is a RefParameter without a condition.
+2025-01-13 13:47:01,684 [WARN] IP:2191 - DATAEXCHANGEDESRCBYTE_GPDMACH12 not found: check if there is a RefParameter without a condition.
+2025-01-13 13:47:01,684 [WARN] IP:2191 - DATAEXCHANGEDESTHALFWORD_GPDMACH12 not found: check if there is a RefParameter without a condition.
+2025-01-13 13:50:16,639 [WARN] IP:2191 - DATAEXCHANGEDESRCBYTE_GPDMACH12 not found: check if there is a RefParameter without a condition.
+2025-01-13 13:50:16,639 [WARN] IP:2191 - DATAEXCHANGEDESTHALFWORD_GPDMACH12 not found: check if there is a RefParameter without a condition.
+2025-01-13 13:50:33,825 [WARN] IP:2191 - DATAEXCHANGEDESRCBYTE_GPDMACH12 not found: check if there is a RefParameter without a condition.
+2025-01-13 13:50:33,831 [WARN] IP:2191 - DATAEXCHANGEDESTHALFWORD_GPDMACH12 not found: check if there is a RefParameter without a condition.
+2025-01-13 13:50:33,912 [WARN] IP:2191 - DATAEXCHANGEDESRCBYTE_GPDMACH12 not found: check if there is a RefParameter without a condition.
+2025-01-13 13:50:33,913 [WARN] IP:2191 - DATAEXCHANGEDESTHALFWORD_GPDMACH12 not found: check if there is a RefParameter without a condition.
+2025-01-13 13:50:33,923 [WARN] IP:2191 - DATAEXCHANGEDESRCBYTE_GPDMACH12 not found: check if there is a RefParameter without a condition.
+2025-01-13 13:50:33,923 [WARN] IP:2191 - DATAEXCHANGEDESTHALFWORD_GPDMACH12 not found: check if there is a RefParameter without a condition.
+2025-01-13 13:50:34,008 [WARN] IP:2191 - DATAEXCHANGEDESRCBYTE_GPDMACH12 not found: check if there is a RefParameter without a condition.
+2025-01-13 13:50:34,008 [WARN] IP:2191 - DATAEXCHANGEDESTHALFWORD_GPDMACH12 not found: check if there is a RefParameter without a condition.
+2025-01-13 13:50:47,646 [WARN] IP:2191 - DATAEXCHANGEDESRCBYTE_GPDMACH12 not found: check if there is a RefParameter without a condition.
+2025-01-13 13:50:47,646 [WARN] IP:2191 - DATAEXCHANGEDESTHALFWORD_GPDMACH12 not found: check if there is a RefParameter without a condition.
+2025-01-13 13:50:47,694 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 847387600 Bytes (1073741824)
+2025-01-13 13:50:47,797 [WARN] IP:2191 - DATAEXCHANGEDESRCBYTE_GPDMACH12 not found: check if there is a RefParameter without a condition.
+2025-01-13 13:50:47,797 [WARN] IP:2191 - DATAEXCHANGEDESTHALFWORD_GPDMACH12 not found: check if there is a RefParameter without a condition.
+2025-01-13 13:50:47,849 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 892476368 Bytes (1073741824)
+2025-01-13 13:50:48,469 [WARN] IP:2191 - DATAEXCHANGEDESRCBYTE_GPDMACH12 not found: check if there is a RefParameter without a condition.
+2025-01-13 13:50:48,470 [WARN] IP:2191 - DATAEXCHANGEDESTHALFWORD_GPDMACH12 not found: check if there is a RefParameter without a condition.
+2025-01-13 13:50:48,513 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 845637072 Bytes (1073741824)
+2025-01-13 13:50:48,690 [INFO] BlockDiagram:2766 - set Specific Code input for plugin: SPI
+2025-01-13 13:50:48,690 [INFO] BlockDiagram:2766 - set Specific Code input for plugin: PWR
+2025-01-13 13:50:48,690 [INFO] BlockDiagram:2766 - set Specific Code input for plugin: flash
+2025-01-13 13:50:48,690 [INFO] BlockDiagram:2766 - set Specific Code input for plugin: RCC
+2025-01-13 13:50:48,690 [INFO] BlockDiagram:2766 - set Specific Code input for plugin: USART
+2025-01-13 13:50:48,690 [INFO] BlockDiagram:2766 - set Specific Code input for plugin: TIM1_8U5
+2025-01-13 13:50:48,690 [INFO] BlockDiagram:2766 - set Specific Code input for plugin: GPDMA
+2025-01-13 13:50:48,690 [INFO] BlockDiagram:2766 - set Specific Code input for plugin: MEMORYMAP
+2025-01-13 13:50:48,690 [INFO] BlockDiagram:2766 - set Specific Code input for plugin: UCPD
+2025-01-13 13:50:48,690 [INFO] BlockDiagram:2766 - set Specific Code input for plugin: SYS
+2025-01-13 13:50:48,690 [INFO] BlockDiagram:2766 - set Specific Code input for plugin: ADC
+2025-01-13 13:50:48,690 [INFO] BlockDiagram:2766 - set Specific Code input for plugin: LPBAM
+2025-01-13 13:50:48,690 [INFO] BlockDiagram:2766 - set Specific Code input for plugin: USB_OTG_FS
+2025-01-13 13:50:48,690 [INFO] BlockDiagram:2766 - set Specific Code input for plugin: NVIC
+2025-01-13 13:50:48,690 [INFO] BlockDiagram:2766 - set Specific Code input for plugin: ICACHE
+2025-01-13 13:50:48,690 [INFO] BlockDiagram:2766 - set Specific Code input for plugin: TIM1_8U5
+2025-01-13 13:50:48,690 [INFO] BlockDiagram:2766 - set Specific Code input for plugin: DEBUG
+2025-01-13 13:50:48,691 [INFO] BlockDiagram:2766 - set Specific Code input for plugin: GPIO
+2025-01-13 13:50:48,692 [INFO] BlockDiagram:2766 - set Specific Code input for plugin: LPBAMQUEUE
+2025-01-13 13:50:48,693 [INFO] CodeGenerator:807 - code generatio: config db path: C:\ST\STM32CubeIDE_1.16.1\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_6.12.1.202409122256\\db\
+2025-01-13 13:50:48,705 [WARN] IP:2191 - DATAEXCHANGEDESRCBYTE_GPDMACH12 not found: check if there is a RefParameter without a condition.
+2025-01-13 13:50:48,706 [WARN] IP:2191 - DATAEXCHANGEDESTHALFWORD_GPDMACH12 not found: check if there is a RefParameter without a condition.
+2025-01-13 13:50:48,754 [WARN] IP:2191 - UserConfigCondition not found: check if there is a RefParameter without a condition.
+2025-01-13 13:50:48,754 [WARN] IP:2191 - OB_SWAP_BANK_UI not found: check if there is a RefParameter without a condition.
+2025-01-13 13:50:48,754 [WARN] IP:2191 - OB_DBANK_UI not found: check if there is a RefParameter without a condition.
+2025-01-13 13:50:48,755 [WARN] IP:2191 - OB_SRAM3_ECC_UI not found: check if there is a RefParameter without a condition.
+2025-01-13 13:50:48,777 [WARN] IP:2191 - SRAM5PowerDownInRunMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:50:48,777 [WARN] IP:2191 - SRAM6PowerDownInRunMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:50:48,777 [WARN] IP:2191 - RAM1Page4PowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:50:48,777 [WARN] IP:2191 - RAM1Page5PowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:50:48,777 [WARN] IP:2191 - RAM1Page6PowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:50:48,778 [WARN] IP:2191 - RAM1Page7PowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:50:48,778 [WARN] IP:2191 - RAM1Page8PowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:50:48,778 [WARN] IP:2191 - RAM1Page9PowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:50:48,778 [WARN] IP:2191 - RAM1Page10PowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:50:48,778 [WARN] IP:2191 - RAM1Page11PowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:50:48,778 [WARN] IP:2191 - RAM1Page12PowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:50:48,778 [WARN] IP:2191 - RAM3Page9PowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:50:48,778 [WARN] IP:2191 - RAM3Page10PowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:50:48,778 [WARN] IP:2191 - RAM3Page11PowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:50:48,778 [WARN] IP:2191 - RAM3Page12PowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:50:48,778 [WARN] IP:2191 - RAM3Page13PowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:50:48,778 [WARN] IP:2191 - RAM5Page1PowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:50:48,778 [WARN] IP:2191 - RAM5Page2PowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:50:48,778 [WARN] IP:2191 - RAM5Page3PowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:50:48,778 [WARN] IP:2191 - RAM5Page4PowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:50:48,778 [WARN] IP:2191 - RAM5Page5PowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:50:48,778 [WARN] IP:2191 - RAM5Page6PowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:50:48,778 [WARN] IP:2191 - RAM5Page7PowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:50:48,778 [WARN] IP:2191 - RAM5Page8PowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:50:48,778 [WARN] IP:2191 - RAM5Page9PowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:50:48,778 [WARN] IP:2191 - RAM5Page10PowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:50:48,778 [WARN] IP:2191 - RAM5Page11PowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:50:48,778 [WARN] IP:2191 - RAM5Page12PowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:50:48,778 [WARN] IP:2191 - RAM5Page13PowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:50:48,778 [WARN] IP:2191 - Dcache2PowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:50:48,778 [WARN] IP:2191 - GRAPHICPRAMPowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:50:48,778 [WARN] IP:2191 - DSIRAMPowerDownInStopMode not found: check if there is a RefParameter without a condition.
+2025-01-13 13:50:49,063 [INFO] CodeEngine:255 - oldGeneratedFile, C:\UBC_4TH_YEAR\ELEC-491\JY-85\project\JY85\Firmware\DeviceProcessor\MXTmpFiles\license.tmp_save
+2025-01-13 13:50:49,148 [INFO] CodeEngine:279 - Generated code: C:\UBC_4TH_YEAR\ELEC-491\JY-85\project\JY85\Firmware\DeviceProcessor\MXTmpFiles\license.tmp
+2025-01-13 13:50:49,376 [INFO] CodeEngine:255 - oldGeneratedFile, C:\UBC_4TH_YEAR\ELEC-491\JY-85\project\JY85\Firmware\DeviceProcessor\MXTmpFiles\gpio.tmp_save
+2025-01-13 13:50:49,472 [INFO] CodeEngine:279 - Generated code: C:\UBC_4TH_YEAR\ELEC-491\JY-85\project\JY85\Firmware\DeviceProcessor\MXTmpFiles\gpio.tmp
+2025-01-13 13:50:49,981 [WARN] IPConfigManager:98 - WARNING: Missing Config File for DEBUG ip!!
+2025-01-13 13:50:50,878 [WARN] IPConfigManager:98 - WARNING: Missing Config File for MEMORYMAP ip!!
+2025-01-13 13:50:50,879 [WARN] IP:2191 - DefaultDataRegion not found: check if there is a RefParameter without a condition.
+2025-01-13 13:50:52,499 [WARN] IPConfigManager:4314 - WARNING: Missing Config File for LINKEDLIST ip!!
+2025-01-13 13:50:52,972 [WARN] IPConfigManager:3005 - Warning: the RefConfig PWREx_EnableUSBVoltageDetector is not available in your config.xml file
+2025-01-13 13:50:53,051 [INFO] CodeEngine:255 - oldGeneratedFile, C:\UBC_4TH_YEAR\ELEC-491\JY-85\project\JY85\Firmware\DeviceProcessor\MXTmpFiles\cortex.tmp_save
+2025-01-13 13:50:53,142 [INFO] CodeEngine:279 - Generated code: C:\UBC_4TH_YEAR\ELEC-491\JY-85\project\JY85\Firmware\DeviceProcessor\MXTmpFiles\cortex.tmp
+2025-01-13 13:50:53,252 [INFO] CodeEngine:255 - oldGeneratedFile, C:\UBC_4TH_YEAR\ELEC-491\JY-85\project\JY85\Firmware\DeviceProcessor\Core\Src\stm32u5xx_it.c_save
+2025-01-13 13:50:53,456 [INFO] CodeEngine:279 - Generated code: C:\UBC_4TH_YEAR\ELEC-491\JY-85\project\JY85\Firmware\DeviceProcessor\Core\Src\stm32u5xx_it.c
+2025-01-13 13:50:53,480 [INFO] CodeEngine:255 - oldGeneratedFile, C:\UBC_4TH_YEAR\ELEC-491\JY-85\project\JY85\Firmware\DeviceProcessor\Core\Inc\stm32u5xx_it.h_save
+2025-01-13 13:50:53,568 [INFO] CodeEngine:279 - Generated code: C:\UBC_4TH_YEAR\ELEC-491\JY-85\project\JY85\Firmware\DeviceProcessor\Core\Inc\stm32u5xx_it.h
+2025-01-13 13:50:53,857 [INFO] CodeEngine:255 - oldGeneratedFile, C:\UBC_4TH_YEAR\ELEC-491\JY-85\project\JY85\Firmware\DeviceProcessor\Core\Src\stm32u5xx_hal_msp.c_save
+2025-01-13 13:50:54,019 [INFO] CodeEngine:279 - Generated code: C:\UBC_4TH_YEAR\ELEC-491\JY-85\project\JY85\Firmware\DeviceProcessor\Core\Src\stm32u5xx_hal_msp.c
+2025-01-13 13:50:54,044 [INFO] CodeEngine:255 - oldGeneratedFile, C:\UBC_4TH_YEAR\ELEC-491\JY-85\project\JY85\Firmware\DeviceProcessor\MXTmpFiles\system.tmp_save
+2025-01-13 13:50:54,115 [INFO] CodeEngine:279 - Generated code: C:\UBC_4TH_YEAR\ELEC-491\JY-85\project\JY85\Firmware\DeviceProcessor\MXTmpFiles\system.tmp
+2025-01-13 13:50:54,144 [INFO] CodeEngine:255 - oldGeneratedFile, C:\UBC_4TH_YEAR\ELEC-491\JY-85\project\JY85\Firmware\DeviceProcessor\Core\Inc\stm32_assert.h_save
+2025-01-13 13:50:54,223 [INFO] CodeEngine:279 - Generated code: C:\UBC_4TH_YEAR\ELEC-491\JY-85\project\JY85\Firmware\DeviceProcessor\Core\Inc\stm32_assert.h
+2025-01-13 13:50:54,266 [INFO] CodeEngine:311 - oldGeneratedFile, C:\UBC_4TH_YEAR\ELEC-491\JY-85\project\JY85\Firmware\DeviceProcessor\Core\Inc\stm32u5xx_hal_conf.h_save
+2025-01-13 13:50:54,379 [INFO] CodeEngine:335 - Generated code: C:\UBC_4TH_YEAR\ELEC-491\JY-85\project\JY85\Firmware\DeviceProcessor\Core\Inc\stm32u5xx_hal_conf.h
+2025-01-13 13:50:54,428 [WARN] IPConfigManager:3554 - IP not found : TIM
+2025-01-13 13:50:54,428 [WARN] IPConfigManager:3554 - IP not found : USB_OTG
+2025-01-13 13:50:54,430 [WARN] CodeGenerator:4002 - IP not found : null
+2025-01-13 13:50:54,431 [WARN] CodeGenerator:4002 - IP not found : null
+2025-01-13 13:50:54,466 [INFO] CodeEngine:255 - oldGeneratedFile, C:\UBC_4TH_YEAR\ELEC-491\JY-85\project\JY85\Firmware\DeviceProcessor\Core\Inc\main.h_save
+2025-01-13 13:50:54,577 [INFO] CodeEngine:279 - Generated code: C:\UBC_4TH_YEAR\ELEC-491\JY-85\project\JY85\Firmware\DeviceProcessor\Core\Inc\main.h
+2025-01-13 13:50:54,609 [INFO] CodeEngine:255 - oldGeneratedFile, C:\UBC_4TH_YEAR\ELEC-491\JY-85\project\JY85\Firmware\DeviceProcessor\Core\Src\main.c_save
+2025-01-13 13:50:54,806 [INFO] CodeEngine:279 - Generated code: C:\UBC_4TH_YEAR\ELEC-491\JY-85\project\JY85\Firmware\DeviceProcessor\Core\Src\main.c
+2025-01-13 13:50:55,524 [INFO] ProjectBuilder:3249 - Time for Copy HAL[1] : 488mS.
+2025-01-13 13:50:55,531 [INFO] ProjectBuilder:4828 - Project Generator version: 4.5.0-B34
+2025-01-13 13:50:55,647 [INFO] ConfigFileManager:1531 - The Die is : DIE482
+2025-01-13 13:50:55,669 [INFO] ApiDbMcu:508 - Load IP Config File for FileX
+2025-01-13 13:50:55,684 [INFO] ApiDbMcu:508 - Load IP Config File for LevelX
+2025-01-13 13:50:55,708 [INFO] ApiDbMcu:508 - Load IP Config File for NetXDuo
+2025-01-13 13:50:55,724 [INFO] ApiDbMcu:508 - Load IP Config File for ThreadX
+2025-01-13 13:50:55,746 [INFO] ApiDbMcu:508 - Load IP Config File for TOUCHSENSING
+2025-01-13 13:50:55,761 [INFO] ApiDbMcu:508 - Load IP Config File for USBPD
+2025-01-13 13:50:55,782 [INFO] ApiDbMcu:508 - Load IP Config File for USBX
+2025-01-13 13:50:58,848 [INFO] ProjectBuilder:5097 - Time for Generating toolchain IDE Files: 3317mS.
+2025-01-13 13:50:58,849 [INFO] ProjectBuilder:3107 - Time for Copy CMSIS : 1mS.
+2025-01-13 13:50:58,854 [INFO] ProjectBuilder:3107 - Time for Copy CMSIS : 0mS.
+2025-01-13 14:17:27,109 [WARN] IP:2191 - DATAEXCHANGEDESRCBYTE_GPDMACH12 not found: check if there is a RefParameter without a condition.
+2025-01-13 14:17:27,109 [WARN] IP:2191 - DATAEXCHANGEDESTHALFWORD_GPDMACH12 not found: check if there is a RefParameter without a condition.
+2025-01-13 14:17:32,577 [WARN] IP:2191 - DATAEXCHANGEDESRCBYTE_GPDMACH12 not found: check if there is a RefParameter without a condition.
+2025-01-13 14:17:32,577 [WARN] IP:2191 - DATAEXCHANGEDESTHALFWORD_GPDMACH12 not found: check if there is a RefParameter without a condition.
+2025-01-13 14:17:32,705 [WARN] IP:2191 - DATAEXCHANGEDESRCBYTE_GPDMACH12 not found: check if there is a RefParameter without a condition.
+2025-01-13 14:17:32,705 [WARN] IP:2191 - DATAEXCHANGEDESTHALFWORD_GPDMACH12 not found: check if there is a RefParameter without a condition.
+2025-01-13 14:17:32,715 [WARN] IP:2191 - DATAEXCHANGEDESRCBYTE_GPDMACH12 not found: check if there is a RefParameter without a condition.
+2025-01-13 14:17:32,715 [WARN] IP:2191 - DATAEXCHANGEDESTHALFWORD_GPDMACH12 not found: check if there is a RefParameter without a condition.
+2025-01-13 14:17:32,831 [WARN] IP:2191 - DATAEXCHANGEDESRCBYTE_GPDMACH12 not found: check if there is a RefParameter without a condition.
+2025-01-13 14:17:32,831 [WARN] IP:2191 - DATAEXCHANGEDESTHALFWORD_GPDMACH12 not found: check if there is a RefParameter without a condition.
