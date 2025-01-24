@@ -69,7 +69,7 @@ def send_value(ser):
             break
         
         try:
-            address = int(input("Enter address (0-255): "))     # Prompt user to enter the address
+            address = int(input("Enter address (0-127): "))     # Prompt user to enter the address
             data = int(input("Enter data (0-16777215): "))      # Prompt user to enter the data
             
             packed_data = pack_32bit(address, data)             # Pack the address and data into a 32-bit format

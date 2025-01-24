@@ -13,7 +13,7 @@ class MainWindow(QMainWindow):
         self.setWindowTitle("OrcaProbe")                    # Title of the window
         self.setGeometry(100, 100, 800, 600)                # Set position and size of the window
         self.setStyleSheet("background-color: #d8cfcf;")    # Set background color for the main screen
-        self.setWindowIcon(QIcon("./OrcaProbe_Logo.png"))   # Application icon path
+        self.setWindowIcon(QIcon("./media/OrcaProbe_Logo.png"))   # Application icon path
 
         # Sidebar for measurement type selection
         sidebar = QWidget()
@@ -23,7 +23,7 @@ class MainWindow(QMainWindow):
 
         # Sidebar title with an image
         image_label = QLabel()
-        image_label.setPixmap(QPixmap("./orcalogo.png").scaled(100, 100, Qt.KeepAspectRatio, Qt.SmoothTransformation))
+        image_label.setPixmap(QPixmap("./media/orcalogo.png").scaled(100, 100, Qt.KeepAspectRatio, Qt.SmoothTransformation))
         image_label.setContentsMargins(0, 0, 0, 0)
         image_label.setStyleSheet("margin-bottom: 0px;")
 
@@ -221,7 +221,7 @@ class MainWindow(QMainWindow):
             label = QLabel("Current-Voltage (I-V) Measurement")
             label.setFont(QFont("Arial", 14, QFont.Bold))
             layout.addWidget(label)
-
+            
             # Buttons to select a data logging format (CSV or JSON), radio button used so one can be selected at a time           
             csv_radio = QRadioButton("Log data into a .CSV file")
             json_radio = QRadioButton("Log data into a .JSON file")

@@ -1,0 +1,15 @@
+reg_map.DVC_PROBE_CONFIG.usedProbes[0] = (0xDEAD)
+reg_map.DVC_PROBE_CONFIG.probe1Config[0] = (0xDEAD)
+reg_map.DVC_PROBE_CONFIG.probe2Config[0] = (0xDEAD)
+reg_map.DVC_PROBE_CONFIG.probe3Config[0] = (0xDEAD)
+reg_map.DVC_PROBE_CONFIG.probe4Config[0] = (0xDEAD)
+
+write_reg_DVC_PROBE_CONFIG(reg_map)
+
+def write_reg_DVC_PROBE_CONFIG(reg_map):
+    write_reg(DVC_PROBE_CONFIG, 
+              reg_map.DVC_PROBE_CONFIG.usedProbes[0] << reg_map.DVC_PROBE_CONFIG.usedProbes[1] |
+              reg_map.DVC_PROBE_CONFIG.probe1Config[0] << reg_map.DVC_PROBE_CONFIG.probe1Config[1] |
+              reg_map.DVC_PROBE_CONFIG.probe2Config[0] << reg_map.DVC_PROBE_CONFIG.probe2Config[1] |
+              reg_map.DVC_PROBE_CONFIG.probe3Config[0] << reg_map.DVC_PROBE_CONFIG.probe3Config[1] |
+              reg_map.DVC_PROBE_CONFIG.probe4Config[0] << reg_map.DVC_PROBE_CONFIG.probe4Config[1])
