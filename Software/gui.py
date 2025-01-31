@@ -122,7 +122,7 @@ class MainWindow(QMainWindow):
         option_container.setVisible(False)              # Options start collapsed
 
         # Connect the container to the measurement section when its clicked
-        button.clicked.connect(lambda: option_container.setVisible(button.isChecked()))     
+        button.clicked.connect(lambda: option_container.setVisible(button.isChecked()))   
         
         # Add to the sidebar layout
         layout.addWidget(button)            # The measurement section buttons
@@ -352,6 +352,7 @@ class MainWindow(QMainWindow):
             start_button.setFont(QFont("Arial", 10))
             start_button.setStyleSheet("background-color: #4CAF50; color: white;")
             start_button.setFixedWidth(300)                                         # Set a fixed width for the button
+            start_button.clicked.connect(lambda:self.print_capacitance_voltage_inputs())   
             button_layout = QHBoxLayout()                                           # Create button layout
             button_layout.addWidget(start_button, alignment=Qt.AlignLeft)           # Add start button and align button to the left
             layout.addLayout(button_layout)                                         # Add button layout under the title of the measurement type
@@ -964,9 +965,16 @@ class MainWindow(QMainWindow):
         # Set layout for the probe bar
         probe_bar.setLayout(probe_layout)
         return probe_bar
-
-# Run the application
-app = QApplication(sys.argv)
-window = MainWindow()
-window.show()                   # Show the main window
-sys.exit(app.exec_())           # Start the application's event loop
+    
+    def print_capacitance_voltage_inputs(self):
+        """Prints the user input values for Capacitance-Voltage (2-p) measurement."""
+        # Find the Capacitance-Voltage (2-p) page
+        for index in range(self.page_widget.count()):
+            page = self.page_widget.widget(index)
+            if page.objectName() == "Capacitance-Voltage (2-p)":
+                # Find all input fields in the page layout
+                inputs = page.findChildren(QLineEdit)
+                input_values = [input_field.text() for input_field in inputs]
+                print("Capacitance-Voltage (2-p) Input Values:", input_values)
+                return
+        print("Capacitance-Voltage (2-p) page not found!")

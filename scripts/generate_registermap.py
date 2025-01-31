@@ -58,6 +58,7 @@ def generate_register_files(excel_path):
     with open("../Software/interface.py", "w") as f:
         f.write("# interface.py\n\n")
         f.write("import comm\n\n")
+        f.write("from registers import *\n\n")
         f.write("def read_register(ser,register_address):\n")
         f.write("    valW = comm.pack_32bit(register_address,0)\n")
         f.write("    comm.send_value(ser,valW)\n")
@@ -67,6 +68,25 @@ def generate_register_files(excel_path):
         f.write("    valW = comm.pack_32bit(128+register_address,value)\n")
         f.write("    comm.send_value(ser,valW)\n")
         f.write("    return\n\n")
+        
+        # Generate targeted write register functions
+        for reg in registers:
+            if reg['bitfields']:
+                f.write(f"def write_reg_{reg['name']}(ser, reg_map):\n")
+                f.write(f"    write_register(ser, {reg['name']}, \n                  ")
+                f.write("\n                 |"
+                      .join([f"(reg_map.{reg['name']}.{field.split(': ')[1]}[0] << reg_map.{reg['name']}.{field.split(': ')[1]}[1])" for field in reg['bitfields']]))
+                f.write(")\n\n")
+
+                # Generate targeted read register functions
+        for reg in registers:
+            if reg['bitfields']:
+                f.write(f"def read_reg_{reg['name']}(ser, reg_map):\n")
+                f.write(f"    valR = read_register(ser, {reg['name']})\n")
+                for field in reg['bitfields']:
+                    name = field.split(": ")[1]
+                    f.write(f"    reg_map.{reg['name']}.{name}[0] = (valR >> reg_map.{reg['name']}.{name}[1]) & ((1 << reg_map.{reg['name']}.{name}[2]) - 1)\n")
+                f.write("\n")
     
     print("Files generated: interface.py, registers.py in Software directory")
 

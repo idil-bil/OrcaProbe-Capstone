@@ -18,8 +18,8 @@ DVC_MEASUREMENT_CONFIG_Start_Measure_POSITION = 0
 DVC_MEASUREMENT_CONFIG_Start_Measure_LENGTH = 1
 DVC_MEASUREMENT_CONFIG_Stop_Measure_POSITION = 1
 DVC_MEASUREMENT_CONFIG_Stop_Measure_LENGTH = 1
-DVC_MEASUREMENT_CONFIG_Meaure_In_Progress_POSITION = 2
-DVC_MEASUREMENT_CONFIG_Meaure_In_Progress_LENGTH = 1
+DVC_MEASUREMENT_CONFIG_Measure_In_Progress_POSITION = 2
+DVC_MEASUREMENT_CONFIG_Measure_In_Progress_LENGTH = 1
 DVC_MEASUREMENT_CONFIG_Valid_Measure_Config_POSITION = 3
 DVC_MEASUREMENT_CONFIG_Valid_Measure_Config_LENGTH = 1
 DVC_MEASUREMENT_CONFIG_Measure_Probe_Config_POSITION = 4
@@ -56,7 +56,7 @@ class DVC_DVC_MEASUREMENT_CONFIG:
     def __init__(self):
         self.Start_Measure = (0xDEAD,DVC_MEASUREMENT_CONFIG_Start_Measure_POSITION, DVC_MEASUREMENT_CONFIG_Start_Measure_LENGTH)
         self.Stop_Measure = (0xDEAD,DVC_MEASUREMENT_CONFIG_Stop_Measure_POSITION, DVC_MEASUREMENT_CONFIG_Stop_Measure_LENGTH)
-        self.Meaure_In_Progress = (0xDEAD,DVC_MEASUREMENT_CONFIG_Meaure_In_Progress_POSITION, DVC_MEASUREMENT_CONFIG_Meaure_In_Progress_LENGTH)
+        self.Measure_In_Progress = (0xDEAD,DVC_MEASUREMENT_CONFIG_Measure_In_Progress_POSITION, DVC_MEASUREMENT_CONFIG_Measure_In_Progress_LENGTH)
         self.Valid_Measure_Config = (0xDEAD,DVC_MEASUREMENT_CONFIG_Valid_Measure_Config_POSITION, DVC_MEASUREMENT_CONFIG_Valid_Measure_Config_LENGTH)
         self.Measure_Probe_Config = (0xDEAD,DVC_MEASUREMENT_CONFIG_Measure_Probe_Config_POSITION, DVC_MEASUREMENT_CONFIG_Measure_Probe_Config_LENGTH)
         self.Measure_Type_Config = (0xDEAD,DVC_MEASUREMENT_CONFIG_Measure_Type_Config_POSITION, DVC_MEASUREMENT_CONFIG_Measure_Type_Config_LENGTH)

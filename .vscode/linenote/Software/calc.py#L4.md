@@ -1,0 +1,2 @@
+- needs to take the average of v and i
+- logs all the values given initially

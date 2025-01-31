@@ -56,30 +56,13 @@ def unpack_32bit(data_bytes):
     return address, data
 
 # Send 32-bit values over serial
-def send_value(ser):
+def send_value(ser, data):
     """
     Args:
     - ser (serial.Serial): The serial connection object
     """
-    print("Enter an address (8-bits) and data (24 bits) to send. Press 'q' to quit.")
-    
-    while True:     
-        if keyboard.is_pressed('q'):                            # Check if the user pressed the 'q' to exit
-            print("Exiting...")
-            break
-        
-        try:
-            address = int(input("Enter address (0-127): "))     # Prompt user to enter the address
-            data = int(input("Enter data (0-16777215): "))      # Prompt user to enter the data
-            
-            packed_data = pack_32bit(address, data)             # Pack the address and data into a 32-bit format
-            ser.write(packed_data)                              # Send the packed data over the serial connection
-            print(f"Sent: Address={address}, Data={data}")
-            
-            time.sleep(0.1)                                     # Time delay to allow for data transmission
-            receive_value(ser)                                  # Check for and process any incoming response
-        except ValueError as e:
-            print(f"Invalid input: {e}")                        # Handle invalid inputs
+    ser.write(data)                              # Send the packed data over the serial connection    
+    time.sleep(0.1)                              # Time delay to allow for data transmission
 
 # Function to receive and unpack 32-bit data from the serial connection
 def receive_value(ser):
@@ -88,13 +71,5 @@ def receive_value(ser):
     - ser (serial.Serial): The serial connection object
     """
     if ser.in_waiting >= 4:                                     # Check if there are at least 4 bytes of data available in the buffer
-        received_data = ser.read(4)                             # Read 4 bytes from the serial buffer
-        address, data = unpack_32bit(received_data)             # Unpack the 32-bit data into address and data components
-        print(f"Received: Address={address}, Data={data}")      # Display the received address and data
-
-# Example usage
-ser = init_ser_port(port='COM4', baudrate=115200)  # Initialize the serial connection
-
-if ser:                                          # Proceed if the connection was successfully opened
-    send_value(ser)                              # Start monitoring for input
-    ser.close()                                  # Close the serial connection when done
+        data = ser.read(4)                             # Read 4 bytes from the serial buffer
+    return data
