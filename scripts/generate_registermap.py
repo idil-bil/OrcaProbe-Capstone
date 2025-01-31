@@ -61,11 +61,12 @@ def generate_register_files(excel_path):
         f.write("def read_register(ser,register_address):\n")
         f.write("    valW = comm.pack_32bit(register_address,0)\n")
         f.write("    comm.send_value(ser,valW)\n")
-        f.write("    valR = comm.receive_value(ser)\n")
-        f.write("    return (valR & 0x00FFFFFF)\n\n")
+        f.write("    _, valR = comm.unpack_32bit(comm.receive_value(ser))\n")
+        f.write("    return valR\n\n")
         f.write("def write_register(ser,register_address, value):\n")
         f.write("    valW = comm.pack_32bit(128+register_address,value)\n")
         f.write("    comm.send_value(ser,valW)\n")
+        f.write("    return\n\n")
     
     print("Files generated: interface.py, registers.py in Software directory")
 
