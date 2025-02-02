@@ -6,6 +6,10 @@ from PyQt5.QtWidgets import (
     QPushButton, QFrame, QStackedWidget, QRadioButton, QLineEdit, QButtonGroup, QComboBox
 )
 
+from interface import *
+from registers import *
+from constants import *
+
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
@@ -75,7 +79,7 @@ class MainWindow(QMainWindow):
         error_bar = self.create_error_bar()
 
         # Probe configuration bar with dropdowns for selecting probe functionality
-        probe_config_bar = self.create_probe_config_bar()
+        self.probe_config_bar = self.create_probe_config_bar()
 
         # Page widget to hold different measurement pages
         self.page_widget = QStackedWidget()
@@ -90,7 +94,7 @@ class MainWindow(QMainWindow):
         # Central layout to organizes the layout of the main area
         central_layout = QVBoxLayout()
         central_layout.addLayout(main_layout)       # Add main layout (has sidebar and page widget)
-        central_layout.addWidget(probe_config_bar)  # Add probe configuration bar
+        central_layout.addWidget(self.probe_config_bar)  # Add probe configuration bar
         central_layout.addWidget(error_bar)         # Add status bar
 
         # Initialize page widget for the main window
@@ -212,6 +216,7 @@ class MainWindow(QMainWindow):
             stop_button.setStyleSheet("background-color: #f44336; color: white;")
             start_button.setFixedWidth(300)                                 # Limit the width of the start button
             stop_button.setFixedWidth(300)                                  # Limit the width of the stop button
+            start_button.clicked.connect(lambda:self.print_dc_resistance_inputs())   
             button_layout = QVBoxLayout()                                   # Use QVBoxLayout to arrange buttons vertically
             button_layout.addWidget(start_button, alignment=Qt.AlignLeft)   # Add start button
             button_layout.addWidget(stop_button, alignment=Qt.AlignLeft)    # Add stop button below
@@ -427,7 +432,7 @@ class MainWindow(QMainWindow):
             layout.addLayout(value_layout)
 
             value_layout = QVBoxLayout()                        # Use QVBoxLayout to stack label and textbox vertically
-            value_label = QLabel("Max Peak Voltage (V)")
+            value_label = QLabel("Min Peak Voltage (V)")
             value_label.setAlignment(Qt.AlignLeft)
             value_label.setFont(QFont("Arial", 10, QFont.Bold))
             value_input = QLineEdit()
@@ -713,7 +718,7 @@ class MainWindow(QMainWindow):
             layout.addLayout(value_layout)
 
             value_layout = QVBoxLayout()                        # Use QVBoxLayout to stack label and textbox vertically
-            value_label = QLabel("Max Peak Voltage (V)")
+            value_label = QLabel("Min Peak Voltage (V)")
             value_label.setAlignment(Qt.AlignLeft)
             value_label.setFont(QFont("Arial", 10, QFont.Bold))
             value_input = QLineEdit()
@@ -864,7 +869,7 @@ class MainWindow(QMainWindow):
             layout.addLayout(value_layout)
 
             value_layout = QVBoxLayout()                        # Use QVBoxLayout to stack label and textbox vertically
-            value_label = QLabel("Max Peak Voltage (V)")
+            value_label = QLabel("Min Peak Voltage (V)")
             value_label.setAlignment(Qt.AlignLeft)
             value_label.setFont(QFont("Arial", 10, QFont.Bold))
             value_input = QLineEdit()
@@ -965,16 +970,135 @@ class MainWindow(QMainWindow):
         # Set layout for the probe bar
         probe_bar.setLayout(probe_layout)
         return probe_bar
-    
-    def print_capacitance_voltage_inputs(self):
-        """Prints the user input values for Capacitance-Voltage (2-p) measurement."""
-        # Find the Capacitance-Voltage (2-p) page
+
+    def print_dc_resistance_inputs(self):
+        # Find the measurement page
+        for index in range(self.page_widget.count()):
+            page = self.page_widget.widget(index)
+            if page.objectName() == "DC Resistance":
+                # Find all input fields in the page layout
+                # self.probe_config_bar
+                reg_map.DVC_MEASUREMENT_CONFIG.Start_Measure = 1
+                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Probe_Config = GUI_2PROBES
+                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Type_Config = GUI_DC_RESISTANCE
+                write_reg_DVC_MEASUREMENT_CONFIG(reg_map)
+
+    def print_current_voltage_inputs(self):
+        # Find the measurement page
+        for index in range(self.page_widget.count()):
+            page = self.page_widget.widget(index)
+            if page.objectName() == "Current-Voltage":
+                # Find all input fields in the page layout
+                inputs = page.findChildren(QLineEdit)
+                input_values = [input_field.text() for input_field in inputs]
+                print(page.objectName(), "Input Values:", input_values)
+                return
+        print("Page not found!")
+
+    def print_capacitance_voltage_2p_inputs(self):
+        # Find the measurement page
         for index in range(self.page_widget.count()):
             page = self.page_widget.widget(index)
             if page.objectName() == "Capacitance-Voltage (2-p)":
                 # Find all input fields in the page layout
                 inputs = page.findChildren(QLineEdit)
                 input_values = [input_field.text() for input_field in inputs]
-                print("Capacitance-Voltage (2-p) Input Values:", input_values)
+                print(page.objectName(), "Input Values:", input_values)
                 return
-        print("Capacitance-Voltage (2-p) page not found!")
+        print("Page not found!")
+
+    def print_impedance_spectroscopy_2p_inputs(self):
+        # Find the measurement page
+        for index in range(self.page_widget.count()):
+            page = self.page_widget.widget(index)
+            if page.objectName() == "Impedance Spectroscopy (2-p)":
+                # Find all input fields in the page layout
+                inputs = page.findChildren(QLineEdit)
+                input_values = [input_field.text() for input_field in inputs]
+                print(page.objectName(), "Input Values:", input_values)
+                return
+        print("Page not found!")
+
+    def print_transfer_characteristics_inputs(self):
+        # Find the measurement page
+        for index in range(self.page_widget.count()):
+            page = self.page_widget.widget(index)
+            if page.objectName() == "Transfer Characteristics":
+                # Find all input fields in the page layout
+                inputs = page.findChildren(QLineEdit)
+                input_values = [input_field.text() for input_field in inputs]
+                print(page.objectName(), "Input Values:", input_values)
+                return
+        print("Page not found!")
+
+    def print_output_characteristics_inputs(self):
+        # Find the measurement page
+        for index in range(self.page_widget.count()):
+            page = self.page_widget.widget(index)
+            if page.objectName() == "Output Characteristics":
+                # Find all input fields in the page layout
+                inputs = page.findChildren(QLineEdit)
+                input_values = [input_field.text() for input_field in inputs]
+                print(page.objectName(), "Input Values:", input_values)
+                return
+        print("Page not found!")
+
+    def print_capacitance_voltage_3p_inputs(self):
+        # Find the measurement page
+        for index in range(self.page_widget.count()):
+            page = self.page_widget.widget(index)
+            if page.objectName() == "Capacitance-Voltage (3-p)":
+                # Find all input fields in the page layout
+                inputs = page.findChildren(QLineEdit)
+                input_values = [input_field.text() for input_field in inputs]
+                print(page.objectName(), "Input Values:", input_values)
+                return
+        print("Page not found!")
+
+    def print_electrochemical_inputs(self):
+        # Find the measurement page
+        for index in range(self.page_widget.count()):
+            page = self.page_widget.widget(index)
+            if page.objectName() == "Electrochemical":
+                # Find all input fields in the page layout
+                inputs = page.findChildren(QLineEdit)
+                input_values = [input_field.text() for input_field in inputs]
+                print(page.objectName(), "Input Values:", input_values)
+                return
+        print("Page not found!")
+
+    def print_probe_resistance_inputs(self):
+        # Find the measurement page
+        for index in range(self.page_widget.count()):
+            page = self.page_widget.widget(index)
+            if page.objectName() == "Probe Resistance":
+                # Find all input fields in the page layout
+                inputs = page.findChildren(QLineEdit)
+                input_values = [input_field.text() for input_field in inputs]
+                print(page.objectName(), "Input Values:", input_values)
+                return
+        print("Page not found!")
+
+    def print_low_resistance_inputs(self):
+        # Find the measurement page
+        for index in range(self.page_widget.count()):
+            page = self.page_widget.widget(index)
+            if page.objectName() == "Low-Resistance":
+                # Find all input fields in the page layout
+                inputs = page.findChildren(QLineEdit)
+                input_values = [input_field.text() for input_field in inputs]
+                print(page.objectName(), "Input Values:", input_values)
+                return
+        print("Page not found!")
+
+    def print_impedance_spectroscopy_4p_inputs(self):
+        # Find the measurement page
+        for index in range(self.page_widget.count()):
+            page = self.page_widget.widget(index)
+            if page.objectName() == "Impedance Spectroscopy (4-p)":
+                # Find all input fields in the page layout
+                inputs = page.findChildren(QLineEdit)
+                input_values = [input_field.text() for input_field in inputs]
+                print(page.objectName(), "Input Values:", input_values)
+                return
+        print("Page not found!")

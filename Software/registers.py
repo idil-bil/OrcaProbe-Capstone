@@ -80,3 +80,5 @@ class DVC_RegisterMap:
         self.DVC_MEASUREMENT_CONFIG = DVC_DVC_MEASUREMENT_CONFIG()
         self.DVC_PROBE_CONFIG = DVC_DVC_PROBE_CONFIG()
         self.DVC_SAMPLE_DATA = DVC_DVC_SAMPLE_DATA()
+
+reg_map = DVC_RegisterMap()

@@ -1,1 +1,0 @@
-- logs the x and ys used on the graph

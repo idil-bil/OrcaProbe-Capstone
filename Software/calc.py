@@ -1,6 +1,8 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
+from constants import *
+
 def dc_resistance():
     """
     Calculates DC resistance using the formula R = V / I
@@ -341,31 +343,9 @@ def impedance_spectroscopy_4p():
     plt.grid(True)
     plt.show()
 
-def main():
-    measurements = {
-        "DC Resistance": dc_resistance,
-        "Current-Voltage": current_voltage,
-        "Capacitance-Voltage (2-p)": capacitance_voltage_2p,
-        "Impedance Spectroscopy (2-p)": impedance_spectroscopy_2p,
-        "Transfer Characteristics": transfer_characteristics,
-        "Output Characteristics": output_characteristics,
-        "Capacitance-Voltage (3-p)": capacitance_voltage_3p,
-        "Electrochemical": electrochemical,
-        "Probe Resistance": probe_resistance,
-        "Low-Resistance": low_resistance,
-        "Impedance Spectroscopy (4-p)": impedance_spectroscopy_4p,
-    }
-
-    print("Available measurements:")
-    for key in measurements.keys():
-        print(f"- {key}")
-
-    choice = input("Enter the measurement type: ").strip()
-    # import pdb; pdb.set_trace()
-    if choice in measurements:
-        measurements[choice]()
-    else:
-        print("Invalid choice. Please select a valid measurement.")
-
-if __name__ == "__main__":
-    main()
+def adc_sample_to_voltage(data):
+    """
+    Converts ADC samples to voltage values.
+    Asks for the ADC sample value and displays the corresponding voltage value.
+    """
+    return data * GUI_VREF / (2 ** GUI_ADC_RESOLUTION - 1) 
