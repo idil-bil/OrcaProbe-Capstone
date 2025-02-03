@@ -292,6 +292,7 @@ class MainWindow(QMainWindow):
             start_button.setFont(QFont("Arial", 10))
             start_button.setStyleSheet("background-color: #4CAF50; color: white;")
             start_button.setFixedWidth(300)                                         # Set a fixed width for the button
+            start_button.clicked.connect(lambda:self.print_current_voltage_inputs()) 
             button_layout = QHBoxLayout()                                           # Create button layout
             button_layout.addWidget(start_button, alignment=Qt.AlignLeft)           # Add start button and align button to the left
             layout.addLayout(button_layout)                                         # Add button layout under the title of the measurement type
@@ -357,7 +358,7 @@ class MainWindow(QMainWindow):
             start_button.setFont(QFont("Arial", 10))
             start_button.setStyleSheet("background-color: #4CAF50; color: white;")
             start_button.setFixedWidth(300)                                         # Set a fixed width for the button
-            start_button.clicked.connect(lambda:self.print_capacitance_voltage_inputs())   
+            start_button.clicked.connect(lambda:self.print_capacitance_voltage_2p_inputs())   
             button_layout = QHBoxLayout()                                           # Create button layout
             button_layout.addWidget(start_button, alignment=Qt.AlignLeft)           # Add start button and align button to the left
             layout.addLayout(button_layout)                                         # Add button layout under the title of the measurement type
@@ -449,6 +450,7 @@ class MainWindow(QMainWindow):
             start_button.setFont(QFont("Arial", 10))
             start_button.setStyleSheet("background-color: #4CAF50; color: white;")
             start_button.setFixedWidth(300)                                         # Set a fixed width for the button
+            start_button.clicked.connect(lambda:self.print_impedance_spectroscopy_2p_inputs()) 
             button_layout = QHBoxLayout()                                           # Create button layout
             button_layout.addWidget(start_button, alignment=Qt.AlignLeft)           # Add start button and align button to the left
             layout.addLayout(button_layout) 
@@ -514,6 +516,7 @@ class MainWindow(QMainWindow):
             start_button.setFont(QFont("Arial", 10))
             start_button.setStyleSheet("background-color: #4CAF50; color: white;")
             start_button.setFixedWidth(300)                                         # Set a fixed width for the button
+            start_button.clicked.connect(lambda:self.print_transfer_characteristics_inputs()) 
             button_layout = QHBoxLayout()                                           # Create button layout
             button_layout.addWidget(start_button, alignment=Qt.AlignLeft)           # Add start button and align button to the left
             layout.addLayout(button_layout) 
@@ -579,6 +582,7 @@ class MainWindow(QMainWindow):
             start_button.setFont(QFont("Arial", 10))
             start_button.setStyleSheet("background-color: #4CAF50; color: white;")
             start_button.setFixedWidth(300)                                         # Set a fixed width for the button
+            start_button.clicked.connect(lambda:self.print_output_characteristics_inputs()) 
             button_layout = QHBoxLayout()                                           # Create button layout
             button_layout.addWidget(start_button, alignment=Qt.AlignLeft)           # Add start button and align button to the left
             layout.addLayout(button_layout) 
@@ -644,6 +648,7 @@ class MainWindow(QMainWindow):
             start_button.setFont(QFont("Arial", 10))
             start_button.setStyleSheet("background-color: #4CAF50; color: white;")
             start_button.setFixedWidth(300)                                         # Set a fixed width for the button
+            start_button.clicked.connect(lambda:self.print_capacitance_voltage_3p_inputs()) 
             button_layout = QHBoxLayout()                                           # Create button layout
             button_layout.addWidget(start_button, alignment=Qt.AlignLeft)           # Add start button and align button to the left
             layout.addLayout(button_layout)  
@@ -735,6 +740,7 @@ class MainWindow(QMainWindow):
             start_button.setFont(QFont("Arial", 10))
             start_button.setStyleSheet("background-color: #4CAF50; color: white;")
             start_button.setFixedWidth(300)                                         # Set a fixed width for the button
+            start_button.clicked.connect(lambda:self.print_electrochemical_inputs()) 
             button_layout = QHBoxLayout()                                           # Create button layout
             button_layout.addWidget(start_button, alignment=Qt.AlignLeft)           # Add start button and align button to the left
             layout.addLayout(button_layout) 
@@ -764,6 +770,7 @@ class MainWindow(QMainWindow):
             stop_button.setStyleSheet("background-color: #f44336; color: white;")
             start_button.setFixedWidth(300)                                 # Limit the width of the start button
             stop_button.setFixedWidth(300)                                  # Limit the width of the stop button
+            start_button.clicked.connect(lambda:self.print_probe_resistance_inputs()) 
             button_layout = QVBoxLayout()                                   # Use QVBoxLayout to arrange buttons vertically
             button_layout.addWidget(start_button, alignment=Qt.AlignLeft)   # Add start button
             button_layout.addWidget(stop_button, alignment=Qt.AlignLeft)    # Add stop button below
@@ -794,6 +801,7 @@ class MainWindow(QMainWindow):
             stop_button.setStyleSheet("background-color: #f44336; color: white;")
             start_button.setFixedWidth(300)                                 # Limit the width of the start button
             stop_button.setFixedWidth(300)                                  # Limit the width of the stop button
+            start_button.clicked.connect(lambda:self.print_low_resistance_inputs()) 
             button_layout = QVBoxLayout()                                   # Use QVBoxLayout to arrange buttons vertically
             button_layout.addWidget(start_button, alignment=Qt.AlignLeft)   # Add start button
             button_layout.addWidget(stop_button, alignment=Qt.AlignLeft)    # Add stop button below
@@ -886,6 +894,7 @@ class MainWindow(QMainWindow):
             start_button.setFont(QFont("Arial", 10))
             start_button.setStyleSheet("background-color: #4CAF50; color: white;")
             start_button.setFixedWidth(300)                                         # Set a fixed width for the button
+            start_button.clicked.connect(lambda:self.print_impedance_spectroscopy_4p_inputs()) 
             button_layout = QHBoxLayout()                                           # Create button layout
             button_layout.addWidget(start_button, alignment=Qt.AlignLeft)           # Add start button and align button to the left
             layout.addLayout(button_layout) 
@@ -977,11 +986,12 @@ class MainWindow(QMainWindow):
             page = self.page_widget.widget(index)
             if page.objectName() == "DC Resistance":
                 # Find all input fields in the page layout
-                # self.probe_config_bar
-                reg_map.DVC_MEASUREMENT_CONFIG.Start_Measure = 1
-                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Probe_Config = GUI_2PROBES
-                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Type_Config = GUI_DC_RESISTANCE
-                write_reg_DVC_MEASUREMENT_CONFIG(reg_map)
+                selected_probes = self.get_selected_probes(2)
+                self.config_selected_probes(selected_probes,reg_map)
+                reg_map.DVC_MEASUREMENT_CONFIG.Start_Measure[0] = 1
+                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Probe_Config[0] = GUI_2PROBES
+                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Type_Config[0] = GUI_DC_RESISTANCE
+                # write_reg_DVC_MEASUREMENT_CONFIG(reg_map)
 
     def print_current_voltage_inputs(self):
         # Find the measurement page
@@ -992,8 +1002,12 @@ class MainWindow(QMainWindow):
                 inputs = page.findChildren(QLineEdit)
                 input_values = [input_field.text() for input_field in inputs]
                 print(page.objectName(), "Input Values:", input_values)
-                return
-        print("Page not found!")
+                selected_probes = self.get_selected_probes(2)
+                self.config_selected_probes(selected_probes,reg_map)
+                reg_map.DVC_MEASUREMENT_CONFIG.Start_Measure[0] = 1
+                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Probe_Config[0] = GUI_2PROBES
+                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Type_Config[0] = GUI_CURRENT_VOLTAGE
+                # write_reg_DVC_MEASUREMENT_CONFIG(reg_map)
 
     def print_capacitance_voltage_2p_inputs(self):
         # Find the measurement page
@@ -1004,8 +1018,12 @@ class MainWindow(QMainWindow):
                 inputs = page.findChildren(QLineEdit)
                 input_values = [input_field.text() for input_field in inputs]
                 print(page.objectName(), "Input Values:", input_values)
-                return
-        print("Page not found!")
+                selected_probes = self.get_selected_probes(2)
+                self.config_selected_probes(selected_probes,reg_map)
+                reg_map.DVC_MEASUREMENT_CONFIG.Start_Measure[0] = 1
+                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Probe_Config[0] = GUI_2PROBES
+                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Type_Config[0] = GUI_CAPACITANCE_VOLTAGE_2P
+                # write_reg_DVC_MEASUREMENT_CONFIG(reg_map)
 
     def print_impedance_spectroscopy_2p_inputs(self):
         # Find the measurement page
@@ -1016,8 +1034,12 @@ class MainWindow(QMainWindow):
                 inputs = page.findChildren(QLineEdit)
                 input_values = [input_field.text() for input_field in inputs]
                 print(page.objectName(), "Input Values:", input_values)
-                return
-        print("Page not found!")
+                selected_probes = self.get_selected_probes(2)
+                self.config_selected_probes(selected_probes,reg_map)
+                reg_map.DVC_MEASUREMENT_CONFIG.Start_Measure[0] = 1
+                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Probe_Config[0] = GUI_2PROBES
+                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Type_Config[0] = GUI_IMPEDANCE_SPECTROSCOPY_2P
+                # write_reg_DVC_MEASUREMENT_CONFIG(reg_map)
 
     def print_transfer_characteristics_inputs(self):
         # Find the measurement page
@@ -1028,8 +1050,12 @@ class MainWindow(QMainWindow):
                 inputs = page.findChildren(QLineEdit)
                 input_values = [input_field.text() for input_field in inputs]
                 print(page.objectName(), "Input Values:", input_values)
-                return
-        print("Page not found!")
+                selected_probes = self.get_selected_probes(3)
+                self.config_selected_probes(selected_probes,reg_map)
+                reg_map.DVC_MEASUREMENT_CONFIG.Start_Measure[0] = 1
+                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Probe_Config[0] = GUI_3PROBES
+                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Type_Config[0] = GUI_TRANSFER_CHARACTERISTICS
+                # write_reg_DVC_MEASUREMENT_CONFIG(reg_map)
 
     def print_output_characteristics_inputs(self):
         # Find the measurement page
@@ -1040,8 +1066,12 @@ class MainWindow(QMainWindow):
                 inputs = page.findChildren(QLineEdit)
                 input_values = [input_field.text() for input_field in inputs]
                 print(page.objectName(), "Input Values:", input_values)
-                return
-        print("Page not found!")
+                selected_probes = self.get_selected_probes(3)
+                self.config_selected_probes(selected_probes,reg_map)
+                reg_map.DVC_MEASUREMENT_CONFIG.Start_Measure[0] = 1
+                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Probe_Config[0] = GUI_3PROBES
+                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Type_Config[0] = GUI_OUTPUT_CHARACTERISTICS
+                # write_reg_DVC_MEASUREMENT_CONFIG(reg_map)
 
     def print_capacitance_voltage_3p_inputs(self):
         # Find the measurement page
@@ -1052,8 +1082,12 @@ class MainWindow(QMainWindow):
                 inputs = page.findChildren(QLineEdit)
                 input_values = [input_field.text() for input_field in inputs]
                 print(page.objectName(), "Input Values:", input_values)
-                return
-        print("Page not found!")
+                selected_probes = self.get_selected_probes(3)
+                self.config_selected_probes(selected_probes,reg_map)
+                reg_map.DVC_MEASUREMENT_CONFIG.Start_Measure[0] = 1
+                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Probe_Config[0] = GUI_3PROBES
+                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Type_Config[0] = GUI_CAPACITANCE_VOLTAGE_3P
+                # write_reg_DVC_MEASUREMENT_CONFIG(reg_map)
 
     def print_electrochemical_inputs(self):
         # Find the measurement page
@@ -1064,32 +1098,36 @@ class MainWindow(QMainWindow):
                 inputs = page.findChildren(QLineEdit)
                 input_values = [input_field.text() for input_field in inputs]
                 print(page.objectName(), "Input Values:", input_values)
-                return
-        print("Page not found!")
+                selected_probes = self.get_selected_probes(3)
+                self.config_selected_probes(selected_probes,reg_map)
+                reg_map.DVC_MEASUREMENT_CONFIG.Start_Measure[0] = 1
+                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Probe_Config[0] = GUI_3PROBES
+                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Type_Config[0] = GUI_ELECTROCHEMICAL
+                # write_reg_DVC_MEASUREMENT_CONFIG(reg_map)
 
     def print_probe_resistance_inputs(self):
         # Find the measurement page
         for index in range(self.page_widget.count()):
             page = self.page_widget.widget(index)
             if page.objectName() == "Probe Resistance":
-                # Find all input fields in the page layout
-                inputs = page.findChildren(QLineEdit)
-                input_values = [input_field.text() for input_field in inputs]
-                print(page.objectName(), "Input Values:", input_values)
-                return
-        print("Page not found!")
+                selected_probes = self.get_selected_probes(4)
+                self.config_selected_probes(selected_probes,reg_map)
+                reg_map.DVC_MEASUREMENT_CONFIG.Start_Measure[0] = 1
+                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Probe_Config[0] = GUI_4PROBES
+                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Type_Config[0] = GUI_PROBE_RESISTANCE
+                # write_reg_DVC_MEASUREMENT_CONFIG(reg_map)
 
     def print_low_resistance_inputs(self):
         # Find the measurement page
         for index in range(self.page_widget.count()):
             page = self.page_widget.widget(index)
             if page.objectName() == "Low-Resistance":
-                # Find all input fields in the page layout
-                inputs = page.findChildren(QLineEdit)
-                input_values = [input_field.text() for input_field in inputs]
-                print(page.objectName(), "Input Values:", input_values)
-                return
-        print("Page not found!")
+                selected_probes = self.get_selected_probes(4)
+                self.config_selected_probes(selected_probes,reg_map)
+                reg_map.DVC_MEASUREMENT_CONFIG.Start_Measure[0] = 1
+                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Probe_Config[0] = GUI_4PROBES
+                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Type_Config[0] = GUI_LOW_RESISTANCE
+                # write_reg_DVC_MEASUREMENT_CONFIG(reg_map)
 
     def print_impedance_spectroscopy_4p_inputs(self):
         # Find the measurement page
@@ -1100,5 +1138,98 @@ class MainWindow(QMainWindow):
                 inputs = page.findChildren(QLineEdit)
                 input_values = [input_field.text() for input_field in inputs]
                 print(page.objectName(), "Input Values:", input_values)
-                return
-        print("Page not found!")
+                selected_probes = self.get_selected_probes(4)
+                self.config_selected_probes(selected_probes,reg_map)
+                reg_map.DVC_MEASUREMENT_CONFIG.Start_Measure[0] = 1
+                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Probe_Config[0] = GUI_4PROBES
+                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Type_Config[0] = GUI_IMPEDANCE_SPECTROSCOPY_4P
+                # write_reg_DVC_MEASUREMENT_CONFIG(reg_map)
+
+    def get_selected_probes(self, required_probes):
+        """Fetch selected probes ensuring only one dropdown per probe is non-default 
+        and the total selected probes match the required count."""
+        
+        # Ensure the probe configuration bar is correctly referenced
+        probe_config_bar = self.probe_config_bar
+        if not probe_config_bar:
+            print("Error: Probe configuration bar not found!")
+            return None
+
+        probe_layout = probe_config_bar.layout()
+        if not probe_layout:
+            print("Error: Probe configuration layout not found!")
+            return None
+
+        selected_probes = {}
+
+        for i in range(4):  # Iterate over the 4 probes
+            probe_label = f"Probe {i + 1}"  # Manually defining probe labels
+            
+            # Extract dropdown widgets
+            supply_dropdown = probe_layout.itemAt(i * 3 + 1).widget()  # Supply dropdown
+            measure_dropdown = probe_layout.itemAt(i * 3 + 2).widget()  # Measurement dropdown
+
+            if not supply_dropdown or not measure_dropdown:
+                print(f"Error: Could not find dropdowns for {probe_label}")
+                return None
+
+            supply_value = supply_dropdown.currentText()
+            measure_value = measure_dropdown.currentText()
+
+            # Ensure only one dropdown per probe is selected
+            if supply_value != "Choose Supply" and measure_value != "Choose Measurement":
+                print(f"Error: Both dropdowns are selected for {probe_label}! Only one is allowed.")
+                return None
+            elif supply_value != "Choose Supply":
+                selected_probes[probe_label] = supply_value
+            elif measure_value != "Choose Measurement":
+                selected_probes[probe_label] = measure_value
+
+        # Ensure the number of selected probes matches the required count
+        if len(selected_probes) != required_probes:
+            print(f"Error: {required_probes} probes required, but {len(selected_probes)} configured!")
+            return None
+        
+        print("Selected Probes:", selected_probes)
+
+        return selected_probes
+    
+    def config_selected_probes(self, selected_probes, reg_map):
+        """Configures the selected probes by updating the Used_Probes register and setting probe-specific configurations."""
+
+        # Mapping probe names to their corresponding register values
+        probe_map = {
+            "Probe 1": (GUI_PROBE_1_USED, "Probe_1_Config[0]"),
+            "Probe 2": (GUI_PROBE_2_USED, "Probe_2_Config[0]"),
+            "Probe 3": (GUI_PROBE_3_USED, "Probe_3_Config[0]"),
+            "Probe 4": (GUI_PROBE_4_USED, "Probe_4_Config[0]"),
+        }
+
+        # Mapping configuration values for supply and measurement options
+        probe_config_map = {
+            "DC-Voltage Supply": (GUI_PROBE_SUPPLY_DCV, True),
+            "AC-Voltage Supply": (GUI_PROBE_SUPPLY_ACV, True),
+            "Current Supply": (GUI_PROBE_SUPPLY_CUR, True),
+            "Ground": (GUI_PROBE_SUPPLY_GND, True),
+            "Voltage Measure": (GUI_PROBE_MEASURE_VOL, False),
+            "Current Measure": (GUI_PROBE_MEASURE_CUR, False),
+        }
+
+        # Initialize Used_Probes to 0 before updating
+        reg_map.DVC_PROBE_CONFIG.Used_Probes[0] = 0
+
+        # Iterate over selected probes and configure them
+        for probe, (used_flag, config_attr) in probe_map.items():
+            if probe in selected_probes and selected_probes[probe] is not None:
+                reg_map.DVC_PROBE_CONFIG.Used_Probes[0] |= used_flag  # Mark probe as used
+                
+                # Get the configuration value and shift requirement
+                probe_value, should_shift = probe_config_map.get(selected_probes[probe], (None, None))
+                if probe_value is not None:
+                    setattr(reg_map.DVC_PROBE_CONFIG, config_attr, probe_value << 3 if should_shift else probe_value)
+
+        print(f"Configured Used_Probes: {bin(reg_map.DVC_PROBE_CONFIG.Used_Probes[0])}")
+        print(f"Configured Probes 1: {bin(reg_map.DVC_PROBE_CONFIG.Probe_1_Config[0])}")
+        print(f"Configured Probes 2: {bin(reg_map.DVC_PROBE_CONFIG.Probe_2_Config[0])}")
+        print(f"Configured Probes 3: {bin(reg_map.DVC_PROBE_CONFIG.Probe_3_Config[0])}")
+        print(f"Configured Probes 4: {bin(reg_map.DVC_PROBE_CONFIG.Probe_4_Config[0])}")
