@@ -70,4 +70,3 @@ def read_reg_DVC_SAMPLE_DATA(ser, reg_map):
     valR = read_register(ser, DVC_SAMPLE_DATA)
     reg_map.DVC_SAMPLE_DATA.Sample_1[0] = (valR >> reg_map.DVC_SAMPLE_DATA.Sample_1[1]) & ((1 << reg_map.DVC_SAMPLE_DATA.Sample_1[2]) - 1)
     reg_map.DVC_SAMPLE_DATA.Sample_2[0] = (valR >> reg_map.DVC_SAMPLE_DATA.Sample_2[1]) & ((1 << reg_map.DVC_SAMPLE_DATA.Sample_2[2]) - 1)
-

@@ -70,6 +70,6 @@ def receive_value(ser):
     Args:
     - ser (serial.Serial): The serial connection object
     """
-    if ser.in_waiting >= 4:                                     # Check if there are at least 4 bytes of data available in the buffer
+    if ser.in_waiting >= 4:                            # Check if there are at least 4 bytes of data available in the buffer
         data = ser.read(4)                             # Read 4 bytes from the serial buffer
     return data

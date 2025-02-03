@@ -216,7 +216,7 @@ class MainWindow(QMainWindow):
             stop_button.setStyleSheet("background-color: #f44336; color: white;")
             start_button.setFixedWidth(300)                                 # Limit the width of the start button
             stop_button.setFixedWidth(300)                                  # Limit the width of the stop button
-            start_button.clicked.connect(lambda:self.print_dc_resistance_inputs())   
+            start_button.clicked.connect(lambda:self.start_dc_resistance_inputs())   
             button_layout = QVBoxLayout()                                   # Use QVBoxLayout to arrange buttons vertically
             button_layout.addWidget(start_button, alignment=Qt.AlignLeft)   # Add start button
             button_layout.addWidget(stop_button, alignment=Qt.AlignLeft)    # Add stop button below
@@ -292,7 +292,7 @@ class MainWindow(QMainWindow):
             start_button.setFont(QFont("Arial", 10))
             start_button.setStyleSheet("background-color: #4CAF50; color: white;")
             start_button.setFixedWidth(300)                                         # Set a fixed width for the button
-            start_button.clicked.connect(lambda:self.print_current_voltage_inputs()) 
+            start_button.clicked.connect(lambda:self.start_current_voltage_inputs()) 
             button_layout = QHBoxLayout()                                           # Create button layout
             button_layout.addWidget(start_button, alignment=Qt.AlignLeft)           # Add start button and align button to the left
             layout.addLayout(button_layout)                                         # Add button layout under the title of the measurement type
@@ -358,7 +358,7 @@ class MainWindow(QMainWindow):
             start_button.setFont(QFont("Arial", 10))
             start_button.setStyleSheet("background-color: #4CAF50; color: white;")
             start_button.setFixedWidth(300)                                         # Set a fixed width for the button
-            start_button.clicked.connect(lambda:self.print_capacitance_voltage_2p_inputs())   
+            start_button.clicked.connect(lambda:self.start_capacitance_voltage_2p_inputs())   
             button_layout = QHBoxLayout()                                           # Create button layout
             button_layout.addWidget(start_button, alignment=Qt.AlignLeft)           # Add start button and align button to the left
             layout.addLayout(button_layout)                                         # Add button layout under the title of the measurement type
@@ -450,7 +450,7 @@ class MainWindow(QMainWindow):
             start_button.setFont(QFont("Arial", 10))
             start_button.setStyleSheet("background-color: #4CAF50; color: white;")
             start_button.setFixedWidth(300)                                         # Set a fixed width for the button
-            start_button.clicked.connect(lambda:self.print_impedance_spectroscopy_2p_inputs()) 
+            start_button.clicked.connect(lambda:self.start_impedance_spectroscopy_2p_inputs()) 
             button_layout = QHBoxLayout()                                           # Create button layout
             button_layout.addWidget(start_button, alignment=Qt.AlignLeft)           # Add start button and align button to the left
             layout.addLayout(button_layout) 
@@ -516,7 +516,7 @@ class MainWindow(QMainWindow):
             start_button.setFont(QFont("Arial", 10))
             start_button.setStyleSheet("background-color: #4CAF50; color: white;")
             start_button.setFixedWidth(300)                                         # Set a fixed width for the button
-            start_button.clicked.connect(lambda:self.print_transfer_characteristics_inputs()) 
+            start_button.clicked.connect(lambda:self.start_transfer_characteristics_inputs()) 
             button_layout = QHBoxLayout()                                           # Create button layout
             button_layout.addWidget(start_button, alignment=Qt.AlignLeft)           # Add start button and align button to the left
             layout.addLayout(button_layout) 
@@ -582,7 +582,7 @@ class MainWindow(QMainWindow):
             start_button.setFont(QFont("Arial", 10))
             start_button.setStyleSheet("background-color: #4CAF50; color: white;")
             start_button.setFixedWidth(300)                                         # Set a fixed width for the button
-            start_button.clicked.connect(lambda:self.print_output_characteristics_inputs()) 
+            start_button.clicked.connect(lambda:self.start_output_characteristics_inputs()) 
             button_layout = QHBoxLayout()                                           # Create button layout
             button_layout.addWidget(start_button, alignment=Qt.AlignLeft)           # Add start button and align button to the left
             layout.addLayout(button_layout) 
@@ -648,7 +648,7 @@ class MainWindow(QMainWindow):
             start_button.setFont(QFont("Arial", 10))
             start_button.setStyleSheet("background-color: #4CAF50; color: white;")
             start_button.setFixedWidth(300)                                         # Set a fixed width for the button
-            start_button.clicked.connect(lambda:self.print_capacitance_voltage_3p_inputs()) 
+            start_button.clicked.connect(lambda:self.start_capacitance_voltage_3p_inputs()) 
             button_layout = QHBoxLayout()                                           # Create button layout
             button_layout.addWidget(start_button, alignment=Qt.AlignLeft)           # Add start button and align button to the left
             layout.addLayout(button_layout)  
@@ -740,7 +740,7 @@ class MainWindow(QMainWindow):
             start_button.setFont(QFont("Arial", 10))
             start_button.setStyleSheet("background-color: #4CAF50; color: white;")
             start_button.setFixedWidth(300)                                         # Set a fixed width for the button
-            start_button.clicked.connect(lambda:self.print_electrochemical_inputs()) 
+            start_button.clicked.connect(lambda:self.start_electrochemical_inputs()) 
             button_layout = QHBoxLayout()                                           # Create button layout
             button_layout.addWidget(start_button, alignment=Qt.AlignLeft)           # Add start button and align button to the left
             layout.addLayout(button_layout) 
@@ -770,7 +770,7 @@ class MainWindow(QMainWindow):
             stop_button.setStyleSheet("background-color: #f44336; color: white;")
             start_button.setFixedWidth(300)                                 # Limit the width of the start button
             stop_button.setFixedWidth(300)                                  # Limit the width of the stop button
-            start_button.clicked.connect(lambda:self.print_probe_resistance_inputs()) 
+            start_button.clicked.connect(lambda:self.start_probe_resistance_inputs()) 
             button_layout = QVBoxLayout()                                   # Use QVBoxLayout to arrange buttons vertically
             button_layout.addWidget(start_button, alignment=Qt.AlignLeft)   # Add start button
             button_layout.addWidget(stop_button, alignment=Qt.AlignLeft)    # Add stop button below
@@ -801,7 +801,7 @@ class MainWindow(QMainWindow):
             stop_button.setStyleSheet("background-color: #f44336; color: white;")
             start_button.setFixedWidth(300)                                 # Limit the width of the start button
             stop_button.setFixedWidth(300)                                  # Limit the width of the stop button
-            start_button.clicked.connect(lambda:self.print_low_resistance_inputs()) 
+            start_button.clicked.connect(lambda:self.start_low_resistance_inputs()) 
             button_layout = QVBoxLayout()                                   # Use QVBoxLayout to arrange buttons vertically
             button_layout.addWidget(start_button, alignment=Qt.AlignLeft)   # Add start button
             button_layout.addWidget(stop_button, alignment=Qt.AlignLeft)    # Add stop button below
@@ -894,7 +894,7 @@ class MainWindow(QMainWindow):
             start_button.setFont(QFont("Arial", 10))
             start_button.setStyleSheet("background-color: #4CAF50; color: white;")
             start_button.setFixedWidth(300)                                         # Set a fixed width for the button
-            start_button.clicked.connect(lambda:self.print_impedance_spectroscopy_4p_inputs()) 
+            start_button.clicked.connect(lambda:self.start_impedance_spectroscopy_4p_inputs()) 
             button_layout = QHBoxLayout()                                           # Create button layout
             button_layout.addWidget(start_button, alignment=Qt.AlignLeft)           # Add start button and align button to the left
             layout.addLayout(button_layout) 
@@ -980,7 +980,7 @@ class MainWindow(QMainWindow):
         probe_bar.setLayout(probe_layout)
         return probe_bar
 
-    def print_dc_resistance_inputs(self):
+    def start_dc_resistance_inputs(self):
         # Find the measurement page
         for index in range(self.page_widget.count()):
             page = self.page_widget.widget(index)
@@ -993,7 +993,7 @@ class MainWindow(QMainWindow):
                 reg_map.DVC_MEASUREMENT_CONFIG.Measure_Type_Config[0] = GUI_DC_RESISTANCE
                 # write_reg_DVC_MEASUREMENT_CONFIG(reg_map)
 
-    def print_current_voltage_inputs(self):
+    def start_current_voltage_inputs(self):
         # Find the measurement page
         for index in range(self.page_widget.count()):
             page = self.page_widget.widget(index)
@@ -1009,7 +1009,7 @@ class MainWindow(QMainWindow):
                 reg_map.DVC_MEASUREMENT_CONFIG.Measure_Type_Config[0] = GUI_CURRENT_VOLTAGE
                 # write_reg_DVC_MEASUREMENT_CONFIG(reg_map)
 
-    def print_capacitance_voltage_2p_inputs(self):
+    def start_capacitance_voltage_2p_inputs(self):
         # Find the measurement page
         for index in range(self.page_widget.count()):
             page = self.page_widget.widget(index)
@@ -1025,7 +1025,7 @@ class MainWindow(QMainWindow):
                 reg_map.DVC_MEASUREMENT_CONFIG.Measure_Type_Config[0] = GUI_CAPACITANCE_VOLTAGE_2P
                 # write_reg_DVC_MEASUREMENT_CONFIG(reg_map)
 
-    def print_impedance_spectroscopy_2p_inputs(self):
+    def start_impedance_spectroscopy_2p_inputs(self):
         # Find the measurement page
         for index in range(self.page_widget.count()):
             page = self.page_widget.widget(index)
@@ -1041,7 +1041,7 @@ class MainWindow(QMainWindow):
                 reg_map.DVC_MEASUREMENT_CONFIG.Measure_Type_Config[0] = GUI_IMPEDANCE_SPECTROSCOPY_2P
                 # write_reg_DVC_MEASUREMENT_CONFIG(reg_map)
 
-    def print_transfer_characteristics_inputs(self):
+    def start_transfer_characteristics_inputs(self):
         # Find the measurement page
         for index in range(self.page_widget.count()):
             page = self.page_widget.widget(index)
@@ -1057,7 +1057,7 @@ class MainWindow(QMainWindow):
                 reg_map.DVC_MEASUREMENT_CONFIG.Measure_Type_Config[0] = GUI_TRANSFER_CHARACTERISTICS
                 # write_reg_DVC_MEASUREMENT_CONFIG(reg_map)
 
-    def print_output_characteristics_inputs(self):
+    def start_output_characteristics_inputs(self):
         # Find the measurement page
         for index in range(self.page_widget.count()):
             page = self.page_widget.widget(index)
@@ -1073,7 +1073,7 @@ class MainWindow(QMainWindow):
                 reg_map.DVC_MEASUREMENT_CONFIG.Measure_Type_Config[0] = GUI_OUTPUT_CHARACTERISTICS
                 # write_reg_DVC_MEASUREMENT_CONFIG(reg_map)
 
-    def print_capacitance_voltage_3p_inputs(self):
+    def start_capacitance_voltage_3p_inputs(self):
         # Find the measurement page
         for index in range(self.page_widget.count()):
             page = self.page_widget.widget(index)
@@ -1089,7 +1089,7 @@ class MainWindow(QMainWindow):
                 reg_map.DVC_MEASUREMENT_CONFIG.Measure_Type_Config[0] = GUI_CAPACITANCE_VOLTAGE_3P
                 # write_reg_DVC_MEASUREMENT_CONFIG(reg_map)
 
-    def print_electrochemical_inputs(self):
+    def start_electrochemical_inputs(self):
         # Find the measurement page
         for index in range(self.page_widget.count()):
             page = self.page_widget.widget(index)
@@ -1105,7 +1105,7 @@ class MainWindow(QMainWindow):
                 reg_map.DVC_MEASUREMENT_CONFIG.Measure_Type_Config[0] = GUI_ELECTROCHEMICAL
                 # write_reg_DVC_MEASUREMENT_CONFIG(reg_map)
 
-    def print_probe_resistance_inputs(self):
+    def start_probe_resistance_inputs(self):
         # Find the measurement page
         for index in range(self.page_widget.count()):
             page = self.page_widget.widget(index)
@@ -1117,7 +1117,7 @@ class MainWindow(QMainWindow):
                 reg_map.DVC_MEASUREMENT_CONFIG.Measure_Type_Config[0] = GUI_PROBE_RESISTANCE
                 # write_reg_DVC_MEASUREMENT_CONFIG(reg_map)
 
-    def print_low_resistance_inputs(self):
+    def start_low_resistance_inputs(self):
         # Find the measurement page
         for index in range(self.page_widget.count()):
             page = self.page_widget.widget(index)
@@ -1129,7 +1129,7 @@ class MainWindow(QMainWindow):
                 reg_map.DVC_MEASUREMENT_CONFIG.Measure_Type_Config[0] = GUI_LOW_RESISTANCE
                 # write_reg_DVC_MEASUREMENT_CONFIG(reg_map)
 
-    def print_impedance_spectroscopy_4p_inputs(self):
+    def start_impedance_spectroscopy_4p_inputs(self):
         # Find the measurement page
         for index in range(self.page_widget.count()):
             page = self.page_widget.widget(index)
