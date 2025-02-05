@@ -45,7 +45,7 @@ def generate_register_files(excel_path):
             if reg['bitfields']:
                 for field in reg['bitfields']:
                     bit_range, name = field.split(": ")
-                    f.write(f"        self.{name[0] + name[1:]} = (0xDEAD,{reg['name']}_{name}_POSITION, {reg['name']}_{name}_LENGTH)\n")
+                    f.write(f"        self.{name[0] + name[1:]} = [0xDEAD,{reg['name']}_{name}_POSITION, {reg['name']}_{name}_LENGTH]\n")
             else:
                 f.write("    pass\n")
             f.write("\n")
@@ -53,6 +53,7 @@ def generate_register_files(excel_path):
         f.write(f"    def __init__(self):\n")
         for reg in registers:
             f.write(f"        self.{reg['name']} = DVC_{reg['name']}()\n")
+        f.write("\n\nreg_map = DVC_RegisterMap()\n")
 
     # Generate interface.py
     with open("../Software/interface.py", "w") as f:

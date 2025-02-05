@@ -1199,10 +1199,10 @@ class MainWindow(QMainWindow):
 
         # Mapping probe names to their corresponding register values
         probe_map = {
-            "Probe 1": (GUI_PROBE_1_USED, "Probe_1_Config[0]"),
-            "Probe 2": (GUI_PROBE_2_USED, "Probe_2_Config[0]"),
-            "Probe 3": (GUI_PROBE_3_USED, "Probe_3_Config[0]"),
-            "Probe 4": (GUI_PROBE_4_USED, "Probe_4_Config[0]"),
+            "Probe 1": (GUI_PROBE_1_USED, "Probe_1_Config"),
+            "Probe 2": (GUI_PROBE_2_USED, "Probe_2_Config"),
+            "Probe 3": (GUI_PROBE_3_USED, "Probe_3_Config"),
+            "Probe 4": (GUI_PROBE_4_USED, "Probe_4_Config"),
         }
 
         # Mapping configuration values for supply and measurement options
@@ -1215,18 +1215,20 @@ class MainWindow(QMainWindow):
             "Current Measure": (GUI_PROBE_MEASURE_CUR, False),
         }
 
-        # Initialize Used_Probes to 0 before updating
+        # Initialize Used_Probes properly as a **list** (not a tuple)
         reg_map.DVC_PROBE_CONFIG.Used_Probes[0] = 0
 
         # Iterate over selected probes and configure them
         for probe, (used_flag, config_attr) in probe_map.items():
             if probe in selected_probes and selected_probes[probe] is not None:
-                reg_map.DVC_PROBE_CONFIG.Used_Probes[0] |= used_flag  # Mark probe as used
-                
+                # Update Used_Probes
+                reg_map.DVC_PROBE_CONFIG.Used_Probes[0] |= used_flag  # Perform bitwise OR update
+
                 # Get the configuration value and shift requirement
                 probe_value, should_shift = probe_config_map.get(selected_probes[probe], (None, None))
                 if probe_value is not None:
-                    setattr(reg_map.DVC_PROBE_CONFIG, config_attr, probe_value << 3 if should_shift else probe_value)
+                    # Correctly update the first index of Probe_X_Config
+                    getattr(reg_map.DVC_PROBE_CONFIG, config_attr)[0] = probe_value << 3 if should_shift else probe_value
 
         print(f"Configured Used_Probes: {bin(reg_map.DVC_PROBE_CONFIG.Used_Probes[0])}")
         print(f"Configured Probes 1: {bin(reg_map.DVC_PROBE_CONFIG.Probe_1_Config[0])}")
