@@ -9,6 +9,9 @@ from PyQt5.QtWidgets import (
 from interface import *
 from registers import *
 from constants import *
+from comm import *
+from calc import *
+import time
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -106,6 +109,7 @@ class MainWindow(QMainWindow):
         self.page_widget.addWidget(self.main_page)
 
         self.current_selected_measurement = None    # Initialize to track the selected measurement
+        self.ser = init_ser_port('COM8', 115200)   # Open a serial connection on COM8 with baud rate 115200
 
     def add_measurement_selection(self, layout, section_title, options):
         # For each measurement section (2-probe, 3-probe and 4-probe)
@@ -991,7 +995,13 @@ class MainWindow(QMainWindow):
                 reg_map.DVC_MEASUREMENT_CONFIG.Start_Measure[0] = 1
                 reg_map.DVC_MEASUREMENT_CONFIG.Measure_Probe_Config[0] = GUI_2PROBES
                 reg_map.DVC_MEASUREMENT_CONFIG.Measure_Type_Config[0] = GUI_DC_RESISTANCE
-                # write_reg_DVC_MEASUREMENT_CONFIG(reg_map)
+                write_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
+                read_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
+                while (reg_map.DVC_MEASUREMENT_CONFIG.Measure_In_Progress[0] == 1):
+                    read_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
+                    time.sleep(0.1)     
+                read_reg_DVC_SAMPLE_DATA(self.ser, reg_map)
+                voltage = adc_sample_to_voltage(reg_map.DVC_SAMPLE_DATA.Sample_1)
 
     def start_current_voltage_inputs(self):
         # Find the measurement page
