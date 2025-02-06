@@ -1,3 +1,3 @@
 ../Device/Src/device_registers.c:10:6:init_register_map	2
-../Device/Src/device_registers.c:18:10:get_register	1
-../Device/Src/device_registers.c:22:6:set_register	1
+../Device/Src/device_registers.c:16:10:get_register	1
+../Device/Src/device_registers.c:20:6:set_register	1

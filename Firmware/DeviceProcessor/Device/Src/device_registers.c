@@ -11,8 +11,6 @@ void init_register_map(RegisterMap_TypeDef* RegMap){
 	for(int i = 0; i < DVC_TOTAL_REGISTER_NUMBER; i++){
 		RegMap->RegisterArray[i].RegData = 0xdeadbeef;
 	}
-//	RegMap->reg_read = get_register;
-//	RegMap->reg_write = set_register;
 }
 
 uint32_t get_register(RegisterMap_TypeDef* RegMap, uint32_t reg_addr){
