@@ -1,18 +1,18 @@
 # interface.py
 
-import comm
+import comm_device
 
 from registers import *
 
 def read_register(ser,register_address):
-    valW = comm.pack_32bit(register_address,0)
-    comm.send_value(ser,valW)
-    _, valR = comm.unpack_32bit(comm.receive_value(ser))
+    valW = comm_device.pack_32bit(register_address,0)
+    comm_device.send_value(ser,valW)
+    _, valR = comm_device.unpack_32bit(comm_device.receive_value(ser))
     return valR
 
 def write_register(ser,register_address, value):
-    valW = comm.pack_32bit(128+register_address,value)
-    comm.send_value(ser,valW)
+    valW = comm_device.pack_32bit(128+register_address,value)
+    comm_device.send_value(ser,valW)
     return
 
 def write_reg_DVC_STATUS(ser, reg_map):
