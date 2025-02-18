@@ -67,11 +67,17 @@ def send_value(ser, data):
 # Function to receive and unpack 32-bit data from the serial connection
 def receive_value(ser):
     """
+    Non-blocking function to receive data from STM32.
+    
     Args:
-    - ser (serial.Serial): The serial connection object
+    - ser (serial.Serial): The serial connection object.
+    
+    Returns:
+    - int: The 24-bit received data, or None if no data is available.
     """
-    if ser.in_waiting > 0:
-        data = ser.readline().strip()  # Read a full line (ending with \n or \r)
-        if data:
-            print("Received:", data.decode())
-        
+    if ser.in_waiting >= 4:  # Only read if at least 4 bytes are available
+        data_bytes = ser.read(4)
+        _, data = unpack_32bit(data_bytes)  # Unpack received data
+        return data
+
+    return None  # No data available yet

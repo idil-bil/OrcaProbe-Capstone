@@ -1,9 +1,9 @@
 import sys
 from PyQt5.QtGui import QFont, QPixmap, QIcon
-from PyQt5.QtCore import Qt
+from PyQt5.QtCore import Qt, QTimer
 from PyQt5.QtWidgets import (
     QApplication, QWidget, QLabel, QVBoxLayout, QHBoxLayout, QMainWindow,
-    QPushButton, QFrame, QStackedWidget, QRadioButton, QLineEdit, QButtonGroup, QComboBox
+    QPushButton, QFrame, QStackedWidget, QRadioButton, QLineEdit, QButtonGroup, QComboBox,
 )
 
 from interface import *
@@ -109,7 +109,10 @@ class MainWindow(QMainWindow):
         self.page_widget.addWidget(self.main_page)
 
         self.current_selected_measurement = None    # Initialize to track the selected measurement
-        # self.ser = init_ser_port('COM5', 115200)   # Open a serial connection on COM8 with baud rate 115200
+        self.ser = init_ser_port('com3', 115200)   # open a serial connection on com8 with baud rate 115200
+
+        self.timer = QTimer(self)
+        self.timer.timeout.connect(self.check_serial_data)  # Call periodically
 
     def add_measurement_selection(self, layout, section_title, options):
         # For each measurement section (2-probe, 3-probe and 4-probe)
@@ -998,24 +1001,8 @@ class MainWindow(QMainWindow):
                 reg_map.DVC_MEASUREMENT_CONFIG.Valid_Measure_Config[0] = 0
                 reg_map.DVC_MEASUREMENT_CONFIG.Measure_Probe_Config[0] = GUI_2PROBES
                 reg_map.DVC_MEASUREMENT_CONFIG.Measure_Type_Config[0] = GUI_DC_RESISTANCE
-                ser = init_ser_port('COM5', 115200)   # Open a serial connection on COM8 with baud rate 115200
-                write_reg_DVC_MEASUREMENT_CONFIG(ser, reg_map)
-                time.sleep(0.1)
-                time.sleep(0.1)
-                while True:
-                    receive_value(ser)
-                # data = receive_value(self.ser)
-                # while(data != 450):
-                #     time.sleep(0.1)
-                #     print(f"{data}\n\r")
-                #     data = receive_value(self.ser)
-                # write_reg_DVC_PROBE_CONFIG(self.ser, reg_map)
-                # read_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
-                # while (reg_map.DVC_MEASUREMENT_CONFIG.Measure_In_Progress[0] == 1):
-                #     read_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
-                #     time.sleep(0.1)     
-                # read_reg_DVC_SAMPLE_DATA(self.ser, reg_map)
-                # voltage = adc_sample_to_voltage(reg_map.DVC_SAMPLE_DATA.Sample_1)
+                write_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
+                self.timer.start(100)  # Check every 100ms
 
     def start_current_voltage_inputs(self):
         # Find the measurement page
@@ -1034,8 +1021,7 @@ class MainWindow(QMainWindow):
                 reg_map.DVC_MEASUREMENT_CONFIG.Valid_Measure_Config[0] = 0
                 reg_map.DVC_MEASUREMENT_CONFIG.Measure_Probe_Config[0] = GUI_2PROBES
                 reg_map.DVC_MEASUREMENT_CONFIG.Measure_Type_Config[0] = GUI_CURRENT_VOLTAGE
-                ser = init_ser_port('COM5', 115200)   # Open a serial connection on COM8 with baud rate 115200
-                write_reg_DVC_MEASUREMENT_CONFIG(ser, reg_map)
+                write_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
 
 
     def start_capacitance_voltage_2p_inputs(self):
@@ -1264,3 +1250,9 @@ class MainWindow(QMainWindow):
         print(f"Configured Probes 2: {bin(reg_map.DVC_PROBE_CONFIG.Probe_2_Config[0])}")
         print(f"Configured Probes 3: {bin(reg_map.DVC_PROBE_CONFIG.Probe_3_Config[0])}")
         print(f"Configured Probes 4: {bin(reg_map.DVC_PROBE_CONFIG.Probe_4_Config[0])}")
+
+    def check_serial_data(self):
+        data = receive_value(self.ser)
+        if data is not None:
+            print(f"Received: {data}\n\r")
+            self.timer.stop()  # Stop checking if we got 450
