@@ -22,8 +22,8 @@
 ../Drivers/STM32U5xx_HAL_Driver/Inc/stm32u5xx_ll_rcc.h:4181:22:LL_RCC_PLL1_EnableDomain_SYS	1
 ../Drivers/STM32U5xx_HAL_Driver/Inc/stm32u5xx_ll_rcc.h:4354:26:LL_RCC_PLL2_IsReady	2
 ../Drivers/STM32U5xx_HAL_Driver/Inc/stm32u5xx_ll_rcc.h:4770:26:LL_RCC_PLL3_IsReady	2
-../Drivers/STM32U5xx_HAL_Driver/Inc/stm32u5xx_ll_system.h:1599:22:LL_FLASH_SetLatency	1
-../Drivers/STM32U5xx_HAL_Driver/Inc/stm32u5xx_ll_system.h:1625:26:LL_FLASH_GetLatency	1
+../Drivers/STM32U5xx_HAL_Driver/Inc/stm32u5xx_ll_system.h:2169:22:LL_FLASH_SetLatency	1
+../Drivers/STM32U5xx_HAL_Driver/Inc/stm32u5xx_ll_system.h:2195:26:LL_FLASH_GetLatency	1
 ../Drivers/STM32U5xx_HAL_Driver/Inc/stm32u5xx_ll_pwr.h:1714:26:LL_PWR_GetRegulVoltageScaling	1
 ../Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_ll_utils.c:171:6:LL_Init1msTick	1
 ../Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_ll_utils.c:185:6:LL_Init1msTick_HCLK_Div8	1

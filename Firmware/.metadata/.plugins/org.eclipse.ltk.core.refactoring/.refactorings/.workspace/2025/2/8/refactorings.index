@@ -1,0 +1,4 @@
+1739836935378	Delete resource 'stm32u575_nucleo_mw_usb_device_cdc'
+1739836951823	Rename resource 'stm32u575_nucleo_mw_usb_device_cdc_combined'
+1739840303754	Delete resource 'DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Core/Src'
+1739840526651	Delete resource 'DeviceProcessor03/Device/Src'

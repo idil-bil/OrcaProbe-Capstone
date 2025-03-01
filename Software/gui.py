@@ -109,7 +109,7 @@ class MainWindow(QMainWindow):
         self.page_widget.addWidget(self.main_page)
 
         self.current_selected_measurement = None    # Initialize to track the selected measurement
-        self.ser = init_ser_port('com3', 115200)   # open a serial connection on com8 with baud rate 115200
+        self.ser = init_ser_port('com8', 115200)   # open a serial connection on com8 with baud rate 115200
 
         self.timer = QTimer(self)
         self.timer.timeout.connect(self.check_serial_data)  # Call periodically
@@ -993,8 +993,8 @@ class MainWindow(QMainWindow):
             page = self.page_widget.widget(index)
             if page.objectName() == "DC Resistance":
                 # Find all input fields in the page layout
-                selected_probes = self.get_selected_probes(2)
-                self.config_selected_probes(selected_probes,reg_map)
+                # selected_probes = self.get_selected_probes(2)
+                # self.config_selected_probes(selected_probes,reg_map)
                 reg_map.DVC_MEASUREMENT_CONFIG.Start_Measure[0] = 1
                 reg_map.DVC_MEASUREMENT_CONFIG.Stop_Measure[0] = 0
                 reg_map.DVC_MEASUREMENT_CONFIG.Measure_In_Progress[0] = 0
@@ -1002,7 +1002,21 @@ class MainWindow(QMainWindow):
                 reg_map.DVC_MEASUREMENT_CONFIG.Measure_Probe_Config[0] = GUI_2PROBES
                 reg_map.DVC_MEASUREMENT_CONFIG.Measure_Type_Config[0] = GUI_DC_RESISTANCE
                 write_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
-                self.timer.start(100)  # Check every 100ms
+                reg_map.DVC_MEASUREMENT_CONFIG.Start_Measure[0] = 500
+                reg_map.DVC_MEASUREMENT_CONFIG.Stop_Measure[0] = 500
+                reg_map.DVC_MEASUREMENT_CONFIG.Measure_In_Progress[0] = 500
+                reg_map.DVC_MEASUREMENT_CONFIG.Valid_Measure_Config[0] = 500
+                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Probe_Config[0] = 500
+                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Type_Config[0] = 500
+                read_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
+                print(reg_map.DVC_MEASUREMENT_CONFIG.Start_Measure[0])
+                print(reg_map.DVC_MEASUREMENT_CONFIG.Stop_Measure[0])
+                print(reg_map.DVC_MEASUREMENT_CONFIG.Measure_In_Progress[0])
+                print(reg_map.DVC_MEASUREMENT_CONFIG.Valid_Measure_Config[0])
+                print(reg_map.DVC_MEASUREMENT_CONFIG.Measure_Probe_Config[0])
+                print(reg_map.DVC_MEASUREMENT_CONFIG.Measure_Type_Config[0])
+
+                # self.timer.start(100)  # Check every 100ms
 
     def start_current_voltage_inputs(self):
         # Find the measurement page

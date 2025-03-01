@@ -1,22 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value=""/>
+		<item key="selection" value="|"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="|"/>
+			<item value="&#x09;uint16_t dmaValCheck[500];"/>
+			<item value="&amp;dmaValCheck2"/>
+			<item value="&#x09;&#x09;&#x09;&#x09;HAL_DMA_Start(&amp;handle_GPDMA1_Channel12,(uint32_t)&amp;GPIOE-&gt;IDR,(uint32_t)&amp;dmaValCheck,500*sizeof(uint16_t));"/>
+			<item value="&#x09;  HAL_Delay(5000);"/>
+			<item value="Buf"/>
 			<item value="PWMN_Start("/>
 			<item value="handle_GPDMA1_Channel12"/>
 			<item value="&#x09;RegMap-&gt;reg_read = get_register;"/>
-			<item value="&#x09;char msg[] = &quot;Hello, World!\r\n&quot;; // Message to send"/>
-			<item value="HAL_SPI_MspInit"/>
-			<item value="HAL_ADC_MspInit"/>
-			<item value="GPIO_PIN_4"/>
 		</list>
 		<list key="replacehistory">
+			<item value=","/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">

@@ -1,0 +1,11 @@
+../Device/Src/measurement_routines.c:8:6:dvc_exec_msr_dc_resistance_2p	4	static
+../Device/Src/measurement_routines.c:12:6:dvc_exec_msr_current_voltage	4	static
+../Device/Src/measurement_routines.c:16:6:dvc_exec_msr_capacitance_voltage_2p	4	static
+../Device/Src/measurement_routines.c:20:6:dvc_exec_msr_impedance_spectroscopy_2p	4	static
+../Device/Src/measurement_routines.c:24:6:dvc_exec_msr_transfer_characteristics	4	static
+../Device/Src/measurement_routines.c:28:6:dvc_exec_msr_output_characteristics	4	static
+../Device/Src/measurement_routines.c:32:6:dvc_exec_msr_capacitance_voltage_3p	4	static
+../Device/Src/measurement_routines.c:36:6:dvc_exec_msr_electrochemical	4	static
+../Device/Src/measurement_routines.c:40:6:dvc_exec_msr_low_resistance	4	static
+../Device/Src/measurement_routines.c:44:6:dvc_exec_msr_dc_resistance_4p	4	static
+../Device/Src/measurement_routines.c:48:6:dvc_exec_msr_impedance_spectroscopy_4p	4	static

@@ -1,0 +1,39 @@
+/*
+ * switch_network.h
+ *
+ *  Created on: Nov 16, 2024
+ *      Author: User
+ */
+
+#ifndef INC_SWITCH_NETWORK_H_
+#define INC_SWITCH_NETWORK_H_
+
+#include "run_device.h"
+
+uint32_t swnt_pin_list[21] = {
+		 SWNT_CTRL_01_Pin,SWNT_CTRL_02_Pin,SWNT_CTRL_03_Pin,SWNT_CTRL_04_Pin
+        ,SWNT_CTRL_05_Pin,SWNT_CTRL_06_Pin,SWNT_CTRL_07_Pin,SWNT_CTRL_08_Pin
+        ,SWNT_CTRL_09_Pin,SWNT_CTRL_10_Pin,SWNT_CTRL_11_Pin,SWNT_CTRL_12_Pin
+        ,SWNT_CTRL_13_Pin,SWNT_CTRL_14_Pin,SWNT_CTRL_15_Pin,SWNT_CTRL_16_Pin
+		,SWNT_CTRL_17_Pin,SWNT_CTRL_18_Pin,SWNT_CTRL_19_Pin,SWNT_CTRL_20_Pin
+		,SWNT_CTRL_21_Pin};
+
+typedef struct{
+	uint8_t RelayId;
+	ProbeId_Type AssociatedProbe;
+	GPIO_PinState RelayState;
+	GPIO_TypeDef *AssociatedGPIOPort;
+	uint16_t AssociatedGPIO;
+} SwitchRelay_TypeDef;
+
+typedef struct{
+	SwitchRelay_TypeDef Relays[DVC_TOTAL_RELAY_COUNT];
+	bool ValidSwitchNetwork;
+} SwitchNetwork_TypeDef;
+
+void DVC_Init_Switch_Network(SwitchNetwork_TypeDef* switch_network)
+void DVC_Clear_Switch_Network(SwitchNetwork_TypeDef* switch_network);
+void DVC_Set_Switch_Network(SwitchNetwork_TypeDef* switch_network);
+void DVC_Map_Switch_Network(SwitchNetwork_TypeDef* switch_network, uint32_t switch_network_state);
+
+#endif /* INC_SWITCH_NETWORK_H_ */

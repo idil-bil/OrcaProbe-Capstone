@@ -5,5 +5,5 @@
 ../Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal_pcd_ex.c:158:6:HAL_PCDEx_BCD_VBUSDetect	5
 ../Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal_pcd_ex.c:261:19:HAL_PCDEx_ActivateBCD	1
 ../Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal_pcd_ex.c:286:19:HAL_PCDEx_DeActivateBCD	1
-../Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal_pcd_ex.c:531:13:HAL_PCDEx_LPM_Callback	1
-../Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal_pcd_ex.c:548:13:HAL_PCDEx_BCD_Callback	1
+../Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal_pcd_ex.c:529:13:HAL_PCDEx_LPM_Callback	1
+../Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal_pcd_ex.c:546:13:HAL_PCDEx_BCD_Callback	1

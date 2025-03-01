@@ -1,0 +1,100 @@
+/*
+ * run_device.c
+ *
+ *  Created on: Nov 16, 2024
+ *      Author: User
+ */
+
+#include "main.h"
+#include "run_device.h"
+#include "DeviceConstants.h"
+#include "switch_network.h"
+#include "device_registers.h"
+#include "measurement_routines.h"
+
+//extern ADC_HandleTypeDef hadc1;
+
+//extern UART_HandleTypeDef huart1;
+
+extern TIM_HandleTypeDef htim8;
+extern DMA_HandleTypeDef handle_GPDMA1_Channel12;
+
+//extern SPI_HandleTypeDef hspi1;
+
+RegisterMap_TypeDef device_registers;
+
+uint8_t spiTxBuffer1[] = {0x21,0x00,0x50,0xC7,0x40,0x00,0xC0,0x00,0x20,0x00};  // 400Hz
+uint8_t spiTxBuffer2[] = {0x21,0x00,0x61,0x8E,0x40,0x00,0xC0,0x00,0x20,0x00};  // 800Hz
+uint8_t spiTxBuffer3[] = {0x21,0x00,0x63,0x6E,0x40,0x06,0xC0,0x00,0x20,0x00};  // 10kHz
+uint8_t spiTxBuffer4[] = {0x21,0x00,0x6B,0x85,0x41,0x47,0xC0,0x00,0x20,0x00};  // 0.5MHz
+uint8_t spiTxBuffer5[] = {0x21,0x00,0x59,0x9A,0x46,0x66,0xC0,0x00,0x20,0x00};  // 2.5MHz
+uint8_t spiTxBuffer6[] = {0x21,0x00,0x66,0x66,0x59,0x99,0xC0,0x00,0x20,0x00};  // 10MHz
+
+uint8_t spiTxBuffer7[] = {0x21,0x00,0x40,0x6B,0x40,0x00,0xC0,0x00,0x20,0x00};  // 10Hz
+uint8_t spiTxBuffer8[] = {0x21,0x00,0x40,0x76,0x40,0x00,0xC0,0x00,0x20,0x00};  // 11Hz
+uint8_t spiTxBuffer9[] = {0x21,0x00,0x40,0x81,0x40,0x00,0xC0,0x00,0x20,0x00};  // 12Hz
+
+uint8_t uartRxBuffer[4];  // 12Hz
+
+void run_device(){
+	MeasurementCfg_Type measurement_type = 0;
+//	uint16_t dmaValCheck[500];
+//	for(int i = 0; i < 500; i++){
+//	  dmaValCheck[i] = i;
+//	}
+	init_register_map(&device_registers);
+//	HAL_Delay(100);
+//	TIM8->ARR = 32-1;
+//	HAL_TIM_OC_Start(&htim8, TIM_CHANNEL_1);
+//	TIM8->DIER = TIM_DIER_UDE;
+	while(1){
+//		if(get_register(&device_registers,0)%2){
+//			HAL_DMA_Start(&handle_GPDMA1_Channel12,(uint32_t)&GPIOE->IDR,(uint32_t)&dmaValCheck,500*sizeof(uint16_t));
+//			HAL_Delay(100);
+//			set_register(&device_registers,0,get_register(&device_registers,0)&(~(1)));
+//			for(int i = 0; i < 500; i++){
+//				CDC_Transmit_FS(&dmaValCheck[i],sizeof(dmaValCheck[i]));
+//				HAL_Delay(100);
+//			}
+//		}
+		measurement_type = (get_register(&device_registers,DVC_MEASUREMENT_CONFIG)>>6) & 0xF;
+
+	    switch (measurement_type) {
+	        case DC_RESISTANCE:
+	        	dvc_exec_msr_dc_resistance_2p();
+	            break;
+	        case CURRENT_VOLTAGE:
+	        	dvc_exec_msr_current_voltage();
+	            break;
+	        case CAPACITANCE_VOLTAGE_2P:
+	        	dvc_exec_msr_capacitance_voltage_2p();
+	            break;
+	        case IMPEDANCE_SPECTROSCOPY_2P:
+	        	dvc_exec_msr_impedance_spectroscopy_2p();
+	            break;
+	        case TRANSFER_CHARACTERISTICS:
+	        	dvc_exec_msr_transfer_characteristics();
+	            break;
+	        case OUTPUT_CHARACTERISTICS:
+	        	dvc_exec_msr_output_characteristics();
+	            break;
+	        case CAPACITANCE_VOLTAGE_3P:
+	        	dvc_exec_msr_capacitance_voltage_3p();
+	            break;
+	        case ELECTROCHEMICAL:
+	        	dvc_exec_msr_electrochemical();
+	            break;
+	        case LOW_RESISTANCE:
+	        	dvc_exec_msr_low_resistance();
+	            break;
+	        case PROBE_RESISTANCE:
+	        	dvc_exec_msr_dc_resistance_4p();
+	            break;
+	        case IMPEDANCE_SPECTROSCOPY_4P:
+	        	dvc_exec_msr_impedance_spectroscopy_4p();
+	            break;
+	        default:
+	            break;
+	    }
+	}
+}

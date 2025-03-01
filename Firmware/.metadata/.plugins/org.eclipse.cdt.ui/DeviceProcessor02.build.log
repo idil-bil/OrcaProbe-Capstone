@@ -1,0 +1,10 @@
+20:12:45 **** Incremental Build of configuration Debug for project DeviceProcessor02 ****
+make -j12 all 
+arm-none-eabi-size  DeviceProcessor02.elf 
+   text	   data	    bss	    dec	    hex	filename
+  34116	    395	  12628	  47139	   b823	DeviceProcessor02.elf
+Finished building: default.size.stdout
+ 
+
+20:12:46 Build Finished. 0 errors, 0 warnings. (took 924ms)
+

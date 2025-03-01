@@ -10,13 +10,16 @@
 #include "../Inc/switch_network.h"
 #include "../Inc/device_registers.h"
 
-extern ADC_HandleTypeDef hadc1;
+//extern ADC_HandleTypeDef hadc1;
 
 extern UART_HandleTypeDef huart1;
 
 extern PCD_HandleTypeDef hpcd_USB_OTG_FS;
+extern TIM_HandleTypeDef htim8;
+extern DMA_HandleTypeDef handle_GPDMA1_Channel12;
 
 extern SPI_HandleTypeDef hspi1;
+extern SPI_HandleTypeDef hspi3;
 
 RegisterMap_TypeDef device_registers;
 
@@ -31,89 +34,34 @@ uint8_t spiTxBuffer7[] = {0x21,0x00,0x40,0x6B,0x40,0x00,0xC0,0x00,0x20,0x00};  /
 uint8_t spiTxBuffer8[] = {0x21,0x00,0x40,0x76,0x40,0x00,0xC0,0x00,0x20,0x00};  // 11Hz
 uint8_t spiTxBuffer9[] = {0x21,0x00,0x40,0x81,0x40,0x00,0xC0,0x00,0x20,0x00};  // 12Hz
 
+
+uint8_t spiTxBuffer10[] = {0,118}; //0.050
+uint8_t spiTxBuffer11[] = {0,98};  //0.060
+uint8_t spiTxBuffer12[] = {0,83};  //0.070
+uint8_t spiTxBuffer13[] = {0,64};  //0.080
+uint8_t spiTxBuffer14[] = {0,64}; //0.040
+
 uint8_t uartRxBuffer[4];  // 12Hz
+uint16_t uartTxBuffer[16];  // 12Hz
 
 void run_device(){
+	uint16_t dmaValCheck[500];
+	uint16_t dmaValCheck2[500];
+	for(int i = 0; i < 500; i++){
+	  dmaValCheck[i] = i;
+	}
+	for(int i = 0; i < 500; i++){
+		dmaValCheck2[i] = i;
+	}
 	init_register_map(&device_registers);
-
-	HAL_SPI_Transmit(&hspi1, spiTxBuffer1, 10, 1000); //Sending in Blocking mode
 	HAL_Delay(100);
+	TIM8->ARR = 32-1;
+	TIM8->DIER = TIM_DIER_UDE;
+	HAL_TIM_OC_Start(&htim8, TIM_CHANNEL_1);
+	TIM8->DIER = TIM_DIER_UDE;
 	while(1){
-        if (HAL_UART_Receive(&huart1, uartRxBuffer, 4, HAL_MAX_DELAY) == HAL_OK) {
-            // Combine the received bytes into a 32-bit variable
-            uint32_t receivedData = (uartRxBuffer[3] << 24) |
-                                    (uartRxBuffer[2] << 16) |
-                                    (uartRxBuffer[1] << 8)  |
-                                     uartRxBuffer[0];
-
-            // Parse the received data
-            uint8_t address = (receivedData >> 24) & 0xFF; // Upper 8 bits
-			uint32_t data = receivedData & 0xFFFFFF;       // Lower 24 bits
-
-			if(address == 0){
-				if(data == 1){
-					HAL_SPI_Transmit(&hspi1, spiTxBuffer1, 10, 1000); //Sending in Blocking mode
-					HAL_Delay(100);
-				}
-				else if(data == 2){
-					HAL_SPI_Transmit(&hspi1, spiTxBuffer2, 10, 1000); //Sending in Blocking mode
-					HAL_Delay(100);
-				}
-				else if(data == 3){
-					HAL_SPI_Transmit(&hspi1, spiTxBuffer3, 10, 1000); //Sending in Blocking mode
-					HAL_Delay(100);
-				}
-				else if(data == 4){
-					HAL_SPI_Transmit(&hspi1, spiTxBuffer4, 10, 1000); //Sending in Blocking mode
-					HAL_Delay(100);
-				}
-				else if(data == 5){
-					HAL_SPI_Transmit(&hspi1, spiTxBuffer5, 10, 1000); //Sending in Blocking mode
-					HAL_Delay(100);
-				}
-				else if(data == 6){
-					HAL_SPI_Transmit(&hspi1, spiTxBuffer6, 10, 1000); //Sending in Blocking mode
-					HAL_Delay(100);
-				}
-				else if(data == 7){
-					HAL_SPI_Transmit(&hspi1, spiTxBuffer7, 10, 1000); //Sending in Blocking mode
-					HAL_Delay(100);
-				}
-				else if(data == 8){
-					HAL_SPI_Transmit(&hspi1, spiTxBuffer8, 10, 1000); //Sending in Blocking mode
-					HAL_Delay(100);
-				}
-				else if(data == 9){
-					HAL_SPI_Transmit(&hspi1, spiTxBuffer9, 10, 1000); //Sending in Blocking mode
-					HAL_Delay(100);
-				}
-			}
-			else if(address == 1){
-				HAL_GPIO_WritePin(GPIOB,GPIO_PIN_11,GPIO_PIN_RESET);
-				HAL_Delay(300);
-				HAL_GPIO_WritePin(GPIOB,GPIO_PIN_10,GPIO_PIN_RESET);
-				HAL_Delay(300);
-				HAL_GPIO_WritePin(GPIOE,GPIO_PIN_15,GPIO_PIN_RESET);
-				HAL_Delay(300);
-				HAL_GPIO_WritePin(GPIOE,GPIO_PIN_14,GPIO_PIN_RESET);
-				HAL_Delay(300);
-				if(data == 1){
-					HAL_GPIO_WritePin(GPIOB,GPIO_PIN_11,GPIO_PIN_SET);
-					HAL_Delay(100);
-				}
-				else if(data == 2){
-					HAL_GPIO_WritePin(GPIOB,GPIO_PIN_10,GPIO_PIN_SET);
-					HAL_Delay(100);
-				}
-				else if(data == 3){
-					HAL_GPIO_WritePin(GPIOE,GPIO_PIN_15,GPIO_PIN_SET);
-					HAL_Delay(100);
-				}
-				else if(data == 4){
-					HAL_GPIO_WritePin(GPIOE,GPIO_PIN_14,GPIO_PIN_SET);
-					HAL_Delay(100);
-				}
-			}
-        }
+//		HAL_SPI_Transmit(&hspi1, spiTxBuffer14, 2, 1000);
+//		HAL_DMA_Start(&handle_GPDMA1_Channel12,(uint32_t)&GPIOE->IDR,(uint32_t)&dmaValCheck2,500*sizeof(uint16_t));
+//		HAL_DMA_Abort(&handle_GPDMA1_Channel12);
 	}
 }

@@ -58,16 +58,19 @@ def generate_register_files(excel_path):
     # Generate interface.py
     with open("../Software/interface.py", "w") as f:
         f.write("# interface.py\n\n")
-        f.write("import comm\n\n")
+        f.write("import comm_device\n\n")
         f.write("from registers import *\n\n")
         f.write("def read_register(ser,register_address):\n")
-        f.write("    valW = comm.pack_32bit(register_address,0)\n")
-        f.write("    comm.send_value(ser,valW)\n")
-        f.write("    _, valR = comm.unpack_32bit(comm.receive_value(ser))\n")
+        f.write("    valW = comm_device.pack_32bit(register_address,0)\n")
+        f.write("    comm_device.send_value(ser,valW)\n")
+        f.write("    data = comm_device.receive_value(ser)\n")
+        f.write("    while data is None:\n")
+        f.write("        data = comm_device.receive_value(ser)\n")
+        f.write("    _, valR = comm_device.unpack_32bit(data)\n")
         f.write("    return valR\n\n")
         f.write("def write_register(ser,register_address, value):\n")
-        f.write("    valW = comm.pack_32bit(128+register_address,value)\n")
-        f.write("    comm.send_value(ser,valW)\n")
+        f.write("    valW = comm_device.pack_32bit(128+register_address,value)\n")
+        f.write("    comm_device.send_value(ser,valW)\n")
         f.write("    return\n\n")
         
         # Generate targeted write register functions
