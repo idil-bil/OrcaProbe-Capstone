@@ -3,21 +3,17 @@ import numpy as np
 
 from constants import *
 
-def dc_resistance():
+def dc_resistance(voltage, current):
     """
     Calculates DC resistance using the formula R = V / I
     Asks for user inputs for voltage and current values.
     Displays the calculated resistance.
     """
-    voltage = float(input("Enter the voltage value (V): "))
-    current = float(input("Enter the current value (A): "))
-
     if current == 0:
-        print("current cannot be zero to calculate resistance.")
-        return
-
+        return "Error: Current cannot be zero."
+    
     resistance = voltage / current
-    print(f"The calculated resistance is {resistance:.2f} ohms.")
+    return f"Resistance: {resistance:.2f} Ω"
 
 def current_voltage():
     """

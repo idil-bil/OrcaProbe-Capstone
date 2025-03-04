@@ -109,7 +109,7 @@ class MainWindow(QMainWindow):
         self.page_widget.addWidget(self.main_page)
 
         self.current_selected_measurement = None    # Initialize to track the selected measurement
-        self.ser = init_ser_port('com8', 115200)   # open a serial connection on com8 with baud rate 115200
+        self.ser = init_ser_port('com3', 115200)   # open a serial connection on com8 with baud rate 115200
 
         self.timer = QTimer(self)
         self.timer.timeout.connect(self.check_serial_data)  # Call periodically
@@ -223,11 +223,16 @@ class MainWindow(QMainWindow):
             stop_button.setStyleSheet("background-color: #f44336; color: white;")
             start_button.setFixedWidth(300)                                 # Limit the width of the start button
             stop_button.setFixedWidth(300)                                  # Limit the width of the stop button
-            start_button.clicked.connect(lambda:self.start_dc_resistance_inputs())   
+            # start_button.clicked.connect(lambda:self.start_dc_resistance_inputs())   
+            start_button.clicked.connect(self.calculate_dc_resistance)
             button_layout = QVBoxLayout()                                   # Use QVBoxLayout to arrange buttons vertically
             button_layout.addWidget(start_button, alignment=Qt.AlignLeft)   # Add start button
             button_layout.addWidget(stop_button, alignment=Qt.AlignLeft)    # Add stop button below
             layout.addLayout(button_layout)
+
+            self.result_label = QLabel("")
+            self.result_label.setFont(QFont("Arial", 12))
+            layout.addWidget(self.result_label)
 
         elif title == "Current-Voltage":
             label = QLabel("Current-Voltage (I-V) Measurement")
@@ -1002,20 +1007,11 @@ class MainWindow(QMainWindow):
                 reg_map.DVC_MEASUREMENT_CONFIG.Measure_Probe_Config[0] = GUI_2PROBES
                 reg_map.DVC_MEASUREMENT_CONFIG.Measure_Type_Config[0] = GUI_DC_RESISTANCE
                 write_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
-                reg_map.DVC_MEASUREMENT_CONFIG.Start_Measure[0] = 500
-                reg_map.DVC_MEASUREMENT_CONFIG.Stop_Measure[0] = 500
-                reg_map.DVC_MEASUREMENT_CONFIG.Measure_In_Progress[0] = 500
-                reg_map.DVC_MEASUREMENT_CONFIG.Valid_Measure_Config[0] = 500
-                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Probe_Config[0] = 500
-                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Type_Config[0] = 500
-                read_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
-                print(reg_map.DVC_MEASUREMENT_CONFIG.Start_Measure[0])
-                print(reg_map.DVC_MEASUREMENT_CONFIG.Stop_Measure[0])
-                print(reg_map.DVC_MEASUREMENT_CONFIG.Measure_In_Progress[0])
-                print(reg_map.DVC_MEASUREMENT_CONFIG.Valid_Measure_Config[0])
-                print(reg_map.DVC_MEASUREMENT_CONFIG.Measure_Probe_Config[0])
-                print(reg_map.DVC_MEASUREMENT_CONFIG.Measure_Type_Config[0])
-
+                read_register(self.ser,0)
+                garbage = receive_samples(self.ser, 8192)
+                while garbage is None:
+                    garbage = receive_samples(self.ser, 8192)
+                print(garbage)
                 # self.timer.start(100)  # Check every 100ms
 
     def start_current_voltage_inputs(self):
@@ -1270,3 +1266,22 @@ class MainWindow(QMainWindow):
         if data is not None:
             print(f"Received: {data}\n\r")
             self.timer.stop()  # Stop checking if we got 450
+
+    def calculate_dc_resistance(self):
+    # Get the measurement page
+        for index in range(self.page_widget.count()):
+            page = self.page_widget.widget(index)
+            if page.objectName() == "DC Resistance":
+                # Find all input fields in the page layout
+                inputs = page.findChildren(QLineEdit)
+                try:
+                    read_register(self.ser,0)
+                    garbage = receive_samples(self.ser, 8192)
+                    while garbage is None:
+                        garbage = receive_samples(self.ser, 8192)
+                    voltage = garbage[256]
+                    current = 3
+                    result = dc_resistance(voltage, current)
+                    self.result_label.setText(result)  # Display result
+                except ValueError:
+                    self.result_label.setText("Error: Invalid input. Enter numbers only.")
