@@ -146,8 +146,8 @@ void HAL_I2C_MspInit(I2C_HandleTypeDef* hi2c)
     */
     GPIO_InitStruct.Pin = I2C_DAC1_POT_SCL_Pin|I2C_DAC1_POT_SDA_Pin;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_OD;
-    GPIO_InitStruct.Pull = GPIO_NOPULL;
-    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+    GPIO_InitStruct.Pull = GPIO_PULLUP;
+    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
     GPIO_InitStruct.Alternate = GPIO_AF4_I2C3;
     HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
@@ -381,9 +381,9 @@ void HAL_TIM_Base_MspInit(TIM_HandleTypeDef* htim_base)
     __HAL_RCC_TIM8_CLK_ENABLE();
 
     /* TIM8 DMA Init */
-    /* GPDMA1_REQUEST_TIM8_CH2 Init */
+    /* GPDMA1_REQUEST_TIM8_UP Init */
     handle_GPDMA1_Channel12.Instance = GPDMA1_Channel12;
-    handle_GPDMA1_Channel12.Init.Request = GPDMA1_REQUEST_TIM8_CH2;
+    handle_GPDMA1_Channel12.Init.Request = GPDMA1_REQUEST_TIM8_UP;
     handle_GPDMA1_Channel12.Init.BlkHWRequest = DMA_BREQ_SINGLE_BURST;
     handle_GPDMA1_Channel12.Init.Direction = DMA_MEMORY_TO_MEMORY;
     handle_GPDMA1_Channel12.Init.SrcInc = DMA_SINC_FIXED;
@@ -401,7 +401,7 @@ void HAL_TIM_Base_MspInit(TIM_HandleTypeDef* htim_base)
       Error_Handler();
     }
 
-    __HAL_LINKDMA(htim_base, hdma[TIM_DMA_ID_CC2], handle_GPDMA1_Channel12);
+    __HAL_LINKDMA(htim_base, hdma[TIM_DMA_ID_UPDATE], handle_GPDMA1_Channel12);
 
     if (HAL_DMA_ConfigChannelAttributes(&handle_GPDMA1_Channel12, DMA_CHANNEL_NPRIV) != HAL_OK)
     {
@@ -432,7 +432,7 @@ void HAL_TIM_MspPostInit(TIM_HandleTypeDef* htim)
     GPIO_InitStruct.Pin = ADC_CLK_DVC_Pin;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
-    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
     GPIO_InitStruct.Alternate = GPIO_AF3_TIM8;
     HAL_GPIO_Init(ADC_CLK_DVC_GPIO_Port, &GPIO_InitStruct);
 
@@ -459,7 +459,7 @@ void HAL_TIM_Base_MspDeInit(TIM_HandleTypeDef* htim_base)
     __HAL_RCC_TIM8_CLK_DISABLE();
 
     /* TIM8 DMA DeInit */
-    HAL_DMA_DeInit(htim_base->hdma[TIM_DMA_ID_CC2]);
+    HAL_DMA_DeInit(htim_base->hdma[TIM_DMA_ID_UPDATE]);
   /* USER CODE BEGIN TIM8_MspDeInit 1 */
 
   /* USER CODE END TIM8_MspDeInit 1 */

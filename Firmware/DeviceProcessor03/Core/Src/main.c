@@ -54,10 +54,8 @@ DMA_HandleTypeDef handle_GPDMA1_Channel12;
 
 PCD_HandleTypeDef hpcd_USB_OTG_FS;
 
-char test_cmd;
-
 /* USER CODE BEGIN PV */
-
+char test_cmd;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -77,7 +75,16 @@ static void MX_SPI1_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+uint8_t I2C_TX_Buffer1[] = {60};
+uint8_t I2C_TX_Buffer2[] = {45};
+uint8_t I2C_TX_Buffer3[] = {30};
+uint8_t I2C_TX_Buffer4[] = {15};
+uint8_t SPI_TX_Buffer1[] = {0x21,0x00,0x50,0xC7,0x40,0x00,0xC0,0x00,0x20,0x00};  // 400Hz
+uint8_t SPI_TX_Buffer2[] = {0x21,0x00,0x61,0x8E,0x40,0x00,0xC0,0x00,0x20,0x00};  // 800Hz
+uint8_t SPI_TX_Buffer3[] = {0x21,0x00,0x63,0x6E,0x40,0x06,0xC0,0x00,0x20,0x00};  // 10kHz
+uint8_t SPI_TX_Buffer4[] = {0x21,0x00,0x6B,0x85,0x41,0x47,0xC0,0x00,0x20,0x00};  // 0.5MHz
+uint8_t SPI_TX_Buffer5[] = {0x21,0x00,0x59,0x9A,0x46,0x66,0xC0,0x00,0x20,0x00};  // 2.5MHz
+uint8_t SPI_TX_Buffer6[] = {0x21,0x00,0x66,0x66,0x59,0x99,0xC0,0x00,0x20,0x00};  // 10MHz
 /* USER CODE END 0 */
 
 /**
@@ -88,6 +95,7 @@ int main(void)
 {
 
   /* USER CODE BEGIN 1 */
+	HAL_StatusTypeDef funcResult;
 	uint16_t dmaValCheck1[500];
 	uint16_t dmaValCheck2[500];
 	for(int i = 0; i < 500; i++){
@@ -120,25 +128,33 @@ int main(void)
   MX_USB_OTG_FS_PCD_Init();
   MX_ICACHE_Init();
   MX_TIM8_Init();
-//  MX_I2C2_Init();
-//  MX_I2C3_Init();
-//  MX_SPI2_Init();
-//  MX_SPI1_Init();
+  MX_I2C2_Init();
+  MX_I2C3_Init();
+  MX_SPI2_Init();
+  MX_SPI1_Init();
   /* USER CODE BEGIN 2 */
   MX_USB_Device_Init();
   HAL_Delay(2000);
 //  run_device();
-	TIM8->ARR = 32-1;
-	TIM8->CCR1 = TIM8->ARR/2;
-	TIM8->DIER = TIM_DIER_UDE;
-	HAL_TIM_OC_Start(&htim8, TIM_CHANNEL_2);
+  TIM8->ARR = 8-1;
+  TIM8->CCR1 = TIM8->ARR/2;
+  TIM8->CCR2 = TIM8->ARR/2;
+//  TIM8->DIER = TIM_DIER_UDE;
+//  HAL_TIM_PWM_Start(&htim8, TIM_CHANNEL_2);
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  HAL_SPI_Transmit(&hspi2, SPI_TX_Buffer1, 10, 1000);
+  funcResult = HAL_I2C_Master_Transmit(&hi2c3,0x2E,I2C_TX_Buffer1,1,1000);
+  funcResult = HAL_I2C_Master_Transmit(&hi2c3,0x2E,I2C_TX_Buffer2,1,1000);
+  funcResult = HAL_I2C_Master_Transmit(&hi2c3,0x2E,I2C_TX_Buffer3,1,1000);
+  funcResult = HAL_I2C_Master_Transmit(&hi2c3,0x2E,I2C_TX_Buffer4,1,1000);
   while (1)
   {
     /* USER CODE END WHILE */
+
+    /* USER CODE BEGIN 3 */
 	  if (test_cmd == '1'){
 		  HAL_GPIO_TogglePin(GPIOD, SWNT_CTRL_17_Pin);
 		  test_cmd = '0';
@@ -175,7 +191,6 @@ int main(void)
 		  HAL_DMA_Abort(&handle_GPDMA1_Channel12);
 		  test_cmd = '0';
 	  }
-    /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
 }
@@ -416,7 +431,7 @@ static void MX_SPI1_Init(void)
   hspi1.Init.Mode = SPI_MODE_MASTER;
   hspi1.Init.Direction = SPI_DIRECTION_2LINES;
   hspi1.Init.DataSize = SPI_DATASIZE_8BIT;
-  hspi1.Init.CLKPolarity = SPI_POLARITY_LOW;
+  hspi1.Init.CLKPolarity = SPI_POLARITY_HIGH;
   hspi1.Init.CLKPhase = SPI_PHASE_1EDGE;
   hspi1.Init.NSS = SPI_NSS_HARD_OUTPUT;
   hspi1.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_2;
@@ -472,8 +487,8 @@ static void MX_SPI2_Init(void)
   hspi2.Instance = SPI2;
   hspi2.Init.Mode = SPI_MODE_MASTER;
   hspi2.Init.Direction = SPI_DIRECTION_2LINES;
-  hspi2.Init.DataSize = SPI_DATASIZE_4BIT;
-  hspi2.Init.CLKPolarity = SPI_POLARITY_LOW;
+  hspi2.Init.DataSize = SPI_DATASIZE_8BIT;
+  hspi2.Init.CLKPolarity = SPI_POLARITY_HIGH;
   hspi2.Init.CLKPhase = SPI_PHASE_1EDGE;
   hspi2.Init.NSS = SPI_NSS_HARD_OUTPUT;
   hspi2.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_2;
@@ -534,7 +549,7 @@ static void MX_TIM8_Init(void)
   htim8.Init.Period = 65535;
   htim8.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim8.Init.RepetitionCounter = 0;
-  htim8.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+  htim8.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_ENABLE;
   if (HAL_TIM_Base_Init(&htim8) != HAL_OK)
   {
     Error_Handler();
@@ -544,7 +559,7 @@ static void MX_TIM8_Init(void)
   {
     Error_Handler();
   }
-  if (HAL_TIM_OC_Init(&htim8) != HAL_OK)
+  if (HAL_TIM_PWM_Init(&htim8) != HAL_OK)
   {
     Error_Handler();
   }
@@ -555,14 +570,14 @@ static void MX_TIM8_Init(void)
   {
     Error_Handler();
   }
-  sConfigOC.OCMode = TIM_OCMODE_TIMING;
+  sConfigOC.OCMode = TIM_OCMODE_PWM1;
   sConfigOC.Pulse = 0;
   sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
   sConfigOC.OCNPolarity = TIM_OCNPOLARITY_HIGH;
   sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
   sConfigOC.OCIdleState = TIM_OCIDLESTATE_RESET;
   sConfigOC.OCNIdleState = TIM_OCNIDLESTATE_RESET;
-  if (HAL_TIM_OC_ConfigChannel(&htim8, &sConfigOC, TIM_CHANNEL_2) != HAL_OK)
+  if (HAL_TIM_PWM_ConfigChannel(&htim8, &sConfigOC, TIM_CHANNEL_2) != HAL_OK)
   {
     Error_Handler();
   }
@@ -670,14 +685,18 @@ static void MX_GPIO_Init(void)
 
   /*Configure GPIO pins : ADCV2_D00_Pin ADCV2_D01_Pin ADCV2_D02_Pin ADCV2_D03_Pin
                            ADCV2_D04_Pin ADCV2_D05_Pin ADCV2_D06_Pin ADCV2_D07_Pin
-                           ADCV2_D08_Pin ADCV2_D09_Pin ADCV2_D10_Pin ADCV2_D11_Pin
-                           ADCV2_D12_Pin ADCV2_D13_Pin ADCV2_D14_Pin ADCV2_D15_Pin */
+                           ADCV2_D08_Pin ADCV2_D09_Pin ADCV2_D10_Pin ADCV2_D11_Pin */
   GPIO_InitStruct.Pin = ADCV2_D00_Pin|ADCV2_D01_Pin|ADCV2_D02_Pin|ADCV2_D03_Pin
                           |ADCV2_D04_Pin|ADCV2_D05_Pin|ADCV2_D06_Pin|ADCV2_D07_Pin
-                          |ADCV2_D08_Pin|ADCV2_D09_Pin|ADCV2_D10_Pin|ADCV2_D11_Pin
-                          |ADCV2_D12_Pin|ADCV2_D13_Pin|ADCV2_D14_Pin|ADCV2_D15_Pin;
+                          |ADCV2_D08_Pin|ADCV2_D09_Pin|ADCV2_D10_Pin|ADCV2_D11_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(GPIOF, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : ADCV2_D12_Pin ADCV2_D13_Pin ADCV2_D14_Pin ADCV2_D15_Pin */
+  GPIO_InitStruct.Pin = ADCV2_D12_Pin|ADCV2_D13_Pin|ADCV2_D14_Pin|ADCV2_D15_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_PULLDOWN;
   HAL_GPIO_Init(GPIOF, &GPIO_InitStruct);
 
   /*Configure GPIO pins : SWNT_CTRL_01_Pin SWNT_CTRL_02_Pin SWNT_CTRL_03_Pin SWNT_CTRL_04_Pin

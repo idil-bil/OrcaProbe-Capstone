@@ -1,82 +1,17 @@
-02:24:50 **** Incremental Build of configuration Debug for project DeviceProcessor03 ****
+17:39:56 **** Incremental Build of configuration Debug for project DeviceProcessor03 ****
 make -j12 all 
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m33 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32U575xx -c -I../Core/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32U5xx/Include -I../Drivers/CMSIS/Include -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Class/CDC/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/Device/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/Target" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/App" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
 ../Core/Src/main.c: In function 'main':
-../Core/Src/main.c:91:18: warning: variable 'dmaValCheck1' set but not used [-Wunused-but-set-variable]
-   91 |         uint16_t dmaValCheck1[500];
-      |                  ^~~~~~~~~~~~
-../Core/Src/main.c: At top level:
-../Core/Src/main.c:451:13: warning: 'MX_SPI2_Init' defined but not used [-Wunused-function]
-  451 | static void MX_SPI2_Init(void)
-      |             ^~~~~~~~~~~~
-../Core/Src/main.c:394:13: warning: 'MX_SPI1_Init' defined but not used [-Wunused-function]
-  394 | static void MX_SPI1_Init(void)
-      |             ^~~~~~~~~~~~
-../Core/Src/main.c:314:13: warning: 'MX_I2C3_Init' defined but not used [-Wunused-function]
-  314 | static void MX_I2C3_Init(void)
-      |             ^~~~~~~~~~~~
-../Core/Src/main.c:266:13: warning: 'MX_I2C2_Init' defined but not used [-Wunused-function]
-  266 | static void MX_I2C2_Init(void)
-      |             ^~~~~~~~~~~~
+../Core/Src/main.c:98:27: warning: variable 'funcResult' set but not used [-Wunused-but-set-variable]
+   98 |         HAL_StatusTypeDef funcResult;
+      |                           ^~~~~~~~~~
 arm-none-eabi-gcc -o "DeviceProcessor03.elf" @"objects.list"   -mcpu=cortex-m33 -T"C:\UBC_4TH_YEAR\ELEC-491\JY-85\project\JY85\Firmware\DeviceProcessor03\STM32U575ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DeviceProcessor03.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 Finished building target: DeviceProcessor03.elf
  
 arm-none-eabi-size  DeviceProcessor03.elf 
 arm-none-eabi-objdump -h -S DeviceProcessor03.elf  > "DeviceProcessor03.list"
    text	   data	    bss	    dec	    hex	filename
-  42712	    387	  10148	  53247	   cfff	DeviceProcessor03.elf
-Finished building: default.size.stdout
- 
-Finished building: DeviceProcessor03.list
- 
-02:42:39 **** Incremental Build of configuration Debug for project DeviceProcessor03 ****
-make -j12 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m33 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32U575xx -c -I../Core/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32U5xx/Include -I../Drivers/CMSIS/Include -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Class/CDC/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/Device/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/Target" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/App" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c:459:13: warning: 'MX_SPI2_Init' defined but not used [-Wunused-function]
-  459 | static void MX_SPI2_Init(void)
-      |             ^~~~~~~~~~~~
-../Core/Src/main.c:402:13: warning: 'MX_SPI1_Init' defined but not used [-Wunused-function]
-  402 | static void MX_SPI1_Init(void)
-      |             ^~~~~~~~~~~~
-../Core/Src/main.c:322:13: warning: 'MX_I2C3_Init' defined but not used [-Wunused-function]
-  322 | static void MX_I2C3_Init(void)
-      |             ^~~~~~~~~~~~
-../Core/Src/main.c:274:13: warning: 'MX_I2C2_Init' defined but not used [-Wunused-function]
-  274 | static void MX_I2C2_Init(void)
-      |             ^~~~~~~~~~~~
-arm-none-eabi-gcc -o "DeviceProcessor03.elf" @"objects.list"   -mcpu=cortex-m33 -T"C:\UBC_4TH_YEAR\ELEC-491\JY-85\project\JY85\Firmware\DeviceProcessor03\STM32U575ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DeviceProcessor03.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: DeviceProcessor03.elf
- 
-arm-none-eabi-size  DeviceProcessor03.elf 
-arm-none-eabi-objdump -h -S DeviceProcessor03.elf  > "DeviceProcessor03.list"
-   text	   data	    bss	    dec	    hex	filename
-  43540	    387	  10148	  54075	   d33b	DeviceProcessor03.elf
-Finished building: default.size.stdout
- 
-Finished building: DeviceProcessor03.list
- 
-02:44:38 **** Incremental Build of configuration Debug for project DeviceProcessor03 ****
-make -j12 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m33 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32U575xx -c -I../Core/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32U5xx/Include -I../Drivers/CMSIS/Include -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Class/CDC/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/Device/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/Target" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/App" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c:459:13: warning: 'MX_SPI2_Init' defined but not used [-Wunused-function]
-  459 | static void MX_SPI2_Init(void)
-      |             ^~~~~~~~~~~~
-../Core/Src/main.c:402:13: warning: 'MX_SPI1_Init' defined but not used [-Wunused-function]
-  402 | static void MX_SPI1_Init(void)
-      |             ^~~~~~~~~~~~
-../Core/Src/main.c:322:13: warning: 'MX_I2C3_Init' defined but not used [-Wunused-function]
-  322 | static void MX_I2C3_Init(void)
-      |             ^~~~~~~~~~~~
-../Core/Src/main.c:274:13: warning: 'MX_I2C2_Init' defined but not used [-Wunused-function]
-  274 | static void MX_I2C2_Init(void)
-      |             ^~~~~~~~~~~~
-arm-none-eabi-gcc -o "DeviceProcessor03.elf" @"objects.list"   -mcpu=cortex-m33 -T"C:\UBC_4TH_YEAR\ELEC-491\JY-85\project\JY85\Firmware\DeviceProcessor03\STM32U575ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DeviceProcessor03.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: DeviceProcessor03.elf
- 
-arm-none-eabi-size  DeviceProcessor03.elf 
-arm-none-eabi-objdump -h -S DeviceProcessor03.elf  > "DeviceProcessor03.list"
-   text	   data	    bss	    dec	    hex	filename
-  43540	    387	  10148	  54075	   d33b	DeviceProcessor03.elf
+  49224	    415	  10608	  60247	   eb57	DeviceProcessor03.elf
 Finished building: default.size.stdout
  
 Finished building: DeviceProcessor03.list
