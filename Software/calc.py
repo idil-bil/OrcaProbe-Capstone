@@ -15,43 +15,25 @@ def dc_resistance(voltage, current):
     resistance = voltage / current
     return f"Resistance: {resistance:.2f} Ω"
 
-def current_voltage():
+import numpy as np
+import matplotlib.pyplot as plt
+
+def current_voltage(y_values):
     """
-    Generates a current-voltage plot based on user inputs.
-    Asks what is being swept (voltage or current), starting, ending, and increment values.
-    Constructs arrays and plots the corresponding data.
+    Generates a current-voltage plot based on given inputs and computes the average of y_values.
+    
+    Parameters:
+    - sweep (str): What is being swept ('voltage' or 'current').
+    - start (float): Starting value of the sweep.
+    - end (float): Ending value of the sweep.
+    - increment (float): Increment value for the sweep.
+    - y_values (np.array): Array of measured values corresponding to the sweep values.
+    
+    Returns:
+    - float: Average of y_values.
     """
-    sweep = input("What is being swept? (voltage/current): ").strip().lower()
+    return np.mean(y_values)  # Compute and return the average of y_values
 
-    if sweep not in ("voltage", "current"):
-        print("invalid choice. please enter 'voltage' or 'current'.")
-        return
-
-    start = float(input(f"Enter the starting {sweep} value: "))
-    end = float(input(f"Enter the ending {sweep} value: "))
-    increment = float(input(f"Enter the increment {sweep} value: "))
-
-    if increment <= 0:
-        print("Increment value must be greater than zero.")
-        return
-
-    if end < start:
-        print("Ending value has to be bigger than the starting value.")
-        return
-
-    sweep_values = [start + i * increment for i in range(int((end - start) / increment) + 1)]
-    other_values = []
-
-    for _ in sweep_values:
-        other_value = float(input(f"Enter the current value corresponding to {sweep}: "))
-        other_values.append(other_value)
-
-    plt.plot(sweep_values, other_values, marker='o')
-    plt.xlabel(f"{sweep.capitalize()} (swept)")
-    plt.ylabel(f"{'Current' if sweep == 'voltage' else 'Voltage'}")
-    plt.title("Current-Voltage Plot")
-    plt.grid(True)
-    plt.show()
 
 def capacitance_voltage_2p():
     """
