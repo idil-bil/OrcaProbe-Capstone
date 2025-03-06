@@ -5,6 +5,10 @@ from PyQt5.QtWidgets import (
     QApplication, QWidget, QLabel, QVBoxLayout, QHBoxLayout, QMainWindow,
     QPushButton, QFrame, QStackedWidget, QRadioButton, QLineEdit, QButtonGroup, QComboBox,
 )
+import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
+from matplotlib.figure import Figure
 
 from interface import *
 from registers import *
@@ -109,7 +113,7 @@ class MainWindow(QMainWindow):
         self.page_widget.addWidget(self.main_page)
 
         self.current_selected_measurement = None    # Initialize to track the selected measurement
-        self.ser = init_ser_port('com8', 115200)   # open a serial connection on com8 with baud rate 115200
+        self.ser = init_ser_port('com3', 115200)   # open a serial connection on com8 with baud rate 115200
 
         self.timer = QTimer(self)
         self.timer.timeout.connect(self.check_serial_data)  # Call periodically
@@ -229,6 +233,10 @@ class MainWindow(QMainWindow):
             button_layout.addWidget(stop_button, alignment=Qt.AlignLeft)    # Add stop button below
             layout.addLayout(button_layout)
 
+            self.result_label = QLabel("")
+            self.result_label.setFont(QFont("Arial", 12))
+            layout.addWidget(self.result_label)
+
         elif title == "Current-Voltage":
             label = QLabel("Current-Voltage (I-V) Measurement")
             label.setFont(QFont("Arial", 14, QFont.Bold))
@@ -303,6 +311,11 @@ class MainWindow(QMainWindow):
             button_layout = QHBoxLayout()                                           # Create button layout
             button_layout.addWidget(start_button, alignment=Qt.AlignLeft)           # Add start button and align button to the left
             layout.addLayout(button_layout)                                         # Add button layout under the title of the measurement type
+
+            # **Add a Matplotlib canvas to display the plot**
+            self.figure = Figure(figsize=(6, 4))
+            self.canvas = FigureCanvas(self.figure)
+            layout.addWidget(self.canvas)
 
         elif title == "Capacitance-Voltage (2-p)":
             label = QLabel("Capacitance-Voltage Measurement (2-probe)")
@@ -993,40 +1006,6 @@ class MainWindow(QMainWindow):
             page = self.page_widget.widget(index)
             if page.objectName() == "DC Resistance":
                 # Find all input fields in the page layout
-                # selected_probes = self.get_selected_probes(2)
-                # self.config_selected_probes(selected_probes,reg_map)
-                reg_map.DVC_MEASUREMENT_CONFIG.Start_Measure[0] = 1
-                reg_map.DVC_MEASUREMENT_CONFIG.Stop_Measure[0] = 0
-                reg_map.DVC_MEASUREMENT_CONFIG.Measure_In_Progress[0] = 0
-                reg_map.DVC_MEASUREMENT_CONFIG.Valid_Measure_Config[0] = 0
-                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Probe_Config[0] = GUI_2PROBES
-                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Type_Config[0] = GUI_DC_RESISTANCE
-                write_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
-                reg_map.DVC_MEASUREMENT_CONFIG.Start_Measure[0] = 500
-                reg_map.DVC_MEASUREMENT_CONFIG.Stop_Measure[0] = 500
-                reg_map.DVC_MEASUREMENT_CONFIG.Measure_In_Progress[0] = 500
-                reg_map.DVC_MEASUREMENT_CONFIG.Valid_Measure_Config[0] = 500
-                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Probe_Config[0] = 500
-                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Type_Config[0] = 500
-                read_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
-                print(reg_map.DVC_MEASUREMENT_CONFIG.Start_Measure[0])
-                print(reg_map.DVC_MEASUREMENT_CONFIG.Stop_Measure[0])
-                print(reg_map.DVC_MEASUREMENT_CONFIG.Measure_In_Progress[0])
-                print(reg_map.DVC_MEASUREMENT_CONFIG.Valid_Measure_Config[0])
-                print(reg_map.DVC_MEASUREMENT_CONFIG.Measure_Probe_Config[0])
-                print(reg_map.DVC_MEASUREMENT_CONFIG.Measure_Type_Config[0])
-
-                # self.timer.start(100)  # Check every 100ms
-
-    def start_current_voltage_inputs(self):
-        # Find the measurement page
-        for index in range(self.page_widget.count()):
-            page = self.page_widget.widget(index)
-            if page.objectName() == "Current-Voltage":
-                # Find all input fields in the page layout
-                inputs = page.findChildren(QLineEdit)
-                input_values = [input_field.text() for input_field in inputs]
-                print(page.objectName(), "Input Values:", input_values)
                 selected_probes = self.get_selected_probes(2)
                 self.config_selected_probes(selected_probes,reg_map)
                 reg_map.DVC_MEASUREMENT_CONFIG.Start_Measure[0] = 1
@@ -1034,9 +1013,78 @@ class MainWindow(QMainWindow):
                 reg_map.DVC_MEASUREMENT_CONFIG.Measure_In_Progress[0] = 0
                 reg_map.DVC_MEASUREMENT_CONFIG.Valid_Measure_Config[0] = 0
                 reg_map.DVC_MEASUREMENT_CONFIG.Measure_Probe_Config[0] = GUI_2PROBES
-                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Type_Config[0] = GUI_CURRENT_VOLTAGE
-                write_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
+                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Type_Config[0] = GUI_DC_RESISTANCE
+                # write_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
+                garbage = receive_samples(self.ser, 8192)
+                while garbage is None:
+                    garbage = receive_samples(self.ser, 8192)
+                voltage = garbage[256]
+                current = 3
+                result = dc_resistance(voltage, current)
+                # self.timer.start(100)  # Check every 100ms
 
+    # def start_current_voltage_inputs(self):
+    #     # Find the measurement page
+    #     for index in range(self.page_widget.count()):
+    #         page = self.page_widget.widget(index)
+    #         if page.objectName() == "Current-Voltage":
+    #             # Find all input fields in the page layout
+    #             inputs = page.findChildren(QLineEdit)
+    #             input_values = [input_field.text() for input_field in inputs]
+    #             print(page.objectName(), "Input Values:", input_values)
+    #             selected_probes = self.get_selected_probes(2)
+    #             self.config_selected_probes(selected_probes,reg_map)
+    #             reg_map.DVC_MEASUREMENT_CONFIG.Start_Measure[0] = 1
+    #             reg_map.DVC_MEASUREMENT_CONFIG.Stop_Measure[0] = 0
+    #             reg_map.DVC_MEASUREMENT_CONFIG.Measure_In_Progress[0] = 0
+    #             reg_map.DVC_MEASUREMENT_CONFIG.Valid_Measure_Config[0] = 0
+    #             reg_map.DVC_MEASUREMENT_CONFIG.Measure_Probe_Config[0] = GUI_2PROBES
+    #             reg_map.DVC_MEASUREMENT_CONFIG.Measure_Type_Config[0] = GUI_CURRENT_VOLTAGE
+    #             # write_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
+
+    def start_current_voltage_inputs(self):
+        """Starts the Current-Voltage measurement and embeds the graph in the GUI."""
+        for index in range(self.page_widget.count()):
+            page = self.page_widget.widget(index)
+            if page.objectName() == "Current-Voltage":
+                # Find all input fields in the page layout
+                inputs = page.findChildren(QLineEdit)
+
+                try:
+                    # Determine if voltage or current is being swept
+                    sweep_type = "voltage" if "Voltage" in inputs[0].text() else "current"
+                    start = float(inputs[0].text())
+                    end = float(inputs[1].text())
+                    increment = float(inputs[2].text())
+
+                    # Validate inputs
+                    if increment <= 0 or end < start:
+                        self.result_label.setText("Error: Invalid range or increment.")
+                        return
+
+                    # Configure measurement (Dummy Config)
+                    selected_probes = self.get_selected_probes(2)
+                    self.config_selected_probes(selected_probes, reg_map)
+
+                    reg_map.DVC_MEASUREMENT_CONFIG.Start_Measure[0] = 1
+                    reg_map.DVC_MEASUREMENT_CONFIG.Measure_Probe_Config[0] = GUI_2PROBES
+                    reg_map.DVC_MEASUREMENT_CONFIG.Measure_Type_Config[0] = GUI_CURRENT_VOLTAGE
+                    # write_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
+
+                    # Generate sweep values
+                    sweep_values = np.arange(start, end + increment, increment)
+
+                    # **Generate synthetic y_values (e.g., linear relationship + noise)**
+                    y_values = 2 * sweep_values + np.random.normal(0, 0.1, len(sweep_values))
+
+                    # Update the GUI's Matplotlib plot
+                    self.update_plot(sweep_values, y_values, sweep_type)
+
+                    # Display confirmation message in the GUI
+                    self.result_label.setText(f"{sweep_type.capitalize()} sweep completed!")
+
+                except ValueError:
+                    self.result_label.setText("Error: Please enter valid numerical inputs.")
 
     def start_capacitance_voltage_2p_inputs(self):
         # Find the measurement page
@@ -1206,12 +1254,12 @@ class MainWindow(QMainWindow):
             measure_value = measure_dropdown.currentText()
 
             # Ensure only one dropdown per probe is selected
-            if supply_value != "Choose Supply" and measure_value != "Choose Measurement":
-                print(f"Error: Both dropdowns are selected for {probe_label}! Only one is allowed.")
-                return None
-            elif supply_value != "Choose Supply":
+            # if supply_value != "Choose Supply" and measure_value != "Choose Measurement":
+            #     print(f"Error: Both dropdowns are selected for {probe_label}! Only one is allowed.")
+            #     return None
+            if supply_value != "Choose Supply":
                 selected_probes[probe_label] = supply_value
-            elif measure_value != "Choose Measurement":
+            if measure_value != "Choose Measurement":
                 selected_probes[probe_label] = measure_value
 
         # Ensure the number of selected probes matches the required count
@@ -1270,3 +1318,15 @@ class MainWindow(QMainWindow):
         if data is not None:
             print(f"Received: {data}\n\r")
             self.timer.stop()  # Stop checking if we got 450
+
+    def update_plot(self, x_values, y_values, sweep_type):
+        """Updates the Matplotlib plot embedded in the GUI."""
+        self.figure.clear()
+        ax = self.figure.add_subplot(111)
+        ax.plot(x_values, y_values, marker='o', linestyle='-')
+        ax.set_xlabel(f"{sweep_type.capitalize()} (swept)")
+        ax.set_ylabel("Current" if sweep_type == "voltage" else "Voltage")
+        ax.set_title("Current-Voltage Measurement")
+        ax.grid(True)
+
+        self.canvas.draw()  # Refresh the canvas with the updated plot

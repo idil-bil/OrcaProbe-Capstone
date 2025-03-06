@@ -1,6 +1,8 @@
 import serial
 import keyboard
 import time
+import numpy as np
+import struct
 
 # Open a serial connection with the specified port and baud rate
 def init_ser_port(port='COM8', baudrate=9600):
@@ -77,7 +79,29 @@ def receive_value(ser):
     """
     if ser.in_waiting >= 4:  # Only read if at least 4 bytes are available
         data_bytes = ser.read(4)
-        _, data = unpack_32bit(data_bytes)  # Unpack received data
-        return data
+        # _, data = unpack_32bit(data_bytes)  # Unpack received data
+        return data_bytes
+
+    return None  # No data available yet
+
+def receive_samples(ser, buffer_size):
+    """
+    Non-blocking function to receive and unpack 12-bit ADC samples from STM32.
+    
+    Args:
+    - ser (serial.Serial): The serial connection object.
+    - buffer_size (int): Number of bytes to read.
+
+    Returns:
+    - np.ndarray: An array of 12-bit ADC samples, or None if no data is available.
+    """
+    if ser.in_waiting >= buffer_size:  # Read only if enough data is available
+        data_bytes = ser.read(buffer_size)  # Read buffer_size bytes
+        samples = np.frombuffer(data_bytes, dtype=np.uint16)  # Convert bytes to 16-bit integers
+        
+        # Since STM32 packs 12-bit ADC values into 16-bit containers, mask out the higher bits
+        samples = samples & 0x0FFF  # Extract only the lower 12 bits
+        
+        return samples
 
     return None  # No data available yet

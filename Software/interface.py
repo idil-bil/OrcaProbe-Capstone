@@ -7,14 +7,13 @@ from registers import *
 def read_register(ser,register_address):
     valW = comm_device.pack_32bit(register_address,0)
     comm_device.send_value(ser,valW)
-    valR = comm_device.receive_value(ser)
-    while valR is None:
-        valR = comm_device.receive_value(ser)
-    return valR
+    # valR = comm_device.receive_value(ser)
+    # while valR is None:
+    #     valR = comm_device.receive_value(ser)
+    # return valR
 
 def write_register(ser,register_address, value):
     valW = comm_device.pack_32bit(128+register_address,value)
-    print(valW)
     comm_device.send_value(ser,valW)
     return
 
