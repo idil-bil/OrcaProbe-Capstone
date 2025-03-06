@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="&#x09;  if (test_cmd == &apos;1&apos;){"/>
+		<item key="selection" value="//  HAL_SPI_Transmit(&amp;hspi2, SPI_TX_Buffer1, 2, 1000);"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="//  HAL_SPI_Transmit(&amp;hspi2, SPI_TX_Buffer1, 2, 1000);"/>
 			<item value="&#x09;  if (test_cmd == &apos;1&apos;){"/>
 			<item value="|"/>
 			<item value="&#x09;uint16_t dmaValCheck[500];"/>
@@ -15,7 +16,6 @@
 			<item value="&#x09;&#x09;&#x09;&#x09;HAL_DMA_Start(&amp;handle_GPDMA1_Channel12,(uint32_t)&amp;GPIOE-&gt;IDR,(uint32_t)&amp;dmaValCheck,500*sizeof(uint16_t));"/>
 			<item value="&#x09;  HAL_Delay(5000);"/>
 			<item value="Buf"/>
-			<item value="PWMN_Start("/>
 		</list>
 		<list key="replacehistory">
 			<item value=","/>

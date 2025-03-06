@@ -1,7 +1,13 @@
-17:39:56 **** Incremental Build of configuration Debug for project DeviceProcessor03 ****
+16:58:56 **** Incremental Build of configuration Debug for project DeviceProcessor03 ****
 make -j12 all 
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m33 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32U575xx -c -I../Core/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32U5xx/Include -I../Drivers/CMSIS/Include -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Class/CDC/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/Device/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/Target" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/App" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
 ../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:100:18: warning: variable 'dmaValCheck2' set but not used [-Wunused-but-set-variable]
+  100 |         uint16_t dmaValCheck2[500];
+      |                  ^~~~~~~~~~~~
+../Core/Src/main.c:99:18: warning: variable 'dmaValCheck1' set but not used [-Wunused-but-set-variable]
+   99 |         uint16_t dmaValCheck1[500];
+      |                  ^~~~~~~~~~~~
 ../Core/Src/main.c:98:27: warning: variable 'funcResult' set but not used [-Wunused-but-set-variable]
    98 |         HAL_StatusTypeDef funcResult;
       |                           ^~~~~~~~~~
@@ -11,8 +17,1093 @@ Finished building target: DeviceProcessor03.elf
 arm-none-eabi-size  DeviceProcessor03.elf 
 arm-none-eabi-objdump -h -S DeviceProcessor03.elf  > "DeviceProcessor03.list"
    text	   data	    bss	    dec	    hex	filename
-  49224	    415	  10608	  60247	   eb57	DeviceProcessor03.elf
+  49496	    415	  11624	  61535	   f05f	DeviceProcessor03.elf
 Finished building: default.size.stdout
  
 Finished building: DeviceProcessor03.list
+ 
+17:00:28 **** Incremental Build of configuration Debug for project DeviceProcessor03 ****
+make -j12 all 
+arm-none-eabi-size  DeviceProcessor03.elf 
+   text	   data	    bss	    dec	    hex	filename
+  49496	    415	  11624	  61535	   f05f	DeviceProcessor03.elf
+Finished building: default.size.stdout
+ 
+17:01:26 **** Incremental Build of configuration Debug for project DeviceProcessor03 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m33 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32U575xx -c -I../Core/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32U5xx/Include -I../Drivers/CMSIS/Include -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Class/CDC/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/Device/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/Target" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/App" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:100:18: warning: variable 'dmaValCheck2' set but not used [-Wunused-but-set-variable]
+  100 |         uint16_t dmaValCheck2[500];
+      |                  ^~~~~~~~~~~~
+../Core/Src/main.c:99:18: warning: variable 'dmaValCheck1' set but not used [-Wunused-but-set-variable]
+   99 |         uint16_t dmaValCheck1[500];
+      |                  ^~~~~~~~~~~~
+../Core/Src/main.c:98:27: warning: variable 'funcResult' set but not used [-Wunused-but-set-variable]
+   98 |         HAL_StatusTypeDef funcResult;
+      |                           ^~~~~~~~~~
+arm-none-eabi-gcc -o "DeviceProcessor03.elf" @"objects.list"   -mcpu=cortex-m33 -T"C:\UBC_4TH_YEAR\ELEC-491\JY-85\project\JY85\Firmware\DeviceProcessor03\STM32U575ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DeviceProcessor03.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DeviceProcessor03.elf
+ 
+arm-none-eabi-size  DeviceProcessor03.elf 
+arm-none-eabi-objdump -h -S DeviceProcessor03.elf  > "DeviceProcessor03.list"
+   text	   data	    bss	    dec	    hex	filename
+  49108	    415	  11624	  61147	   eedb	DeviceProcessor03.elf
+Finished building: default.size.stdout
+ 
+Finished building: DeviceProcessor03.list
+ 
+17:06:16 **** Incremental Build of configuration Debug for project DeviceProcessor03 ****
+make -j12 all 
+arm-none-eabi-size  DeviceProcessor03.elf 
+   text	   data	    bss	    dec	    hex	filename
+  49108	    415	  11624	  61147	   eedb	DeviceProcessor03.elf
+Finished building: default.size.stdout
+ 
+17:07:22 **** Incremental Build of configuration Debug for project DeviceProcessor03 ****
+make -j12 all 
+arm-none-eabi-size  DeviceProcessor03.elf 
+   text	   data	    bss	    dec	    hex	filename
+  49108	    415	  11624	  61147	   eedb	DeviceProcessor03.elf
+Finished building: default.size.stdout
+ 
+17:23:46 **** Incremental Build of configuration Debug for project DeviceProcessor03 ****
+make -j12 all 
+arm-none-eabi-size  DeviceProcessor03.elf 
+   text	   data	    bss	    dec	    hex	filename
+  49108	    415	  11624	  61147	   eedb	DeviceProcessor03.elf
+Finished building: default.size.stdout
+ 
+17:26:41 **** Incremental Build of configuration Debug for project DeviceProcessor03 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m33 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32U575xx -c -I../Core/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32U5xx/Include -I../Drivers/CMSIS/Include -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Class/CDC/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/Device/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/Target" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/App" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:100:18: warning: variable 'dmaValCheck2' set but not used [-Wunused-but-set-variable]
+  100 |         uint16_t dmaValCheck2[500];
+      |                  ^~~~~~~~~~~~
+../Core/Src/main.c:99:18: warning: variable 'dmaValCheck1' set but not used [-Wunused-but-set-variable]
+   99 |         uint16_t dmaValCheck1[500];
+      |                  ^~~~~~~~~~~~
+../Core/Src/main.c:98:27: warning: variable 'funcResult' set but not used [-Wunused-but-set-variable]
+   98 |         HAL_StatusTypeDef funcResult;
+      |                           ^~~~~~~~~~
+arm-none-eabi-gcc -o "DeviceProcessor03.elf" @"objects.list"   -mcpu=cortex-m33 -T"C:\UBC_4TH_YEAR\ELEC-491\JY-85\project\JY85\Firmware\DeviceProcessor03\STM32U575ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DeviceProcessor03.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DeviceProcessor03.elf
+ 
+arm-none-eabi-size  DeviceProcessor03.elf 
+arm-none-eabi-objdump -h -S DeviceProcessor03.elf  > "DeviceProcessor03.list"
+   text	   data	    bss	    dec	    hex	filename
+  49108	    415	  11624	  61147	   eedb	DeviceProcessor03.elf
+Finished building: default.size.stdout
+ 
+Finished building: DeviceProcessor03.list
+ 
+17:34:38 **** Incremental Build of configuration Debug for project DeviceProcessor03 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m33 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32U575xx -c -I../Core/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32U5xx/Include -I../Drivers/CMSIS/Include -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Class/CDC/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/Device/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/Target" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/App" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:100:18: warning: variable 'dmaValCheck2' set but not used [-Wunused-but-set-variable]
+  100 |         uint16_t dmaValCheck2[500];
+      |                  ^~~~~~~~~~~~
+../Core/Src/main.c:99:18: warning: variable 'dmaValCheck1' set but not used [-Wunused-but-set-variable]
+   99 |         uint16_t dmaValCheck1[500];
+      |                  ^~~~~~~~~~~~
+../Core/Src/main.c:98:27: warning: variable 'funcResult' set but not used [-Wunused-but-set-variable]
+   98 |         HAL_StatusTypeDef funcResult;
+      |                           ^~~~~~~~~~
+arm-none-eabi-gcc -o "DeviceProcessor03.elf" @"objects.list"   -mcpu=cortex-m33 -T"C:\UBC_4TH_YEAR\ELEC-491\JY-85\project\JY85\Firmware\DeviceProcessor03\STM32U575ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DeviceProcessor03.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DeviceProcessor03.elf
+ 
+arm-none-eabi-size  DeviceProcessor03.elf 
+arm-none-eabi-objdump -h -S DeviceProcessor03.elf  > "DeviceProcessor03.list"
+   text	   data	    bss	    dec	    hex	filename
+  49108	    415	  11624	  61147	   eedb	DeviceProcessor03.elf
+Finished building: default.size.stdout
+ 
+Finished building: DeviceProcessor03.list
+ 
+17:35:24 **** Incremental Build of configuration Debug for project DeviceProcessor03 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m33 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32U575xx -c -I../Core/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32U5xx/Include -I../Drivers/CMSIS/Include -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Class/CDC/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/Device/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/Target" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/App" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:100:18: warning: variable 'dmaValCheck2' set but not used [-Wunused-but-set-variable]
+  100 |         uint16_t dmaValCheck2[500];
+      |                  ^~~~~~~~~~~~
+../Core/Src/main.c:99:18: warning: variable 'dmaValCheck1' set but not used [-Wunused-but-set-variable]
+   99 |         uint16_t dmaValCheck1[500];
+      |                  ^~~~~~~~~~~~
+../Core/Src/main.c:98:27: warning: variable 'funcResult' set but not used [-Wunused-but-set-variable]
+   98 |         HAL_StatusTypeDef funcResult;
+      |                           ^~~~~~~~~~
+arm-none-eabi-gcc -o "DeviceProcessor03.elf" @"objects.list"   -mcpu=cortex-m33 -T"C:\UBC_4TH_YEAR\ELEC-491\JY-85\project\JY85\Firmware\DeviceProcessor03\STM32U575ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DeviceProcessor03.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DeviceProcessor03.elf
+ 
+arm-none-eabi-size  DeviceProcessor03.elf 
+arm-none-eabi-objdump -h -S DeviceProcessor03.elf  > "DeviceProcessor03.list"
+   text	   data	    bss	    dec	    hex	filename
+  49108	    415	  11624	  61147	   eedb	DeviceProcessor03.elf
+Finished building: default.size.stdout
+ 
+Finished building: DeviceProcessor03.list
+ 
+17:38:31 **** Incremental Build of configuration Debug for project DeviceProcessor03 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m33 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32U575xx -c -I../Core/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32U5xx/Include -I../Drivers/CMSIS/Include -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Class/CDC/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/Device/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/Target" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/App" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:100:18: warning: variable 'dmaValCheck2' set but not used [-Wunused-but-set-variable]
+  100 |         uint16_t dmaValCheck2[500];
+      |                  ^~~~~~~~~~~~
+../Core/Src/main.c:99:18: warning: variable 'dmaValCheck1' set but not used [-Wunused-but-set-variable]
+   99 |         uint16_t dmaValCheck1[500];
+      |                  ^~~~~~~~~~~~
+../Core/Src/main.c:98:27: warning: variable 'funcResult' set but not used [-Wunused-but-set-variable]
+   98 |         HAL_StatusTypeDef funcResult;
+      |                           ^~~~~~~~~~
+arm-none-eabi-gcc -o "DeviceProcessor03.elf" @"objects.list"   -mcpu=cortex-m33 -T"C:\UBC_4TH_YEAR\ELEC-491\JY-85\project\JY85\Firmware\DeviceProcessor03\STM32U575ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DeviceProcessor03.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DeviceProcessor03.elf
+ 
+arm-none-eabi-size  DeviceProcessor03.elf 
+arm-none-eabi-objdump -h -S DeviceProcessor03.elf  > "DeviceProcessor03.list"
+   text	   data	    bss	    dec	    hex	filename
+  49052	    407	  11624	  61083	   ee9b	DeviceProcessor03.elf
+Finished building: default.size.stdout
+ 
+Finished building: DeviceProcessor03.list
+ 
+17:42:10 **** Incremental Build of configuration Debug for project DeviceProcessor03 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m33 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32U575xx -c -I../Core/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32U5xx/Include -I../Drivers/CMSIS/Include -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Class/CDC/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/Device/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/Target" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/App" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:100:18: warning: variable 'dmaValCheck2' set but not used [-Wunused-but-set-variable]
+  100 |         uint16_t dmaValCheck2[500];
+      |                  ^~~~~~~~~~~~
+../Core/Src/main.c:99:18: warning: variable 'dmaValCheck1' set but not used [-Wunused-but-set-variable]
+   99 |         uint16_t dmaValCheck1[500];
+      |                  ^~~~~~~~~~~~
+../Core/Src/main.c:98:27: warning: variable 'funcResult' set but not used [-Wunused-but-set-variable]
+   98 |         HAL_StatusTypeDef funcResult;
+      |                           ^~~~~~~~~~
+arm-none-eabi-gcc -o "DeviceProcessor03.elf" @"objects.list"   -mcpu=cortex-m33 -T"C:\UBC_4TH_YEAR\ELEC-491\JY-85\project\JY85\Firmware\DeviceProcessor03\STM32U575ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DeviceProcessor03.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DeviceProcessor03.elf
+ 
+arm-none-eabi-size  DeviceProcessor03.elf 
+arm-none-eabi-objdump -h -S DeviceProcessor03.elf  > "DeviceProcessor03.list"
+   text	   data	    bss	    dec	    hex	filename
+  49052	    407	  11624	  61083	   ee9b	DeviceProcessor03.elf
+Finished building: default.size.stdout
+ 
+Finished building: DeviceProcessor03.list
+ 
+17:43:09 **** Incremental Build of configuration Debug for project DeviceProcessor03 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m33 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32U575xx -c -I../Core/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32U5xx/Include -I../Drivers/CMSIS/Include -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Class/CDC/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/Device/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/Target" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/App" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:100:18: warning: variable 'dmaValCheck2' set but not used [-Wunused-but-set-variable]
+  100 |         uint16_t dmaValCheck2[500];
+      |                  ^~~~~~~~~~~~
+../Core/Src/main.c:99:18: warning: variable 'dmaValCheck1' set but not used [-Wunused-but-set-variable]
+   99 |         uint16_t dmaValCheck1[500];
+      |                  ^~~~~~~~~~~~
+../Core/Src/main.c:98:27: warning: variable 'funcResult' set but not used [-Wunused-but-set-variable]
+   98 |         HAL_StatusTypeDef funcResult;
+      |                           ^~~~~~~~~~
+arm-none-eabi-gcc -o "DeviceProcessor03.elf" @"objects.list"   -mcpu=cortex-m33 -T"C:\UBC_4TH_YEAR\ELEC-491\JY-85\project\JY85\Firmware\DeviceProcessor03\STM32U575ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DeviceProcessor03.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DeviceProcessor03.elf
+ 
+arm-none-eabi-size  DeviceProcessor03.elf 
+arm-none-eabi-objdump -h -S DeviceProcessor03.elf  > "DeviceProcessor03.list"
+   text	   data	    bss	    dec	    hex	filename
+  49052	    407	  11624	  61083	   ee9b	DeviceProcessor03.elf
+Finished building: default.size.stdout
+ 
+Finished building: DeviceProcessor03.list
+ 
+17:48:14 **** Incremental Build of configuration Debug for project DeviceProcessor03 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m33 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32U575xx -c -I../Core/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32U5xx/Include -I../Drivers/CMSIS/Include -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Class/CDC/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/Device/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/Target" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/App" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:100:18: warning: variable 'dmaValCheck2' set but not used [-Wunused-but-set-variable]
+  100 |         uint16_t dmaValCheck2[500];
+      |                  ^~~~~~~~~~~~
+../Core/Src/main.c:99:18: warning: variable 'dmaValCheck1' set but not used [-Wunused-but-set-variable]
+   99 |         uint16_t dmaValCheck1[500];
+      |                  ^~~~~~~~~~~~
+../Core/Src/main.c:98:27: warning: variable 'funcResult' set but not used [-Wunused-but-set-variable]
+   98 |         HAL_StatusTypeDef funcResult;
+      |                           ^~~~~~~~~~
+arm-none-eabi-gcc -o "DeviceProcessor03.elf" @"objects.list"   -mcpu=cortex-m33 -T"C:\UBC_4TH_YEAR\ELEC-491\JY-85\project\JY85\Firmware\DeviceProcessor03\STM32U575ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DeviceProcessor03.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DeviceProcessor03.elf
+ 
+arm-none-eabi-size  DeviceProcessor03.elf 
+arm-none-eabi-objdump -h -S DeviceProcessor03.elf  > "DeviceProcessor03.list"
+   text	   data	    bss	    dec	    hex	filename
+  49052	    407	  11624	  61083	   ee9b	DeviceProcessor03.elf
+Finished building: default.size.stdout
+ 
+Finished building: DeviceProcessor03.list
+ 
+17:49:07 **** Incremental Build of configuration Debug for project DeviceProcessor03 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m33 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32U575xx -c -I../Core/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32U5xx/Include -I../Drivers/CMSIS/Include -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Class/CDC/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/Device/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/Target" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/App" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:100:18: warning: variable 'dmaValCheck2' set but not used [-Wunused-but-set-variable]
+  100 |         uint16_t dmaValCheck2[500];
+      |                  ^~~~~~~~~~~~
+../Core/Src/main.c:99:18: warning: variable 'dmaValCheck1' set but not used [-Wunused-but-set-variable]
+   99 |         uint16_t dmaValCheck1[500];
+      |                  ^~~~~~~~~~~~
+../Core/Src/main.c:98:27: warning: variable 'funcResult' set but not used [-Wunused-but-set-variable]
+   98 |         HAL_StatusTypeDef funcResult;
+      |                           ^~~~~~~~~~
+arm-none-eabi-gcc -o "DeviceProcessor03.elf" @"objects.list"   -mcpu=cortex-m33 -T"C:\UBC_4TH_YEAR\ELEC-491\JY-85\project\JY85\Firmware\DeviceProcessor03\STM32U575ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DeviceProcessor03.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DeviceProcessor03.elf
+ 
+arm-none-eabi-size  DeviceProcessor03.elf 
+arm-none-eabi-objdump -h -S DeviceProcessor03.elf  > "DeviceProcessor03.list"
+   text	   data	    bss	    dec	    hex	filename
+  49052	    407	  11624	  61083	   ee9b	DeviceProcessor03.elf
+Finished building: default.size.stdout
+ 
+Finished building: DeviceProcessor03.list
+ 
+17:49:42 **** Incremental Build of configuration Debug for project DeviceProcessor03 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m33 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32U575xx -c -I../Core/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32U5xx/Include -I../Drivers/CMSIS/Include -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Class/CDC/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/Device/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/Target" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/App" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:100:18: warning: variable 'dmaValCheck2' set but not used [-Wunused-but-set-variable]
+  100 |         uint16_t dmaValCheck2[500];
+      |                  ^~~~~~~~~~~~
+../Core/Src/main.c:99:18: warning: variable 'dmaValCheck1' set but not used [-Wunused-but-set-variable]
+   99 |         uint16_t dmaValCheck1[500];
+      |                  ^~~~~~~~~~~~
+../Core/Src/main.c:98:27: warning: variable 'funcResult' set but not used [-Wunused-but-set-variable]
+   98 |         HAL_StatusTypeDef funcResult;
+      |                           ^~~~~~~~~~
+arm-none-eabi-gcc -o "DeviceProcessor03.elf" @"objects.list"   -mcpu=cortex-m33 -T"C:\UBC_4TH_YEAR\ELEC-491\JY-85\project\JY85\Firmware\DeviceProcessor03\STM32U575ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DeviceProcessor03.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DeviceProcessor03.elf
+ 
+arm-none-eabi-size  DeviceProcessor03.elf 
+arm-none-eabi-objdump -h -S DeviceProcessor03.elf  > "DeviceProcessor03.list"
+   text	   data	    bss	    dec	    hex	filename
+  49052	    407	  11624	  61083	   ee9b	DeviceProcessor03.elf
+Finished building: default.size.stdout
+ 
+Finished building: DeviceProcessor03.list
+ 
+17:50:42 **** Incremental Build of configuration Debug for project DeviceProcessor03 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m33 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32U575xx -c -I../Core/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32U5xx/Include -I../Drivers/CMSIS/Include -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Class/CDC/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/Device/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/Target" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/App" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:100:18: warning: variable 'dmaValCheck2' set but not used [-Wunused-but-set-variable]
+  100 |         uint16_t dmaValCheck2[500];
+      |                  ^~~~~~~~~~~~
+../Core/Src/main.c:99:18: warning: variable 'dmaValCheck1' set but not used [-Wunused-but-set-variable]
+   99 |         uint16_t dmaValCheck1[500];
+      |                  ^~~~~~~~~~~~
+../Core/Src/main.c:98:27: warning: variable 'funcResult' set but not used [-Wunused-but-set-variable]
+   98 |         HAL_StatusTypeDef funcResult;
+      |                           ^~~~~~~~~~
+arm-none-eabi-gcc -o "DeviceProcessor03.elf" @"objects.list"   -mcpu=cortex-m33 -T"C:\UBC_4TH_YEAR\ELEC-491\JY-85\project\JY85\Firmware\DeviceProcessor03\STM32U575ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DeviceProcessor03.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DeviceProcessor03.elf
+ 
+arm-none-eabi-size  DeviceProcessor03.elf 
+arm-none-eabi-objdump -h -S DeviceProcessor03.elf  > "DeviceProcessor03.list"
+   text	   data	    bss	    dec	    hex	filename
+  49052	    407	  11624	  61083	   ee9b	DeviceProcessor03.elf
+Finished building: default.size.stdout
+ 
+Finished building: DeviceProcessor03.list
+ 
+17:51:34 **** Incremental Build of configuration Debug for project DeviceProcessor03 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m33 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32U575xx -c -I../Core/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32U5xx/Include -I../Drivers/CMSIS/Include -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Class/CDC/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/Device/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/Target" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/App" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:100:18: warning: variable 'dmaValCheck2' set but not used [-Wunused-but-set-variable]
+  100 |         uint16_t dmaValCheck2[500];
+      |                  ^~~~~~~~~~~~
+../Core/Src/main.c:99:18: warning: variable 'dmaValCheck1' set but not used [-Wunused-but-set-variable]
+   99 |         uint16_t dmaValCheck1[500];
+      |                  ^~~~~~~~~~~~
+../Core/Src/main.c:98:27: warning: variable 'funcResult' set but not used [-Wunused-but-set-variable]
+   98 |         HAL_StatusTypeDef funcResult;
+      |                           ^~~~~~~~~~
+arm-none-eabi-gcc -o "DeviceProcessor03.elf" @"objects.list"   -mcpu=cortex-m33 -T"C:\UBC_4TH_YEAR\ELEC-491\JY-85\project\JY85\Firmware\DeviceProcessor03\STM32U575ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DeviceProcessor03.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DeviceProcessor03.elf
+ 
+arm-none-eabi-size  DeviceProcessor03.elf 
+arm-none-eabi-objdump -h -S DeviceProcessor03.elf  > "DeviceProcessor03.list"
+   text	   data	    bss	    dec	    hex	filename
+  49052	    407	  11624	  61083	   ee9b	DeviceProcessor03.elf
+Finished building: default.size.stdout
+ 
+Finished building: DeviceProcessor03.list
+ 
+17:52:26 **** Incremental Build of configuration Debug for project DeviceProcessor03 ****
+make -j12 all 
+arm-none-eabi-size  DeviceProcessor03.elf 
+   text	   data	    bss	    dec	    hex	filename
+  49052	    407	  11624	  61083	   ee9b	DeviceProcessor03.elf
+Finished building: default.size.stdout
+ 
+17:54:06 **** Incremental Build of configuration Debug for project DeviceProcessor03 ****
+make -j12 all 
+arm-none-eabi-size  DeviceProcessor03.elf 
+   text	   data	    bss	    dec	    hex	filename
+  49052	    407	  11624	  61083	   ee9b	DeviceProcessor03.elf
+Finished building: default.size.stdout
+ 
+17:55:30 **** Incremental Build of configuration Debug for project DeviceProcessor03 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/stm32u5xx_hal_msp.c" -mcpu=cortex-m33 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32U575xx -c -I../Core/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32U5xx/Include -I../Drivers/CMSIS/Include -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Class/CDC/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/Device/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/Target" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/App" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32u5xx_hal_msp.d" -MT"Core/Src/stm32u5xx_hal_msp.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32u5xx_hal_msp.o"
+arm-none-eabi-gcc "../Core/Src/stm32u5xx_it.c" -mcpu=cortex-m33 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32U575xx -c -I../Core/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32U5xx/Include -I../Drivers/CMSIS/Include -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Class/CDC/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/Device/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/Target" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/App" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32u5xx_it.d" -MT"Core/Src/stm32u5xx_it.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32u5xx_it.o"
+arm-none-eabi-gcc -o "DeviceProcessor03.elf" @"objects.list"   -mcpu=cortex-m33 -T"C:\UBC_4TH_YEAR\ELEC-491\JY-85\project\JY85\Firmware\DeviceProcessor03\STM32U575ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DeviceProcessor03.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DeviceProcessor03.elf
+ 
+arm-none-eabi-size  DeviceProcessor03.elf 
+arm-none-eabi-objdump -h -S DeviceProcessor03.elf  > "DeviceProcessor03.list"
+   text	   data	    bss	    dec	    hex	filename
+  49052	    407	  11624	  61083	   ee9b	DeviceProcessor03.elf
+Finished building: default.size.stdout
+ 
+Finished building: DeviceProcessor03.list
+ 
+18:03:55 **** Incremental Build of configuration Debug for project DeviceProcessor03 ****
+make -j12 all 
+arm-none-eabi-size  DeviceProcessor03.elf 
+   text	   data	    bss	    dec	    hex	filename
+  49052	    407	  11624	  61083	   ee9b	DeviceProcessor03.elf
+Finished building: default.size.stdout
+ 
+18:04:26 **** Incremental Build of configuration Debug for project DeviceProcessor03 ****
+make -j12 all 
+arm-none-eabi-size  DeviceProcessor03.elf 
+   text	   data	    bss	    dec	    hex	filename
+  49052	    407	  11624	  61083	   ee9b	DeviceProcessor03.elf
+Finished building: default.size.stdout
+ 
+18:07:34 **** Incremental Build of configuration Debug for project DeviceProcessor03 ****
+make -j12 all 
+arm-none-eabi-size  DeviceProcessor03.elf 
+   text	   data	    bss	    dec	    hex	filename
+  49052	    407	  11624	  61083	   ee9b	DeviceProcessor03.elf
+Finished building: default.size.stdout
+ 
+18:27:01 **** Incremental Build of configuration Debug for project DeviceProcessor03 ****
+make -j12 all 
+arm-none-eabi-size  DeviceProcessor03.elf 
+   text	   data	    bss	    dec	    hex	filename
+  49052	    407	  11624	  61083	   ee9b	DeviceProcessor03.elf
+Finished building: default.size.stdout
+ 
+18:27:20 **** Incremental Build of configuration Debug for project DeviceProcessor03 ****
+make -j12 all 
+arm-none-eabi-size  DeviceProcessor03.elf 
+   text	   data	    bss	    dec	    hex	filename
+  49052	    407	  11624	  61083	   ee9b	DeviceProcessor03.elf
+Finished building: default.size.stdout
+ 
+18:33:16 **** Incremental Build of configuration Debug for project DeviceProcessor03 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/stm32u5xx_it.c" -mcpu=cortex-m33 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32U575xx -c -I../Core/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32U5xx/Include -I../Drivers/CMSIS/Include -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Class/CDC/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/Device/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/Target" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/App" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32u5xx_it.d" -MT"Core/Src/stm32u5xx_it.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32u5xx_it.o"
+arm-none-eabi-gcc -o "DeviceProcessor03.elf" @"objects.list"   -mcpu=cortex-m33 -T"C:\UBC_4TH_YEAR\ELEC-491\JY-85\project\JY85\Firmware\DeviceProcessor03\STM32U575ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DeviceProcessor03.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DeviceProcessor03.elf
+ 
+arm-none-eabi-size  DeviceProcessor03.elf 
+arm-none-eabi-objdump -h -S DeviceProcessor03.elf  > "DeviceProcessor03.list"
+   text	   data	    bss	    dec	    hex	filename
+  49052	    407	  11624	  61083	   ee9b	DeviceProcessor03.elf
+Finished building: default.size.stdout
+ 
+Finished building: DeviceProcessor03.list
+ 
+15:34:53 **** Incremental Build of configuration Debug for project DeviceProcessor03 ****
+make -j12 all 
+arm-none-eabi-size  DeviceProcessor03.elf 
+   text	   data	    bss	    dec	    hex	filename
+  49052	    407	  11624	  61083	   ee9b	DeviceProcessor03.elf
+Finished building: default.size.stdout
+ 
+15:37:37 **** Incremental Build of configuration Debug for project DeviceProcessor03 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m33 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32U575xx -c -I../Core/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32U5xx/Include -I../Drivers/CMSIS/Include -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Class/CDC/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/Device/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/Target" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/App" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:100:18: warning: variable 'dmaValCheck2' set but not used [-Wunused-but-set-variable]
+  100 |         uint16_t dmaValCheck2[500];
+      |                  ^~~~~~~~~~~~
+../Core/Src/main.c:99:18: warning: variable 'dmaValCheck1' set but not used [-Wunused-but-set-variable]
+   99 |         uint16_t dmaValCheck1[500];
+      |                  ^~~~~~~~~~~~
+../Core/Src/main.c:98:27: warning: variable 'funcResult' set but not used [-Wunused-but-set-variable]
+   98 |         HAL_StatusTypeDef funcResult;
+      |                           ^~~~~~~~~~
+arm-none-eabi-gcc -o "DeviceProcessor03.elf" @"objects.list"   -mcpu=cortex-m33 -T"C:\UBC_4TH_YEAR\ELEC-491\JY-85\project\JY85\Firmware\DeviceProcessor03\STM32U575ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DeviceProcessor03.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DeviceProcessor03.elf
+ 
+arm-none-eabi-size  DeviceProcessor03.elf 
+arm-none-eabi-objdump -h -S DeviceProcessor03.elf  > "DeviceProcessor03.list"
+   text	   data	    bss	    dec	    hex	filename
+  49052	    407	  11624	  61083	   ee9b	DeviceProcessor03.elf
+Finished building: default.size.stdout
+ 
+Finished building: DeviceProcessor03.list
+ 
+15:38:48 **** Incremental Build of configuration Debug for project DeviceProcessor03 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m33 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32U575xx -c -I../Core/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32U5xx/Include -I../Drivers/CMSIS/Include -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Class/CDC/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/Device/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/Target" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/App" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:100:18: warning: variable 'dmaValCheck2' set but not used [-Wunused-but-set-variable]
+  100 |         uint16_t dmaValCheck2[500];
+      |                  ^~~~~~~~~~~~
+../Core/Src/main.c:99:18: warning: variable 'dmaValCheck1' set but not used [-Wunused-but-set-variable]
+   99 |         uint16_t dmaValCheck1[500];
+      |                  ^~~~~~~~~~~~
+../Core/Src/main.c:98:27: warning: variable 'funcResult' set but not used [-Wunused-but-set-variable]
+   98 |         HAL_StatusTypeDef funcResult;
+      |                           ^~~~~~~~~~
+arm-none-eabi-gcc -o "DeviceProcessor03.elf" @"objects.list"   -mcpu=cortex-m33 -T"C:\UBC_4TH_YEAR\ELEC-491\JY-85\project\JY85\Firmware\DeviceProcessor03\STM32U575ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DeviceProcessor03.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DeviceProcessor03.elf
+ 
+arm-none-eabi-size  DeviceProcessor03.elf 
+arm-none-eabi-objdump -h -S DeviceProcessor03.elf  > "DeviceProcessor03.list"
+   text	   data	    bss	    dec	    hex	filename
+  49052	    407	  11624	  61083	   ee9b	DeviceProcessor03.elf
+Finished building: default.size.stdout
+ 
+Finished building: DeviceProcessor03.list
+ 
+15:39:50 **** Incremental Build of configuration Debug for project DeviceProcessor03 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m33 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32U575xx -c -I../Core/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32U5xx/Include -I../Drivers/CMSIS/Include -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Class/CDC/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/Device/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/Target" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/App" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:101:18: warning: variable 'dmaValCheck2' set but not used [-Wunused-but-set-variable]
+  101 |         uint16_t dmaValCheck2[500];
+      |                  ^~~~~~~~~~~~
+../Core/Src/main.c:100:18: warning: variable 'dmaValCheck1' set but not used [-Wunused-but-set-variable]
+  100 |         uint16_t dmaValCheck1[500];
+      |                  ^~~~~~~~~~~~
+../Core/Src/main.c:99:27: warning: variable 'funcResult2' set but not used [-Wunused-but-set-variable]
+   99 |         HAL_StatusTypeDef funcResult2;
+      |                           ^~~~~~~~~~~
+../Core/Src/main.c:98:27: warning: variable 'funcResult1' set but not used [-Wunused-but-set-variable]
+   98 |         HAL_StatusTypeDef funcResult1;
+      |                           ^~~~~~~~~~~
+arm-none-eabi-gcc -o "DeviceProcessor03.elf" @"objects.list"   -mcpu=cortex-m33 -T"C:\UBC_4TH_YEAR\ELEC-491\JY-85\project\JY85\Firmware\DeviceProcessor03\STM32U575ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DeviceProcessor03.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DeviceProcessor03.elf
+ 
+arm-none-eabi-size  DeviceProcessor03.elf 
+arm-none-eabi-objdump -h -S DeviceProcessor03.elf  > "DeviceProcessor03.list"
+   text	   data	    bss	    dec	    hex	filename
+  49052	    407	  11624	  61083	   ee9b	DeviceProcessor03.elf
+Finished building: default.size.stdout
+ 
+Finished building: DeviceProcessor03.list
+ 
+15:40:46 **** Incremental Build of configuration Debug for project DeviceProcessor03 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m33 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32U575xx -c -I../Core/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32U5xx/Include -I../Drivers/CMSIS/Include -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Class/CDC/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/Device/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/Target" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/App" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:101:18: warning: variable 'dmaValCheck2' set but not used [-Wunused-but-set-variable]
+  101 |         uint16_t dmaValCheck2[500];
+      |                  ^~~~~~~~~~~~
+../Core/Src/main.c:100:18: warning: variable 'dmaValCheck1' set but not used [-Wunused-but-set-variable]
+  100 |         uint16_t dmaValCheck1[500];
+      |                  ^~~~~~~~~~~~
+../Core/Src/main.c:99:27: warning: variable 'funcResult2' set but not used [-Wunused-but-set-variable]
+   99 |         HAL_StatusTypeDef funcResult2;
+      |                           ^~~~~~~~~~~
+../Core/Src/main.c:98:27: warning: variable 'funcResult1' set but not used [-Wunused-but-set-variable]
+   98 |         HAL_StatusTypeDef funcResult1;
+      |                           ^~~~~~~~~~~
+arm-none-eabi-gcc -o "DeviceProcessor03.elf" @"objects.list"   -mcpu=cortex-m33 -T"C:\UBC_4TH_YEAR\ELEC-491\JY-85\project\JY85\Firmware\DeviceProcessor03\STM32U575ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DeviceProcessor03.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DeviceProcessor03.elf
+ 
+arm-none-eabi-size  DeviceProcessor03.elf 
+arm-none-eabi-objdump -h -S DeviceProcessor03.elf  > "DeviceProcessor03.list"
+   text	   data	    bss	    dec	    hex	filename
+  49052	    407	  11624	  61083	   ee9b	DeviceProcessor03.elf
+Finished building: default.size.stdout
+ 
+Finished building: DeviceProcessor03.list
+ 
+15:43:00 **** Incremental Build of configuration Debug for project DeviceProcessor03 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m33 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32U575xx -c -I../Core/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32U5xx/Include -I../Drivers/CMSIS/Include -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Class/CDC/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/Device/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/Target" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/App" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:101:18: warning: variable 'dmaValCheck2' set but not used [-Wunused-but-set-variable]
+  101 |         uint16_t dmaValCheck2[500];
+      |                  ^~~~~~~~~~~~
+../Core/Src/main.c:100:18: warning: variable 'dmaValCheck1' set but not used [-Wunused-but-set-variable]
+  100 |         uint16_t dmaValCheck1[500];
+      |                  ^~~~~~~~~~~~
+../Core/Src/main.c:99:27: warning: variable 'funcResult2' set but not used [-Wunused-but-set-variable]
+   99 |         HAL_StatusTypeDef funcResult2;
+      |                           ^~~~~~~~~~~
+../Core/Src/main.c:98:27: warning: variable 'funcResult1' set but not used [-Wunused-but-set-variable]
+   98 |         HAL_StatusTypeDef funcResult1;
+      |                           ^~~~~~~~~~~
+arm-none-eabi-gcc -o "DeviceProcessor03.elf" @"objects.list"   -mcpu=cortex-m33 -T"C:\UBC_4TH_YEAR\ELEC-491\JY-85\project\JY85\Firmware\DeviceProcessor03\STM32U575ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DeviceProcessor03.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DeviceProcessor03.elf
+ 
+arm-none-eabi-size  DeviceProcessor03.elf 
+arm-none-eabi-objdump -h -S DeviceProcessor03.elf  > "DeviceProcessor03.list"
+   text	   data	    bss	    dec	    hex	filename
+  49052	    407	  11624	  61083	   ee9b	DeviceProcessor03.elf
+Finished building: default.size.stdout
+ 
+Finished building: DeviceProcessor03.list
+ 
+16:04:45 **** Incremental Build of configuration Debug for project DeviceProcessor03 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m33 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32U575xx -c -I../Core/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32U5xx/Include -I../Drivers/CMSIS/Include -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Class/CDC/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/Device/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/Target" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/App" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:101:18: warning: variable 'dmaValCheck2' set but not used [-Wunused-but-set-variable]
+  101 |         uint16_t dmaValCheck2[500];
+      |                  ^~~~~~~~~~~~
+../Core/Src/main.c:100:18: warning: variable 'dmaValCheck1' set but not used [-Wunused-but-set-variable]
+  100 |         uint16_t dmaValCheck1[500];
+      |                  ^~~~~~~~~~~~
+../Core/Src/main.c:99:27: warning: variable 'funcResult2' set but not used [-Wunused-but-set-variable]
+   99 |         HAL_StatusTypeDef funcResult2;
+      |                           ^~~~~~~~~~~
+../Core/Src/main.c:98:27: warning: variable 'funcResult1' set but not used [-Wunused-but-set-variable]
+   98 |         HAL_StatusTypeDef funcResult1;
+      |                           ^~~~~~~~~~~
+arm-none-eabi-gcc -o "DeviceProcessor03.elf" @"objects.list"   -mcpu=cortex-m33 -T"C:\UBC_4TH_YEAR\ELEC-491\JY-85\project\JY85\Firmware\DeviceProcessor03\STM32U575ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DeviceProcessor03.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DeviceProcessor03.elf
+ 
+arm-none-eabi-size  DeviceProcessor03.elf 
+arm-none-eabi-objdump -h -S DeviceProcessor03.elf  > "DeviceProcessor03.list"
+   text	   data	    bss	    dec	    hex	filename
+  49052	    407	  11624	  61083	   ee9b	DeviceProcessor03.elf
+Finished building: default.size.stdout
+ 
+Finished building: DeviceProcessor03.list
+ 
+16:11:27 **** Incremental Build of configuration Debug for project DeviceProcessor03 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m33 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32U575xx -c -I../Core/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32U5xx/Include -I../Drivers/CMSIS/Include -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Class/CDC/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/Device/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/Target" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/App" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:101:18: warning: variable 'dmaValCheck2' set but not used [-Wunused-but-set-variable]
+  101 |         uint16_t dmaValCheck2[500];
+      |                  ^~~~~~~~~~~~
+../Core/Src/main.c:100:18: warning: variable 'dmaValCheck1' set but not used [-Wunused-but-set-variable]
+  100 |         uint16_t dmaValCheck1[500];
+      |                  ^~~~~~~~~~~~
+../Core/Src/main.c:99:27: warning: variable 'funcResult2' set but not used [-Wunused-but-set-variable]
+   99 |         HAL_StatusTypeDef funcResult2;
+      |                           ^~~~~~~~~~~
+../Core/Src/main.c:98:27: warning: variable 'funcResult1' set but not used [-Wunused-but-set-variable]
+   98 |         HAL_StatusTypeDef funcResult1;
+      |                           ^~~~~~~~~~~
+arm-none-eabi-gcc -o "DeviceProcessor03.elf" @"objects.list"   -mcpu=cortex-m33 -T"C:\UBC_4TH_YEAR\ELEC-491\JY-85\project\JY85\Firmware\DeviceProcessor03\STM32U575ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DeviceProcessor03.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DeviceProcessor03.elf
+ 
+arm-none-eabi-size  DeviceProcessor03.elf 
+arm-none-eabi-objdump -h -S DeviceProcessor03.elf  > "DeviceProcessor03.list"
+   text	   data	    bss	    dec	    hex	filename
+  49052	    407	  11624	  61083	   ee9b	DeviceProcessor03.elf
+Finished building: default.size.stdout
+ 
+Finished building: DeviceProcessor03.list
+ 
+16:15:53 **** Incremental Build of configuration Debug for project DeviceProcessor03 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m33 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32U575xx -c -I../Core/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32U5xx/Include -I../Drivers/CMSIS/Include -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Class/CDC/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/Device/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/Target" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/App" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:101:18: warning: variable 'dmaValCheck2' set but not used [-Wunused-but-set-variable]
+  101 |         uint16_t dmaValCheck2[500];
+      |                  ^~~~~~~~~~~~
+../Core/Src/main.c:100:18: warning: variable 'dmaValCheck1' set but not used [-Wunused-but-set-variable]
+  100 |         uint16_t dmaValCheck1[500];
+      |                  ^~~~~~~~~~~~
+../Core/Src/main.c:99:27: warning: variable 'funcResult2' set but not used [-Wunused-but-set-variable]
+   99 |         HAL_StatusTypeDef funcResult2;
+      |                           ^~~~~~~~~~~
+../Core/Src/main.c:98:27: warning: variable 'funcResult1' set but not used [-Wunused-but-set-variable]
+   98 |         HAL_StatusTypeDef funcResult1;
+      |                           ^~~~~~~~~~~
+arm-none-eabi-gcc -o "DeviceProcessor03.elf" @"objects.list"   -mcpu=cortex-m33 -T"C:\UBC_4TH_YEAR\ELEC-491\JY-85\project\JY85\Firmware\DeviceProcessor03\STM32U575ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DeviceProcessor03.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DeviceProcessor03.elf
+ 
+arm-none-eabi-size  DeviceProcessor03.elf 
+arm-none-eabi-objdump -h -S DeviceProcessor03.elf  > "DeviceProcessor03.list"
+   text	   data	    bss	    dec	    hex	filename
+  49052	    407	  11624	  61083	   ee9b	DeviceProcessor03.elf
+Finished building: default.size.stdout
+ 
+Finished building: DeviceProcessor03.list
+ 
+16:36:39 **** Incremental Build of configuration Debug for project DeviceProcessor03 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m33 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32U575xx -c -I../Core/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32U5xx/Include -I../Drivers/CMSIS/Include -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Class/CDC/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/Device/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/Target" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/App" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:101:18: warning: variable 'dmaValCheck2' set but not used [-Wunused-but-set-variable]
+  101 |         uint16_t dmaValCheck2[500];
+      |                  ^~~~~~~~~~~~
+../Core/Src/main.c:100:18: warning: variable 'dmaValCheck1' set but not used [-Wunused-but-set-variable]
+  100 |         uint16_t dmaValCheck1[500];
+      |                  ^~~~~~~~~~~~
+../Core/Src/main.c:99:27: warning: variable 'funcResult2' set but not used [-Wunused-but-set-variable]
+   99 |         HAL_StatusTypeDef funcResult2;
+      |                           ^~~~~~~~~~~
+../Core/Src/main.c:98:27: warning: variable 'funcResult1' set but not used [-Wunused-but-set-variable]
+   98 |         HAL_StatusTypeDef funcResult1;
+      |                           ^~~~~~~~~~~
+arm-none-eabi-gcc -o "DeviceProcessor03.elf" @"objects.list"   -mcpu=cortex-m33 -T"C:\UBC_4TH_YEAR\ELEC-491\JY-85\project\JY85\Firmware\DeviceProcessor03\STM32U575ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DeviceProcessor03.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DeviceProcessor03.elf
+ 
+arm-none-eabi-size  DeviceProcessor03.elf 
+arm-none-eabi-objdump -h -S DeviceProcessor03.elf  > "DeviceProcessor03.list"
+   text	   data	    bss	    dec	    hex	filename
+  49052	    407	  11624	  61083	   ee9b	DeviceProcessor03.elf
+Finished building: default.size.stdout
+ 
+Finished building: DeviceProcessor03.list
+ 
+16:37:25 **** Incremental Build of configuration Debug for project DeviceProcessor03 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m33 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32U575xx -c -I../Core/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32U5xx/Include -I../Drivers/CMSIS/Include -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Class/CDC/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/Device/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/Target" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/App" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:101:18: warning: variable 'dmaValCheck2' set but not used [-Wunused-but-set-variable]
+  101 |         uint16_t dmaValCheck2[500];
+      |                  ^~~~~~~~~~~~
+../Core/Src/main.c:100:18: warning: variable 'dmaValCheck1' set but not used [-Wunused-but-set-variable]
+  100 |         uint16_t dmaValCheck1[500];
+      |                  ^~~~~~~~~~~~
+../Core/Src/main.c:99:27: warning: variable 'funcResult2' set but not used [-Wunused-but-set-variable]
+   99 |         HAL_StatusTypeDef funcResult2;
+      |                           ^~~~~~~~~~~
+../Core/Src/main.c:98:27: warning: variable 'funcResult1' set but not used [-Wunused-but-set-variable]
+   98 |         HAL_StatusTypeDef funcResult1;
+      |                           ^~~~~~~~~~~
+arm-none-eabi-gcc -o "DeviceProcessor03.elf" @"objects.list"   -mcpu=cortex-m33 -T"C:\UBC_4TH_YEAR\ELEC-491\JY-85\project\JY85\Firmware\DeviceProcessor03\STM32U575ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DeviceProcessor03.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DeviceProcessor03.elf
+ 
+arm-none-eabi-size  DeviceProcessor03.elf 
+arm-none-eabi-objdump -h -S DeviceProcessor03.elf  > "DeviceProcessor03.list"
+   text	   data	    bss	    dec	    hex	filename
+  49052	    407	  11624	  61083	   ee9b	DeviceProcessor03.elf
+Finished building: default.size.stdout
+ 
+Finished building: DeviceProcessor03.list
+ 
+16:38:54 **** Incremental Build of configuration Debug for project DeviceProcessor03 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m33 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32U575xx -c -I../Core/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32U5xx/Include -I../Drivers/CMSIS/Include -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Class/CDC/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/Device/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/Target" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/App" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:101:18: warning: variable 'dmaValCheck2' set but not used [-Wunused-but-set-variable]
+  101 |         uint16_t dmaValCheck2[500];
+      |                  ^~~~~~~~~~~~
+../Core/Src/main.c:100:18: warning: variable 'dmaValCheck1' set but not used [-Wunused-but-set-variable]
+  100 |         uint16_t dmaValCheck1[500];
+      |                  ^~~~~~~~~~~~
+../Core/Src/main.c:99:27: warning: variable 'funcResult2' set but not used [-Wunused-but-set-variable]
+   99 |         HAL_StatusTypeDef funcResult2;
+      |                           ^~~~~~~~~~~
+../Core/Src/main.c:98:27: warning: variable 'funcResult1' set but not used [-Wunused-but-set-variable]
+   98 |         HAL_StatusTypeDef funcResult1;
+      |                           ^~~~~~~~~~~
+arm-none-eabi-gcc -o "DeviceProcessor03.elf" @"objects.list"   -mcpu=cortex-m33 -T"C:\UBC_4TH_YEAR\ELEC-491\JY-85\project\JY85\Firmware\DeviceProcessor03\STM32U575ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DeviceProcessor03.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DeviceProcessor03.elf
+ 
+arm-none-eabi-size  DeviceProcessor03.elf 
+arm-none-eabi-objdump -h -S DeviceProcessor03.elf  > "DeviceProcessor03.list"
+   text	   data	    bss	    dec	    hex	filename
+  49084	    407	  11624	  61115	   eebb	DeviceProcessor03.elf
+Finished building: default.size.stdout
+ 
+Finished building: DeviceProcessor03.list
+ 
+16:40:21 **** Incremental Build of configuration Debug for project DeviceProcessor03 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m33 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32U575xx -c -I../Core/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32U5xx/Include -I../Drivers/CMSIS/Include -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Class/CDC/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/Device/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/Target" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/App" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:101:18: warning: variable 'dmaValCheck2' set but not used [-Wunused-but-set-variable]
+  101 |         uint16_t dmaValCheck2[500];
+      |                  ^~~~~~~~~~~~
+../Core/Src/main.c:100:18: warning: variable 'dmaValCheck1' set but not used [-Wunused-but-set-variable]
+  100 |         uint16_t dmaValCheck1[500];
+      |                  ^~~~~~~~~~~~
+../Core/Src/main.c:99:27: warning: variable 'funcResult2' set but not used [-Wunused-but-set-variable]
+   99 |         HAL_StatusTypeDef funcResult2;
+      |                           ^~~~~~~~~~~
+../Core/Src/main.c:98:27: warning: variable 'funcResult1' set but not used [-Wunused-but-set-variable]
+   98 |         HAL_StatusTypeDef funcResult1;
+      |                           ^~~~~~~~~~~
+arm-none-eabi-gcc -o "DeviceProcessor03.elf" @"objects.list"   -mcpu=cortex-m33 -T"C:\UBC_4TH_YEAR\ELEC-491\JY-85\project\JY85\Firmware\DeviceProcessor03\STM32U575ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DeviceProcessor03.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DeviceProcessor03.elf
+ 
+arm-none-eabi-size  DeviceProcessor03.elf 
+arm-none-eabi-objdump -h -S DeviceProcessor03.elf  > "DeviceProcessor03.list"
+   text	   data	    bss	    dec	    hex	filename
+  49124	    407	  11624	  61155	   eee3	DeviceProcessor03.elf
+Finished building: default.size.stdout
+ 
+Finished building: DeviceProcessor03.list
+ 
+16:42:22 **** Incremental Build of configuration Debug for project DeviceProcessor03 ****
+make -j12 all 
+arm-none-eabi-size  DeviceProcessor03.elf 
+   text	   data	    bss	    dec	    hex	filename
+  49124	    407	  11624	  61155	   eee3	DeviceProcessor03.elf
+Finished building: default.size.stdout
+ 
+16:45:57 **** Incremental Build of configuration Debug for project DeviceProcessor03 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m33 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32U575xx -c -I../Core/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32U5xx/Include -I../Drivers/CMSIS/Include -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Class/CDC/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/Device/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/Target" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/App" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:101:18: warning: variable 'dmaValCheck2' set but not used [-Wunused-but-set-variable]
+  101 |         uint16_t dmaValCheck2[500];
+      |                  ^~~~~~~~~~~~
+../Core/Src/main.c:100:18: warning: variable 'dmaValCheck1' set but not used [-Wunused-but-set-variable]
+  100 |         uint16_t dmaValCheck1[500];
+      |                  ^~~~~~~~~~~~
+../Core/Src/main.c:99:27: warning: variable 'funcResult2' set but not used [-Wunused-but-set-variable]
+   99 |         HAL_StatusTypeDef funcResult2;
+      |                           ^~~~~~~~~~~
+../Core/Src/main.c:98:27: warning: variable 'funcResult1' set but not used [-Wunused-but-set-variable]
+   98 |         HAL_StatusTypeDef funcResult1;
+      |                           ^~~~~~~~~~~
+arm-none-eabi-gcc -o "DeviceProcessor03.elf" @"objects.list"   -mcpu=cortex-m33 -T"C:\UBC_4TH_YEAR\ELEC-491\JY-85\project\JY85\Firmware\DeviceProcessor03\STM32U575ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DeviceProcessor03.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DeviceProcessor03.elf
+ 
+arm-none-eabi-size  DeviceProcessor03.elf 
+arm-none-eabi-objdump -h -S DeviceProcessor03.elf  > "DeviceProcessor03.list"
+   text	   data	    bss	    dec	    hex	filename
+  49116	    407	  11624	  61147	   eedb	DeviceProcessor03.elf
+Finished building: default.size.stdout
+ 
+Finished building: DeviceProcessor03.list
+ 
+16:50:53 **** Incremental Build of configuration Debug for project DeviceProcessor03 ****
+make -j12 all 
+arm-none-eabi-size  DeviceProcessor03.elf 
+   text	   data	    bss	    dec	    hex	filename
+  49116	    407	  11624	  61147	   eedb	DeviceProcessor03.elf
+Finished building: default.size.stdout
+ 
+16:53:12 **** Incremental Build of configuration Debug for project DeviceProcessor03 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m33 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32U575xx -c -I../Core/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32U5xx/Include -I../Drivers/CMSIS/Include -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Class/CDC/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/Device/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/Target" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/App" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:101:18: warning: variable 'dmaValCheck2' set but not used [-Wunused-but-set-variable]
+  101 |         uint16_t dmaValCheck2[500];
+      |                  ^~~~~~~~~~~~
+../Core/Src/main.c:100:18: warning: variable 'dmaValCheck1' set but not used [-Wunused-but-set-variable]
+  100 |         uint16_t dmaValCheck1[500];
+      |                  ^~~~~~~~~~~~
+../Core/Src/main.c:99:27: warning: variable 'funcResult2' set but not used [-Wunused-but-set-variable]
+   99 |         HAL_StatusTypeDef funcResult2;
+      |                           ^~~~~~~~~~~
+../Core/Src/main.c:98:27: warning: variable 'funcResult1' set but not used [-Wunused-but-set-variable]
+   98 |         HAL_StatusTypeDef funcResult1;
+      |                           ^~~~~~~~~~~
+arm-none-eabi-gcc -o "DeviceProcessor03.elf" @"objects.list"   -mcpu=cortex-m33 -T"C:\UBC_4TH_YEAR\ELEC-491\JY-85\project\JY85\Firmware\DeviceProcessor03\STM32U575ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DeviceProcessor03.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DeviceProcessor03.elf
+ 
+arm-none-eabi-size  DeviceProcessor03.elf 
+arm-none-eabi-objdump -h -S DeviceProcessor03.elf  > "DeviceProcessor03.list"
+   text	   data	    bss	    dec	    hex	filename
+  49116	    407	  11624	  61147	   eedb	DeviceProcessor03.elf
+Finished building: default.size.stdout
+ 
+Finished building: DeviceProcessor03.list
+ 
+16:59:29 **** Incremental Build of configuration Debug for project DeviceProcessor03 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m33 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32U575xx -c -I../Core/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32U5xx/Include -I../Drivers/CMSIS/Include -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Class/CDC/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/Device/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/Target" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/App" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:101:18: warning: variable 'dmaValCheck2' set but not used [-Wunused-but-set-variable]
+  101 |         uint16_t dmaValCheck2[500];
+      |                  ^~~~~~~~~~~~
+../Core/Src/main.c:100:18: warning: variable 'dmaValCheck1' set but not used [-Wunused-but-set-variable]
+  100 |         uint16_t dmaValCheck1[500];
+      |                  ^~~~~~~~~~~~
+../Core/Src/main.c:99:27: warning: variable 'funcResult2' set but not used [-Wunused-but-set-variable]
+   99 |         HAL_StatusTypeDef funcResult2;
+      |                           ^~~~~~~~~~~
+../Core/Src/main.c:98:27: warning: variable 'funcResult1' set but not used [-Wunused-but-set-variable]
+   98 |         HAL_StatusTypeDef funcResult1;
+      |                           ^~~~~~~~~~~
+arm-none-eabi-gcc -o "DeviceProcessor03.elf" @"objects.list"   -mcpu=cortex-m33 -T"C:\UBC_4TH_YEAR\ELEC-491\JY-85\project\JY85\Firmware\DeviceProcessor03\STM32U575ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DeviceProcessor03.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DeviceProcessor03.elf
+ 
+arm-none-eabi-size  DeviceProcessor03.elf 
+arm-none-eabi-objdump -h -S DeviceProcessor03.elf  > "DeviceProcessor03.list"
+   text	   data	    bss	    dec	    hex	filename
+  49052	    407	  11624	  61083	   ee9b	DeviceProcessor03.elf
+Finished building: default.size.stdout
+ 
+Finished building: DeviceProcessor03.list
+ 
+17:00:56 **** Incremental Build of configuration Debug for project DeviceProcessor03 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m33 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32U575xx -c -I../Core/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32U5xx/Include -I../Drivers/CMSIS/Include -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Class/CDC/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/Device/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/Target" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/App" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:101:18: warning: variable 'dmaValCheck2' set but not used [-Wunused-but-set-variable]
+  101 |         uint16_t dmaValCheck2[500];
+      |                  ^~~~~~~~~~~~
+../Core/Src/main.c:100:18: warning: variable 'dmaValCheck1' set but not used [-Wunused-but-set-variable]
+  100 |         uint16_t dmaValCheck1[500];
+      |                  ^~~~~~~~~~~~
+../Core/Src/main.c:99:27: warning: variable 'funcResult2' set but not used [-Wunused-but-set-variable]
+   99 |         HAL_StatusTypeDef funcResult2;
+      |                           ^~~~~~~~~~~
+../Core/Src/main.c:98:27: warning: variable 'funcResult1' set but not used [-Wunused-but-set-variable]
+   98 |         HAL_StatusTypeDef funcResult1;
+      |                           ^~~~~~~~~~~
+arm-none-eabi-gcc -o "DeviceProcessor03.elf" @"objects.list"   -mcpu=cortex-m33 -T"C:\UBC_4TH_YEAR\ELEC-491\JY-85\project\JY85\Firmware\DeviceProcessor03\STM32U575ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DeviceProcessor03.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DeviceProcessor03.elf
+ 
+arm-none-eabi-size  DeviceProcessor03.elf 
+arm-none-eabi-objdump -h -S DeviceProcessor03.elf  > "DeviceProcessor03.list"
+   text	   data	    bss	    dec	    hex	filename
+  49052	    407	  11624	  61083	   ee9b	DeviceProcessor03.elf
+Finished building: default.size.stdout
+ 
+Finished building: DeviceProcessor03.list
+ 
+17:02:11 **** Incremental Build of configuration Debug for project DeviceProcessor03 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m33 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32U575xx -c -I../Core/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32U5xx/Include -I../Drivers/CMSIS/Include -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Class/CDC/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/Device/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/Target" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/App" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:101:18: warning: variable 'dmaValCheck2' set but not used [-Wunused-but-set-variable]
+  101 |         uint16_t dmaValCheck2[500];
+      |                  ^~~~~~~~~~~~
+../Core/Src/main.c:100:18: warning: variable 'dmaValCheck1' set but not used [-Wunused-but-set-variable]
+  100 |         uint16_t dmaValCheck1[500];
+      |                  ^~~~~~~~~~~~
+../Core/Src/main.c:99:27: warning: variable 'funcResult2' set but not used [-Wunused-but-set-variable]
+   99 |         HAL_StatusTypeDef funcResult2;
+      |                           ^~~~~~~~~~~
+../Core/Src/main.c:98:27: warning: variable 'funcResult1' set but not used [-Wunused-but-set-variable]
+   98 |         HAL_StatusTypeDef funcResult1;
+      |                           ^~~~~~~~~~~
+arm-none-eabi-gcc -o "DeviceProcessor03.elf" @"objects.list"   -mcpu=cortex-m33 -T"C:\UBC_4TH_YEAR\ELEC-491\JY-85\project\JY85\Firmware\DeviceProcessor03\STM32U575ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DeviceProcessor03.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DeviceProcessor03.elf
+ 
+arm-none-eabi-size  DeviceProcessor03.elf 
+arm-none-eabi-objdump -h -S DeviceProcessor03.elf  > "DeviceProcessor03.list"
+   text	   data	    bss	    dec	    hex	filename
+  49052	    403	  11628	  61083	   ee9b	DeviceProcessor03.elf
+Finished building: default.size.stdout
+ 
+Finished building: DeviceProcessor03.list
+ 
+17:05:14 **** Incremental Build of configuration Debug for project DeviceProcessor03 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m33 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32U575xx -c -I../Core/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32U5xx/Include -I../Drivers/CMSIS/Include -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Class/CDC/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/Device/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/Target" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/App" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:101:18: warning: variable 'dmaValCheck2' set but not used [-Wunused-but-set-variable]
+  101 |         uint16_t dmaValCheck2[500];
+      |                  ^~~~~~~~~~~~
+../Core/Src/main.c:100:18: warning: variable 'dmaValCheck1' set but not used [-Wunused-but-set-variable]
+  100 |         uint16_t dmaValCheck1[500];
+      |                  ^~~~~~~~~~~~
+../Core/Src/main.c:99:27: warning: variable 'funcResult2' set but not used [-Wunused-but-set-variable]
+   99 |         HAL_StatusTypeDef funcResult2;
+      |                           ^~~~~~~~~~~
+../Core/Src/main.c:98:27: warning: variable 'funcResult1' set but not used [-Wunused-but-set-variable]
+   98 |         HAL_StatusTypeDef funcResult1;
+      |                           ^~~~~~~~~~~
+arm-none-eabi-gcc -o "DeviceProcessor03.elf" @"objects.list"   -mcpu=cortex-m33 -T"C:\UBC_4TH_YEAR\ELEC-491\JY-85\project\JY85\Firmware\DeviceProcessor03\STM32U575ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DeviceProcessor03.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DeviceProcessor03.elf
+ 
+arm-none-eabi-size  DeviceProcessor03.elf 
+arm-none-eabi-objdump -h -S DeviceProcessor03.elf  > "DeviceProcessor03.list"
+   text	   data	    bss	    dec	    hex	filename
+  49052	    407	  11624	  61083	   ee9b	DeviceProcessor03.elf
+Finished building: default.size.stdout
+ 
+Finished building: DeviceProcessor03.list
+ 
+17:07:37 **** Incremental Build of configuration Debug for project DeviceProcessor03 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m33 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32U575xx -c -I../Core/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32U5xx/Include -I../Drivers/CMSIS/Include -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Class/CDC/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/Device/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/Target" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/App" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:101:18: warning: variable 'dmaValCheck2' set but not used [-Wunused-but-set-variable]
+  101 |         uint16_t dmaValCheck2[500];
+      |                  ^~~~~~~~~~~~
+../Core/Src/main.c:100:18: warning: variable 'dmaValCheck1' set but not used [-Wunused-but-set-variable]
+  100 |         uint16_t dmaValCheck1[500];
+      |                  ^~~~~~~~~~~~
+../Core/Src/main.c:99:27: warning: variable 'funcResult2' set but not used [-Wunused-but-set-variable]
+   99 |         HAL_StatusTypeDef funcResult2;
+      |                           ^~~~~~~~~~~
+../Core/Src/main.c:98:27: warning: variable 'funcResult1' set but not used [-Wunused-but-set-variable]
+   98 |         HAL_StatusTypeDef funcResult1;
+      |                           ^~~~~~~~~~~
+arm-none-eabi-gcc -o "DeviceProcessor03.elf" @"objects.list"   -mcpu=cortex-m33 -T"C:\UBC_4TH_YEAR\ELEC-491\JY-85\project\JY85\Firmware\DeviceProcessor03\STM32U575ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DeviceProcessor03.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DeviceProcessor03.elf
+ 
+arm-none-eabi-size  DeviceProcessor03.elf 
+arm-none-eabi-objdump -h -S DeviceProcessor03.elf  > "DeviceProcessor03.list"
+   text	   data	    bss	    dec	    hex	filename
+  49052	    407	  11624	  61083	   ee9b	DeviceProcessor03.elf
+Finished building: default.size.stdout
+ 
+Finished building: DeviceProcessor03.list
+ 
+17:08:46 **** Incremental Build of configuration Debug for project DeviceProcessor03 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m33 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32U575xx -c -I../Core/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32U5xx/Include -I../Drivers/CMSIS/Include -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Class/CDC/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/Device/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/Target" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/App" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:101:18: warning: variable 'dmaValCheck2' set but not used [-Wunused-but-set-variable]
+  101 |         uint16_t dmaValCheck2[500];
+      |                  ^~~~~~~~~~~~
+../Core/Src/main.c:100:18: warning: variable 'dmaValCheck1' set but not used [-Wunused-but-set-variable]
+  100 |         uint16_t dmaValCheck1[500];
+      |                  ^~~~~~~~~~~~
+../Core/Src/main.c:99:27: warning: variable 'funcResult2' set but not used [-Wunused-but-set-variable]
+   99 |         HAL_StatusTypeDef funcResult2;
+      |                           ^~~~~~~~~~~
+../Core/Src/main.c:98:27: warning: variable 'funcResult1' set but not used [-Wunused-but-set-variable]
+   98 |         HAL_StatusTypeDef funcResult1;
+      |                           ^~~~~~~~~~~
+arm-none-eabi-gcc -o "DeviceProcessor03.elf" @"objects.list"   -mcpu=cortex-m33 -T"C:\UBC_4TH_YEAR\ELEC-491\JY-85\project\JY85\Firmware\DeviceProcessor03\STM32U575ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DeviceProcessor03.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DeviceProcessor03.elf
+ 
+arm-none-eabi-size  DeviceProcessor03.elf 
+arm-none-eabi-objdump -h -S DeviceProcessor03.elf  > "DeviceProcessor03.list"
+   text	   data	    bss	    dec	    hex	filename
+  49052	    407	  11624	  61083	   ee9b	DeviceProcessor03.elf
+Finished building: default.size.stdout
+ 
+Finished building: DeviceProcessor03.list
+ 
+17:11:54 **** Incremental Build of configuration Debug for project DeviceProcessor03 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m33 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32U575xx -c -I../Core/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32U5xx/Include -I../Drivers/CMSIS/Include -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Class/CDC/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/Device/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/Target" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/App" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:101:18: warning: variable 'dmaValCheck2' set but not used [-Wunused-but-set-variable]
+  101 |         uint16_t dmaValCheck2[500];
+      |                  ^~~~~~~~~~~~
+../Core/Src/main.c:100:18: warning: variable 'dmaValCheck1' set but not used [-Wunused-but-set-variable]
+  100 |         uint16_t dmaValCheck1[500];
+      |                  ^~~~~~~~~~~~
+../Core/Src/main.c:99:27: warning: variable 'funcResult2' set but not used [-Wunused-but-set-variable]
+   99 |         HAL_StatusTypeDef funcResult2;
+      |                           ^~~~~~~~~~~
+../Core/Src/main.c:98:27: warning: variable 'funcResult1' set but not used [-Wunused-but-set-variable]
+   98 |         HAL_StatusTypeDef funcResult1;
+      |                           ^~~~~~~~~~~
+arm-none-eabi-gcc -o "DeviceProcessor03.elf" @"objects.list"   -mcpu=cortex-m33 -T"C:\UBC_4TH_YEAR\ELEC-491\JY-85\project\JY85\Firmware\DeviceProcessor03\STM32U575ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DeviceProcessor03.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DeviceProcessor03.elf
+ 
+arm-none-eabi-size  DeviceProcessor03.elf 
+arm-none-eabi-objdump -h -S DeviceProcessor03.elf  > "DeviceProcessor03.list"
+   text	   data	    bss	    dec	    hex	filename
+  49072	    407	  11624	  61103	   eeaf	DeviceProcessor03.elf
+Finished building: default.size.stdout
+ 
+Finished building: DeviceProcessor03.list
+ 
+17:18:13 **** Incremental Build of configuration Debug for project DeviceProcessor03 ****
+make -j12 all 
+arm-none-eabi-size  DeviceProcessor03.elf 
+   text	   data	    bss	    dec	    hex	filename
+  49072	    407	  11624	  61103	   eeaf	DeviceProcessor03.elf
+Finished building: default.size.stdout
+ 
+17:19:37 **** Incremental Build of configuration Debug for project DeviceProcessor03 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m33 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32U575xx -c -I../Core/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32U5xx/Include -I../Drivers/CMSIS/Include -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Class/CDC/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/Device/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/Target" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/App" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:101:18: warning: variable 'dmaValCheck2' set but not used [-Wunused-but-set-variable]
+  101 |         uint16_t dmaValCheck2[500];
+      |                  ^~~~~~~~~~~~
+../Core/Src/main.c:100:18: warning: variable 'dmaValCheck1' set but not used [-Wunused-but-set-variable]
+  100 |         uint16_t dmaValCheck1[500];
+      |                  ^~~~~~~~~~~~
+../Core/Src/main.c:99:27: warning: variable 'funcResult2' set but not used [-Wunused-but-set-variable]
+   99 |         HAL_StatusTypeDef funcResult2;
+      |                           ^~~~~~~~~~~
+../Core/Src/main.c:98:27: warning: variable 'funcResult1' set but not used [-Wunused-but-set-variable]
+   98 |         HAL_StatusTypeDef funcResult1;
+      |                           ^~~~~~~~~~~
+arm-none-eabi-gcc -o "DeviceProcessor03.elf" @"objects.list"   -mcpu=cortex-m33 -T"C:\UBC_4TH_YEAR\ELEC-491\JY-85\project\JY85\Firmware\DeviceProcessor03\STM32U575ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DeviceProcessor03.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DeviceProcessor03.elf
+ 
+arm-none-eabi-size  DeviceProcessor03.elf 
+arm-none-eabi-objdump -h -S DeviceProcessor03.elf  > "DeviceProcessor03.list"
+   text	   data	    bss	    dec	    hex	filename
+  49072	    407	  11624	  61103	   eeaf	DeviceProcessor03.elf
+Finished building: default.size.stdout
+ 
+Finished building: DeviceProcessor03.list
+ 
+17:20:54 **** Incremental Build of configuration Debug for project DeviceProcessor03 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m33 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32U575xx -c -I../Core/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32U5xx/Include -I../Drivers/CMSIS/Include -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Class/CDC/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/Device/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/Target" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/App" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:149:21: error: 'hspi2W' undeclared (first use in this function); did you mean 'hspi2'?
+  149 |   HAL_SPI_Transmit(&hspi2W, SPI_TX_Buffer2, 10, 1000);
+      |                     ^~~~~~
+      |                     hspi2
+../Core/Src/main.c:149:21: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/main.c:153:56: error: 'I2C_TX_Buffer2W' undeclared (first use in this function); did you mean 'I2C_TX_Buffer2'?
+  153 |   funcResult2 = HAL_I2C_Master_Transmit(&hi2c3,0x2E<<1,I2C_TX_Buffer2W,2,1000);
+      |                                                        ^~~~~~~~~~~~~~~
+      |                                                        I2C_TX_Buffer2
+../Core/Src/main.c:101:18: warning: variable 'dmaValCheck2' set but not used [-Wunused-but-set-variable]
+  101 |         uint16_t dmaValCheck2[500];
+      |                  ^~~~~~~~~~~~
+../Core/Src/main.c:100:18: warning: variable 'dmaValCheck1' set but not used [-Wunused-but-set-variable]
+  100 |         uint16_t dmaValCheck1[500];
+      |                  ^~~~~~~~~~~~
+../Core/Src/main.c:99:27: warning: variable 'funcResult2' set but not used [-Wunused-but-set-variable]
+   99 |         HAL_StatusTypeDef funcResult2;
+      |                           ^~~~~~~~~~~
+../Core/Src/main.c:98:27: warning: variable 'funcResult1' set but not used [-Wunused-but-set-variable]
+   98 |         HAL_StatusTypeDef funcResult1;
+      |                           ^~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:34: Core/Src/main.o] Error 1
+"make -j12 all" terminated with exit code 2. Build might be incomplete.
+17:21:07 **** Incremental Build of configuration Debug for project DeviceProcessor03 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m33 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32U575xx -c -I../Core/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32U5xx/Include -I../Drivers/CMSIS/Include -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Class/CDC/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/Device/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/Target" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/App" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:101:18: warning: variable 'dmaValCheck2' set but not used [-Wunused-but-set-variable]
+  101 |         uint16_t dmaValCheck2[500];
+      |                  ^~~~~~~~~~~~
+../Core/Src/main.c:100:18: warning: variable 'dmaValCheck1' set but not used [-Wunused-but-set-variable]
+  100 |         uint16_t dmaValCheck1[500];
+      |                  ^~~~~~~~~~~~
+../Core/Src/main.c:99:27: warning: variable 'funcResult2' set but not used [-Wunused-but-set-variable]
+   99 |         HAL_StatusTypeDef funcResult2;
+      |                           ^~~~~~~~~~~
+../Core/Src/main.c:98:27: warning: variable 'funcResult1' set but not used [-Wunused-but-set-variable]
+   98 |         HAL_StatusTypeDef funcResult1;
+      |                           ^~~~~~~~~~~
+arm-none-eabi-gcc -o "DeviceProcessor03.elf" @"objects.list"   -mcpu=cortex-m33 -T"C:\UBC_4TH_YEAR\ELEC-491\JY-85\project\JY85\Firmware\DeviceProcessor03\STM32U575ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DeviceProcessor03.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DeviceProcessor03.elf
+ 
+arm-none-eabi-size  DeviceProcessor03.elf 
+arm-none-eabi-objdump -h -S DeviceProcessor03.elf  > "DeviceProcessor03.list"
+   text	   data	    bss	    dec	    hex	filename
+  49072	    407	  11624	  61103	   eeaf	DeviceProcessor03.elf
+Finished building: default.size.stdout
+ 
+Finished building: DeviceProcessor03.list
+ 
+17:25:53 **** Incremental Build of configuration Debug for project DeviceProcessor03 ****
+make -j12 all 
+arm-none-eabi-size  DeviceProcessor03.elf 
+   text	   data	    bss	    dec	    hex	filename
+  49072	    407	  11624	  61103	   eeaf	DeviceProcessor03.elf
+Finished building: default.size.stdout
+ 
+17:26:44 **** Incremental Build of configuration Debug for project DeviceProcessor03 ****
+make -j12 all 
+arm-none-eabi-size  DeviceProcessor03.elf 
+   text	   data	    bss	    dec	    hex	filename
+  49072	    407	  11624	  61103	   eeaf	DeviceProcessor03.elf
+Finished building: default.size.stdout
+ 
+17:27:43 **** Incremental Build of configuration Debug for project DeviceProcessor03 ****
+make -j12 all 
+arm-none-eabi-size  DeviceProcessor03.elf 
+   text	   data	    bss	    dec	    hex	filename
+  49072	    407	  11624	  61103	   eeaf	DeviceProcessor03.elf
+Finished building: default.size.stdout
  

@@ -19,7 +19,7 @@
 #define DVC_STATUS 					0
 #define DVC_MEASUREMENT_CONFIG  	1
 #define DVC_PROBE_CONFIG  			2
-#define DVC_SAMPLE_DATA            	100
+#define DVC_SAMPLE_DATA            	50
 
 /*
  * Enum name: Probe Configurations

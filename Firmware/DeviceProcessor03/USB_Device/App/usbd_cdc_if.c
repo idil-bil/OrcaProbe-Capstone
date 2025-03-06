@@ -23,6 +23,7 @@
 
 /* USER CODE BEGIN INCLUDE */
 #include "device_registers.h"
+#include "DeviceConstants.h"
 /* USER CODE END INCLUDE */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -262,25 +263,35 @@ static int8_t CDC_Control_FS(uint8_t cmd, uint8_t* pbuf, uint16_t length)
 static int8_t CDC_Receive_FS(uint8_t* Buf, uint32_t *Len)
 {
   /* USER CODE BEGIN 6 */
+  uint16_t Buf2[8192];
   USBD_CDC_SetRxBuffer(&hUsbDeviceFS, &Buf[0]);
   USBD_CDC_ReceivePacket(&hUsbDeviceFS);
 
-  test_cmd = (char)Buf[0];
+  for(int i = 0; i < 8192; i++){
+	  Buf2[i] = i;
+  }
 
-//  uint32_t msg_rx = (Buf[3]<<24)|(Buf[2]<<16)|(Buf[1]<<8)|(Buf[0]);
-//
-//  uint32_t addr = (msg_rx&0x7F000000)>>24;
-//  uint32_t data = (msg_rx&0x00FFFFFF);
-//  uint32_t msg_tx = 0xdeadbeef;
-//
-//  if(msg_rx&0x80000000){
-//	  set_register(&device_registers,addr,data);
-//  }
-//  else{
-//	  data = get_register(&device_registers,addr);
-//	  msg_tx = ((addr << 24)&0x7F000000) | (data&0x00FFFFFF);
-//	  CDC_Transmit_FS((uint8_t*)&msg_tx,sizeof(msg_tx));
-//  }
+//  test_cmd = (char)Buf[0];
+
+  uint32_t msg_rx = (Buf[3]<<24)|(Buf[2]<<16)|(Buf[1]<<8)|(Buf[0]);
+
+  uint32_t addr = (msg_rx&0x7F000000)>>24;
+  uint32_t data = (msg_rx&0x00FFFFFF);
+  uint32_t msg_tx = 0xdeadbeef;
+
+  if(msg_rx&0x80000000){
+	  set_register(&device_registers,addr,data);
+  }
+  else{
+	  if(addr == DVC_SAMPLE_DATA){
+		  CDC_Transmit_FS((uint8_t*)&Buf2, sizeof(Buf2));
+	  }
+	  else{
+		  data = get_register(&device_registers,addr);
+		  msg_tx = ((addr << 24)&0x7F000000) | (data&0x00FFFFFF);
+		  CDC_Transmit_FS((uint8_t*)&msg_tx, sizeof(msg_tx));
+	  }
+  }
 
   return (USBD_OK);
   /* USER CODE END 6 */

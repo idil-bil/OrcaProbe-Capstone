@@ -75,10 +75,10 @@ static void MX_SPI1_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-uint8_t I2C_TX_Buffer1[] = {60};
-uint8_t I2C_TX_Buffer2[] = {45};
-uint8_t I2C_TX_Buffer3[] = {30};
-uint8_t I2C_TX_Buffer4[] = {15};
+uint8_t I2C_TX_Buffer1[] = {0,126};
+uint8_t I2C_TX_Buffer2[] = {0,15};
+uint8_t I2C_TX_Buffer3[] = {0,30};
+uint8_t I2C_TX_Buffer4[] = {0,15};
 uint8_t SPI_TX_Buffer1[] = {0x21,0x00,0x50,0xC7,0x40,0x00,0xC0,0x00,0x20,0x00};  // 400Hz
 uint8_t SPI_TX_Buffer2[] = {0x21,0x00,0x61,0x8E,0x40,0x00,0xC0,0x00,0x20,0x00};  // 800Hz
 uint8_t SPI_TX_Buffer3[] = {0x21,0x00,0x63,0x6E,0x40,0x06,0xC0,0x00,0x20,0x00};  // 10kHz
@@ -95,7 +95,8 @@ int main(void)
 {
 
   /* USER CODE BEGIN 1 */
-	HAL_StatusTypeDef funcResult;
+	HAL_StatusTypeDef funcResult1;
+	HAL_StatusTypeDef funcResult2;
 	uint16_t dmaValCheck1[500];
 	uint16_t dmaValCheck2[500];
 	for(int i = 0; i < 500; i++){
@@ -136,61 +137,62 @@ int main(void)
   MX_USB_Device_Init();
   HAL_Delay(2000);
 //  run_device();
-  TIM8->ARR = 8-1;
+  TIM8->ARR = 32-1;
   TIM8->CCR1 = TIM8->ARR/2;
   TIM8->CCR2 = TIM8->ARR/2;
-//  TIM8->DIER = TIM_DIER_UDE;
+  TIM8->DIER = TIM_DIER_UDE;
 //  HAL_TIM_PWM_Start(&htim8, TIM_CHANNEL_2);
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  HAL_SPI_Transmit(&hspi2, SPI_TX_Buffer1, 10, 1000);
-  funcResult = HAL_I2C_Master_Transmit(&hi2c3,0x2E,I2C_TX_Buffer1,1,1000);
-  funcResult = HAL_I2C_Master_Transmit(&hi2c3,0x2E,I2C_TX_Buffer2,1,1000);
-  funcResult = HAL_I2C_Master_Transmit(&hi2c3,0x2E,I2C_TX_Buffer3,1,1000);
-  funcResult = HAL_I2C_Master_Transmit(&hi2c3,0x2E,I2C_TX_Buffer4,1,1000);
+  HAL_SPI_Transmit(&hspi2, SPI_TX_Buffer2, 10, 1000);
+  HAL_Delay(200);
+  funcResult1 = HAL_I2C_Master_Transmit(&hi2c3,0x2F<<1,I2C_TX_Buffer1,2,1000);
+  HAL_Delay(200);
+  funcResult2 = HAL_I2C_Master_Transmit(&hi2c3,0x2E<<1,I2C_TX_Buffer2,2,1000);
+  HAL_Delay(200);
   while (1)
   {
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	  if (test_cmd == '1'){
-		  HAL_GPIO_TogglePin(GPIOD, SWNT_CTRL_17_Pin);
-		  test_cmd = '0';
-	  }
-	  else if (test_cmd == '2'){
-		  HAL_GPIO_TogglePin(GPIOD, SWNT_CTRL_18_Pin);
-		  test_cmd = '0';
-	  }
-	  else if (test_cmd == '3'){
-		  HAL_GPIO_TogglePin(GPIOD, SWNT_CTRL_19_Pin);
-		  test_cmd = '0';
-	  }
-	  else if (test_cmd == '4'){
-		  HAL_GPIO_TogglePin(GPIOD, SWNT_CTRL_20_Pin);
-		  test_cmd = '0';
-	  }
-	  else if (test_cmd == '5'){
-		  HAL_GPIO_TogglePin(GPIOD, SWNT_CTRL_21_Pin);
-		  test_cmd = '0';
-	  }
-	  else if (test_cmd == '6'){
-		  HAL_DMA_Abort(&handle_GPDMA1_Channel12);
-		  HAL_Delay(1000);
-		  HAL_DMA_Start(&handle_GPDMA1_Channel12,(uint32_t)&GPIOE->IDR,(uint32_t)&dmaValCheck1,500*sizeof(uint16_t));
-		  HAL_Delay(1000);
-		  HAL_DMA_Abort(&handle_GPDMA1_Channel12);
-		  test_cmd = '0';
-	  }
-	  else if (test_cmd == '7'){
-		  HAL_DMA_Abort(&handle_GPDMA1_Channel12);
-		  HAL_Delay(1000);
-		  HAL_DMA_Start(&handle_GPDMA1_Channel12,(uint32_t)&GPIOF->IDR,(uint32_t)&dmaValCheck2,500*sizeof(uint16_t));
-		  HAL_Delay(1000);
-		  HAL_DMA_Abort(&handle_GPDMA1_Channel12);
-		  test_cmd = '0';
-	  }
+//	  if (test_cmd == '1'){
+//		  HAL_GPIO_TogglePin(GPIOD, SWNT_CTRL_17_Pin);
+//		  test_cmd = '0';
+//	  }
+//	  else if (test_cmd == '2'){
+//		  HAL_GPIO_TogglePin(GPIOD, SWNT_CTRL_18_Pin);
+//		  test_cmd = '0';
+//	  }
+//	  else if (test_cmd == '3'){
+//		  HAL_GPIO_TogglePin(GPIOD, SWNT_CTRL_19_Pin);
+//		  test_cmd = '0';
+//	  }
+//	  else if (test_cmd == '4'){
+//		  HAL_GPIO_TogglePin(GPIOD, SWNT_CTRL_20_Pin);
+//		  test_cmd = '0';
+//	  }
+//	  else if (test_cmd == '5'){
+//		  HAL_GPIO_TogglePin(GPIOD, SWNT_CTRL_21_Pin);
+//		  test_cmd = '0';
+//	  }
+//	  else if (test_cmd == '6'){
+//		  HAL_DMA_Abort(&handle_GPDMA1_Channel12);
+//		  HAL_Delay(1000);
+//		  HAL_DMA_Start(&handle_GPDMA1_Channel12,(uint32_t)&GPIOE->IDR,(uint32_t)&dmaValCheck1,500*sizeof(uint16_t));
+//		  HAL_Delay(1000);
+//		  HAL_DMA_Abort(&handle_GPDMA1_Channel12);
+//		  test_cmd = '0';
+//	  }
+//	  else if (test_cmd == '7'){
+//		  HAL_DMA_Abort(&handle_GPDMA1_Channel12);
+//		  HAL_Delay(1000);
+//		  HAL_DMA_Start(&handle_GPDMA1_Channel12,(uint32_t)&GPIOF->IDR,(uint32_t)&dmaValCheck2,500*sizeof(uint16_t));
+//		  HAL_Delay(1000);
+//		  HAL_DMA_Abort(&handle_GPDMA1_Channel12);
+//		  test_cmd = '0';
+//	  }
   }
   /* USER CODE END 3 */
 }
