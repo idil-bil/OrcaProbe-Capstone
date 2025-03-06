@@ -1005,7 +1005,6 @@ class MainWindow(QMainWindow):
         for index in range(self.page_widget.count()):
             page = self.page_widget.widget(index)
             if page.objectName() == "DC Resistance":
-                # Find all input fields in the page layout
                 selected_probes = self.get_selected_probes(2)
                 self.config_selected_probes(selected_probes,reg_map)
                 reg_map.DVC_MEASUREMENT_CONFIG.Start_Measure[0] = 1
@@ -1022,25 +1021,6 @@ class MainWindow(QMainWindow):
                 current = 3
                 result = dc_resistance(voltage, current)
                 # self.timer.start(100)  # Check every 100ms
-
-    # def start_current_voltage_inputs(self):
-    #     # Find the measurement page
-    #     for index in range(self.page_widget.count()):
-    #         page = self.page_widget.widget(index)
-    #         if page.objectName() == "Current-Voltage":
-    #             # Find all input fields in the page layout
-    #             inputs = page.findChildren(QLineEdit)
-    #             input_values = [input_field.text() for input_field in inputs]
-    #             print(page.objectName(), "Input Values:", input_values)
-    #             selected_probes = self.get_selected_probes(2)
-    #             self.config_selected_probes(selected_probes,reg_map)
-    #             reg_map.DVC_MEASUREMENT_CONFIG.Start_Measure[0] = 1
-    #             reg_map.DVC_MEASUREMENT_CONFIG.Stop_Measure[0] = 0
-    #             reg_map.DVC_MEASUREMENT_CONFIG.Measure_In_Progress[0] = 0
-    #             reg_map.DVC_MEASUREMENT_CONFIG.Valid_Measure_Config[0] = 0
-    #             reg_map.DVC_MEASUREMENT_CONFIG.Measure_Probe_Config[0] = GUI_2PROBES
-    #             reg_map.DVC_MEASUREMENT_CONFIG.Measure_Type_Config[0] = GUI_CURRENT_VOLTAGE
-    #             # write_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
 
     def start_current_voltage_inputs(self):
         """Starts the Current-Voltage measurement and embeds the graph in the GUI."""
@@ -1064,11 +1044,13 @@ class MainWindow(QMainWindow):
 
                     # Configure measurement (Dummy Config)
                     selected_probes = self.get_selected_probes(2)
-                    self.config_selected_probes(selected_probes, reg_map)
-
+                    self.config_selected_probes(selected_probes,reg_map)
                     reg_map.DVC_MEASUREMENT_CONFIG.Start_Measure[0] = 1
+                    reg_map.DVC_MEASUREMENT_CONFIG.Stop_Measure[0] = 0
+                    reg_map.DVC_MEASUREMENT_CONFIG.Measure_In_Progress[0] = 0
+                    reg_map.DVC_MEASUREMENT_CONFIG.Valid_Measure_Config[0] = 0
                     reg_map.DVC_MEASUREMENT_CONFIG.Measure_Probe_Config[0] = GUI_2PROBES
-                    reg_map.DVC_MEASUREMENT_CONFIG.Measure_Type_Config[0] = GUI_CURRENT_VOLTAGE
+                    reg_map.DVC_MEASUREMENT_CONFIG.Measure_Type_Config[0] = GUI_DC_RESISTANCE
                     # write_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
 
                     # Generate sweep values
@@ -1098,9 +1080,12 @@ class MainWindow(QMainWindow):
                 selected_probes = self.get_selected_probes(2)
                 self.config_selected_probes(selected_probes,reg_map)
                 reg_map.DVC_MEASUREMENT_CONFIG.Start_Measure[0] = 1
+                reg_map.DVC_MEASUREMENT_CONFIG.Stop_Measure[0] = 0
+                reg_map.DVC_MEASUREMENT_CONFIG.Measure_In_Progress[0] = 0
+                reg_map.DVC_MEASUREMENT_CONFIG.Valid_Measure_Config[0] = 0
                 reg_map.DVC_MEASUREMENT_CONFIG.Measure_Probe_Config[0] = GUI_2PROBES
-                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Type_Config[0] = GUI_CAPACITANCE_VOLTAGE_2P
-                # write_reg_DVC_MEASUREMENT_CONFIG(reg_map)
+                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Type_Config[0] = GUI_DC_RESISTANCE
+                # write_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
 
     def start_impedance_spectroscopy_2p_inputs(self):
         # Find the measurement page
@@ -1114,9 +1099,12 @@ class MainWindow(QMainWindow):
                 selected_probes = self.get_selected_probes(2)
                 self.config_selected_probes(selected_probes,reg_map)
                 reg_map.DVC_MEASUREMENT_CONFIG.Start_Measure[0] = 1
+                reg_map.DVC_MEASUREMENT_CONFIG.Stop_Measure[0] = 0
+                reg_map.DVC_MEASUREMENT_CONFIG.Measure_In_Progress[0] = 0
+                reg_map.DVC_MEASUREMENT_CONFIG.Valid_Measure_Config[0] = 0
                 reg_map.DVC_MEASUREMENT_CONFIG.Measure_Probe_Config[0] = GUI_2PROBES
-                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Type_Config[0] = GUI_IMPEDANCE_SPECTROSCOPY_2P
-                # write_reg_DVC_MEASUREMENT_CONFIG(reg_map)
+                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Type_Config[0] = GUI_DC_RESISTANCE
+                # write_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
 
     def start_transfer_characteristics_inputs(self):
         # Find the measurement page
@@ -1127,12 +1115,15 @@ class MainWindow(QMainWindow):
                 inputs = page.findChildren(QLineEdit)
                 input_values = [input_field.text() for input_field in inputs]
                 print(page.objectName(), "Input Values:", input_values)
-                selected_probes = self.get_selected_probes(3)
+                selected_probes = self.get_selected_probes(2)
                 self.config_selected_probes(selected_probes,reg_map)
                 reg_map.DVC_MEASUREMENT_CONFIG.Start_Measure[0] = 1
-                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Probe_Config[0] = GUI_3PROBES
-                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Type_Config[0] = GUI_TRANSFER_CHARACTERISTICS
-                # write_reg_DVC_MEASUREMENT_CONFIG(reg_map)
+                reg_map.DVC_MEASUREMENT_CONFIG.Stop_Measure[0] = 0
+                reg_map.DVC_MEASUREMENT_CONFIG.Measure_In_Progress[0] = 0
+                reg_map.DVC_MEASUREMENT_CONFIG.Valid_Measure_Config[0] = 0
+                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Probe_Config[0] = GUI_2PROBES
+                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Type_Config[0] = GUI_DC_RESISTANCE
+                # write_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
 
     def start_output_characteristics_inputs(self):
         # Find the measurement page
@@ -1143,12 +1134,15 @@ class MainWindow(QMainWindow):
                 inputs = page.findChildren(QLineEdit)
                 input_values = [input_field.text() for input_field in inputs]
                 print(page.objectName(), "Input Values:", input_values)
-                selected_probes = self.get_selected_probes(3)
+                selected_probes = self.get_selected_probes(2)
                 self.config_selected_probes(selected_probes,reg_map)
                 reg_map.DVC_MEASUREMENT_CONFIG.Start_Measure[0] = 1
-                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Probe_Config[0] = GUI_3PROBES
-                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Type_Config[0] = GUI_OUTPUT_CHARACTERISTICS
-                # write_reg_DVC_MEASUREMENT_CONFIG(reg_map)
+                reg_map.DVC_MEASUREMENT_CONFIG.Stop_Measure[0] = 0
+                reg_map.DVC_MEASUREMENT_CONFIG.Measure_In_Progress[0] = 0
+                reg_map.DVC_MEASUREMENT_CONFIG.Valid_Measure_Config[0] = 0
+                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Probe_Config[0] = GUI_2PROBES
+                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Type_Config[0] = GUI_DC_RESISTANCE
+                # write_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
 
     def start_capacitance_voltage_3p_inputs(self):
         # Find the measurement page
@@ -1159,12 +1153,15 @@ class MainWindow(QMainWindow):
                 inputs = page.findChildren(QLineEdit)
                 input_values = [input_field.text() for input_field in inputs]
                 print(page.objectName(), "Input Values:", input_values)
-                selected_probes = self.get_selected_probes(3)
+                selected_probes = self.get_selected_probes(2)
                 self.config_selected_probes(selected_probes,reg_map)
                 reg_map.DVC_MEASUREMENT_CONFIG.Start_Measure[0] = 1
-                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Probe_Config[0] = GUI_3PROBES
-                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Type_Config[0] = GUI_CAPACITANCE_VOLTAGE_3P
-                # write_reg_DVC_MEASUREMENT_CONFIG(reg_map)
+                reg_map.DVC_MEASUREMENT_CONFIG.Stop_Measure[0] = 0
+                reg_map.DVC_MEASUREMENT_CONFIG.Measure_In_Progress[0] = 0
+                reg_map.DVC_MEASUREMENT_CONFIG.Valid_Measure_Config[0] = 0
+                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Probe_Config[0] = GUI_2PROBES
+                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Type_Config[0] = GUI_DC_RESISTANCE
+                # write_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
 
     def start_electrochemical_inputs(self):
         # Find the measurement page
@@ -1175,36 +1172,45 @@ class MainWindow(QMainWindow):
                 inputs = page.findChildren(QLineEdit)
                 input_values = [input_field.text() for input_field in inputs]
                 print(page.objectName(), "Input Values:", input_values)
-                selected_probes = self.get_selected_probes(3)
+                selected_probes = self.get_selected_probes(2)
                 self.config_selected_probes(selected_probes,reg_map)
                 reg_map.DVC_MEASUREMENT_CONFIG.Start_Measure[0] = 1
-                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Probe_Config[0] = GUI_3PROBES
-                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Type_Config[0] = GUI_ELECTROCHEMICAL
-                # write_reg_DVC_MEASUREMENT_CONFIG(reg_map)
+                reg_map.DVC_MEASUREMENT_CONFIG.Stop_Measure[0] = 0
+                reg_map.DVC_MEASUREMENT_CONFIG.Measure_In_Progress[0] = 0
+                reg_map.DVC_MEASUREMENT_CONFIG.Valid_Measure_Config[0] = 0
+                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Probe_Config[0] = GUI_2PROBES
+                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Type_Config[0] = GUI_DC_RESISTANCE
+                # write_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
 
     def start_probe_resistance_inputs(self):
         # Find the measurement page
         for index in range(self.page_widget.count()):
             page = self.page_widget.widget(index)
             if page.objectName() == "Probe Resistance":
-                selected_probes = self.get_selected_probes(4)
+                selected_probes = self.get_selected_probes(2)
                 self.config_selected_probes(selected_probes,reg_map)
                 reg_map.DVC_MEASUREMENT_CONFIG.Start_Measure[0] = 1
-                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Probe_Config[0] = GUI_4PROBES
-                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Type_Config[0] = GUI_PROBE_RESISTANCE
-                # write_reg_DVC_MEASUREMENT_CONFIG(reg_map)
+                reg_map.DVC_MEASUREMENT_CONFIG.Stop_Measure[0] = 0
+                reg_map.DVC_MEASUREMENT_CONFIG.Measure_In_Progress[0] = 0
+                reg_map.DVC_MEASUREMENT_CONFIG.Valid_Measure_Config[0] = 0
+                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Probe_Config[0] = GUI_2PROBES
+                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Type_Config[0] = GUI_DC_RESISTANCE
+                # write_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
 
     def start_low_resistance_inputs(self):
         # Find the measurement page
         for index in range(self.page_widget.count()):
             page = self.page_widget.widget(index)
             if page.objectName() == "Low-Resistance":
-                selected_probes = self.get_selected_probes(4)
+                selected_probes = self.get_selected_probes(2)
                 self.config_selected_probes(selected_probes,reg_map)
                 reg_map.DVC_MEASUREMENT_CONFIG.Start_Measure[0] = 1
-                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Probe_Config[0] = GUI_4PROBES
-                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Type_Config[0] = GUI_LOW_RESISTANCE
-                # write_reg_DVC_MEASUREMENT_CONFIG(reg_map)
+                reg_map.DVC_MEASUREMENT_CONFIG.Stop_Measure[0] = 0
+                reg_map.DVC_MEASUREMENT_CONFIG.Measure_In_Progress[0] = 0
+                reg_map.DVC_MEASUREMENT_CONFIG.Valid_Measure_Config[0] = 0
+                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Probe_Config[0] = GUI_2PROBES
+                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Type_Config[0] = GUI_DC_RESISTANCE
+                # write_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
 
     def start_impedance_spectroscopy_4p_inputs(self):
         # Find the measurement page
@@ -1215,12 +1221,15 @@ class MainWindow(QMainWindow):
                 inputs = page.findChildren(QLineEdit)
                 input_values = [input_field.text() for input_field in inputs]
                 print(page.objectName(), "Input Values:", input_values)
-                selected_probes = self.get_selected_probes(4)
+                selected_probes = self.get_selected_probes(2)
                 self.config_selected_probes(selected_probes,reg_map)
                 reg_map.DVC_MEASUREMENT_CONFIG.Start_Measure[0] = 1
-                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Probe_Config[0] = GUI_4PROBES
-                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Type_Config[0] = GUI_IMPEDANCE_SPECTROSCOPY_4P
-                # write_reg_DVC_MEASUREMENT_CONFIG(reg_map)
+                reg_map.DVC_MEASUREMENT_CONFIG.Stop_Measure[0] = 0
+                reg_map.DVC_MEASUREMENT_CONFIG.Measure_In_Progress[0] = 0
+                reg_map.DVC_MEASUREMENT_CONFIG.Valid_Measure_Config[0] = 0
+                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Probe_Config[0] = GUI_2PROBES
+                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Type_Config[0] = GUI_DC_RESISTANCE
+                # write_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
 
     def get_selected_probes(self, required_probes):
         """Fetch selected probes ensuring only one dropdown per probe is non-default 
