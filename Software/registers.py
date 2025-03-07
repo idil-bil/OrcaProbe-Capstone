@@ -18,24 +18,28 @@ DVC_2PM_IMPSPEC_5 = 0xF  # Address in decimal: 15
 DVC_3PM_TRANSCHAR_1 = 0x10  # Address in decimal: 16
 DVC_3PM_TRANSCHAR_2 = 0x11  # Address in decimal: 17
 DVC_3PM_TRANSCHAR_3 = 0x12  # Address in decimal: 18
-DVC_3PM_OUTCHAR_1 = 0x13  # Address in decimal: 19
-DVC_3PM_OUTCHAR_2 = 0x14  # Address in decimal: 20
-DVC_3PM_OUTCHAR_3 = 0x15  # Address in decimal: 21
-DVC_3PM_CAPVOLT_1 = 0x16  # Address in decimal: 22
-DVC_3PM_CAPVOLT_2 = 0x17  # Address in decimal: 23
-DVC_3PM_CAPVOLT_3 = 0x18  # Address in decimal: 24
-DVC_3PM_ELECHEM_1 = 0x19  # Address in decimal: 25
-DVC_3PM_ELECHEM_2 = 0x1A  # Address in decimal: 26
-DVC_3PM_ELECHEM_3 = 0x1B  # Address in decimal: 27
-DVC_3PM_ELECHEM_4 = 0x1C  # Address in decimal: 28
-DVC_3PM_ELECHEM_5 = 0x1D  # Address in decimal: 29
-DVC_4PM_PROBERESISTANCE_1 = 0x1E  # Address in decimal: 30
-DVC_2PM_LOWRESISTANCE_1 = 0x1F  # Address in decimal: 31
-DVC_4PM_IMPSPEC_1 = 0x20  # Address in decimal: 32
-DVC_4PM_IMPSPEC_2 = 0x21  # Address in decimal: 33
-DVC_4PM_IMPSPEC_3 = 0x22  # Address in decimal: 34
-DVC_4PM_IMPSPEC_4 = 0x23  # Address in decimal: 35
-DVC_4PM_IMPSPEC_5 = 0x24  # Address in decimal: 36
+DVC_3PM_TRANSCHAR_4 = 0x13  # Address in decimal: 19
+DVC_3PM_TRANSCHAR_5 = 0x14  # Address in decimal: 20
+DVC_3PM_OUTCHAR_1 = 0x15  # Address in decimal: 21
+DVC_3PM_OUTCHAR_2 = 0x16  # Address in decimal: 22
+DVC_3PM_OUTCHAR_3 = 0x17  # Address in decimal: 23
+DVC_3PM_OUTCHAR_4 = 0x18  # Address in decimal: 24
+DVC_3PM_OUTCHAR_5 = 0x19  # Address in decimal: 25
+DVC_3PM_CAPVOLT_1 = 0x1A  # Address in decimal: 26
+DVC_3PM_CAPVOLT_2 = 0x1B  # Address in decimal: 27
+DVC_3PM_CAPVOLT_3 = 0x1C  # Address in decimal: 28
+DVC_3PM_ELECHEM_1 = 0x1D  # Address in decimal: 29
+DVC_3PM_ELECHEM_2 = 0x1E  # Address in decimal: 30
+DVC_3PM_ELECHEM_3 = 0x1F  # Address in decimal: 31
+DVC_3PM_ELECHEM_4 = 0x20  # Address in decimal: 32
+DVC_3PM_ELECHEM_5 = 0x21  # Address in decimal: 33
+DVC_4PM_PROBERESISTANCE_1 = 0x22  # Address in decimal: 34
+DVC_2PM_LOWRESISTANCE_1 = 0x23  # Address in decimal: 35
+DVC_4PM_IMPSPEC_1 = 0x24  # Address in decimal: 36
+DVC_4PM_IMPSPEC_2 = 0x25  # Address in decimal: 37
+DVC_4PM_IMPSPEC_3 = 0x26  # Address in decimal: 38
+DVC_4PM_IMPSPEC_4 = 0x27  # Address in decimal: 39
+DVC_4PM_IMPSPEC_5 = 0x28  # Address in decimal: 40
 DVC_FLUSH_SAMPLE_DATA_1 = 0x64  # Address in decimal: 100
 DVC_FLUSH_SAMPLE_DATA_2 = 0x65  # Address in decimal: 101
 DVC_FLUSH_SAMPLE_DATA_3 = 0x66  # Address in decimal: 102
@@ -128,28 +132,48 @@ DVC_2PM_IMPSPEC_5_Min_Peak_Volt_POSITION = 0
 DVC_2PM_IMPSPEC_5_Min_Peak_Volt_LENGTH = 24
 
 # DVC_3PM_TRANSCHAR_1
-DVC_3PM_TRANSCHAR_1_Starting_Volt_POSITION = 0
-DVC_3PM_TRANSCHAR_1_Starting_Volt_LENGTH = 24
+DVC_3PM_TRANSCHAR_1_Gate_Probe_POSITION = 0
+DVC_3PM_TRANSCHAR_1_Gate_Probe_LENGTH = 24
+DVC_3PM_TRANSCHAR_1_Drain_Probe_POSITION = 0
+DVC_3PM_TRANSCHAR_1_Drain_Probe_LENGTH = 24
 
 # DVC_3PM_TRANSCHAR_2
-DVC_3PM_TRANSCHAR_2_Ending_Volt_POSITION = 0
-DVC_3PM_TRANSCHAR_2_Ending_Volt_LENGTH = 24
+DVC_3PM_TRANSCHAR_2_Drain_Volt_POSITION = 0
+DVC_3PM_TRANSCHAR_2_Drain_Volt_LENGTH = 24
 
 # DVC_3PM_TRANSCHAR_3
-DVC_3PM_TRANSCHAR_3_Increment_Volt_POSITION = 0
-DVC_3PM_TRANSCHAR_3_Increment_Volt_LENGTH = 24
+DVC_3PM_TRANSCHAR_3_Starting_Volt_POSITION = 0
+DVC_3PM_TRANSCHAR_3_Starting_Volt_LENGTH = 24
+
+# DVC_3PM_TRANSCHAR_4
+DVC_3PM_TRANSCHAR_4_Ending_Volt_POSITION = 0
+DVC_3PM_TRANSCHAR_4_Ending_Volt_LENGTH = 24
+
+# DVC_3PM_TRANSCHAR_5
+DVC_3PM_TRANSCHAR_5_Increment_Volt_POSITION = 0
+DVC_3PM_TRANSCHAR_5_Increment_Volt_LENGTH = 24
 
 # DVC_3PM_OUTCHAR_1
-DVC_3PM_OUTCHAR_1_Starting_Volt_POSITION = 0
-DVC_3PM_OUTCHAR_1_Starting_Volt_LENGTH = 24
+DVC_3PM_OUTCHAR_1_Gate_Probe_POSITION = 0
+DVC_3PM_OUTCHAR_1_Gate_Probe_LENGTH = 24
+DVC_3PM_OUTCHAR_1_Drain_Probe_POSITION = 0
+DVC_3PM_OUTCHAR_1_Drain_Probe_LENGTH = 24
 
 # DVC_3PM_OUTCHAR_2
-DVC_3PM_OUTCHAR_2_Ending_Volt_POSITION = 0
-DVC_3PM_OUTCHAR_2_Ending_Volt_LENGTH = 24
+DVC_3PM_OUTCHAR_2_Gate_Volt_POSITION = 0
+DVC_3PM_OUTCHAR_2_Gate_Volt_LENGTH = 24
 
 # DVC_3PM_OUTCHAR_3
-DVC_3PM_OUTCHAR_3_Increment_Volt_POSITION = 0
-DVC_3PM_OUTCHAR_3_Increment_Volt_LENGTH = 24
+DVC_3PM_OUTCHAR_3_Starting_Volt_POSITION = 0
+DVC_3PM_OUTCHAR_3_Starting_Volt_LENGTH = 24
+
+# DVC_3PM_OUTCHAR_4
+DVC_3PM_OUTCHAR_4_Ending_Volt_POSITION = 0
+DVC_3PM_OUTCHAR_4_Ending_Volt_LENGTH = 24
+
+# DVC_3PM_OUTCHAR_5
+DVC_3PM_OUTCHAR_5_Increment_Volt_POSITION = 0
+DVC_3PM_OUTCHAR_5_Increment_Volt_LENGTH = 24
 
 # DVC_3PM_CAPVOLT_1
 DVC_3PM_CAPVOLT_1_Starting_Volt_POSITION = 0
@@ -301,27 +325,45 @@ class DVC_DVC_2PM_IMPSPEC_5:
 
 class DVC_DVC_3PM_TRANSCHAR_1:
     def __init__(self):
-        self.Starting_Volt = [0xDEAD,DVC_3PM_TRANSCHAR_1_Starting_Volt_POSITION, DVC_3PM_TRANSCHAR_1_Starting_Volt_LENGTH]
+        self.Gate_Probe = [0xDEAD,DVC_3PM_TRANSCHAR_1_Gate_Probe_POSITION, DVC_3PM_TRANSCHAR_1_Gate_Probe_LENGTH]
+        self.Drain_Probe = [0xDEAD,DVC_3PM_TRANSCHAR_1_Drain_Probe_POSITION, DVC_3PM_TRANSCHAR_1_Drain_Probe_LENGTH]
 
 class DVC_DVC_3PM_TRANSCHAR_2:
     def __init__(self):
-        self.Ending_Volt = [0xDEAD,DVC_3PM_TRANSCHAR_2_Ending_Volt_POSITION, DVC_3PM_TRANSCHAR_2_Ending_Volt_LENGTH]
+        self.Drain_Volt = [0xDEAD,DVC_3PM_TRANSCHAR_2_Drain_Volt_POSITION, DVC_3PM_TRANSCHAR_2_Drain_Volt_LENGTH]
 
 class DVC_DVC_3PM_TRANSCHAR_3:
     def __init__(self):
-        self.Increment_Volt = [0xDEAD,DVC_3PM_TRANSCHAR_3_Increment_Volt_POSITION, DVC_3PM_TRANSCHAR_3_Increment_Volt_LENGTH]
+        self.Starting_Volt = [0xDEAD,DVC_3PM_TRANSCHAR_3_Starting_Volt_POSITION, DVC_3PM_TRANSCHAR_3_Starting_Volt_LENGTH]
+
+class DVC_DVC_3PM_TRANSCHAR_4:
+    def __init__(self):
+        self.Ending_Volt = [0xDEAD,DVC_3PM_TRANSCHAR_4_Ending_Volt_POSITION, DVC_3PM_TRANSCHAR_4_Ending_Volt_LENGTH]
+
+class DVC_DVC_3PM_TRANSCHAR_5:
+    def __init__(self):
+        self.Increment_Volt = [0xDEAD,DVC_3PM_TRANSCHAR_5_Increment_Volt_POSITION, DVC_3PM_TRANSCHAR_5_Increment_Volt_LENGTH]
 
 class DVC_DVC_3PM_OUTCHAR_1:
     def __init__(self):
-        self.Starting_Volt = [0xDEAD,DVC_3PM_OUTCHAR_1_Starting_Volt_POSITION, DVC_3PM_OUTCHAR_1_Starting_Volt_LENGTH]
+        self.Gate_Probe = [0xDEAD,DVC_3PM_OUTCHAR_1_Gate_Probe_POSITION, DVC_3PM_OUTCHAR_1_Gate_Probe_LENGTH]
+        self.Drain_Probe = [0xDEAD,DVC_3PM_OUTCHAR_1_Drain_Probe_POSITION, DVC_3PM_OUTCHAR_1_Drain_Probe_LENGTH]
 
 class DVC_DVC_3PM_OUTCHAR_2:
     def __init__(self):
-        self.Ending_Volt = [0xDEAD,DVC_3PM_OUTCHAR_2_Ending_Volt_POSITION, DVC_3PM_OUTCHAR_2_Ending_Volt_LENGTH]
+        self.Gate_Volt = [0xDEAD,DVC_3PM_OUTCHAR_2_Gate_Volt_POSITION, DVC_3PM_OUTCHAR_2_Gate_Volt_LENGTH]
 
 class DVC_DVC_3PM_OUTCHAR_3:
     def __init__(self):
-        self.Increment_Volt = [0xDEAD,DVC_3PM_OUTCHAR_3_Increment_Volt_POSITION, DVC_3PM_OUTCHAR_3_Increment_Volt_LENGTH]
+        self.Starting_Volt = [0xDEAD,DVC_3PM_OUTCHAR_3_Starting_Volt_POSITION, DVC_3PM_OUTCHAR_3_Starting_Volt_LENGTH]
+
+class DVC_DVC_3PM_OUTCHAR_4:
+    def __init__(self):
+        self.Ending_Volt = [0xDEAD,DVC_3PM_OUTCHAR_4_Ending_Volt_POSITION, DVC_3PM_OUTCHAR_4_Ending_Volt_LENGTH]
+
+class DVC_DVC_3PM_OUTCHAR_5:
+    def __init__(self):
+        self.Increment_Volt = [0xDEAD,DVC_3PM_OUTCHAR_5_Increment_Volt_POSITION, DVC_3PM_OUTCHAR_5_Increment_Volt_LENGTH]
 
 class DVC_DVC_3PM_CAPVOLT_1:
     def __init__(self):
@@ -416,9 +458,13 @@ class DVC_RegisterMap:
         self.DVC_3PM_TRANSCHAR_1 = DVC_DVC_3PM_TRANSCHAR_1()
         self.DVC_3PM_TRANSCHAR_2 = DVC_DVC_3PM_TRANSCHAR_2()
         self.DVC_3PM_TRANSCHAR_3 = DVC_DVC_3PM_TRANSCHAR_3()
+        self.DVC_3PM_TRANSCHAR_4 = DVC_DVC_3PM_TRANSCHAR_4()
+        self.DVC_3PM_TRANSCHAR_5 = DVC_DVC_3PM_TRANSCHAR_5()
         self.DVC_3PM_OUTCHAR_1 = DVC_DVC_3PM_OUTCHAR_1()
         self.DVC_3PM_OUTCHAR_2 = DVC_DVC_3PM_OUTCHAR_2()
         self.DVC_3PM_OUTCHAR_3 = DVC_DVC_3PM_OUTCHAR_3()
+        self.DVC_3PM_OUTCHAR_4 = DVC_DVC_3PM_OUTCHAR_4()
+        self.DVC_3PM_OUTCHAR_5 = DVC_DVC_3PM_OUTCHAR_5()
         self.DVC_3PM_CAPVOLT_1 = DVC_DVC_3PM_CAPVOLT_1()
         self.DVC_3PM_CAPVOLT_2 = DVC_DVC_3PM_CAPVOLT_2()
         self.DVC_3PM_CAPVOLT_3 = DVC_DVC_3PM_CAPVOLT_3()
