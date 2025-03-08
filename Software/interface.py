@@ -95,27 +95,45 @@ def write_reg_DVC_2PM_IMPSPEC_5(ser, reg_map):
 
 def write_reg_DVC_3PM_TRANSCHAR_1(ser, reg_map):
     write_register(ser, DVC_3PM_TRANSCHAR_1, 
-                  (reg_map.DVC_3PM_TRANSCHAR_1.Starting_Volt[0] << reg_map.DVC_3PM_TRANSCHAR_1.Starting_Volt[1]))
+                  (reg_map.DVC_3PM_TRANSCHAR_1.Gate_Probe[0] << reg_map.DVC_3PM_TRANSCHAR_1.Gate_Probe[1])
+                 |(reg_map.DVC_3PM_TRANSCHAR_1.Drain_Probe[0] << reg_map.DVC_3PM_TRANSCHAR_1.Drain_Probe[1]))
 
 def write_reg_DVC_3PM_TRANSCHAR_2(ser, reg_map):
     write_register(ser, DVC_3PM_TRANSCHAR_2, 
-                  (reg_map.DVC_3PM_TRANSCHAR_2.Ending_Volt[0] << reg_map.DVC_3PM_TRANSCHAR_2.Ending_Volt[1]))
+                  (reg_map.DVC_3PM_TRANSCHAR_2.Drain_Volt[0] << reg_map.DVC_3PM_TRANSCHAR_2.Drain_Volt[1]))
 
 def write_reg_DVC_3PM_TRANSCHAR_3(ser, reg_map):
     write_register(ser, DVC_3PM_TRANSCHAR_3, 
-                  (reg_map.DVC_3PM_TRANSCHAR_3.Increment_Volt[0] << reg_map.DVC_3PM_TRANSCHAR_3.Increment_Volt[1]))
+                  (reg_map.DVC_3PM_TRANSCHAR_3.Starting_Volt[0] << reg_map.DVC_3PM_TRANSCHAR_3.Starting_Volt[1]))
+
+def write_reg_DVC_3PM_TRANSCHAR_4(ser, reg_map):
+    write_register(ser, DVC_3PM_TRANSCHAR_4, 
+                  (reg_map.DVC_3PM_TRANSCHAR_4.Ending_Volt[0] << reg_map.DVC_3PM_TRANSCHAR_4.Ending_Volt[1]))
+
+def write_reg_DVC_3PM_TRANSCHAR_5(ser, reg_map):
+    write_register(ser, DVC_3PM_TRANSCHAR_5, 
+                  (reg_map.DVC_3PM_TRANSCHAR_5.Increment_Volt[0] << reg_map.DVC_3PM_TRANSCHAR_5.Increment_Volt[1]))
 
 def write_reg_DVC_3PM_OUTCHAR_1(ser, reg_map):
     write_register(ser, DVC_3PM_OUTCHAR_1, 
-                  (reg_map.DVC_3PM_OUTCHAR_1.Starting_Volt[0] << reg_map.DVC_3PM_OUTCHAR_1.Starting_Volt[1]))
+                  (reg_map.DVC_3PM_OUTCHAR_1.Gate_Probe[0] << reg_map.DVC_3PM_OUTCHAR_1.Gate_Probe[1])
+                 |(reg_map.DVC_3PM_OUTCHAR_1.Drain_Probe[0] << reg_map.DVC_3PM_OUTCHAR_1.Drain_Probe[1]))
 
 def write_reg_DVC_3PM_OUTCHAR_2(ser, reg_map):
     write_register(ser, DVC_3PM_OUTCHAR_2, 
-                  (reg_map.DVC_3PM_OUTCHAR_2.Ending_Volt[0] << reg_map.DVC_3PM_OUTCHAR_2.Ending_Volt[1]))
+                  (reg_map.DVC_3PM_OUTCHAR_2.Gate_Volt[0] << reg_map.DVC_3PM_OUTCHAR_2.Gate_Volt[1]))
 
 def write_reg_DVC_3PM_OUTCHAR_3(ser, reg_map):
     write_register(ser, DVC_3PM_OUTCHAR_3, 
-                  (reg_map.DVC_3PM_OUTCHAR_3.Increment_Volt[0] << reg_map.DVC_3PM_OUTCHAR_3.Increment_Volt[1]))
+                  (reg_map.DVC_3PM_OUTCHAR_3.Starting_Volt[0] << reg_map.DVC_3PM_OUTCHAR_3.Starting_Volt[1]))
+
+def write_reg_DVC_3PM_OUTCHAR_4(ser, reg_map):
+    write_register(ser, DVC_3PM_OUTCHAR_4, 
+                  (reg_map.DVC_3PM_OUTCHAR_4.Ending_Volt[0] << reg_map.DVC_3PM_OUTCHAR_4.Ending_Volt[1]))
+
+def write_reg_DVC_3PM_OUTCHAR_5(ser, reg_map):
+    write_register(ser, DVC_3PM_OUTCHAR_5, 
+                  (reg_map.DVC_3PM_OUTCHAR_5.Increment_Volt[0] << reg_map.DVC_3PM_OUTCHAR_5.Increment_Volt[1]))
 
 def write_reg_DVC_3PM_CAPVOLT_1(ser, reg_map):
     write_register(ser, DVC_3PM_CAPVOLT_1, 
@@ -266,27 +284,45 @@ def read_reg_DVC_2PM_IMPSPEC_5(ser, reg_map):
 
 def read_reg_DVC_3PM_TRANSCHAR_1(ser, reg_map):
     valR = read_register(ser, DVC_3PM_TRANSCHAR_1)
-    reg_map.DVC_3PM_TRANSCHAR_1.Starting_Volt[0] = (valR >> reg_map.DVC_3PM_TRANSCHAR_1.Starting_Volt[1]) & ((1 << reg_map.DVC_3PM_TRANSCHAR_1.Starting_Volt[2]) - 1)
+    reg_map.DVC_3PM_TRANSCHAR_1.Gate_Probe[0] = (valR >> reg_map.DVC_3PM_TRANSCHAR_1.Gate_Probe[1]) & ((1 << reg_map.DVC_3PM_TRANSCHAR_1.Gate_Probe[2]) - 1)
+    reg_map.DVC_3PM_TRANSCHAR_1.Drain_Probe[0] = (valR >> reg_map.DVC_3PM_TRANSCHAR_1.Drain_Probe[1]) & ((1 << reg_map.DVC_3PM_TRANSCHAR_1.Drain_Probe[2]) - 1)
 
 def read_reg_DVC_3PM_TRANSCHAR_2(ser, reg_map):
     valR = read_register(ser, DVC_3PM_TRANSCHAR_2)
-    reg_map.DVC_3PM_TRANSCHAR_2.Ending_Volt[0] = (valR >> reg_map.DVC_3PM_TRANSCHAR_2.Ending_Volt[1]) & ((1 << reg_map.DVC_3PM_TRANSCHAR_2.Ending_Volt[2]) - 1)
+    reg_map.DVC_3PM_TRANSCHAR_2.Drain_Volt[0] = (valR >> reg_map.DVC_3PM_TRANSCHAR_2.Drain_Volt[1]) & ((1 << reg_map.DVC_3PM_TRANSCHAR_2.Drain_Volt[2]) - 1)
 
 def read_reg_DVC_3PM_TRANSCHAR_3(ser, reg_map):
     valR = read_register(ser, DVC_3PM_TRANSCHAR_3)
-    reg_map.DVC_3PM_TRANSCHAR_3.Increment_Volt[0] = (valR >> reg_map.DVC_3PM_TRANSCHAR_3.Increment_Volt[1]) & ((1 << reg_map.DVC_3PM_TRANSCHAR_3.Increment_Volt[2]) - 1)
+    reg_map.DVC_3PM_TRANSCHAR_3.Starting_Volt[0] = (valR >> reg_map.DVC_3PM_TRANSCHAR_3.Starting_Volt[1]) & ((1 << reg_map.DVC_3PM_TRANSCHAR_3.Starting_Volt[2]) - 1)
+
+def read_reg_DVC_3PM_TRANSCHAR_4(ser, reg_map):
+    valR = read_register(ser, DVC_3PM_TRANSCHAR_4)
+    reg_map.DVC_3PM_TRANSCHAR_4.Ending_Volt[0] = (valR >> reg_map.DVC_3PM_TRANSCHAR_4.Ending_Volt[1]) & ((1 << reg_map.DVC_3PM_TRANSCHAR_4.Ending_Volt[2]) - 1)
+
+def read_reg_DVC_3PM_TRANSCHAR_5(ser, reg_map):
+    valR = read_register(ser, DVC_3PM_TRANSCHAR_5)
+    reg_map.DVC_3PM_TRANSCHAR_5.Increment_Volt[0] = (valR >> reg_map.DVC_3PM_TRANSCHAR_5.Increment_Volt[1]) & ((1 << reg_map.DVC_3PM_TRANSCHAR_5.Increment_Volt[2]) - 1)
 
 def read_reg_DVC_3PM_OUTCHAR_1(ser, reg_map):
     valR = read_register(ser, DVC_3PM_OUTCHAR_1)
-    reg_map.DVC_3PM_OUTCHAR_1.Starting_Volt[0] = (valR >> reg_map.DVC_3PM_OUTCHAR_1.Starting_Volt[1]) & ((1 << reg_map.DVC_3PM_OUTCHAR_1.Starting_Volt[2]) - 1)
+    reg_map.DVC_3PM_OUTCHAR_1.Gate_Probe[0] = (valR >> reg_map.DVC_3PM_OUTCHAR_1.Gate_Probe[1]) & ((1 << reg_map.DVC_3PM_OUTCHAR_1.Gate_Probe[2]) - 1)
+    reg_map.DVC_3PM_OUTCHAR_1.Drain_Probe[0] = (valR >> reg_map.DVC_3PM_OUTCHAR_1.Drain_Probe[1]) & ((1 << reg_map.DVC_3PM_OUTCHAR_1.Drain_Probe[2]) - 1)
 
 def read_reg_DVC_3PM_OUTCHAR_2(ser, reg_map):
     valR = read_register(ser, DVC_3PM_OUTCHAR_2)
-    reg_map.DVC_3PM_OUTCHAR_2.Ending_Volt[0] = (valR >> reg_map.DVC_3PM_OUTCHAR_2.Ending_Volt[1]) & ((1 << reg_map.DVC_3PM_OUTCHAR_2.Ending_Volt[2]) - 1)
+    reg_map.DVC_3PM_OUTCHAR_2.Gate_Volt[0] = (valR >> reg_map.DVC_3PM_OUTCHAR_2.Gate_Volt[1]) & ((1 << reg_map.DVC_3PM_OUTCHAR_2.Gate_Volt[2]) - 1)
 
 def read_reg_DVC_3PM_OUTCHAR_3(ser, reg_map):
     valR = read_register(ser, DVC_3PM_OUTCHAR_3)
-    reg_map.DVC_3PM_OUTCHAR_3.Increment_Volt[0] = (valR >> reg_map.DVC_3PM_OUTCHAR_3.Increment_Volt[1]) & ((1 << reg_map.DVC_3PM_OUTCHAR_3.Increment_Volt[2]) - 1)
+    reg_map.DVC_3PM_OUTCHAR_3.Starting_Volt[0] = (valR >> reg_map.DVC_3PM_OUTCHAR_3.Starting_Volt[1]) & ((1 << reg_map.DVC_3PM_OUTCHAR_3.Starting_Volt[2]) - 1)
+
+def read_reg_DVC_3PM_OUTCHAR_4(ser, reg_map):
+    valR = read_register(ser, DVC_3PM_OUTCHAR_4)
+    reg_map.DVC_3PM_OUTCHAR_4.Ending_Volt[0] = (valR >> reg_map.DVC_3PM_OUTCHAR_4.Ending_Volt[1]) & ((1 << reg_map.DVC_3PM_OUTCHAR_4.Ending_Volt[2]) - 1)
+
+def read_reg_DVC_3PM_OUTCHAR_5(ser, reg_map):
+    valR = read_register(ser, DVC_3PM_OUTCHAR_5)
+    reg_map.DVC_3PM_OUTCHAR_5.Increment_Volt[0] = (valR >> reg_map.DVC_3PM_OUTCHAR_5.Increment_Volt[1]) & ((1 << reg_map.DVC_3PM_OUTCHAR_5.Increment_Volt[2]) - 1)
 
 def read_reg_DVC_3PM_CAPVOLT_1(ser, reg_map):
     valR = read_register(ser, DVC_3PM_CAPVOLT_1)

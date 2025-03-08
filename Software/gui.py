@@ -225,8 +225,8 @@ class MainWindow(QMainWindow):
             stop_button.setFont(QFont("Arial", 10))
             start_button.setStyleSheet("background-color: #4CAF50; color: white;")
             stop_button.setStyleSheet("background-color: #f44336; color: white;")
-            start_button.setFixedWidth(300)                                 # Limit the width of the start button
-            stop_button.setFixedWidth(300)                                  # Limit the width of the stop button
+            start_button.setFixedWidth(350)                                 # Limit the width of the start button
+            stop_button.setFixedWidth(350)                                  # Limit the width of the stop button
             start_button.clicked.connect(lambda:self.start_dc_resistance_inputs())   
             button_layout = QVBoxLayout()                                   # Use QVBoxLayout to arrange buttons vertically
             button_layout.addWidget(start_button, alignment=Qt.AlignLeft)   # Add start button
@@ -257,7 +257,7 @@ class MainWindow(QMainWindow):
             sweep_dropdown = QComboBox()
             sweep_dropdown.addItems(["Sweep DC Voltage (V)", "Sweep Current (A)"])
             sweep_dropdown.setFont(QFont("Arial", 10))
-            sweep_dropdown.setFixedWidth(300)                               # Set a fixed width for the dropdown
+            sweep_dropdown.setFixedWidth(350)                               # Set a fixed width for the dropdown
             sweep_dropdown.setFixedHeight(30)                               # Set a fixed width for the dropdown
             sweep_dropdown.setStyleSheet("background-color: white;")        # Set background color to white
             layout.addWidget(sweep_dropdown)
@@ -271,7 +271,7 @@ class MainWindow(QMainWindow):
             value_input.setPlaceholderText("Enter value")
             value_input.setFont(QFont("Arial", 10))
             value_input.setStyleSheet("background-color: white")
-            value_input.setFixedWidth(300)
+            value_input.setFixedWidth(350)
             value_layout.addWidget(value_label)
             value_layout.addWidget(value_input)
             layout.addLayout(value_layout)
@@ -284,7 +284,7 @@ class MainWindow(QMainWindow):
             value_input.setPlaceholderText("Enter value")
             value_input.setFont(QFont("Arial", 10))
             value_input.setStyleSheet("background-color: white;")
-            value_input.setFixedWidth(300)
+            value_input.setFixedWidth(350)
             value_layout.addWidget(value_label)
             value_layout.addWidget(value_input)
             layout.addLayout(value_layout)
@@ -297,7 +297,7 @@ class MainWindow(QMainWindow):
             value_input.setPlaceholderText("Enter value")
             value_input.setFont(QFont("Arial", 10))
             value_input.setStyleSheet("background-color: white;")
-            value_input.setFixedWidth(300)
+            value_input.setFixedWidth(350)
             value_layout.addWidget(value_label)
             value_layout.addWidget(value_input)
             layout.addLayout(value_layout)
@@ -306,7 +306,7 @@ class MainWindow(QMainWindow):
             start_button = QPushButton("Start Measurement")
             start_button.setFont(QFont("Arial", 10))
             start_button.setStyleSheet("background-color: #4CAF50; color: white;")
-            start_button.setFixedWidth(300)                                         # Set a fixed width for the button
+            start_button.setFixedWidth(350)                                         # Set a fixed width for the button
             start_button.clicked.connect(lambda:self.start_current_voltage_inputs()) 
             button_layout = QHBoxLayout()                                           # Create button layout
             button_layout.addWidget(start_button, alignment=Qt.AlignLeft)           # Add start button and align button to the left
@@ -342,7 +342,7 @@ class MainWindow(QMainWindow):
             value_input.setPlaceholderText("Enter value")
             value_input.setFont(QFont("Arial", 10))
             value_input.setStyleSheet("background-color: white;")
-            value_input.setFixedWidth(300)
+            value_input.setFixedWidth(350)
             value_layout.addWidget(value_label)
             value_layout.addWidget(value_input)
             layout.addLayout(value_layout)
@@ -355,7 +355,7 @@ class MainWindow(QMainWindow):
             value_input.setPlaceholderText("Enter value")
             value_input.setFont(QFont("Arial", 10))
             value_input.setStyleSheet("background-color: white;")
-            value_input.setFixedWidth(300)
+            value_input.setFixedWidth(350)
             value_layout.addWidget(value_label)
             value_layout.addWidget(value_input)
             layout.addLayout(value_layout)
@@ -368,7 +368,7 @@ class MainWindow(QMainWindow):
             value_input.setPlaceholderText("Enter value")
             value_input.setFont(QFont("Arial", 10))
             value_input.setStyleSheet("background-color: white;")
-            value_input.setFixedWidth(300)
+            value_input.setFixedWidth(350)
             value_layout.addWidget(value_label)
             value_layout.addWidget(value_input)
             layout.addLayout(value_layout)
@@ -377,7 +377,7 @@ class MainWindow(QMainWindow):
             start_button = QPushButton("Start Measurement")
             start_button.setFont(QFont("Arial", 10))
             start_button.setStyleSheet("background-color: #4CAF50; color: white;")
-            start_button.setFixedWidth(300)                                         # Set a fixed width for the button
+            start_button.setFixedWidth(350)                                         # Set a fixed width for the button
             start_button.clicked.connect(lambda:self.start_capacitance_voltage_2p_inputs())   
             button_layout = QHBoxLayout()                                           # Create button layout
             button_layout.addWidget(start_button, alignment=Qt.AlignLeft)           # Add start button and align button to the left
@@ -408,7 +408,7 @@ class MainWindow(QMainWindow):
             value_input.setPlaceholderText("Enter value")
             value_input.setFont(QFont("Arial", 10))
             value_input.setStyleSheet("background-color: white;")
-            value_input.setFixedWidth(300)
+            value_input.setFixedWidth(350)
             value_layout.addWidget(value_label)
             value_layout.addWidget(value_input)
             layout.addLayout(value_layout)
@@ -421,7 +421,7 @@ class MainWindow(QMainWindow):
             value_input.setPlaceholderText("Enter value")
             value_input.setFont(QFont("Arial", 10))
             value_input.setStyleSheet("background-color: white;")
-            value_input.setFixedWidth(300)
+            value_input.setFixedWidth(350)
             value_layout.addWidget(value_label)
             value_layout.addWidget(value_input)
             layout.addLayout(value_layout)
@@ -434,7 +434,7 @@ class MainWindow(QMainWindow):
             value_input.setPlaceholderText("Enter value")
             value_input.setFont(QFont("Arial", 10))
             value_input.setStyleSheet("background-color: white;")
-            value_input.setFixedWidth(300)
+            value_input.setFixedWidth(350)
             value_layout.addWidget(value_label)
             value_layout.addWidget(value_input)
             layout.addLayout(value_layout)
@@ -447,7 +447,7 @@ class MainWindow(QMainWindow):
             value_input.setPlaceholderText("Enter value")
             value_input.setFont(QFont("Arial", 10))
             value_input.setStyleSheet("background-color: white;")
-            value_input.setFixedWidth(300)
+            value_input.setFixedWidth(350)
             value_layout.addWidget(value_label)
             value_layout.addWidget(value_input)
             layout.addLayout(value_layout)
@@ -460,7 +460,7 @@ class MainWindow(QMainWindow):
             value_input.setPlaceholderText("Enter value")
             value_input.setFont(QFont("Arial", 10))
             value_input.setStyleSheet("background-color: white;")
-            value_input.setFixedWidth(300)
+            value_input.setFixedWidth(350)
             value_layout.addWidget(value_label)
             value_layout.addWidget(value_input)
             layout.addLayout(value_layout)
@@ -469,7 +469,7 @@ class MainWindow(QMainWindow):
             start_button = QPushButton("Start Measurement")
             start_button.setFont(QFont("Arial", 10))
             start_button.setStyleSheet("background-color: #4CAF50; color: white;")
-            start_button.setFixedWidth(300)                                         # Set a fixed width for the button
+            start_button.setFixedWidth(350)                                         # Set a fixed width for the button
             start_button.clicked.connect(lambda:self.start_impedance_spectroscopy_2p_inputs()) 
             button_layout = QHBoxLayout()                                           # Create button layout
             button_layout.addWidget(start_button, alignment=Qt.AlignLeft)           # Add start button and align button to the left
@@ -491,7 +491,45 @@ class MainWindow(QMainWindow):
             radio_layout.addWidget(json_radio)                      # Add JSON button to the selection/radio layout
             layout.addLayout(radio_layout)                          # Add selection/radio layout under the title of the measurement type
 
+            # Dropdowns
+            gate_dropdown = QComboBox()
+            gate_label = QLabel("Which probe is the Gate?")
+            gate_label.setAlignment(Qt.AlignLeft)
+            gate_label.setFont(QFont("Arial", 10, QFont.Bold))
+            gate_dropdown.addItems(["Probe 1", "Probe 2", "Probe 3", "Probe 4"])
+            gate_dropdown.setFont(QFont("Arial", 10))
+            gate_dropdown.setFixedWidth(350)                               # Set a fixed width for the dropdown
+            gate_dropdown.setFixedHeight(30)                               # Set a fixed width for the dropdown
+            gate_dropdown.setStyleSheet("background-color: white;")        # Set background color to white
+            layout.addWidget(gate_label)
+            layout.addWidget(gate_dropdown)
+
+            drain_dropdown = QComboBox()
+            drain_label = QLabel("Which probe is the Drain?")
+            drain_label.setAlignment(Qt.AlignLeft)
+            drain_label.setFont(QFont("Arial", 10, QFont.Bold))
+            drain_dropdown.addItems(["Probe 1", "Probe 2", "Probe 3", "Probe 4"])
+            drain_dropdown.setFont(QFont("Arial", 10))
+            drain_dropdown.setFixedWidth(350)                               # Set a fixed width for the dropdown
+            drain_dropdown.setFixedHeight(30)                               # Set a fixed width for the dropdown
+            drain_dropdown.setStyleSheet("background-color: white;")        # Set background color to white
+            layout.addWidget(drain_label)
+            layout.addWidget(drain_dropdown)
+
             # Text box for entering measurement values
+            value_layout = QVBoxLayout()                            # Use QVBoxLayout to stack label and textbox vertically
+            value_label = QLabel("Drain Voltage (V)")
+            value_label.setAlignment(Qt.AlignLeft)
+            value_label.setFont(QFont("Arial", 10, QFont.Bold))
+            value_input = QLineEdit()
+            value_input.setPlaceholderText("Enter value")
+            value_input.setFont(QFont("Arial", 10))
+            value_input.setStyleSheet("background-color: white;")
+            value_input.setFixedWidth(350)
+            value_layout.addWidget(value_label)
+            value_layout.addWidget(value_input)
+            layout.addLayout(value_layout)
+
             value_layout = QVBoxLayout()                            # Use QVBoxLayout to stack label and textbox vertically
             value_label = QLabel("Starting Gate-Source Voltage (V)")
             value_label.setAlignment(Qt.AlignLeft)
@@ -500,7 +538,7 @@ class MainWindow(QMainWindow):
             value_input.setPlaceholderText("Enter value")
             value_input.setFont(QFont("Arial", 10))
             value_input.setStyleSheet("background-color: white;")
-            value_input.setFixedWidth(300)
+            value_input.setFixedWidth(350)
             value_layout.addWidget(value_label)
             value_layout.addWidget(value_input)
             layout.addLayout(value_layout)
@@ -513,7 +551,7 @@ class MainWindow(QMainWindow):
             value_input.setPlaceholderText("Enter value")
             value_input.setFont(QFont("Arial", 10))
             value_input.setStyleSheet("background-color: white;")
-            value_input.setFixedWidth(300)
+            value_input.setFixedWidth(350)
             value_layout.addWidget(value_label)
             value_layout.addWidget(value_input)
             layout.addLayout(value_layout)
@@ -526,7 +564,7 @@ class MainWindow(QMainWindow):
             value_input.setPlaceholderText("Enter value")
             value_input.setFont(QFont("Arial", 10))
             value_input.setStyleSheet("background-color: white;")
-            value_input.setFixedWidth(300)
+            value_input.setFixedWidth(350)
             value_layout.addWidget(value_label)
             value_layout.addWidget(value_input)
             layout.addLayout(value_layout)
@@ -535,7 +573,7 @@ class MainWindow(QMainWindow):
             start_button = QPushButton("Start Measurement")
             start_button.setFont(QFont("Arial", 10))
             start_button.setStyleSheet("background-color: #4CAF50; color: white;")
-            start_button.setFixedWidth(300)                                         # Set a fixed width for the button
+            start_button.setFixedWidth(350)                                         # Set a fixed width for the button
             start_button.clicked.connect(lambda:self.start_transfer_characteristics_inputs()) 
             button_layout = QHBoxLayout()                                           # Create button layout
             button_layout.addWidget(start_button, alignment=Qt.AlignLeft)           # Add start button and align button to the left
@@ -557,7 +595,45 @@ class MainWindow(QMainWindow):
             radio_layout.addWidget(json_radio)                      # Add JSON button to the selection/radio layout
             layout.addLayout(radio_layout)                          # Add selection/radio layout under the title of the measurement type
 
+           # Dropdowns
+            gate_dropdown = QComboBox()
+            gate_label = QLabel("Which probe is the Gate?")
+            gate_label.setAlignment(Qt.AlignLeft)
+            gate_label.setFont(QFont("Arial", 10, QFont.Bold))
+            gate_dropdown.addItems(["Probe 1", "Probe 2", "Probe 3", "Probe 4"])
+            gate_dropdown.setFont(QFont("Arial", 10))
+            gate_dropdown.setFixedWidth(350)                               # Set a fixed width for the dropdown
+            gate_dropdown.setFixedHeight(30)                               # Set a fixed width for the dropdown
+            gate_dropdown.setStyleSheet("background-color: white;")        # Set background color to white
+            layout.addWidget(gate_label)
+            layout.addWidget(gate_dropdown)
+
+            drain_dropdown = QComboBox()
+            drain_label = QLabel("Which probe is the Drain?")
+            drain_label.setAlignment(Qt.AlignLeft)
+            drain_label.setFont(QFont("Arial", 10, QFont.Bold))
+            drain_dropdown.addItems(["Probe 1", "Probe 2", "Probe 3", "Probe 4"])
+            drain_dropdown.setFont(QFont("Arial", 10))
+            drain_dropdown.setFixedWidth(350)                               # Set a fixed width for the dropdown
+            drain_dropdown.setFixedHeight(30)                               # Set a fixed width for the dropdown
+            drain_dropdown.setStyleSheet("background-color: white;")        # Set background color to white
+            layout.addWidget(drain_label)
+            layout.addWidget(drain_dropdown)
+
             # Text box for entering measurement values
+            value_layout = QVBoxLayout()                            # Use QVBoxLayout to stack label and textbox vertically
+            value_label = QLabel("Gate Voltage (V)")
+            value_label.setAlignment(Qt.AlignLeft)
+            value_label.setFont(QFont("Arial", 10, QFont.Bold))
+            value_input = QLineEdit()
+            value_input.setPlaceholderText("Enter value")
+            value_input.setFont(QFont("Arial", 10))
+            value_input.setStyleSheet("background-color: white;")
+            value_input.setFixedWidth(350)
+            value_layout.addWidget(value_label)
+            value_layout.addWidget(value_input)
+            layout.addLayout(value_layout)
+            
             value_layout = QVBoxLayout()                            # Use QVBoxLayout to stack label and textbox vertically
             value_label = QLabel("Starting Drain-Source Voltage (V)")
             value_label.setAlignment(Qt.AlignLeft)
@@ -566,7 +642,7 @@ class MainWindow(QMainWindow):
             value_input.setPlaceholderText("Enter value")
             value_input.setFont(QFont("Arial", 10))
             value_input.setStyleSheet("background-color: white;")
-            value_input.setFixedWidth(300)
+            value_input.setFixedWidth(350)
             value_layout.addWidget(value_label)
             value_layout.addWidget(value_input)
             layout.addLayout(value_layout)
@@ -579,7 +655,7 @@ class MainWindow(QMainWindow):
             value_input.setPlaceholderText("Enter value")
             value_input.setFont(QFont("Arial", 10))
             value_input.setStyleSheet("background-color: white;")
-            value_input.setFixedWidth(300)
+            value_input.setFixedWidth(350)
             value_layout.addWidget(value_label)
             value_layout.addWidget(value_input)
             layout.addLayout(value_layout)
@@ -592,7 +668,7 @@ class MainWindow(QMainWindow):
             value_input.setPlaceholderText("Enter value")
             value_input.setFont(QFont("Arial", 10))
             value_input.setStyleSheet("background-color: white;")
-            value_input.setFixedWidth(300)
+            value_input.setFixedWidth(350)
             value_layout.addWidget(value_label)
             value_layout.addWidget(value_input)
             layout.addLayout(value_layout)
@@ -601,7 +677,7 @@ class MainWindow(QMainWindow):
             start_button = QPushButton("Start Measurement")
             start_button.setFont(QFont("Arial", 10))
             start_button.setStyleSheet("background-color: #4CAF50; color: white;")
-            start_button.setFixedWidth(300)                                         # Set a fixed width for the button
+            start_button.setFixedWidth(350)                                         # Set a fixed width for the button
             start_button.clicked.connect(lambda:self.start_output_characteristics_inputs()) 
             button_layout = QHBoxLayout()                                           # Create button layout
             button_layout.addWidget(start_button, alignment=Qt.AlignLeft)           # Add start button and align button to the left
@@ -632,7 +708,7 @@ class MainWindow(QMainWindow):
             value_input.setPlaceholderText("Enter value")
             value_input.setFont(QFont("Arial", 10))
             value_input.setStyleSheet("background-color: white;")
-            value_input.setFixedWidth(300)
+            value_input.setFixedWidth(350)
             value_layout.addWidget(value_label)
             value_layout.addWidget(value_input)
             layout.addLayout(value_layout)
@@ -645,7 +721,7 @@ class MainWindow(QMainWindow):
             value_input.setPlaceholderText("Enter value")
             value_input.setFont(QFont("Arial", 10))
             value_input.setStyleSheet("background-color: white;")
-            value_input.setFixedWidth(300)
+            value_input.setFixedWidth(350)
             value_layout.addWidget(value_label)
             value_layout.addWidget(value_input)
             layout.addLayout(value_layout)
@@ -658,7 +734,7 @@ class MainWindow(QMainWindow):
             value_input.setPlaceholderText("Enter value")
             value_input.setFont(QFont("Arial", 10))
             value_input.setStyleSheet("background-color: white;")
-            value_input.setFixedWidth(300)
+            value_input.setFixedWidth(350)
             value_layout.addWidget(value_label)
             value_layout.addWidget(value_input)
             layout.addLayout(value_layout)
@@ -667,7 +743,7 @@ class MainWindow(QMainWindow):
             start_button = QPushButton("Start Measurement")
             start_button.setFont(QFont("Arial", 10))
             start_button.setStyleSheet("background-color: #4CAF50; color: white;")
-            start_button.setFixedWidth(300)                                         # Set a fixed width for the button
+            start_button.setFixedWidth(350)                                         # Set a fixed width for the button
             start_button.clicked.connect(lambda:self.start_capacitance_voltage_3p_inputs()) 
             button_layout = QHBoxLayout()                                           # Create button layout
             button_layout.addWidget(start_button, alignment=Qt.AlignLeft)           # Add start button and align button to the left
@@ -698,7 +774,7 @@ class MainWindow(QMainWindow):
             value_input.setPlaceholderText("Enter value")
             value_input.setFont(QFont("Arial", 10))
             value_input.setStyleSheet("background-color: white;")
-            value_input.setFixedWidth(300)
+            value_input.setFixedWidth(350)
             value_layout.addWidget(value_label)
             value_layout.addWidget(value_input)
             layout.addLayout(value_layout)
@@ -711,7 +787,7 @@ class MainWindow(QMainWindow):
             value_input.setPlaceholderText("Enter value")
             value_input.setFont(QFont("Arial", 10))
             value_input.setStyleSheet("background-color: white;")
-            value_input.setFixedWidth(300)
+            value_input.setFixedWidth(350)
             value_layout.addWidget(value_label)
             value_layout.addWidget(value_input)
             layout.addLayout(value_layout)
@@ -724,7 +800,7 @@ class MainWindow(QMainWindow):
             value_input.setPlaceholderText("Enter value")
             value_input.setFont(QFont("Arial", 10))
             value_input.setStyleSheet("background-color: white;")
-            value_input.setFixedWidth(300)
+            value_input.setFixedWidth(350)
             value_layout.addWidget(value_label)
             value_layout.addWidget(value_input)
             layout.addLayout(value_layout)
@@ -737,7 +813,7 @@ class MainWindow(QMainWindow):
             value_input.setPlaceholderText("Enter value")
             value_input.setFont(QFont("Arial", 10))
             value_input.setStyleSheet("background-color: white;")
-            value_input.setFixedWidth(300)
+            value_input.setFixedWidth(350)
             value_layout.addWidget(value_label)
             value_layout.addWidget(value_input)
             layout.addLayout(value_layout)
@@ -750,7 +826,7 @@ class MainWindow(QMainWindow):
             value_input.setPlaceholderText("Enter value")
             value_input.setFont(QFont("Arial", 10))
             value_input.setStyleSheet("background-color: white;")
-            value_input.setFixedWidth(300)
+            value_input.setFixedWidth(350)
             value_layout.addWidget(value_label)
             value_layout.addWidget(value_input)
             layout.addLayout(value_layout)
@@ -759,7 +835,7 @@ class MainWindow(QMainWindow):
             start_button = QPushButton("Start Measurement")
             start_button.setFont(QFont("Arial", 10))
             start_button.setStyleSheet("background-color: #4CAF50; color: white;")
-            start_button.setFixedWidth(300)                                         # Set a fixed width for the button
+            start_button.setFixedWidth(350)                                         # Set a fixed width for the button
             start_button.clicked.connect(lambda:self.start_electrochemical_inputs()) 
             button_layout = QHBoxLayout()                                           # Create button layout
             button_layout.addWidget(start_button, alignment=Qt.AlignLeft)           # Add start button and align button to the left
@@ -788,8 +864,8 @@ class MainWindow(QMainWindow):
             stop_button.setFont(QFont("Arial", 10))
             start_button.setStyleSheet("background-color: #4CAF50; color: white;")
             stop_button.setStyleSheet("background-color: #f44336; color: white;")
-            start_button.setFixedWidth(300)                                 # Limit the width of the start button
-            stop_button.setFixedWidth(300)                                  # Limit the width of the stop button
+            start_button.setFixedWidth(350)                                 # Limit the width of the start button
+            stop_button.setFixedWidth(350)                                  # Limit the width of the stop button
             start_button.clicked.connect(lambda:self.start_probe_resistance_inputs()) 
             button_layout = QVBoxLayout()                                   # Use QVBoxLayout to arrange buttons vertically
             button_layout.addWidget(start_button, alignment=Qt.AlignLeft)   # Add start button
@@ -819,8 +895,8 @@ class MainWindow(QMainWindow):
             stop_button.setFont(QFont("Arial", 10))
             start_button.setStyleSheet("background-color: #4CAF50; color: white;")
             stop_button.setStyleSheet("background-color: #f44336; color: white;")
-            start_button.setFixedWidth(300)                                 # Limit the width of the start button
-            stop_button.setFixedWidth(300)                                  # Limit the width of the stop button
+            start_button.setFixedWidth(350)                                 # Limit the width of the start button
+            stop_button.setFixedWidth(350)                                  # Limit the width of the stop button
             start_button.clicked.connect(lambda:self.start_low_resistance_inputs()) 
             button_layout = QVBoxLayout()                                   # Use QVBoxLayout to arrange buttons vertically
             button_layout.addWidget(start_button, alignment=Qt.AlignLeft)   # Add start button
@@ -852,7 +928,7 @@ class MainWindow(QMainWindow):
             value_input.setPlaceholderText("Enter value")
             value_input.setFont(QFont("Arial", 10))
             value_input.setStyleSheet("background-color: white;")
-            value_input.setFixedWidth(300)
+            value_input.setFixedWidth(350)
             value_layout.addWidget(value_label)
             value_layout.addWidget(value_input)
             layout.addLayout(value_layout)
@@ -865,7 +941,7 @@ class MainWindow(QMainWindow):
             value_input.setPlaceholderText("Enter value")
             value_input.setFont(QFont("Arial", 10))
             value_input.setStyleSheet("background-color: white;")
-            value_input.setFixedWidth(300)
+            value_input.setFixedWidth(350)
             value_layout.addWidget(value_label)
             value_layout.addWidget(value_input)
             layout.addLayout(value_layout)
@@ -878,7 +954,7 @@ class MainWindow(QMainWindow):
             value_input.setPlaceholderText("Enter value")
             value_input.setFont(QFont("Arial", 10))
             value_input.setStyleSheet("background-color: white;")
-            value_input.setFixedWidth(300)
+            value_input.setFixedWidth(350)
             value_layout.addWidget(value_label)
             value_layout.addWidget(value_input)
             layout.addLayout(value_layout)
@@ -891,7 +967,7 @@ class MainWindow(QMainWindow):
             value_input.setPlaceholderText("Enter value")
             value_input.setFont(QFont("Arial", 10))
             value_input.setStyleSheet("background-color: white;")
-            value_input.setFixedWidth(300)
+            value_input.setFixedWidth(350)
             value_layout.addWidget(value_label)
             value_layout.addWidget(value_input)
             layout.addLayout(value_layout)
@@ -904,7 +980,7 @@ class MainWindow(QMainWindow):
             value_input.setPlaceholderText("Enter value")
             value_input.setFont(QFont("Arial", 10))
             value_input.setStyleSheet("background-color: white;")
-            value_input.setFixedWidth(300)
+            value_input.setFixedWidth(350)
             value_layout.addWidget(value_label)
             value_layout.addWidget(value_input)
             layout.addLayout(value_layout)
@@ -913,7 +989,7 @@ class MainWindow(QMainWindow):
             start_button = QPushButton("Start Measurement")
             start_button.setFont(QFont("Arial", 10))
             start_button.setStyleSheet("background-color: #4CAF50; color: white;")
-            start_button.setFixedWidth(300)                                         # Set a fixed width for the button
+            start_button.setFixedWidth(350)                                         # Set a fixed width for the button
             start_button.clicked.connect(lambda:self.start_impedance_spectroscopy_4p_inputs()) 
             button_layout = QHBoxLayout()                                           # Create button layout
             button_layout.addWidget(start_button, alignment=Qt.AlignLeft)           # Add start button and align button to the left
