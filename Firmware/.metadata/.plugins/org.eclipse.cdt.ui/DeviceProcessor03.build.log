@@ -1,9 +1,9 @@
-16:11:52 **** Incremental Build of configuration Debug for project DeviceProcessor03 ****
+16:42:10 **** Incremental Build of configuration Debug for project DeviceProcessor03 ****
 make -j12 all 
 arm-none-eabi-gcc "../Device/Src/measurement_routines.c" -mcpu=cortex-m33 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32U575xx -c -I../Core/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32U5xx/Include -I../Drivers/CMSIS/Include -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Class/CDC/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/Device/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/Target" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/App" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Device/Src/measurement_routines.d" -MT"Device/Src/measurement_routines.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Device/Src/measurement_routines.o"
 ../Device/Src/measurement_routines.c: In function 'dvc_exec_msr_dc_resistance_2p':
-../Device/Src/measurement_routines.c:28:27: warning: variable 'result' set but not used [-Wunused-but-set-variable]
-   28 |         HAL_StatusTypeDef result;
+../Device/Src/measurement_routines.c:29:27: warning: unused variable 'result' [-Wunused-variable]
+   29 |         HAL_StatusTypeDef result;
       |                           ^~~~~~
 arm-none-eabi-gcc -o "DeviceProcessor03.elf" @"objects.list"   -mcpu=cortex-m33 -T"C:\UBC_4TH_YEAR\ELEC-491\JY-85\project\JY85\Firmware\DeviceProcessor03\STM32U575ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DeviceProcessor03.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 Finished building target: DeviceProcessor03.elf
@@ -11,11 +11,11 @@ Finished building target: DeviceProcessor03.elf
 arm-none-eabi-size  DeviceProcessor03.elf 
 arm-none-eabi-objdump -h -S DeviceProcessor03.elf  > "DeviceProcessor03.list"
    text	   data	    bss	    dec	    hex	filename
-  49592	    491	  61044	 111127	  1b217	DeviceProcessor03.elf
+  47820	    475	  61044	 109339	  1ab1b	DeviceProcessor03.elf
 Finished building: default.size.stdout
  
 Finished building: DeviceProcessor03.list
  
 
-16:11:54 Build Finished. 0 errors, 1 warnings. (took 2s.164ms)
+16:42:12 Build Finished. 0 errors, 1 warnings. (took 2s.81ms)
 
