@@ -8,7 +8,9 @@
 #ifndef INC_SWITCH_NETWORK_H_
 #define INC_SWITCH_NETWORK_H_
 
-#include "run_device.h"
+#include "device_constants.h"
+#include "main.h"
+
 
 typedef struct{
 	uint8_t RelayId;
@@ -19,13 +21,13 @@ typedef struct{
 } SwitchRelay_TypeDef;
 
 typedef struct{
-	SwitchRelay_TypeDef Relays[DVC_TOTAL_RELAY_COUNT];
-	bool ValidSwitchNetwork;
+	SwitchRelay_TypeDef Relays[DVC_TOTAL_RELAY_COUNT+1];
+	uint8_t ValidSwitchNetwork;
 } SwitchNetwork_TypeDef;
 
-void DVC_Init_Switch_Network(SwitchNetwork_TypeDef* switch_network);
-void DVC_Clear_Switch_Network(SwitchNetwork_TypeDef* switch_network);
-void DVC_Set_Switch_Network(SwitchNetwork_TypeDef* switch_network);
-void DVC_Map_Switch_Network(SwitchNetwork_TypeDef* switch_network, uint32_t switch_network_state);
+void init_switch_network(SwitchNetwork_TypeDef* switch_network);
+void clear_switch_network(SwitchNetwork_TypeDef* switch_network);
+void set_switch_network(SwitchNetwork_TypeDef* switch_network);
+void map_switch_network(SwitchNetwork_TypeDef* switch_network, uint32_t switch_network_state);
 
 #endif /* INC_SWITCH_NETWORK_H_ */

@@ -9,10 +9,10 @@
 #define INC_RUN_DEVICE_H_
 
 /* Standard Libraries */
+#include <device_constants.h>
 #include "stdbool.h"
 
 /* Custom Libraries for Probe Device */
-#include "DeviceConstants.h"
 
 /* Main function to Run the probing device */
 void run_device();

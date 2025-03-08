@@ -1,0 +1,28 @@
+/*
+ * device_monitoring.c
+ *
+ *  Created on: Mar 6, 2025
+ *      Author: User
+ */
+
+#include "main.h"
+
+void set_adc_sampling_freq(uint32_t sample_freq){
+	uint32_t sample_freq_div;
+	sample_freq_div = 160000000UL / sample_freq;
+	TIM8->ARR = sample_freq_div-1;
+	TIM8->CCR1 = TIM8->ARR/2;
+	TIM8->CCR2 = TIM8->ARR/2;
+}
+
+void collect_adc_samples(DMA_HandleTypeDef *dma_ptr, uint8_t adc_num, uint16_t *sample_buf){
+	if(adc_num == 1){
+		HAL_DMA_Start(dma_ptr,(uint32_t)&GPIOF->IDR,(uint32_t)sample_buf,DVC_MAX_NUM_ADC_SAMPLES*sizeof(uint16_t));
+	}
+	else if(adc_num == 2){
+		HAL_DMA_Start(dma_ptr,(uint32_t)&GPIOF->IDR,(uint32_t)sample_buf,DVC_MAX_NUM_ADC_SAMPLES*sizeof(uint16_t));
+	}
+	else if(adc_num == 3){
+	}
+}
+

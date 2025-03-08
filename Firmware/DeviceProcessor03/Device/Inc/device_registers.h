@@ -8,8 +8,8 @@
 #ifndef INC_DEVICE_REGISTERS_H_
 #define INC_DEVICE_REGISTERS_H_
 
+#include "device_constants.h"
 #include "main.h"
-#include "DeviceConstants.h"
 
 #define REG_DATA_MASK ((1 << (DVC_REGISTER_DATA_WIDTH)) - 1)
 

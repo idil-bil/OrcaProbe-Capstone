@@ -1,0 +1,59 @@
+/**
+  ******************************************************************************
+  * @file    switch_network.c
+  * @brief   Relay control of the switch network.
+  ******************************************************************************
+  */
+
+/*
+ *	Author: JY-85
+ */
+
+/* Includes ------------------------------------------------------------------*/
+#include "main.h"
+#include "../Inc/switch_network.h"
+
+static uint32_t swnt_pin_list[] = {
+		 SWNT_CTRL_01_Pin,SWNT_CTRL_02_Pin,SWNT_CTRL_03_Pin,SWNT_CTRL_04_Pin
+        ,SWNT_CTRL_05_Pin,SWNT_CTRL_06_Pin,SWNT_CTRL_07_Pin,SWNT_CTRL_08_Pin
+        ,SWNT_CTRL_09_Pin,SWNT_CTRL_10_Pin,SWNT_CTRL_11_Pin,SWNT_CTRL_12_Pin
+        ,SWNT_CTRL_13_Pin,SWNT_CTRL_14_Pin,SWNT_CTRL_15_Pin,SWNT_CTRL_16_Pin
+		,SWNT_CTRL_17_Pin,SWNT_CTRL_18_Pin,SWNT_CTRL_19_Pin,SWNT_CTRL_20_Pin
+		,SWNT_CTRL_21_Pin};
+
+void init_switch_network(SwitchNetwork_TypeDef* switch_network){
+	for(int i = 1; i <= DVC_TOTAL_RELAY_COUNT; i++){
+		switch_network->Relays[i].RelayId = i;
+		switch_network->Relays[i].AssociatedProbe = 0;
+		switch_network->Relays[i].RelayState = GPIO_PIN_RESET;
+		switch_network->Relays[i].AssociatedGPIOPort = (i < 17) ? GPIOG : GPIOD;
+		switch_network->Relays[i].AssociatedGPIO = swnt_pin_list[i];
+	}
+	return;
+}
+
+void clear_switch_network(SwitchNetwork_TypeDef* switch_network){
+	for(int i = 0; i < DVC_TOTAL_RELAY_COUNT; i++){
+		switch_network->Relays[i].RelayState = GPIO_PIN_RESET;
+		HAL_GPIO_WritePin(switch_network->Relays[i].AssociatedGPIOPort,
+						  switch_network->Relays[i].AssociatedGPIO,
+						  switch_network->Relays[i].RelayState);
+		HAL_Delay(300);
+	}
+	return;
+}
+void set_switch_network(SwitchNetwork_TypeDef* switch_network){
+	if(!switch_network->ValidSwitchNetwork) return;
+	for(int i = 0; i < DVC_TOTAL_RELAY_COUNT; i++){
+		HAL_GPIO_WritePin(switch_network->Relays[i].AssociatedGPIOPort,
+						  switch_network->Relays[i].AssociatedGPIO,
+						  switch_network->Relays[i].RelayState);
+		HAL_Delay(300);
+	}
+	return;
+}
+void map_switch_network(SwitchNetwork_TypeDef* switch_network, uint32_t switch_network_config){
+	switch_network->ValidSwitchNetwork = 1;
+
+	return;
+}

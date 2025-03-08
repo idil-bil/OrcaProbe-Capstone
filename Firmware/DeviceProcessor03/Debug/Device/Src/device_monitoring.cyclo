@@ -1,0 +1,4 @@
+../Device/Src/device_monitoring.c:11:6:set_adc_sampling_freq	1
+../Device/Src/device_monitoring.c:19:19:collect_adc_samples	5
+../Device/Src/device_monitoring.c:38:10:reverse_bits_16	2
+../Device/Src/device_monitoring.c:46:6:reverse_buffer_bits_16	2

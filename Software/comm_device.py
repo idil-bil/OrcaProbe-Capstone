@@ -35,7 +35,7 @@ def pack_32bit(address, data):
     if not (0 <= address <= 255):                                       # Validate the address is within 8-bit range
         raise ValueError("Address must be an 8-bit value (0-255).")
     if not (0 <= data <= 16777215):                                     # Validate the data is within 24-bit range
-        raise ValueError("Data must be a 24-bit value (0-16777215).")
+        raise ValueError(f"Data must be a 24-bit value (0-16777215). {data}")
     
     value = (address << 24) | data                                      # Combine the address and data into a single 32-bit integer
     return value.to_bytes(4, 'little')                                  # Convert the 32-bit value into a 4-byte array in little-endian order

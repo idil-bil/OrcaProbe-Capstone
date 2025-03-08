@@ -113,7 +113,7 @@ class MainWindow(QMainWindow):
         self.page_widget.addWidget(self.main_page)
 
         self.current_selected_measurement = None    # Initialize to track the selected measurement
-        self.ser = init_ser_port('com3', 115200)   # open a serial connection on com8 with baud rate 115200
+        self.ser = init_ser_port('com9', 115200)   # open a serial connection on com8 with baud rate 115200
 
         self.timer = QTimer(self)
         self.timer.timeout.connect(self.check_serial_data)  # Call periodically
@@ -1013,13 +1013,14 @@ class MainWindow(QMainWindow):
                 reg_map.DVC_MEASUREMENT_CONFIG.Valid_Measure_Config[0] = 0
                 reg_map.DVC_MEASUREMENT_CONFIG.Measure_Probe_Config[0] = GUI_2PROBES
                 reg_map.DVC_MEASUREMENT_CONFIG.Measure_Type_Config[0] = GUI_DC_RESISTANCE
-                # write_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
-                garbage = receive_samples(self.ser, 8192)
-                while garbage is None:
-                    garbage = receive_samples(self.ser, 8192)
-                voltage = garbage[256]
-                current = 3
-                result = dc_resistance(voltage, current)
+                write_reg_DVC_PROBE_CONFIG(self.ser, reg_map)
+                write_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
+                # garbage = receive_samples(self.ser, 8192)
+                # while garbage is None:
+                #     garbage = receive_samples(self.ser, 8192)
+                # voltage = garbage[256]
+                # current = 3
+                # result = dc_resistance(voltage, current)
                 # self.timer.start(100)  # Check every 100ms
 
     def start_current_voltage_inputs(self):
@@ -1314,7 +1315,7 @@ class MainWindow(QMainWindow):
                 probe_value, should_shift = probe_config_map.get(selected_probes[probe], (None, None))
                 if probe_value is not None:
                     # Correctly update the first index of Probe_X_Config
-                    getattr(reg_map.DVC_PROBE_CONFIG, config_attr)[0] = probe_value << 3 if should_shift else probe_value
+                    getattr(reg_map.DVC_PROBE_CONFIG, config_attr)[0] = probe_value << 2 if should_shift else probe_value
 
         print(f"Configured Used_Probes: {bin(reg_map.DVC_PROBE_CONFIG.Used_Probes[0])}")
         print(f"Configured Probes 1: {bin(reg_map.DVC_PROBE_CONFIG.Probe_1_Config[0])}")

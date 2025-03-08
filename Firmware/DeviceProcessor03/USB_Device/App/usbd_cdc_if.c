@@ -19,11 +19,11 @@
 /* USER CODE END Header */
 
 /* Includes ------------------------------------------------------------------*/
+#include "device_constants.h"
 #include "usbd_cdc_if.h"
 
 /* USER CODE BEGIN INCLUDE */
 #include "device_registers.h"
-#include "DeviceConstants.h"
 /* USER CODE END INCLUDE */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -34,6 +34,9 @@
 /* Private variables ---------------------------------------------------------*/
 extern RegisterMap_TypeDef device_registers;
 extern char test_cmd;
+extern uint16_t adc_samples_1[DVC_MAX_NUM_ADC_SAMPLES];
+extern uint16_t adc_samples_2[DVC_MAX_NUM_ADC_SAMPLES];
+extern uint16_t adc_samples_3[DVC_MAX_NUM_ADC_SAMPLES];
 /* USER CODE END PV */
 
 /** @addtogroup STM32_USB_OTG_DEVICE_LIBRARY
@@ -263,15 +266,8 @@ static int8_t CDC_Control_FS(uint8_t cmd, uint8_t* pbuf, uint16_t length)
 static int8_t CDC_Receive_FS(uint8_t* Buf, uint32_t *Len)
 {
   /* USER CODE BEGIN 6 */
-  uint16_t Buf2[8192];
   USBD_CDC_SetRxBuffer(&hUsbDeviceFS, &Buf[0]);
   USBD_CDC_ReceivePacket(&hUsbDeviceFS);
-
-  for(int i = 0; i < 8192; i++){
-	  Buf2[i] = i;
-  }
-
-//  test_cmd = (char)Buf[0];
 
   uint32_t msg_rx = (Buf[3]<<24)|(Buf[2]<<16)|(Buf[1]<<8)|(Buf[0]);
 
@@ -283,8 +279,14 @@ static int8_t CDC_Receive_FS(uint8_t* Buf, uint32_t *Len)
 	  set_register(&device_registers,addr,data);
   }
   else{
-	  if(addr == DVC_SAMPLE_DATA){
-		  CDC_Transmit_FS((uint8_t*)&Buf2, sizeof(Buf2));
+	  if(addr == DVC_FLUSH_SAMPLE_DATA_1){
+		  CDC_Transmit_FS((uint8_t*)&adc_samples_1, sizeof(adc_samples_1));
+	  }
+	  else if(addr == DVC_FLUSH_SAMPLE_DATA_2){
+		  CDC_Transmit_FS((uint8_t*)&adc_samples_2, sizeof(adc_samples_2));
+	  }
+	  else if(addr == DVC_FLUSH_SAMPLE_DATA_3){
+		  CDC_Transmit_FS((uint8_t*)&adc_samples_3, sizeof(adc_samples_3));
 	  }
 	  else{
 		  data = get_register(&device_registers,addr);

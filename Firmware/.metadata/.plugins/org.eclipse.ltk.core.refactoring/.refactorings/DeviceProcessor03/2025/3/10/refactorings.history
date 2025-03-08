@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;DeviceProcessor03/Device/Inc/DeviceConstants.h&apos; to &apos;device_constants.h&apos;" description="Rename resource &apos;DeviceConstants.h&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="Device/Inc/DeviceConstants.h" name="device_constants.h" stamp="1741250200410" updateReferences="true"/>
+</session>

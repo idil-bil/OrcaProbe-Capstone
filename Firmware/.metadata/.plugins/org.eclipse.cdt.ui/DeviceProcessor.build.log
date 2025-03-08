@@ -1,4 +1,4 @@
-18:24:30 **** Incremental Build of configuration Debug for project DeviceProcessor ****
+14:19:37 **** Build of configuration Debug for project DeviceProcessor ****
 make -j12 all 
 arm-none-eabi-gcc "../Device/Src/run_device.c" -mcpu=cortex-m33 -std=gnu11 -g3 -DDEBUG -DUSE_FULL_LL_DRIVER -DUSE_HAL_DRIVER -DSTM32U575xx -c -I../Core/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32U5xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Device/Src/run_device.d" -MT"Device/Src/run_device.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Device/Src/run_device.o"
 ../Device/Src/run_device.c: In function 'run_device':
@@ -14,11 +14,11 @@ Finished building target: DeviceProcessor.elf
 arm-none-eabi-size  DeviceProcessor.elf 
 arm-none-eabi-objdump -h -S DeviceProcessor.elf  > "DeviceProcessor.list"
    text	   data	    bss	    dec	    hex	filename
-  50604	     25	   4844	  55473	   d8b1	DeviceProcessor.elf
+  49092	      9	   4844	  53945	   d2b9	DeviceProcessor.elf
 Finished building: default.size.stdout
  
 Finished building: DeviceProcessor.list
  
 
-18:24:35 Build Finished. 0 errors, 2 warnings. (took 5s.626ms)
+14:19:41 Build Finished. 0 errors, 2 warnings. (took 3s.874ms)
 

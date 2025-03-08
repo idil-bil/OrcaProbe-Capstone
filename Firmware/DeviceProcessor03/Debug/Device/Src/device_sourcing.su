@@ -1,0 +1,6 @@
+../Device/Src/device_sourcing.c:10:6:set_ad9833_dds_buffer	16	static
+../Device/Src/device_sourcing.c:23:6:set_pot_buffer	24	static
+../Device/Src/device_sourcing.c:28:19:config_dds_freq	24	static
+../Device/Src/device_sourcing.c:35:19:config_volt_src_gain	40	static
+../Device/Src/device_sourcing.c:42:19:config_volt_src_offset	40	static
+../Device/Src/device_sourcing.c:49:19:config_current_mirror	40	static

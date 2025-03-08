@@ -242,10 +242,10 @@ class DVC_DVC_MEASUREMENT_CONFIG:
 class DVC_DVC_PROBE_CONFIG:
     def __init__(self):
         self.Used_Probes = [0xDEAD,DVC_PROBE_CONFIG_Used_Probes_POSITION, DVC_PROBE_CONFIG_Used_Probes_LENGTH]
-        self.Probe_1_Config = [0xDEAD,DVC_PROBE_CONFIG_Probe_1_Config_POSITION, DVC_PROBE_CONFIG_Probe_1_Config_LENGTH]
-        self.Probe_2_Config = [0xDEAD,DVC_PROBE_CONFIG_Probe_2_Config_POSITION, DVC_PROBE_CONFIG_Probe_2_Config_LENGTH]
-        self.Probe_3_Config = [0xDEAD,DVC_PROBE_CONFIG_Probe_3_Config_POSITION, DVC_PROBE_CONFIG_Probe_3_Config_LENGTH]
-        self.Probe_4_Config = [0xDEAD,DVC_PROBE_CONFIG_Probe_4_Config_POSITION, DVC_PROBE_CONFIG_Probe_4_Config_LENGTH]
+        self.Probe_1_Config = [0,DVC_PROBE_CONFIG_Probe_1_Config_POSITION, DVC_PROBE_CONFIG_Probe_1_Config_LENGTH]
+        self.Probe_2_Config = [0,DVC_PROBE_CONFIG_Probe_2_Config_POSITION, DVC_PROBE_CONFIG_Probe_2_Config_LENGTH]
+        self.Probe_3_Config = [0,DVC_PROBE_CONFIG_Probe_3_Config_POSITION, DVC_PROBE_CONFIG_Probe_3_Config_LENGTH]
+        self.Probe_4_Config = [0,DVC_PROBE_CONFIG_Probe_4_Config_POSITION, DVC_PROBE_CONFIG_Probe_4_Config_LENGTH]
 
 class DVC_DVC_2PM_DCRESISTANCE_1:
     def __init__(self):

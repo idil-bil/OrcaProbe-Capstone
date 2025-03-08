@@ -1,0 +1,17 @@
+/*
+ * device_monitoring.h
+ *
+ *  Created on: Mar 6, 2025
+ *      Author: User
+ */
+
+#ifndef INC_DEVICE_MONITORING_H_
+#define INC_DEVICE_MONITORING_H_
+
+void set_adc_sampling_freq(uint32_t sample_freq){
+	TIM8->ARR = 32-1;
+	TIM8->CCR1 = TIM8->ARR/2;
+	TIM8->CCR2 = TIM8->ARR/2;
+}
+
+#endif /* INC_DEVICE_MONITORING_H_ */

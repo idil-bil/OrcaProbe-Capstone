@@ -55,7 +55,9 @@ DMA_HandleTypeDef handle_GPDMA1_Channel12;
 PCD_HandleTypeDef hpcd_USB_OTG_FS;
 
 /* USER CODE BEGIN PV */
-char test_cmd;
+
+
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -95,16 +97,7 @@ int main(void)
 {
 
   /* USER CODE BEGIN 1 */
-	HAL_StatusTypeDef funcResult1;
-	HAL_StatusTypeDef funcResult2;
-	uint16_t dmaValCheck1[500];
-	uint16_t dmaValCheck2[500];
-	for(int i = 0; i < 500; i++){
-		dmaValCheck1[i] = i;
-	}
-	for(int i = 0; i < 500; i++){
-		dmaValCheck2[i] = i;
-	}
+
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -136,22 +129,13 @@ int main(void)
   /* USER CODE BEGIN 2 */
   MX_USB_Device_Init();
   HAL_Delay(2000);
-//  run_device();
-  TIM8->ARR = 32-1;
-  TIM8->CCR1 = TIM8->ARR/2;
-  TIM8->CCR2 = TIM8->ARR/2;
-  TIM8->DIER = TIM_DIER_UDE;
+  run_device();
+//  TIM8->DIER = TIM_DIER_UDE;
 //  HAL_TIM_PWM_Start(&htim8, TIM_CHANNEL_2);
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  HAL_SPI_Transmit(&hspi2, SPI_TX_Buffer2, 10, 1000);
-  HAL_Delay(200);
-  funcResult1 = HAL_I2C_Master_Transmit(&hi2c3,0x2F<<1,I2C_TX_Buffer1,2,1000);
-  HAL_Delay(200);
-  funcResult2 = HAL_I2C_Master_Transmit(&hi2c3,0x2E<<1,I2C_TX_Buffer2,2,1000);
-  HAL_Delay(200);
   while (1)
   {
     /* USER CODE END WHILE */
@@ -561,7 +545,7 @@ static void MX_TIM8_Init(void)
   {
     Error_Handler();
   }
-  if (HAL_TIM_PWM_Init(&htim8) != HAL_OK)
+  if (HAL_TIM_OC_Init(&htim8) != HAL_OK)
   {
     Error_Handler();
   }
@@ -572,14 +556,14 @@ static void MX_TIM8_Init(void)
   {
     Error_Handler();
   }
-  sConfigOC.OCMode = TIM_OCMODE_PWM1;
+  sConfigOC.OCMode = TIM_OCMODE_TOGGLE;
   sConfigOC.Pulse = 0;
   sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
   sConfigOC.OCNPolarity = TIM_OCNPOLARITY_HIGH;
   sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
   sConfigOC.OCIdleState = TIM_OCIDLESTATE_RESET;
   sConfigOC.OCNIdleState = TIM_OCNIDLESTATE_RESET;
-  if (HAL_TIM_PWM_ConfigChannel(&htim8, &sConfigOC, TIM_CHANNEL_2) != HAL_OK)
+  if (HAL_TIM_OC_ConfigChannel(&htim8, &sConfigOC, TIM_CHANNEL_2) != HAL_OK)
   {
     Error_Handler();
   }

@@ -5,19 +5,25 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
+../Device/Src/device_monitoring.c \
 ../Device/Src/device_registers.c \
+../Device/Src/device_sourcing.c \
 ../Device/Src/measurement_routines.c \
 ../Device/Src/run_device.c \
 ../Device/Src/switch_network.c 
 
 OBJS += \
+./Device/Src/device_monitoring.o \
 ./Device/Src/device_registers.o \
+./Device/Src/device_sourcing.o \
 ./Device/Src/measurement_routines.o \
 ./Device/Src/run_device.o \
 ./Device/Src/switch_network.o 
 
 C_DEPS += \
+./Device/Src/device_monitoring.d \
 ./Device/Src/device_registers.d \
+./Device/Src/device_sourcing.d \
 ./Device/Src/measurement_routines.d \
 ./Device/Src/run_device.d \
 ./Device/Src/switch_network.d 
@@ -30,7 +36,7 @@ Device/Src/%.o Device/Src/%.su Device/Src/%.cyclo: ../Device/Src/%.c Device/Src/
 clean: clean-Device-2f-Src
 
 clean-Device-2f-Src:
-	-$(RM) ./Device/Src/device_registers.cyclo ./Device/Src/device_registers.d ./Device/Src/device_registers.o ./Device/Src/device_registers.su ./Device/Src/measurement_routines.cyclo ./Device/Src/measurement_routines.d ./Device/Src/measurement_routines.o ./Device/Src/measurement_routines.su ./Device/Src/run_device.cyclo ./Device/Src/run_device.d ./Device/Src/run_device.o ./Device/Src/run_device.su ./Device/Src/switch_network.cyclo ./Device/Src/switch_network.d ./Device/Src/switch_network.o ./Device/Src/switch_network.su
+	-$(RM) ./Device/Src/device_monitoring.cyclo ./Device/Src/device_monitoring.d ./Device/Src/device_monitoring.o ./Device/Src/device_monitoring.su ./Device/Src/device_registers.cyclo ./Device/Src/device_registers.d ./Device/Src/device_registers.o ./Device/Src/device_registers.su ./Device/Src/device_sourcing.cyclo ./Device/Src/device_sourcing.d ./Device/Src/device_sourcing.o ./Device/Src/device_sourcing.su ./Device/Src/measurement_routines.cyclo ./Device/Src/measurement_routines.d ./Device/Src/measurement_routines.o ./Device/Src/measurement_routines.su ./Device/Src/run_device.cyclo ./Device/Src/run_device.d ./Device/Src/run_device.o ./Device/Src/run_device.su ./Device/Src/switch_network.cyclo ./Device/Src/switch_network.d ./Device/Src/switch_network.o ./Device/Src/switch_network.su
 
 .PHONY: clean-Device-2f-Src
 

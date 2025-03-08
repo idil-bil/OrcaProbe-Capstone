@@ -1,0 +1,54 @@
+/*
+ * device_sourcing.c
+ *
+ *  Created on: Mar 6, 2025
+ *      Author: User
+ */
+#include "main.h"
+#include "device_sourcing.h"
+
+void set_dds_buffer(uint8_t *buffer, uint32_t freq_14msb, uint32_t freq_14lsb) {
+	// Combine 14 MSBs and 14 LSBs
+    uint32_t freq_28b = ((freq_14msb & 0x3FFF) << 14) | (freq_14lsb & 0x3FFF);
+    // Populate the buffer according to the command sequence
+    buffer[0] = 0x21; buffer[1] = 0x00; // Control Register
+    buffer[2] = 0x40 | ((freq_28b >> 8) & 0x3F); // Frequency Register 0 LSB
+    buffer[3] = freq_28b & 0xFF;
+    buffer[4] = 0x40 | ((freq_28b >> 22) & 0x3F); // Frequency Register 0 MSB
+    buffer[5] = (freq_28b >> 14) & 0xFF;
+    buffer[6] = 0xC0; buffer[7] = 0x00; // Phase Register 0
+    buffer[8] = 0x20; buffer[9] = 0x00; // Exit Reset
+}
+
+void set_pot_buffer(uint8_t *buffer, uint32_t cmd, uint32_t value) {
+    buffer[0] = cmd;
+    buffer[1] = value;
+}
+
+HAL_StatusTypeDef config_dds_freq(SPI_HandleTypeDef *hspi, uint8_t *buffer){
+	HAL_StatusTypeDef result;
+	result = HAL_SPI_Transmit(hspi, buffer, 10, 1000);
+	HAL_Delay(100);
+	return result;
+}
+
+HAL_StatusTypeDef config_volt_src_gain(SPI_HandleTypeDef *hspi, uint8_t *buffer){
+	HAL_StatusTypeDef result;
+	result = HAL_SPI_Transmit(hspi, buffer, 10, 1000);
+	HAL_Delay(100);
+	return result;
+}
+
+HAL_StatusTypeDef config_volt_src_offset(I2C_HandleTypeDef *hi2c, uint16_t pot_addr, uint8_t *buffer){
+	HAL_StatusTypeDef result;
+	result = HAL_I2C_Master_Transmit(hi2c, pot_addr, buffer, 2, 1000);
+	HAL_Delay(100);
+	return result;
+}
+
+HAL_StatusTypeDef config_current_mirror(I2C_HandleTypeDef *hi2c, uint16_t pot_addr, uint8_t *buffer){
+	HAL_StatusTypeDef result;
+	result = HAL_I2C_Master_Transmit(hi2c, pot_addr, buffer, 2, 1000);
+	HAL_Delay(100);
+	return result;
+}

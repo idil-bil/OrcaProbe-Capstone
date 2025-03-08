@@ -1,0 +1,80 @@
+/*
+ * measurement_routines.c
+ *
+ *  Created on: Feb 27, 2025
+ *      Author: User
+ */
+
+#include "switch_network.h"
+#include "device_sourcing.h"
+#include "device_registers.h"
+#include "run_device.h"
+#include "main.h"
+
+extern I2C_HandleTypeDef hi2c2;
+extern I2C_HandleTypeDef hi2c3;
+
+extern SPI_HandleTypeDef hspi1;
+extern SPI_HandleTypeDef hspi2;
+
+uint8_t volt_src_dds1_spi_tx_buf[] = {0x21,0x00,0x61,0x8E,0x40,0x00,0xC0,0x00,0x20,0x00};  // 400Hz
+uint8_t volt_src_gain_i2c_tx_buf[] = {0,126};
+uint8_t volt_src_offset_i2c_tx_buf[] = {0,126};
+
+extern RegisterMap_TypeDef device_registers;
+extern SwitchNetwork_TypeDef device_switch_network;
+
+void dvc_exec_msr_dc_resistance_2p(void){
+//	set_ad9833_dds_buffer(&volt_src_dds1_spi_tx_buf,0x10C7);
+	set_pot_buffer(&volt_src_gain_i2c_tx_buf,DVC_POT_MCP4531_WP0_WR_CMD,100);
+	set_pot_buffer(&volt_src_offset_i2c_tx_buf,DVC_POT_MCP4531_WP0_WR_CMD,90);
+
+	config_volt_src_gain(&hi2c3,DVC_VOLT_SRC_1_AMP_POT_I2C_ADDR,&volt_src_gain_i2c_tx_buf);
+	config_volt_src_offset(&hi2c3,DVC_VOLT_SRC_1_OFS_POT_I2C_ADDR,&volt_src_offset_i2c_tx_buf);
+
+	config_dds_freq(&hspi2,&volt_src_dds1_spi_tx_buf);
+//	map_switch_network(&device_switch_network,get_register(&device_registers,DVC_PROBE_CONFIG));
+//	set_switch_network(&device_switch_network);
+//	HAL_Delay(1000);
+//	clear_switch_network(&device_switch_network);
+}
+
+void dvc_exec_msr_current_voltage(void){
+
+}
+
+void dvc_exec_msr_capacitance_voltage_2p(void){
+
+}
+
+void dvc_exec_msr_impedance_spectroscopy_2p(void){
+
+}
+
+void dvc_exec_msr_transfer_characteristics(void){
+
+}
+
+void dvc_exec_msr_output_characteristics(void){
+
+}
+
+void dvc_exec_msr_capacitance_voltage_3p(void){
+
+}
+
+void dvc_exec_msr_electrochemical(void){
+
+}
+
+void dvc_exec_msr_low_resistance(void){
+
+}
+
+void dvc_exec_msr_dc_resistance_4p(void){
+
+}
+
+void dvc_exec_msr_impedance_spectroscopy_4p(void){
+
+}
