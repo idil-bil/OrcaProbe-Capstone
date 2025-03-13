@@ -1,1 +1,2 @@
-../Device/Src/run_device.c:34:6:run_device	16	static
+../Device/Src/run_device.c:36:6:run_device	16	static
+../Device/Src/run_device.c:104:6:Adc1SampleCompleteCallback	16	static,ignoring_inline_asm

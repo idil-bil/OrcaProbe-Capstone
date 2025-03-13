@@ -9,7 +9,7 @@
 
 void init_register_map(RegisterMap_TypeDef* RegMap){
 	for(int i = 0; i < DVC_TOTAL_REGISTER_NUMBER; i++){
-		RegMap->RegisterArray[i].RegData = 0xdeadbeef;
+		RegMap->RegisterArray[i].RegData = 0;
 	}
 }
 

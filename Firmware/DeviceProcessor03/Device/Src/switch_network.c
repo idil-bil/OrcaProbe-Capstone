@@ -38,7 +38,6 @@ void clear_switch_network(SwitchNetwork_TypeDef* switch_network){
 		HAL_GPIO_WritePin(switch_network->Relays[i].AssociatedGPIOPort,
 						  switch_network->Relays[i].AssociatedGPIO,
 						  switch_network->Relays[i].RelayState);
-		HAL_Delay(300);
 	}
 	return;
 }
@@ -48,30 +47,38 @@ void set_switch_network(SwitchNetwork_TypeDef* switch_network){
 		HAL_GPIO_WritePin(switch_network->Relays[i].AssociatedGPIOPort,
 						  switch_network->Relays[i].AssociatedGPIO,
 						  switch_network->Relays[i].RelayState);
-		HAL_Delay(300);
 	}
 	return;
 }
 void map_switch_network(SwitchNetwork_TypeDef* switch_network, uint32_t switch_network_config){
+	// set the basic flags
 	switch_network->ValidSwitchNetwork = 1;
 	uint8_t volt_src_1_used = 0;
+	uint8_t adc_1_used = 0;
+	uint8_t adc_2_used = 0;	// only ADC2 can do current sensing and has prio over adc1
+	uint8_t adc_3_used = 0; // not populated on PCB yet
 	uint8_t used_probes = switch_network_config & 0x0F;
 
+	// decode configuration values
 	uint8_t probe_1_cfg = (switch_network_config >> 4) & 0x1F;
 	uint8_t probe_2_cfg = (switch_network_config >> 9) & 0x1F;
 	uint8_t probe_3_cfg = (switch_network_config >> 14)& 0x1F;
 	uint8_t probe_4_cfg = (switch_network_config >> 19)& 0x1F;
 
+	// decode source configurations
 	uint8_t probe_1_cfg_src = (probe_1_cfg >> 2) & 0x07;
 	uint8_t probe_2_cfg_src = (probe_2_cfg >> 2) & 0x07;
 	uint8_t probe_3_cfg_src = (probe_3_cfg >> 2) & 0x07;
 	uint8_t probe_4_cfg_src = (probe_4_cfg >> 2) & 0x07;
 
+	// decode monitor configurations
 	uint8_t probe_1_cfg_mon = (probe_1_cfg) & 0x03;
 	uint8_t probe_2_cfg_mon = (probe_2_cfg) & 0x03;
 	uint8_t probe_3_cfg_mon = (probe_3_cfg) & 0x03;
 	uint8_t probe_4_cfg_mon = (probe_4_cfg) & 0x03;
 
+	// --------------------------------------------------------------------
+	// PROBE 1 CFG
 	if(used_probes & 0x01){
 		if(probe_1_cfg_src == 0){}
 		else if(probe_1_cfg_src == DVC_PROBE_SUPPLY_DCV){
@@ -98,7 +105,20 @@ void map_switch_network(SwitchNetwork_TypeDef* switch_network, uint32_t switch_n
 		else if(probe_1_cfg_src == DVC_PROBE_SUPPLY_GND){
 			switch_network->Relays[4].RelayState = GPIO_PIN_SET;
 		}
+
+		if(probe_1_cfg_mon == 0){}
+		else if(probe_1_cfg_mon == DVC_PROBE_MEASURE_VOL){
+			adc_2_used = 1;
+		}
+		else if(probe_1_cfg_mon == DVC_PROBE_MEASURE_CUR){
+			switch_network->Relays[21].RelayState = GPIO_PIN_SET;
+		}
+
 	}
+	// --------------------------------------------------------------------
+
+	// --------------------------------------------------------------------
+	// PROBE 2 CFG
 	if(used_probes & 0x02){
 		if(probe_2_cfg_src == 0){}
 		else if(probe_2_cfg_src == DVC_PROBE_SUPPLY_DCV){
@@ -125,7 +145,26 @@ void map_switch_network(SwitchNetwork_TypeDef* switch_network, uint32_t switch_n
 		else if(probe_2_cfg_src == DVC_PROBE_SUPPLY_GND){
 			switch_network->Relays[8].RelayState = GPIO_PIN_SET;
 		}
+
+		if(probe_2_cfg_mon == 0){}
+		else if(probe_2_cfg_mon == DVC_PROBE_MEASURE_VOL){
+			if(!adc_2_used){
+				switch_network->Relays[18].RelayState = GPIO_PIN_SET;
+				adc_2_used = 1;
+			}
+			else{
+				switch_network->Relays[17].RelayState = GPIO_PIN_SET;
+			}
+		}
+		else if(probe_2_cfg_mon == DVC_PROBE_MEASURE_CUR){
+			switch_network->Relays[21].RelayState = GPIO_PIN_SET;
+		}
+
 	}
+	// --------------------------------------------------------------------
+
+	// --------------------------------------------------------------------
+	// PROBE 3 CFG
 	if(used_probes & 0x04){
 		if(probe_3_cfg_src == 0){}
 		else if(probe_3_cfg_src == DVC_PROBE_SUPPLY_DCV){
@@ -152,7 +191,25 @@ void map_switch_network(SwitchNetwork_TypeDef* switch_network, uint32_t switch_n
 		else if(probe_3_cfg_src == DVC_PROBE_SUPPLY_GND){
 			switch_network->Relays[12].RelayState = GPIO_PIN_SET;
 		}
+
+		if(probe_3_cfg_mon == 0){}
+		else if(probe_3_cfg_mon == DVC_PROBE_MEASURE_VOL){
+			if(!adc_2_used){
+				switch_network->Relays[20].RelayState = GPIO_PIN_SET;
+				adc_2_used = 1;
+			}
+			else{
+				switch_network->Relays[19].RelayState = GPIO_PIN_SET;
+			}
+		}
+		else if(probe_3_cfg_mon == DVC_PROBE_MEASURE_CUR){
+			switch_network->Relays[21].RelayState = GPIO_PIN_SET;
+		}
 	}
+	// --------------------------------------------------------------------
+
+	// --------------------------------------------------------------------
+	// PROBE 4 CFG
 	if(used_probes & 0x08){
 		if(probe_4_cfg_src == 0){}
 		else if(probe_4_cfg_src == DVC_PROBE_SUPPLY_DCV){
@@ -179,6 +236,23 @@ void map_switch_network(SwitchNetwork_TypeDef* switch_network, uint32_t switch_n
 		else if(probe_4_cfg_src == DVC_PROBE_SUPPLY_GND){
 			switch_network->Relays[16].RelayState = GPIO_PIN_SET;
 		}
+
+		if(probe_4_cfg_mon == 0){}
+		else if(probe_4_cfg_mon == DVC_PROBE_MEASURE_VOL){
+			if(!adc_2_used){
+				switch_network->Relays[18].RelayState = GPIO_PIN_SET;
+				switch_network->Relays[20].RelayState = GPIO_PIN_SET;
+				adc_2_used = 1;
+			}
+			else{
+				switch_network->Relays[17].RelayState = GPIO_PIN_SET;
+				switch_network->Relays[19].RelayState = GPIO_PIN_SET;
+			}
+		}
+		else if(probe_4_cfg_mon == DVC_PROBE_MEASURE_CUR){
+			switch_network->Relays[21].RelayState = GPIO_PIN_SET;
+		}
 	}
+	// --------------------------------------------------------------------
 	return;
 }

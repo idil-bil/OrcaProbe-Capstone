@@ -16,6 +16,8 @@
 
 extern TIM_HandleTypeDef htim8;
 extern DMA_HandleTypeDef handle_GPDMA1_Channel12;
+extern DMA_HandleTypeDef handle_GPDMA1_Channel13;
+extern DMA_HandleTypeDef handle_GPDMA1_Channel14;
 
 uint16_t adc_samples_1[DVC_MAX_NUM_ADC_SAMPLES];
 uint16_t adc_samples_2[DVC_MAX_NUM_ADC_SAMPLES];
@@ -37,7 +39,7 @@ void run_device(){
 	init_register_map(&device_registers);
 	init_switch_network(&device_switch_network);
 	clear_switch_network(&device_switch_network);
-	set_adc_sampling_freq(10000000UL);
+	set_adc_sampling_freq(5000000UL);
 	for(int i = 0; i < DVC_MAX_NUM_ADC_SAMPLES; i++){
 		adc_samples_1[i] = 0xdead;
 		adc_samples_2[i] = 0xdead;
@@ -63,6 +65,7 @@ void run_device(){
 					break;
 				case CURRENT_VOLTAGE:
 					dvc_exec_msr_current_voltage();
+					set_register(&device_registers,DVC_MEASUREMENT_CONFIG,0);
 					break;
 				case CAPACITANCE_VOLTAGE_2P:
 					dvc_exec_msr_capacitance_voltage_2p();
@@ -96,4 +99,9 @@ void run_device(){
 			}
 		}
 	}
+}
+
+void Adc1SampleCompleteCallback(DMA_HandleTypeDef *hdma)
+{
+  __NOP(); //Line reached only if transfer was successful. Toggle a breakpoint here
 }

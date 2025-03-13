@@ -43,6 +43,9 @@
 
 /* Private variables ---------------------------------------------------------*/
 
+DMA_HandleTypeDef handle_GPDMA1_Channel14;
+DMA_HandleTypeDef handle_GPDMA1_Channel13;
+
 I2C_HandleTypeDef hi2c2;
 I2C_HandleTypeDef hi2c3;
 
@@ -130,8 +133,6 @@ int main(void)
   MX_USB_Device_Init();
   HAL_Delay(2000);
   run_device();
-//  TIM8->DIER = TIM_DIER_UDE;
-//  HAL_TIM_PWM_Start(&htim8, TIM_CHANNEL_2);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -261,6 +262,50 @@ static void MX_GPDMA1_Init(void)
   /* USER CODE BEGIN GPDMA1_Init 1 */
 
   /* USER CODE END GPDMA1_Init 1 */
+  handle_GPDMA1_Channel14.Instance = GPDMA1_Channel14;
+  handle_GPDMA1_Channel14.Init.Request = DMA_REQUEST_SW;
+  handle_GPDMA1_Channel14.Init.BlkHWRequest = DMA_BREQ_SINGLE_BURST;
+  handle_GPDMA1_Channel14.Init.Direction = DMA_MEMORY_TO_MEMORY;
+  handle_GPDMA1_Channel14.Init.SrcInc = DMA_SINC_FIXED;
+  handle_GPDMA1_Channel14.Init.DestInc = DMA_DINC_FIXED;
+  handle_GPDMA1_Channel14.Init.SrcDataWidth = DMA_SRC_DATAWIDTH_BYTE;
+  handle_GPDMA1_Channel14.Init.DestDataWidth = DMA_DEST_DATAWIDTH_BYTE;
+  handle_GPDMA1_Channel14.Init.Priority = DMA_LOW_PRIORITY_LOW_WEIGHT;
+  handle_GPDMA1_Channel14.Init.SrcBurstLength = 1;
+  handle_GPDMA1_Channel14.Init.DestBurstLength = 1;
+  handle_GPDMA1_Channel14.Init.TransferAllocatedPort = DMA_SRC_ALLOCATED_PORT0|DMA_DEST_ALLOCATED_PORT0;
+  handle_GPDMA1_Channel14.Init.TransferEventMode = DMA_TCEM_BLOCK_TRANSFER;
+  handle_GPDMA1_Channel14.Init.Mode = DMA_NORMAL;
+  if (HAL_DMA_Init(&handle_GPDMA1_Channel14) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  if (HAL_DMA_ConfigChannelAttributes(&handle_GPDMA1_Channel14, DMA_CHANNEL_NPRIV) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  handle_GPDMA1_Channel13.Instance = GPDMA1_Channel13;
+  handle_GPDMA1_Channel13.Init.Request = DMA_REQUEST_SW;
+  handle_GPDMA1_Channel13.Init.BlkHWRequest = DMA_BREQ_SINGLE_BURST;
+  handle_GPDMA1_Channel13.Init.Direction = DMA_MEMORY_TO_MEMORY;
+  handle_GPDMA1_Channel13.Init.SrcInc = DMA_SINC_FIXED;
+  handle_GPDMA1_Channel13.Init.DestInc = DMA_DINC_FIXED;
+  handle_GPDMA1_Channel13.Init.SrcDataWidth = DMA_SRC_DATAWIDTH_BYTE;
+  handle_GPDMA1_Channel13.Init.DestDataWidth = DMA_DEST_DATAWIDTH_BYTE;
+  handle_GPDMA1_Channel13.Init.Priority = DMA_LOW_PRIORITY_LOW_WEIGHT;
+  handle_GPDMA1_Channel13.Init.SrcBurstLength = 1;
+  handle_GPDMA1_Channel13.Init.DestBurstLength = 1;
+  handle_GPDMA1_Channel13.Init.TransferAllocatedPort = DMA_SRC_ALLOCATED_PORT0|DMA_DEST_ALLOCATED_PORT0;
+  handle_GPDMA1_Channel13.Init.TransferEventMode = DMA_TCEM_BLOCK_TRANSFER;
+  handle_GPDMA1_Channel13.Init.Mode = DMA_NORMAL;
+  if (HAL_DMA_Init(&handle_GPDMA1_Channel13) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  if (HAL_DMA_ConfigChannelAttributes(&handle_GPDMA1_Channel13, DMA_CHANNEL_NPRIV) != HAL_OK)
+  {
+    Error_Handler();
+  }
   /* USER CODE BEGIN GPDMA1_Init 2 */
 
   /* USER CODE END GPDMA1_Init 2 */
@@ -545,7 +590,7 @@ static void MX_TIM8_Init(void)
   {
     Error_Handler();
   }
-  if (HAL_TIM_OC_Init(&htim8) != HAL_OK)
+  if (HAL_TIM_PWM_Init(&htim8) != HAL_OK)
   {
     Error_Handler();
   }
@@ -556,14 +601,14 @@ static void MX_TIM8_Init(void)
   {
     Error_Handler();
   }
-  sConfigOC.OCMode = TIM_OCMODE_TOGGLE;
+  sConfigOC.OCMode = TIM_OCMODE_PWM1;
   sConfigOC.Pulse = 0;
   sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
   sConfigOC.OCNPolarity = TIM_OCNPOLARITY_HIGH;
   sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
   sConfigOC.OCIdleState = TIM_OCIDLESTATE_RESET;
   sConfigOC.OCNIdleState = TIM_OCNIDLESTATE_RESET;
-  if (HAL_TIM_OC_ConfigChannel(&htim8, &sConfigOC, TIM_CHANNEL_2) != HAL_OK)
+  if (HAL_TIM_PWM_ConfigChannel(&htim8, &sConfigOC, TIM_CHANNEL_2) != HAL_OK)
   {
     Error_Handler();
   }

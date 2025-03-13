@@ -1089,15 +1089,19 @@ class MainWindow(QMainWindow):
                 reg_map.DVC_MEASUREMENT_CONFIG.Valid_Measure_Config[0] = 0
                 reg_map.DVC_MEASUREMENT_CONFIG.Measure_Probe_Config[0] = GUI_2PROBES
                 reg_map.DVC_MEASUREMENT_CONFIG.Measure_Type_Config[0] = GUI_DC_RESISTANCE
+                reg_map.DVC_2PM_DCRESISTANCE_1.Test_Current_Value[0] = 251
                 write_reg_DVC_PROBE_CONFIG(self.ser, reg_map)
+                write_reg_DVC_2PM_DCRESISTANCE_1(self.ser, reg_map)
                 write_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
-                # garbage = receive_samples(self.ser, 8192)
-                # while garbage is None:
-                #     garbage = receive_samples(self.ser, 8192)
-                # voltage = garbage[256]
-                # current = 3
-                # result = dc_resistance(voltage, current)
-                # self.timer.start(100)  # Check every 100ms
+                # time.sleep(10)
+                # adc_samples = receive_samples(self.ser, 8192*2)
+                # while adc_samples is None:
+                #     adc_samples = receive_samples(self.ser, 8192*2)
+                # adc_samples = adc_samples/4096*5
+                # voltage = np.average(adc_samples)
+                # current = 0.039
+                # # result = dc_resistance(voltage, current)
+                # self.result_label.setText(voltage)
 
     def start_current_voltage_inputs(self):
         """Starts the Current-Voltage measurement and embeds the graph in the GUI."""
@@ -1106,18 +1110,18 @@ class MainWindow(QMainWindow):
             if page.objectName() == "Current-Voltage":
                 # Find all input fields in the page layout
                 inputs = page.findChildren(QLineEdit)
-
+                dd = page.findChildren(QComboBox)
                 try:
                     # Determine if voltage or current is being swept
-                    sweep_type = "voltage" if "Voltage" in inputs[0].text() else "current"
-                    start = float(inputs[0].text())
-                    end = float(inputs[1].text())
-                    increment = float(inputs[2].text())
+                    sweep_type = 1 if "Sweep DC Voltage (V)" in dd[0].currentText() else 0
+                    start = int(inputs[0].text())
+                    end = int(inputs[1].text())
+                    increment = int(inputs[2].text())
 
                     # Validate inputs
-                    if increment <= 0 or end < start:
-                        self.result_label.setText("Error: Invalid range or increment.")
-                        return
+                    # if increment <= 0 or end < start:
+                    #     self.result_label.setText("Error: Invalid range or increment.")
+                    #     return
 
                     # Configure measurement (Dummy Config)
                     selected_probes = self.get_selected_probes(2)
@@ -1127,20 +1131,28 @@ class MainWindow(QMainWindow):
                     reg_map.DVC_MEASUREMENT_CONFIG.Measure_In_Progress[0] = 0
                     reg_map.DVC_MEASUREMENT_CONFIG.Valid_Measure_Config[0] = 0
                     reg_map.DVC_MEASUREMENT_CONFIG.Measure_Probe_Config[0] = GUI_2PROBES
-                    reg_map.DVC_MEASUREMENT_CONFIG.Measure_Type_Config[0] = GUI_DC_RESISTANCE
-                    # write_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
+                    reg_map.DVC_MEASUREMENT_CONFIG.Measure_Type_Config[0] = GUI_CURRENT_VOLTAGE
+                    reg_map.DVC_2PM_CURRVOLT_1.Sweep_Param[0] = sweep_type
+                    reg_map.DVC_2PM_CURRVOLT_2.Starting_Param[0] = start
+                    reg_map.DVC_2PM_CURRVOLT_3.Ending_Param[0] = end
+                    reg_map.DVC_2PM_CURRVOLT_4.Increment_Param[0] = increment
+                    write_reg_DVC_2PM_CURRVOLT_1(self.ser, reg_map)
+                    write_reg_DVC_2PM_CURRVOLT_2(self.ser, reg_map)
+                    write_reg_DVC_2PM_CURRVOLT_3(self.ser, reg_map)
+                    write_reg_DVC_2PM_CURRVOLT_4(self.ser, reg_map)
+                    write_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
 
-                    # Generate sweep values
-                    sweep_values = np.arange(start, end + increment, increment)
+                #     # Generate sweep values
+                #     sweep_values = np.arange(start, end + increment, increment)
 
-                    # **Generate synthetic y_values (e.g., linear relationship + noise)**
-                    y_values = 2 * sweep_values + np.random.normal(0, 0.1, len(sweep_values))
+                #     # **Generate synthetic y_values (e.g., linear relationship + noise)**
+                #     y_values = 2 * sweep_values + np.random.normal(0, 0.1, len(sweep_values))
 
-                    # Update the GUI's Matplotlib plot
-                    self.update_plot(sweep_values, y_values, sweep_type)
+                #     # Update the GUI's Matplotlib plot
+                #     self.update_plot(sweep_values, y_values, sweep_type)
 
-                    # Display confirmation message in the GUI
-                    self.result_label.setText(f"{sweep_type.capitalize()} sweep completed!")
+                #     # Display confirmation message in the GUI
+                #     self.result_label.setText(f"{sweep_type.capitalize()} sweep completed!")
 
                 except ValueError:
                     self.result_label.setText("Error: Please enter valid numerical inputs.")
@@ -1309,9 +1321,10 @@ class MainWindow(QMainWindow):
                 # write_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
 
     def get_selected_probes(self, required_probes):
-        """Fetch selected probes ensuring only one dropdown per probe is non-default 
-        and the total selected probes match the required count."""
-        
+        """Fetch selected probes ensuring the total selected probes match the required count.
+        Each probe can have both a supply and a measurement option selected.
+        """
+
         # Ensure the probe configuration bar is correctly referenced
         probe_config_bar = self.probe_config_bar
         if not probe_config_bar:
@@ -1327,7 +1340,7 @@ class MainWindow(QMainWindow):
 
         for i in range(4):  # Iterate over the 4 probes
             probe_label = f"Probe {i + 1}"  # Manually defining probe labels
-            
+
             # Extract dropdown widgets
             supply_dropdown = probe_layout.itemAt(i * 3 + 1).widget()  # Supply dropdown
             measure_dropdown = probe_layout.itemAt(i * 3 + 2).widget()  # Measurement dropdown
@@ -1339,26 +1352,30 @@ class MainWindow(QMainWindow):
             supply_value = supply_dropdown.currentText()
             measure_value = measure_dropdown.currentText()
 
-            # Ensure only one dropdown per probe is selected
-            # if supply_value != "Choose Supply" and measure_value != "Choose Measurement":
-            #     print(f"Error: Both dropdowns are selected for {probe_label}! Only one is allowed.")
-            #     return None
+            # Add selections without overwriting
+            probe_selections = []
+
             if supply_value != "Choose Supply":
-                selected_probes[probe_label] = supply_value
+                probe_selections.append(supply_value)
+
             if measure_value != "Choose Measurement":
-                selected_probes[probe_label] = measure_value
+                probe_selections.append(measure_value)
+
+            if probe_selections:
+                selected_probes[probe_label] = probe_selections
 
         # Ensure the number of selected probes matches the required count
         if len(selected_probes) != required_probes:
             print(f"Error: {required_probes} probes required, but {len(selected_probes)} configured!")
             return None
-        
+
         print("Selected Probes:", selected_probes)
 
         return selected_probes
     
     def config_selected_probes(self, selected_probes, reg_map):
-        """Configures the selected probes by updating the Used_Probes register and setting probe-specific configurations."""
+        """Configures the selected probes by updating the Used_Probes register 
+        and setting probe-specific configurations with both supply and measurement options."""
 
         # Mapping probe names to their corresponding register values
         probe_map = {
@@ -1368,13 +1385,13 @@ class MainWindow(QMainWindow):
             "Probe 4": (GUI_PROBE_4_USED, "Probe_4_Config"),
         }
 
-        # Mapping configuration values for supply and measurement options
+        # Mapping configuration values for supply (upper 3 bits) and measurement (lower 2 bits)
         probe_config_map = {
-            "DC-Voltage Supply": (GUI_PROBE_SUPPLY_DCV, True),
+            "DC-Voltage Supply": (GUI_PROBE_SUPPLY_DCV, True),  # Upper 3 bits
             "AC-Voltage Supply": (GUI_PROBE_SUPPLY_ACV, True),
             "Current Supply": (GUI_PROBE_SUPPLY_CUR, True),
             "Ground": (GUI_PROBE_SUPPLY_GND, True),
-            "Voltage Measure": (GUI_PROBE_MEASURE_VOL, False),
+            "Voltage Measure": (GUI_PROBE_MEASURE_VOL, False),  # Lower 2 bits
             "Current Measure": (GUI_PROBE_MEASURE_CUR, False),
         }
 
@@ -1382,17 +1399,30 @@ class MainWindow(QMainWindow):
         reg_map.DVC_PROBE_CONFIG.Used_Probes[0] = 0
 
         # Iterate over selected probes and configure them
-        for probe, (used_flag, config_attr) in probe_map.items():
-            if probe in selected_probes and selected_probes[probe] is not None:
+        for probe, selections in selected_probes.items():
+            if probe in probe_map:
+                used_flag, config_attr = probe_map[probe]
+
                 # Update Used_Probes
                 reg_map.DVC_PROBE_CONFIG.Used_Probes[0] |= used_flag  # Perform bitwise OR update
 
-                # Get the configuration value and shift requirement
-                probe_value, should_shift = probe_config_map.get(selected_probes[probe], (None, None))
-                if probe_value is not None:
-                    # Correctly update the first index of Probe_X_Config
-                    getattr(reg_map.DVC_PROBE_CONFIG, config_attr)[0] = probe_value << 2 if should_shift else probe_value
+                # Start with a 0-value config for this probe
+                probe_config_value = 0
 
+                for selection in selections:
+                    # Get the configuration value and determine if it should be shifted
+                    probe_value, should_shift = probe_config_map.get(selection, (None, None))
+                    if probe_value is not None:
+                        # Apply shifting for supply (upper 3 bits)
+                        if should_shift:
+                            probe_config_value |= (probe_value << 2)
+                        else:  # Measurement (lower 2 bits)
+                            probe_config_value |= probe_value
+
+                # Update the probe's configuration register
+                getattr(reg_map.DVC_PROBE_CONFIG, config_attr)[0] = probe_config_value
+
+        # Debug prints
         print(f"Configured Used_Probes: {bin(reg_map.DVC_PROBE_CONFIG.Used_Probes[0])}")
         print(f"Configured Probes 1: {bin(reg_map.DVC_PROBE_CONFIG.Probe_1_Config[0])}")
         print(f"Configured Probes 2: {bin(reg_map.DVC_PROBE_CONFIG.Probe_2_Config[0])}")

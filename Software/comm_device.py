@@ -95,6 +95,7 @@ def receive_samples(ser, buffer_size):
     Returns:
     - np.ndarray: An array of 12-bit ADC samples, or None if no data is available.
     """
+    send_value(ser,pack_32bit(101,0))
     if ser.in_waiting >= buffer_size:  # Read only if enough data is available
         data_bytes = ser.read(buffer_size)  # Read buffer_size bytes
         samples = np.frombuffer(data_bytes, dtype=np.uint16)  # Convert bytes to 16-bit integers

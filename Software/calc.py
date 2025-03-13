@@ -13,7 +13,7 @@ def dc_resistance(voltage, current):
         return "Error: Current cannot be zero."
     
     resistance = voltage / current
-    return f"Resistance: {resistance:.2f} Ω"
+    return f"Resistance: {resistance:.2f} kΩ"
 
 import numpy as np
 import matplotlib.pyplot as plt

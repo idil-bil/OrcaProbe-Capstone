@@ -1,4 +1,4 @@
 ../Device/Src/switch_network.c:24:6:init_switch_network	24	static
 ../Device/Src/switch_network.c:35:6:clear_switch_network	32	static
-../Device/Src/switch_network.c:45:6:set_switch_network	32	static
-../Device/Src/switch_network.c:55:6:map_switch_network	32	static
+../Device/Src/switch_network.c:44:6:set_switch_network	32	static
+../Device/Src/switch_network.c:53:6:map_switch_network	40	static
