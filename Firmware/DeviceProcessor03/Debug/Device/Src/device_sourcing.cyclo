@@ -1,6 +1,7 @@
 ../Device/Src/device_sourcing.c:10:6:set_ad9833_dds_buffer	1
 ../Device/Src/device_sourcing.c:23:6:set_pot_buffer	1
-../Device/Src/device_sourcing.c:28:19:config_dds_freq	1
-../Device/Src/device_sourcing.c:35:19:config_volt_src_gain	1
-../Device/Src/device_sourcing.c:42:19:config_volt_src_offset	1
-../Device/Src/device_sourcing.c:49:19:config_current_mirror	1
+../Device/Src/device_sourcing.c:28:5:calculate_pot_value	1
+../Device/Src/device_sourcing.c:45:19:config_dds_freq	1
+../Device/Src/device_sourcing.c:52:19:config_volt_src_gain	1
+../Device/Src/device_sourcing.c:59:19:config_volt_src_offset	1
+../Device/Src/device_sourcing.c:66:19:config_current_mirror	1

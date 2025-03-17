@@ -25,6 +25,23 @@ void set_pot_buffer(uint8_t *buffer, uint32_t cmd, uint32_t value) {
     buffer[1] = value;
 }
 
+int calculate_pot_value(float Current) {
+	// Function to calculate pot_value
+    // Define the constants
+//    const float constant = 3.8765;
+//    const float exponent = -1.0504;
+    const float constant = 4791;
+    const float exponent = -1.038;
+    const float offset = 255;
+//    const float scaler = 1000.0;
+
+    // Calculate pot_value using the provided formula
+    float pot_value = offset - pow(Current, exponent)*constant;
+
+    // Return the calculated pot_value
+    return (int)round(pot_value);
+}
+
 HAL_StatusTypeDef config_dds_freq(SPI_HandleTypeDef *hspi, uint8_t *buffer){
 	HAL_StatusTypeDef result;
 	result = HAL_SPI_Transmit(hspi, buffer, 10, 1000);

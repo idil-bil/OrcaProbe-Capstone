@@ -1089,19 +1089,22 @@ class MainWindow(QMainWindow):
                 reg_map.DVC_MEASUREMENT_CONFIG.Valid_Measure_Config[0] = 0
                 reg_map.DVC_MEASUREMENT_CONFIG.Measure_Probe_Config[0] = GUI_2PROBES
                 reg_map.DVC_MEASUREMENT_CONFIG.Measure_Type_Config[0] = GUI_DC_RESISTANCE
-                reg_map.DVC_2PM_DCRESISTANCE_1.Test_Current_Value[0] = 251
+                reg_map.DVC_2PM_DCRESISTANCE_1.Test_Current_Value[0] = 172
                 write_reg_DVC_PROBE_CONFIG(self.ser, reg_map)
                 write_reg_DVC_2PM_DCRESISTANCE_1(self.ser, reg_map)
                 write_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
-                # time.sleep(10)
-                # adc_samples = receive_samples(self.ser, 8192*2)
-                # while adc_samples is None:
-                #     adc_samples = receive_samples(self.ser, 8192*2)
-                # adc_samples = adc_samples/4096*5
-                # voltage = np.average(adc_samples)
-                # current = 0.039
-                # # result = dc_resistance(voltage, current)
-                # self.result_label.setText(voltage)
+                time.sleep(0.1)
+                read_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
+                while reg_map.DVC_MEASUREMENT_CONFIG.Measure_In_Progress[0]:
+                    read_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
+                adc_samples = receive_samples(self.ser, 8192*2)
+                while adc_samples is None:
+                    adc_samples = receive_samples(self.ser, 8192*2)
+                adc_samples = adc_samples/4096*5
+                voltage = np.average(adc_samples)
+                current = 0.05
+                result = dc_resistance(voltage, current)
+                self.result_label.setText(result)
 
     def start_current_voltage_inputs(self):
         """Starts the Current-Voltage measurement and embeds the graph in the GUI."""
@@ -1110,18 +1113,18 @@ class MainWindow(QMainWindow):
             if page.objectName() == "Current-Voltage":
                 # Find all input fields in the page layout
                 inputs = page.findChildren(QLineEdit)
-                dd = page.findChildren(QComboBox)
+                dropdown = page.findChildren(QComboBox)
                 try:
                     # Determine if voltage or current is being swept
-                    sweep_type = 1 if "Sweep DC Voltage (V)" in dd[0].currentText() else 0
+                    sweep_type = 1 if "Sweep DC Voltage (V)" in dropdown[0].currentText() else 2
                     start = int(inputs[0].text())
                     end = int(inputs[1].text())
                     increment = int(inputs[2].text())
 
                     # Validate inputs
-                    # if increment <= 0 or end < start:
-                    #     self.result_label.setText("Error: Invalid range or increment.")
-                    #     return
+                    if increment <= 0 or end < start:
+                        self.result_label.setText("Error: Invalid range or increment.")
+                        return
 
                     # Configure measurement (Dummy Config)
                     selected_probes = self.get_selected_probes(2)
@@ -1136,23 +1139,36 @@ class MainWindow(QMainWindow):
                     reg_map.DVC_2PM_CURRVOLT_2.Starting_Param[0] = start
                     reg_map.DVC_2PM_CURRVOLT_3.Ending_Param[0] = end
                     reg_map.DVC_2PM_CURRVOLT_4.Increment_Param[0] = increment
+                    write_reg_DVC_PROBE_CONFIG(self.ser, reg_map)
                     write_reg_DVC_2PM_CURRVOLT_1(self.ser, reg_map)
                     write_reg_DVC_2PM_CURRVOLT_2(self.ser, reg_map)
                     write_reg_DVC_2PM_CURRVOLT_3(self.ser, reg_map)
                     write_reg_DVC_2PM_CURRVOLT_4(self.ser, reg_map)
                     write_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
 
-                #     # Generate sweep values
-                #     sweep_values = np.arange(start, end + increment, increment)
+                    # Generate sweep values
+                    sweep_values = np.arange(start, end + increment, increment)
 
-                #     # **Generate synthetic y_values (e.g., linear relationship + noise)**
-                #     y_values = 2 * sweep_values + np.random.normal(0, 0.1, len(sweep_values))
+                    # **Generate synthetic y_values (e.g., linear relationship + noise)**
+                    y_values = np.zeros(len(sweep_values))
 
-                #     # Update the GUI's Matplotlib plot
-                #     self.update_plot(sweep_values, y_values, sweep_type)
+                    for i in range(len(y_values)):
+                        read_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
+                        while reg_map.DVC_MEASUREMENT_CONFIG.Measure_In_Progress[0]:
+                            read_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
+                        adc_samples = receive_samples(self.ser, 8192*2)
+                        while adc_samples is None:
+                            adc_samples = receive_samples(self.ser, 8192*2)
+                        adc_samples = adc_samples/4096*5
+                        adc_sample_avg = np.average(adc_samples)
+                        y_values[i] = adc_sample_avg
 
-                #     # Display confirmation message in the GUI
-                #     self.result_label.setText(f"{sweep_type.capitalize()} sweep completed!")
+                    # Update the GUI's Matplotlib plot
+                    sweep_param = "voltage" if sweep_type == 1 else "current"
+                    self.update_plot(sweep_values, y_values, sweep_param)
+
+                    # Display confirmation message in the GUI
+                    # self.result_label.setText(f"{sweep_param.capitalize()} sweep completed!")
 
                 except ValueError:
                     self.result_label.setText("Error: Please enter valid numerical inputs.")

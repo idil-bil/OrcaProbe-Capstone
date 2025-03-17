@@ -381,16 +381,16 @@ void HAL_TIM_Base_MspInit(TIM_HandleTypeDef* htim_base)
     __HAL_RCC_TIM8_CLK_ENABLE();
 
     /* TIM8 DMA Init */
-    /* GPDMA1_REQUEST_TIM8_UP Init */
+    /* GPDMA1_REQUEST_TIM8_CH1 Init */
     handle_GPDMA1_Channel12.Instance = GPDMA1_Channel12;
-    handle_GPDMA1_Channel12.Init.Request = GPDMA1_REQUEST_TIM8_UP;
+    handle_GPDMA1_Channel12.Init.Request = GPDMA1_REQUEST_TIM8_CH1;
     handle_GPDMA1_Channel12.Init.BlkHWRequest = DMA_BREQ_SINGLE_BURST;
     handle_GPDMA1_Channel12.Init.Direction = DMA_MEMORY_TO_MEMORY;
     handle_GPDMA1_Channel12.Init.SrcInc = DMA_SINC_FIXED;
     handle_GPDMA1_Channel12.Init.DestInc = DMA_DINC_INCREMENTED;
     handle_GPDMA1_Channel12.Init.SrcDataWidth = DMA_SRC_DATAWIDTH_HALFWORD;
     handle_GPDMA1_Channel12.Init.DestDataWidth = DMA_DEST_DATAWIDTH_HALFWORD;
-    handle_GPDMA1_Channel12.Init.Priority = DMA_LOW_PRIORITY_HIGH_WEIGHT;
+    handle_GPDMA1_Channel12.Init.Priority = DMA_LOW_PRIORITY_LOW_WEIGHT;
     handle_GPDMA1_Channel12.Init.SrcBurstLength = 1;
     handle_GPDMA1_Channel12.Init.DestBurstLength = 1;
     handle_GPDMA1_Channel12.Init.TransferAllocatedPort = DMA_SRC_ALLOCATED_PORT0|DMA_DEST_ALLOCATED_PORT0;
@@ -401,7 +401,7 @@ void HAL_TIM_Base_MspInit(TIM_HandleTypeDef* htim_base)
       Error_Handler();
     }
 
-    __HAL_LINKDMA(htim_base, hdma[TIM_DMA_ID_UPDATE], handle_GPDMA1_Channel12);
+    __HAL_LINKDMA(htim_base, hdma[TIM_DMA_ID_CC1], handle_GPDMA1_Channel12);
 
     if (HAL_DMA_ConfigChannelAttributes(&handle_GPDMA1_Channel12, DMA_CHANNEL_NPRIV) != HAL_OK)
     {
@@ -429,12 +429,12 @@ void HAL_TIM_MspPostInit(TIM_HandleTypeDef* htim)
     /**TIM8 GPIO Configuration
     PC7     ------> TIM8_CH2
     */
-    GPIO_InitStruct.Pin = ADC_CLK_DVC_Pin;
+    GPIO_InitStruct.Pin = ADC_CLK_Pin;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
     GPIO_InitStruct.Alternate = GPIO_AF3_TIM8;
-    HAL_GPIO_Init(ADC_CLK_DVC_GPIO_Port, &GPIO_InitStruct);
+    HAL_GPIO_Init(ADC_CLK_GPIO_Port, &GPIO_InitStruct);
 
   /* USER CODE BEGIN TIM8_MspPostInit 1 */
 
@@ -459,7 +459,7 @@ void HAL_TIM_Base_MspDeInit(TIM_HandleTypeDef* htim_base)
     __HAL_RCC_TIM8_CLK_DISABLE();
 
     /* TIM8 DMA DeInit */
-    HAL_DMA_DeInit(htim_base->hdma[TIM_DMA_ID_UPDATE]);
+    HAL_DMA_DeInit(htim_base->hdma[TIM_DMA_ID_CC1]);
   /* USER CODE BEGIN TIM8_MspDeInit 1 */
 
   /* USER CODE END TIM8_MspDeInit 1 */

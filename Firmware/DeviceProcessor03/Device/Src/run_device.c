@@ -40,6 +40,7 @@ void run_device(){
 	init_switch_network(&device_switch_network);
 	clear_switch_network(&device_switch_network);
 	set_adc_sampling_freq(5000000UL);
+	set_adc_dma_callback_routines();
 	for(int i = 0; i < DVC_MAX_NUM_ADC_SAMPLES; i++){
 		adc_samples_1[i] = 0xdead;
 		adc_samples_2[i] = 0xdead;
@@ -47,15 +48,6 @@ void run_device(){
 	}
 
 	while(1){
-//		if(get_register(&device_registers,0)%2){
-//			HAL_DMA_Start(&handle_GPDMA1_Channel12,(uint32_t)&GPIOE->IDR,(uint32_t)&dmaValCheck,500*sizeof(uint16_t));
-//			HAL_Delay(100);
-//			set_register(&device_registers,0,get_register(&device_registers,0)&(~(1)));
-//			for(int i = 0; i < 500; i++){
-//				CDC_Transmit_FS(&dmaValCheck[i],sizeof(dmaValCheck[i]));
-//				HAL_Delay(100);
-//			}
-//		}
 		if(get_register(&device_registers,DVC_MEASUREMENT_CONFIG)%2){
 			measurement_type = (get_register(&device_registers,DVC_MEASUREMENT_CONFIG)>>6) & 0xF;
 			switch (measurement_type) {

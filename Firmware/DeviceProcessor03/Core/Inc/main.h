@@ -159,8 +159,8 @@ void Error_Handler(void);
 #define SWNT_CTRL_08_GPIO_Port GPIOG
 #define SWNT_CTRL_09_Pin GPIO_PIN_8
 #define SWNT_CTRL_09_GPIO_Port GPIOG
-#define ADC_CLK_DVC_Pin GPIO_PIN_7
-#define ADC_CLK_DVC_GPIO_Port GPIOC
+#define ADC_CLK_Pin GPIO_PIN_7
+#define ADC_CLK_GPIO_Port GPIOC
 #define SPI_DAC1_NSS_Pin GPIO_PIN_0
 #define SPI_DAC1_NSS_GPIO_Port GPIOD
 #define ADCV1_OTR_Pin GPIO_PIN_1

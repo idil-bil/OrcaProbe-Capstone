@@ -37,6 +37,9 @@ extern char test_cmd;
 extern uint16_t adc_samples_1[DVC_MAX_NUM_ADC_SAMPLES];
 extern uint16_t adc_samples_2[DVC_MAX_NUM_ADC_SAMPLES];
 extern uint16_t adc_samples_3[DVC_MAX_NUM_ADC_SAMPLES];
+extern volatile uint8_t adc_1_full;
+extern volatile uint8_t adc_2_full;
+extern volatile uint8_t adc_3_full;
 /* USER CODE END PV */
 
 /** @addtogroup STM32_USB_OTG_DEVICE_LIBRARY
@@ -281,12 +284,15 @@ static int8_t CDC_Receive_FS(uint8_t* Buf, uint32_t *Len)
   else{
 	  if(addr == DVC_FLUSH_SAMPLE_DATA_1){
 		  CDC_Transmit_FS((uint8_t*)&adc_samples_1, sizeof(adc_samples_1));
+		  adc_1_full = 0;
 	  }
 	  else if(addr == DVC_FLUSH_SAMPLE_DATA_2){
 		  CDC_Transmit_FS((uint8_t*)&adc_samples_2, sizeof(adc_samples_2));
+		  adc_2_full = 0;
 	  }
 	  else if(addr == DVC_FLUSH_SAMPLE_DATA_3){
 		  CDC_Transmit_FS((uint8_t*)&adc_samples_3, sizeof(adc_samples_3));
+		  adc_3_full = 0;
 	  }
 	  else{
 		  data = get_register(&device_registers,addr);

@@ -1,5 +1,9 @@
-../Device/Src/device_monitoring.c:18:6:set_adc_sampling_freq	1
-../Device/Src/device_monitoring.c:28:19:collect_adc_samples	7
-../Device/Src/device_monitoring.c:55:19:collect_adc_samples2	3
-../Device/Src/device_monitoring.c:69:10:reverse_bits_16	2
-../Device/Src/device_monitoring.c:77:6:reverse_buffer_bits_16	2
+../Device/Src/device_monitoring.c:29:6:set_adc_sampling_freq	1
+../Device/Src/device_monitoring.c:39:6:set_adc_dma_callback_routines	1
+../Device/Src/device_monitoring.c:48:19:collect_adc_samples	7
+../Device/Src/device_monitoring.c:75:19:collect_adc_samples2	4
+../Device/Src/device_monitoring.c:95:10:reverse_bits_16	2
+../Device/Src/device_monitoring.c:103:6:reverse_buffer_bits_16	2
+../Device/Src/device_monitoring.c:109:6:dma_adc_1_cplt_callback	1
+../Device/Src/device_monitoring.c:114:6:dma_adc_2_cplt_callback	1
+../Device/Src/device_monitoring.c:119:6:dma_adc_3_cplt_callback	1
