@@ -255,7 +255,7 @@ class MainWindow(QMainWindow):
 
             # Dropdown for choosing sweep parameter
             sweep_dropdown = QComboBox()
-            sweep_dropdown.addItems(["Sweep DC Voltage (V)", "Sweep Current (A)"])
+            sweep_dropdown.addItems(["Sweep DC Voltage (V)", "Sweep Current (uA)"])
             sweep_dropdown.setFont(QFont("Arial", 10))
             sweep_dropdown.setFixedWidth(350)                               # Set a fixed width for the dropdown
             sweep_dropdown.setFixedHeight(30)                               # Set a fixed width for the dropdown
@@ -1097,9 +1097,9 @@ class MainWindow(QMainWindow):
                 read_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
                 while reg_map.DVC_MEASUREMENT_CONFIG.Measure_In_Progress[0]:
                     read_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
-                adc_samples = receive_samples(self.ser, 8192*2)
+                adc_samples = receive_samples(self.ser, 2,8192*2)
                 while adc_samples is None:
-                    adc_samples = receive_samples(self.ser, 8192*2)
+                    adc_samples = receive_samples(self.ser, 2,8192*2)
                 adc_samples = adc_samples/4096*5
                 voltage = np.average(adc_samples)
                 current = 0.05
@@ -1146,29 +1146,29 @@ class MainWindow(QMainWindow):
                     write_reg_DVC_2PM_CURRVOLT_4(self.ser, reg_map)
                     write_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
 
-                    # Generate sweep values
-                    sweep_values = np.arange(start, end + increment, increment)
+                    # # Generate sweep values
+                    # sweep_values = np.arange(start, end + increment, increment)
 
-                    # **Generate synthetic y_values (e.g., linear relationship + noise)**
-                    y_values = np.zeros(len(sweep_values))
+                    # # **Generate synthetic y_values (e.g., linear relationship + noise)**
+                    # y_values = np.zeros(len(sweep_values))
 
-                    for i in range(len(y_values)):
-                        read_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
-                        while reg_map.DVC_MEASUREMENT_CONFIG.Measure_In_Progress[0]:
-                            read_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
-                        adc_samples = receive_samples(self.ser, 8192*2)
-                        while adc_samples is None:
-                            adc_samples = receive_samples(self.ser, 8192*2)
-                        adc_samples = adc_samples/4096*5
-                        adc_sample_avg = np.average(adc_samples)
-                        y_values[i] = adc_sample_avg
+                    # for i in range(len(y_values)):
+                    #     read_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
+                    #     while reg_map.DVC_MEASUREMENT_CONFIG.Measure_In_Progress[0]:
+                    #         read_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
+                    #     adc_samples = receive_samples(self.ser, 2,8192*2)
+                    #     while adc_samples is None:
+                    #         adc_samples = receive_samples(self.ser, 2,8192*2)
+                    #     adc_samples = adc_samples/4096*5
+                    #     adc_sample_avg = np.average(adc_samples)
+                    #     y_values[i] = adc_sample_avg
 
-                    # Update the GUI's Matplotlib plot
-                    sweep_param = "voltage" if sweep_type == 1 else "current"
-                    self.update_plot(sweep_values, y_values, sweep_param)
+                    # # Update the GUI's Matplotlib plot
+                    # sweep_param = "voltage" if sweep_type == 1 else "current"
+                    # self.update_plot(sweep_values, y_values, sweep_param)
 
-                    # Display confirmation message in the GUI
-                    # self.result_label.setText(f"{sweep_param.capitalize()} sweep completed!")
+                    # # Display confirmation message in the GUI
+                    # # self.result_label.setText(f"{sweep_param.capitalize()} sweep completed!")
 
                 except ValueError:
                     self.result_label.setText("Error: Please enter valid numerical inputs.")

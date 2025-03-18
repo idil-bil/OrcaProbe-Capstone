@@ -84,7 +84,7 @@ def receive_value(ser):
 
     return None  # No data available yet
 
-def receive_samples(ser, buffer_size):
+def receive_samples(ser, adc_num, buffer_size):
     """
     Non-blocking function to receive and unpack 12-bit ADC samples from STM32.
     
@@ -95,7 +95,7 @@ def receive_samples(ser, buffer_size):
     Returns:
     - np.ndarray: An array of 12-bit ADC samples, or None if no data is available.
     """
-    send_value(ser,pack_32bit(101,0))
+    send_value(ser,pack_32bit(99+adc_num,0))
     if ser.in_waiting >= buffer_size:  # Read only if enough data is available
         data_bytes = ser.read(buffer_size)  # Read buffer_size bytes
         samples = np.frombuffer(data_bytes, dtype=np.uint16)  # Convert bytes to 16-bit integers
