@@ -15,6 +15,7 @@ from registers import *
 from constants import *
 from comm_device import *
 from calc import *
+from signal_reconstructor import *
 import time
 
 class MainWindow(QMainWindow):
@@ -313,7 +314,7 @@ class MainWindow(QMainWindow):
             layout.addLayout(button_layout)                                         # Add button layout under the title of the measurement type
 
             # **Add a Matplotlib canvas to display the plot**
-            self.figure = Figure(figsize=(6, 4))
+            self.figure = Figure(figsize=(8, 6))
             self.canvas = FigureCanvas(self.figure)
             layout.addWidget(self.canvas)
 
@@ -474,6 +475,10 @@ class MainWindow(QMainWindow):
             button_layout = QHBoxLayout()                                           # Create button layout
             button_layout.addWidget(start_button, alignment=Qt.AlignLeft)           # Add start button and align button to the left
             layout.addLayout(button_layout) 
+
+            self.figure = Figure(figsize=(8, 6))
+            self.canvas = FigureCanvas(self.figure)
+            layout.addWidget(self.canvas)
 
         elif title == "Transfer Characteristics":
             label = QLabel("Transfer Characteristics Measurement")
@@ -1146,29 +1151,29 @@ class MainWindow(QMainWindow):
                     write_reg_DVC_2PM_CURRVOLT_4(self.ser, reg_map)
                     write_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
 
-                    # # Generate sweep values
-                    # sweep_values = np.arange(start, end + increment, increment)
+                    # Generate sweep values
+                    sweep_values = np.arange(start, end + increment, increment)
 
-                    # # **Generate synthetic y_values (e.g., linear relationship + noise)**
-                    # y_values = np.zeros(len(sweep_values))
+                    # **Generate synthetic y_values (e.g., linear relationship + noise)**
+                    y_values = np.zeros(len(sweep_values))
 
-                    # for i in range(len(y_values)):
-                    #     read_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
-                    #     while reg_map.DVC_MEASUREMENT_CONFIG.Measure_In_Progress[0]:
-                    #         read_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
-                    #     adc_samples = receive_samples(self.ser, 2,8192*2)
-                    #     while adc_samples is None:
-                    #         adc_samples = receive_samples(self.ser, 2,8192*2)
-                    #     adc_samples = adc_samples/4096*5
-                    #     adc_sample_avg = np.average(adc_samples)
-                    #     y_values[i] = adc_sample_avg
+                    for i in range(len(y_values)):
+                        read_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
+                        while reg_map.DVC_MEASUREMENT_CONFIG.Measure_In_Progress[0]:
+                            read_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
+                        adc_samples = receive_samples(self.ser, 2,8192*2)
+                        while adc_samples is None:
+                            adc_samples = receive_samples(self.ser, 2,8192*2)
+                        adc_samples = adc_samples/4096*5
+                        adc_sample_avg = np.average(adc_samples)
+                        y_values[i] = adc_sample_avg
 
-                    # # Update the GUI's Matplotlib plot
-                    # sweep_param = "voltage" if sweep_type == 1 else "current"
-                    # self.update_plot(sweep_values, y_values, sweep_param)
+                    # Update the GUI's Matplotlib plot
+                    sweep_param = "voltage" if sweep_type == 1 else "current"
+                    self.update_plot(sweep_values, y_values, sweep_param)
 
-                    # # Display confirmation message in the GUI
-                    # # self.result_label.setText(f"{sweep_param.capitalize()} sweep completed!")
+                    # Display confirmation message in the GUI
+                    # self.result_label.setText(f"{sweep_param.capitalize()} sweep completed!")
 
                 except ValueError:
                     self.result_label.setText("Error: Please enter valid numerical inputs.")
@@ -1199,17 +1204,55 @@ class MainWindow(QMainWindow):
             if page.objectName() == "Impedance Spectroscopy (2-p)":
                 # Find all input fields in the page layout
                 inputs = page.findChildren(QLineEdit)
-                input_values = [input_field.text() for input_field in inputs]
-                print(page.objectName(), "Input Values:", input_values)
-                selected_probes = self.get_selected_probes(2)
-                self.config_selected_probes(selected_probes,reg_map)
-                reg_map.DVC_MEASUREMENT_CONFIG.Start_Measure[0] = 1
-                reg_map.DVC_MEASUREMENT_CONFIG.Stop_Measure[0] = 0
-                reg_map.DVC_MEASUREMENT_CONFIG.Measure_In_Progress[0] = 0
-                reg_map.DVC_MEASUREMENT_CONFIG.Valid_Measure_Config[0] = 0
-                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Probe_Config[0] = GUI_2PROBES
-                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Type_Config[0] = GUI_DC_RESISTANCE
-                # write_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
+                try:
+                    start_freq = int(inputs[0].text())
+                    end_freq = int(inputs[1].text())
+                    increment_freq = int(inputs[2].text())
+                    max_peak_volt = int(inputs[3].text())
+                    min_peak_volt = int(inputs[4].text())
+                    selected_probes = self.get_selected_probes(2)
+                    self.config_selected_probes(selected_probes,reg_map)
+                    start_freq_u14b,start_freq_l14b = self.encode_dds_freq(start_freq)
+                    end_freq_u14b,end_freq_l14b = self.encode_dds_freq(end_freq)
+                    incr_freq_u14b,incr_freq_l14b = self.encode_dds_freq(increment_freq)
+                    reg_map.DVC_MEASUREMENT_CONFIG.Start_Measure[0] = 1
+                    reg_map.DVC_MEASUREMENT_CONFIG.Stop_Measure[0] = 0
+                    reg_map.DVC_MEASUREMENT_CONFIG.Measure_In_Progress[0] = 0
+                    reg_map.DVC_MEASUREMENT_CONFIG.Valid_Measure_Config[0] = 0
+                    reg_map.DVC_MEASUREMENT_CONFIG.Measure_Probe_Config[0] = GUI_2PROBES
+                    reg_map.DVC_MEASUREMENT_CONFIG.Measure_Type_Config[0] = GUI_IMPEDANCE_SPECTROSCOPY_2P
+                    reg_map.DVC_2PM_IMPSPEC_1.Starting_Freq_1[0] = start_freq_l14b
+                    reg_map.DVC_2PM_IMPSPEC_2.Starting_Freq_2[0] = start_freq_u14b
+                    reg_map.DVC_2PM_IMPSPEC_3.Ending_Freq_1[0] = end_freq_l14b
+                    reg_map.DVC_2PM_IMPSPEC_4.Ending_Freq_2[0] = end_freq_u14b
+                    reg_map.DVC_2PM_IMPSPEC_5.Increment_Freq_1[0] = incr_freq_l14b
+                    reg_map.DVC_2PM_IMPSPEC_6.Increment_Freq_2[0] = incr_freq_u14b
+                    reg_map.DVC_2PM_IMPSPEC_7.Max_Peak_Volt[0] = max_peak_volt
+                    reg_map.DVC_2PM_IMPSPEC_8.Min_Peak_Volt[0] = min_peak_volt
+                    # write_reg_DVC_PROBE_CONFIG(self.ser, reg_map)
+                    # write_reg_DVC_2PM_IMPSPEC_1(self.ser, reg_map)
+                    # write_reg_DVC_2PM_IMPSPEC_2(self.ser, reg_map)
+                    # write_reg_DVC_2PM_IMPSPEC_3(self.ser, reg_map)
+                    # write_reg_DVC_2PM_IMPSPEC_4(self.ser, reg_map)
+                    # write_reg_DVC_2PM_IMPSPEC_5(self.ser, reg_map)
+                    # write_reg_DVC_2PM_IMPSPEC_6(self.ser, reg_map)
+                    # write_reg_DVC_2PM_IMPSPEC_7(self.ser, reg_map)
+                    # write_reg_DVC_2PM_IMPSPEC_8(self.ser, reg_map)
+                    # write_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
+
+                    # read_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
+                    # while reg_map.DVC_MEASUREMENT_CONFIG.Measure_In_Progress[0]:
+                    #     read_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
+                    # adc_samples = receive_samples(self.ser, 2,8192*2)
+                    # while adc_samples is None:
+                    #     adc_samples = receive_samples(self.ser, 2,8192*2)
+                    data = np.array([6412, 6412, 7020, 7288, 7944, 7988, 8204, 8480, 8224, 8136, 7720, 7416, 7112, 6652, 6448, 6336, 6244, 6500, 6948, 7484, 7544, 8000, 8204, 8384, 8256, 8068, 7760, 7404, 7024, 6680, 6396, 6340, 6428, 6436, 6900, 7156, 7592, 8012, 8264, 8300, 8248, 8088, 7256, 7108, 6488, 6440, 6268, 6400, 0, 6632, 6824, 7408, 7584, 8160, 8168, 8288, 8152, 7904, 7760, 7104, 6992, 460, 6820, 6260, 6584, 6480, 6672, 7128, 7500, 7868, 8412, 8276, 8148, 7872, 7548, 7196, 6912, 6232, 6464, 6628, 6376, 6468, 6820, 7036, 7688, 7824, 8140, 8344, 8320, 7908, 7548, 7420, 6888, 6260, 6844, 6388, 6344, 6472, 6708, 7092, 7360, 7844, 8272, 8244, 8256, 8176, 7956, 7856, 7220, 6860, 6764, 6352, 6340, 6348, 6660, 7012, 7384, 7364, 8096, 8116, 8152, 8264, 7700, 7004, 6896, 6584, 5852, 8, 6480, 6712, 7156, 7260, 7424, 0, 8136, 8136, 7940, 8268, 8284, 7684, 7532, 6880, 6972, 6380, 6320, 6196, 6608, 6568])
+
+                    val_time, val_volt = reconstruct_signal(data/4096*5)
+                    self.update_plot_ac(val_time,val_volt)
+
+                except ValueError:
+                    self.result_label.setText("Error: Please enter valid numerical inputs.")
 
     def start_transfer_characteristics_inputs(self):
         # Find the measurement page
@@ -1462,3 +1505,21 @@ class MainWindow(QMainWindow):
         ax.grid(True)
 
         self.canvas.draw()  # Refresh the canvas with the updated plot
+
+    def update_plot_ac(self, x_values, y_values):
+        """Updates the Matplotlib plot embedded in the GUI."""
+        self.figure.clear()
+        ax = self.figure.add_subplot(111)
+        ax.plot(x_values, y_values, 'r--')
+        ax.set_xlabel(f"time")
+        ax.set_ylabel("Voltage")
+        ax.set_title("AC Waveform Measurement")
+        ax.grid(True)
+
+        self.canvas.draw()  # Refresh the canvas with the updated plot
+
+    def encode_dds_freq(self, freq):
+        val = int(freq * (2**28) / 25000000)  # Compute val as an integer
+        upper_14 = (val >> 14) & 0x3FFF  # Extract upper 14 bits
+        lower_14 = val & 0x3FFF  # Extract lower 14 bits
+        return upper_14, lower_14

@@ -1,283 +1,71 @@
-17:35:57 **** Incremental Build of configuration Debug for project DeviceProcessor03 ****
+18:32:13 **** Incremental Build of configuration Debug for project DeviceProcessor03 ****
 make -j12 all 
-arm-none-eabi-size  DeviceProcessor03.elf 
-   text	   data	    bss	    dec	    hex	filename
-  59812	    592	  61608	 122012	  1dc9c	DeviceProcessor03.elf
-Finished building: default.size.stdout
- 
-17:37:04 **** Incremental Build of configuration Debug for project DeviceProcessor03 ****
-make -j12 all 
-arm-none-eabi-size  DeviceProcessor03.elf 
-   text	   data	    bss	    dec	    hex	filename
-  59812	    592	  61608	 122012	  1dc9c	DeviceProcessor03.elf
-Finished building: default.size.stdout
- 
-17:37:22 **** Incremental Build of configuration Debug for project DeviceProcessor03 ****
-make -j12 all 
-arm-none-eabi-size  DeviceProcessor03.elf 
-   text	   data	    bss	    dec	    hex	filename
-  59812	    592	  61608	 122012	  1dc9c	DeviceProcessor03.elf
-Finished building: default.size.stdout
- 
-17:37:52 **** Incremental Build of configuration Debug for project DeviceProcessor03 ****
-make -j12 all 
-arm-none-eabi-gcc "../Core/Src/stm32u5xx_it.c" -mcpu=cortex-m33 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32U575xx -c -I../Core/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32U5xx/Include -I../Drivers/CMSIS/Include -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Class/CDC/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/Device/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/Target" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/App" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32u5xx_it.d" -MT"Core/Src/stm32u5xx_it.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32u5xx_it.o"
-arm-none-eabi-gcc -o "DeviceProcessor03.elf" @"objects.list"   -mcpu=cortex-m33 -T"C:\UBC_4TH_YEAR\ELEC-491\JY-85\project\JY85\Firmware\DeviceProcessor03\STM32U575ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DeviceProcessor03.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: DeviceProcessor03.elf
- 
-arm-none-eabi-size  DeviceProcessor03.elf 
-arm-none-eabi-objdump -h -S DeviceProcessor03.elf  > "DeviceProcessor03.list"
-   text	   data	    bss	    dec	    hex	filename
-  59804	    592	  61608	 122004	  1dc94	DeviceProcessor03.elf
-Finished building: default.size.stdout
- 
-Finished building: DeviceProcessor03.list
- 
-17:43:18 **** Incremental Build of configuration Debug for project DeviceProcessor03 ****
-make -j12 all 
+arm-none-eabi-gcc "../Device/Src/device_monitoring.c" -mcpu=cortex-m33 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32U575xx -c -I../Core/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32U5xx/Include -I../Drivers/CMSIS/Include -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Class/CDC/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/Device/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/Target" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/App" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Device/Src/device_monitoring.d" -MT"Device/Src/device_monitoring.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Device/Src/device_monitoring.o"
 arm-none-eabi-gcc "../Device/Src/measurement_routines.c" -mcpu=cortex-m33 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32U575xx -c -I../Core/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32U5xx/Include -I../Drivers/CMSIS/Include -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Class/CDC/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/Device/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/Target" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/App" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Device/Src/measurement_routines.d" -MT"Device/Src/measurement_routines.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Device/Src/measurement_routines.o"
-../Device/Src/measurement_routines.c: In function 'dvc_exec_msr_dc_resistance_2p':
-../Device/Src/measurement_routines.c:66:9: warning: implicit declaration of function 'collect_adc_samples2'; did you mean 'collect_adc_samples'? [-Wimplicit-function-declaration]
-   66 |         collect_adc_samples2(2);
-      |         ^~~~~~~~~~~~~~~~~~~~
-      |         collect_adc_samples
-../Device/Src/measurement_routines.c: In function 'dvc_exec_msr_current_voltage':
-../Device/Src/measurement_routines.c:81:27: warning: unused variable 'result' [-Wunused-variable]
-   81 |         HAL_StatusTypeDef result;
-      |                           ^~~~~~
-arm-none-eabi-gcc -o "DeviceProcessor03.elf" @"objects.list"   -mcpu=cortex-m33 -T"C:\UBC_4TH_YEAR\ELEC-491\JY-85\project\JY85\Firmware\DeviceProcessor03\STM32U575ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DeviceProcessor03.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: DeviceProcessor03.elf
- 
-arm-none-eabi-size  DeviceProcessor03.elf 
-arm-none-eabi-objdump -h -S DeviceProcessor03.elf  > "DeviceProcessor03.list"
-   text	   data	    bss	    dec	    hex	filename
-  59820	    592	  61608	 122020	  1dca4	DeviceProcessor03.elf
-Finished building: default.size.stdout
- 
-Finished building: DeviceProcessor03.list
- 
-17:51:26 **** Incremental Build of configuration Debug for project DeviceProcessor03 ****
-make -j12 all 
-arm-none-eabi-gcc "../Device/Src/measurement_routines.c" -mcpu=cortex-m33 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32U575xx -c -I../Core/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32U5xx/Include -I../Drivers/CMSIS/Include -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Class/CDC/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/Device/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/Target" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/App" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Device/Src/measurement_routines.d" -MT"Device/Src/measurement_routines.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Device/Src/measurement_routines.o"
-../Device/Src/measurement_routines.c: In function 'dvc_exec_msr_dc_resistance_2p':
-../Device/Src/measurement_routines.c:66:9: warning: implicit declaration of function 'collect_adc_samples2'; did you mean 'collect_adc_samples'? [-Wimplicit-function-declaration]
-   66 |         collect_adc_samples2(2);
-      |         ^~~~~~~~~~~~~~~~~~~~
-      |         collect_adc_samples
-../Device/Src/measurement_routines.c: In function 'dvc_exec_msr_current_voltage':
-../Device/Src/measurement_routines.c:81:27: warning: unused variable 'result' [-Wunused-variable]
-   81 |         HAL_StatusTypeDef result;
-      |                           ^~~~~~
-arm-none-eabi-gcc -o "DeviceProcessor03.elf" @"objects.list"   -mcpu=cortex-m33 -T"C:\UBC_4TH_YEAR\ELEC-491\JY-85\project\JY85\Firmware\DeviceProcessor03\STM32U575ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DeviceProcessor03.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: DeviceProcessor03.elf
- 
-arm-none-eabi-size  DeviceProcessor03.elf 
-arm-none-eabi-objdump -h -S DeviceProcessor03.elf  > "DeviceProcessor03.list"
-   text	   data	    bss	    dec	    hex	filename
-  59820	    592	  61608	 122020	  1dca4	DeviceProcessor03.elf
-Finished building: default.size.stdout
- 
-Finished building: DeviceProcessor03.list
- 
-17:59:37 **** Incremental Build of configuration Debug for project DeviceProcessor03 ****
-make -j12 all 
-arm-none-eabi-gcc "../Device/Src/measurement_routines.c" -mcpu=cortex-m33 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32U575xx -c -I../Core/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32U5xx/Include -I../Drivers/CMSIS/Include -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Class/CDC/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/Device/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/Target" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/App" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Device/Src/measurement_routines.d" -MT"Device/Src/measurement_routines.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Device/Src/measurement_routines.o"
-../Device/Src/measurement_routines.c: In function 'dvc_exec_msr_dc_resistance_2p':
-../Device/Src/measurement_routines.c:66:9: warning: implicit declaration of function 'collect_adc_samples2'; did you mean 'collect_adc_samples'? [-Wimplicit-function-declaration]
-   66 |         collect_adc_samples2(2);
-      |         ^~~~~~~~~~~~~~~~~~~~
-      |         collect_adc_samples
-../Device/Src/measurement_routines.c: In function 'dvc_exec_msr_current_voltage':
-../Device/Src/measurement_routines.c:81:27: warning: unused variable 'result' [-Wunused-variable]
-   81 |         HAL_StatusTypeDef result;
-      |                           ^~~~~~
-arm-none-eabi-gcc -o "DeviceProcessor03.elf" @"objects.list"   -mcpu=cortex-m33 -T"C:\UBC_4TH_YEAR\ELEC-491\JY-85\project\JY85\Firmware\DeviceProcessor03\STM32U575ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DeviceProcessor03.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: DeviceProcessor03.elf
- 
-arm-none-eabi-size  DeviceProcessor03.elf 
-arm-none-eabi-objdump -h -S DeviceProcessor03.elf  > "DeviceProcessor03.list"
-   text	   data	    bss	    dec	    hex	filename
-  59732	    592	  61608	 121932	  1dc4c	DeviceProcessor03.elf
-Finished building: default.size.stdout
- 
-Finished building: DeviceProcessor03.list
- 
-18:02:37 **** Incremental Build of configuration Debug for project DeviceProcessor03 ****
-make -j12 all 
-arm-none-eabi-size  DeviceProcessor03.elf 
-   text	   data	    bss	    dec	    hex	filename
-  59732	    592	  61608	 121932	  1dc4c	DeviceProcessor03.elf
-Finished building: default.size.stdout
- 
-18:03:55 **** Incremental Build of configuration Debug for project DeviceProcessor03 ****
-make -j12 all 
-arm-none-eabi-gcc "../Device/Src/measurement_routines.c" -mcpu=cortex-m33 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32U575xx -c -I../Core/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32U5xx/Include -I../Drivers/CMSIS/Include -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Class/CDC/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/Device/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/Target" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/App" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Device/Src/measurement_routines.d" -MT"Device/Src/measurement_routines.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Device/Src/measurement_routines.o"
-../Device/Src/measurement_routines.c: In function 'dvc_exec_msr_dc_resistance_2p':
-../Device/Src/measurement_routines.c:66:9: warning: implicit declaration of function 'collect_adc_samples2'; did you mean 'collect_adc_samples'? [-Wimplicit-function-declaration]
-   66 |         collect_adc_samples2(2);
-      |         ^~~~~~~~~~~~~~~~~~~~
-      |         collect_adc_samples
-../Device/Src/measurement_routines.c: In function 'dvc_exec_msr_current_voltage':
-../Device/Src/measurement_routines.c:81:27: warning: unused variable 'result' [-Wunused-variable]
-   81 |         HAL_StatusTypeDef result;
-      |                           ^~~~~~
-arm-none-eabi-gcc -o "DeviceProcessor03.elf" @"objects.list"   -mcpu=cortex-m33 -T"C:\UBC_4TH_YEAR\ELEC-491\JY-85\project\JY85\Firmware\DeviceProcessor03\STM32U575ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DeviceProcessor03.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: DeviceProcessor03.elf
- 
-arm-none-eabi-size  DeviceProcessor03.elf 
-arm-none-eabi-objdump -h -S DeviceProcessor03.elf  > "DeviceProcessor03.list"
-   text	   data	    bss	    dec	    hex	filename
-  53056	    495	  61296	 114847	  1c09f	DeviceProcessor03.elf
-Finished building: default.size.stdout
- 
-Finished building: DeviceProcessor03.list
- 
-18:15:10 **** Incremental Build of configuration Debug for project DeviceProcessor03 ****
-make -j12 all 
-arm-none-eabi-gcc "../Device/Src/measurement_routines.c" -mcpu=cortex-m33 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32U575xx -c -I../Core/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32U5xx/Include -I../Drivers/CMSIS/Include -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Class/CDC/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/Device/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/Target" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/App" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Device/Src/measurement_routines.d" -MT"Device/Src/measurement_routines.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Device/Src/measurement_routines.o"
-../Device/Src/measurement_routines.c: In function 'dvc_exec_msr_dc_resistance_2p':
-../Device/Src/measurement_routines.c:66:9: warning: implicit declaration of function 'collect_adc_samples2'; did you mean 'collect_adc_samples'? [-Wimplicit-function-declaration]
-   66 |         collect_adc_samples2(2);
-      |         ^~~~~~~~~~~~~~~~~~~~
-      |         collect_adc_samples
-../Device/Src/measurement_routines.c: In function 'dvc_exec_msr_current_voltage':
-../Device/Src/measurement_routines.c:81:27: warning: unused variable 'result' [-Wunused-variable]
-   81 |         HAL_StatusTypeDef result;
-      |                           ^~~~~~
-arm-none-eabi-gcc -o "DeviceProcessor03.elf" @"objects.list"   -mcpu=cortex-m33 -T"C:\UBC_4TH_YEAR\ELEC-491\JY-85\project\JY85\Firmware\DeviceProcessor03\STM32U575ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DeviceProcessor03.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: DeviceProcessor03.elf
- 
-arm-none-eabi-size  DeviceProcessor03.elf 
-arm-none-eabi-objdump -h -S DeviceProcessor03.elf  > "DeviceProcessor03.list"
-   text	   data	    bss	    dec	    hex	filename
-  53056	    495	  61296	 114847	  1c09f	DeviceProcessor03.elf
-Finished building: default.size.stdout
- 
-Finished building: DeviceProcessor03.list
- 
-18:39:10 **** Incremental Build of configuration Debug for project DeviceProcessor03 ****
-make -j12 all 
-arm-none-eabi-gcc "../Device/Src/device_sourcing.c" -mcpu=cortex-m33 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32U575xx -c -I../Core/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32U5xx/Include -I../Drivers/CMSIS/Include -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Class/CDC/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/Device/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/Target" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/App" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Device/Src/device_sourcing.d" -MT"Device/Src/device_sourcing.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Device/Src/device_sourcing.o"
-arm-none-eabi-gcc -o "DeviceProcessor03.elf" @"objects.list"   -mcpu=cortex-m33 -T"C:\UBC_4TH_YEAR\ELEC-491\JY-85\project\JY85\Firmware\DeviceProcessor03\STM32U575ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DeviceProcessor03.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: DeviceProcessor03.elf
- 
-arm-none-eabi-size  DeviceProcessor03.elf 
-arm-none-eabi-objdump -h -S DeviceProcessor03.elf  > "DeviceProcessor03.list"
-   text	   data	    bss	    dec	    hex	filename
-  53056	    495	  61296	 114847	  1c09f	DeviceProcessor03.elf
-Finished building: default.size.stdout
- 
-Finished building: DeviceProcessor03.list
- 
-18:40:00 **** Incremental Build of configuration Debug for project DeviceProcessor03 ****
-make -j12 all 
-arm-none-eabi-gcc "../Device/Src/measurement_routines.c" -mcpu=cortex-m33 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32U575xx -c -I../Core/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32U5xx/Include -I../Drivers/CMSIS/Include -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Class/CDC/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/Device/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/Target" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/App" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Device/Src/measurement_routines.d" -MT"Device/Src/measurement_routines.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Device/Src/measurement_routines.o"
-../Device/Src/measurement_routines.c: In function 'dvc_exec_msr_dc_resistance_2p':
-../Device/Src/measurement_routines.c:66:9: warning: implicit declaration of function 'collect_adc_samples2'; did you mean 'collect_adc_samples'? [-Wimplicit-function-declaration]
-   66 |         collect_adc_samples2(2);
-      |         ^~~~~~~~~~~~~~~~~~~~
-      |         collect_adc_samples
-../Device/Src/measurement_routines.c: In function 'dvc_exec_msr_current_voltage':
-../Device/Src/measurement_routines.c:81:27: warning: unused variable 'result' [-Wunused-variable]
-   81 |         HAL_StatusTypeDef result;
-      |                           ^~~~~~
-arm-none-eabi-gcc -o "DeviceProcessor03.elf" @"objects.list"   -mcpu=cortex-m33 -T"C:\UBC_4TH_YEAR\ELEC-491\JY-85\project\JY85\Firmware\DeviceProcessor03\STM32U575ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DeviceProcessor03.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: DeviceProcessor03.elf
- 
-arm-none-eabi-size  DeviceProcessor03.elf 
-arm-none-eabi-objdump -h -S DeviceProcessor03.elf  > "DeviceProcessor03.list"
-   text	   data	    bss	    dec	    hex	filename
-  59716	    592	  61608	 121916	  1dc3c	DeviceProcessor03.elf
-Finished building: default.size.stdout
- 
-Finished building: DeviceProcessor03.list
- 
-18:41:27 **** Incremental Build of configuration Debug for project DeviceProcessor03 ****
-make -j12 all 
-arm-none-eabi-size  DeviceProcessor03.elf 
-   text	   data	    bss	    dec	    hex	filename
-  59716	    592	  61608	 121916	  1dc3c	DeviceProcessor03.elf
-Finished building: default.size.stdout
- 
-18:44:20 **** Incremental Build of configuration Debug for project DeviceProcessor03 ****
-make -j12 all 
-arm-none-eabi-gcc "../Device/Src/device_sourcing.c" -mcpu=cortex-m33 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32U575xx -c -I../Core/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32U5xx/Include -I../Drivers/CMSIS/Include -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Class/CDC/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/Device/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/Target" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/App" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Device/Src/device_sourcing.d" -MT"Device/Src/device_sourcing.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Device/Src/device_sourcing.o"
-arm-none-eabi-gcc -o "DeviceProcessor03.elf" @"objects.list"   -mcpu=cortex-m33 -T"C:\UBC_4TH_YEAR\ELEC-491\JY-85\project\JY85\Firmware\DeviceProcessor03\STM32U575ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DeviceProcessor03.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: DeviceProcessor03.elf
- 
-arm-none-eabi-size  DeviceProcessor03.elf 
-arm-none-eabi-objdump -h -S DeviceProcessor03.elf  > "DeviceProcessor03.list"
-   text	   data	    bss	    dec	    hex	filename
-  59724	    592	  61608	 121924	  1dc44	DeviceProcessor03.elf
-Finished building: default.size.stdout
- 
-Finished building: DeviceProcessor03.list
- 
-18:47:27 **** Incremental Build of configuration Debug for project DeviceProcessor03 ****
-make -j12 all 
-arm-none-eabi-gcc "../Device/Src/measurement_routines.c" -mcpu=cortex-m33 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32U575xx -c -I../Core/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32U5xx/Include -I../Drivers/CMSIS/Include -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Class/CDC/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/Device/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/Target" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/App" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Device/Src/measurement_routines.d" -MT"Device/Src/measurement_routines.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Device/Src/measurement_routines.o"
-../Device/Src/measurement_routines.c: In function 'dvc_exec_msr_dc_resistance_2p':
-../Device/Src/measurement_routines.c:66:9: warning: implicit declaration of function 'collect_adc_samples2'; did you mean 'collect_adc_samples'? [-Wimplicit-function-declaration]
-   66 |         collect_adc_samples2(2);
-      |         ^~~~~~~~~~~~~~~~~~~~
-      |         collect_adc_samples
-../Device/Src/measurement_routines.c: In function 'dvc_exec_msr_current_voltage':
-../Device/Src/measurement_routines.c:81:27: warning: unused variable 'result' [-Wunused-variable]
-   81 |         HAL_StatusTypeDef result;
-      |                           ^~~~~~
-arm-none-eabi-gcc -o "DeviceProcessor03.elf" @"objects.list"   -mcpu=cortex-m33 -T"C:\UBC_4TH_YEAR\ELEC-491\JY-85\project\JY85\Firmware\DeviceProcessor03\STM32U575ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DeviceProcessor03.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: DeviceProcessor03.elf
- 
-arm-none-eabi-size  DeviceProcessor03.elf 
-arm-none-eabi-objdump -h -S DeviceProcessor03.elf  > "DeviceProcessor03.list"
-   text	   data	    bss	    dec	    hex	filename
-  59812	    592	  61608	 122012	  1dc9c	DeviceProcessor03.elf
-Finished building: default.size.stdout
- 
-Finished building: DeviceProcessor03.list
- 
-18:53:50 **** Incremental Build of configuration Debug for project DeviceProcessor03 ****
-make -j12 all 
-arm-none-eabi-gcc "../Device/Src/measurement_routines.c" -mcpu=cortex-m33 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32U575xx -c -I../Core/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32U5xx/Include -I../Drivers/CMSIS/Include -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Class/CDC/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/Device/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/Target" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/App" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Device/Src/measurement_routines.d" -MT"Device/Src/measurement_routines.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Device/Src/measurement_routines.o"
-arm-none-eabi-gcc "../Device/Src/run_device.c" -mcpu=cortex-m33 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32U575xx -c -I../Core/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32U5xx/Include -I../Drivers/CMSIS/Include -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Class/CDC/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/Device/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/Target" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/App" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Device/Src/run_device.d" -MT"Device/Src/run_device.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Device/Src/run_device.o"
-../Device/Src/measurement_routines.c: In function 'dvc_exec_msr_current_voltage':
-../Device/Src/measurement_routines.c:81:27: warning: unused variable 'result' [-Wunused-variable]
-   81 |         HAL_StatusTypeDef result;
-      |                           ^~~~~~
-../Device/Src/run_device.c: In function 'run_device':
-../Device/Src/run_device.c:43:9: warning: implicit declaration of function 'set_adc_dma_callback_routines' [-Wimplicit-function-declaration]
-   43 |         set_adc_dma_callback_routines();
-      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-arm-none-eabi-gcc -o "DeviceProcessor03.elf" @"objects.list"   -mcpu=cortex-m33 -T"C:\UBC_4TH_YEAR\ELEC-491\JY-85\project\JY85\Firmware\DeviceProcessor03\STM32U575ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DeviceProcessor03.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: DeviceProcessor03.elf
- 
-arm-none-eabi-size  DeviceProcessor03.elf 
-arm-none-eabi-objdump -h -S DeviceProcessor03.elf  > "DeviceProcessor03.list"
-   text	   data	    bss	    dec	    hex	filename
-  59812	    592	  61608	 122012	  1dc9c	DeviceProcessor03.elf
-Finished building: default.size.stdout
- 
-Finished building: DeviceProcessor03.list
- 
-18:55:00 **** Incremental Build of configuration Debug for project DeviceProcessor03 ****
-make -j12 all 
-arm-none-eabi-size  DeviceProcessor03.elf 
-   text	   data	    bss	    dec	    hex	filename
-  59812	    592	  61608	 122012	  1dc9c	DeviceProcessor03.elf
-Finished building: default.size.stdout
- 
-18:58:29 **** Incremental Build of configuration Debug for project DeviceProcessor03 ****
-make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m33 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32U575xx -c -I../Core/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32U5xx/Include -I../Drivers/CMSIS/Include -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Class/CDC/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/Device/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/Target" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/App" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
 arm-none-eabi-gcc "../Core/Src/stm32u5xx_hal_msp.c" -mcpu=cortex-m33 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32U575xx -c -I../Core/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32U5xx/Include -I../Drivers/CMSIS/Include -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Class/CDC/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/Device/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/Target" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/App" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32u5xx_hal_msp.d" -MT"Core/Src/stm32u5xx_hal_msp.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32u5xx_hal_msp.o"
 arm-none-eabi-gcc "../Core/Src/stm32u5xx_it.c" -mcpu=cortex-m33 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32U575xx -c -I../Core/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32U5xx/Include -I../Drivers/CMSIS/Include -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Class/CDC/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/Device/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/Target" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/App" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32u5xx_it.d" -MT"Core/Src/stm32u5xx_it.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32u5xx_it.o"
+../Device/Src/measurement_routines.c: In function 'dvc_exec_msr_current_voltage':
+../Device/Src/measurement_routines.c:81:27: warning: unused variable 'result' [-Wunused-variable]
+   81 |         HAL_StatusTypeDef result;
+      |                           ^~~~~~
+../Device/Src/measurement_routines.c: In function 'dvc_exec_msr_impedance_spectroscopy_2p':
+../Device/Src/measurement_routines.c:167:18: warning: unused variable 'min_volt' [-Wunused-variable]
+  167 |         uint32_t min_volt = get_register(&device_registers,DVC_2PM_IMPSPEC_8);
+      |                  ^~~~~~~~
+../Device/Src/measurement_routines.c:166:18: warning: unused variable 'max_volt' [-Wunused-variable]
+  166 |         uint32_t max_volt = get_register(&device_registers,DVC_2PM_IMPSPEC_7);
+      |                  ^~~~~~~~
+../Device/Src/measurement_routines.c:152:27: warning: unused variable 'result' [-Wunused-variable]
+  152 |         HAL_StatusTypeDef result;
+      |                           ^~~~~~
+../Device/Src/device_monitoring.c: In function 'collect_adc_samples':
+../Device/Src/device_monitoring.c:57:17: warning: implicit declaration of function 'reverse_buffer_bits_16' [-Wimplicit-function-declaration]
+   57 |                 reverse_buffer_bits_16(sample_buf, DVC_MAX_NUM_ADC_SAMPLES);
+      |                 ^~~~~~~~~~~~~~~~~~~~~~
+../Device/Src/device_monitoring.c: At top level:
+../Device/Src/device_monitoring.c:103:6: warning: conflicting types for 'reverse_buffer_bits_16'; have 'void(uint16_t *, size_t)' {aka 'void(short unsigned int *, unsigned int)'}
+  103 | void reverse_buffer_bits_16(uint16_t *buffer, size_t size) {
+      |      ^~~~~~~~~~~~~~~~~~~~~~
+../Device/Src/device_monitoring.c:57:17: note: previous implicit declaration of 'reverse_buffer_bits_16' with type 'void(uint16_t *, size_t)' {aka 'void(short unsigned int *, unsigned int)'}
+   57 |                 reverse_buffer_bits_16(sample_buf, DVC_MAX_NUM_ADC_SAMPLES);
+      |                 ^~~~~~~~~~~~~~~~~~~~~~
 arm-none-eabi-gcc -o "DeviceProcessor03.elf" @"objects.list"   -mcpu=cortex-m33 -T"C:\UBC_4TH_YEAR\ELEC-491\JY-85\project\JY85\Firmware\DeviceProcessor03\STM32U575ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DeviceProcessor03.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 Finished building target: DeviceProcessor03.elf
  
 arm-none-eabi-size  DeviceProcessor03.elf 
 arm-none-eabi-objdump -h -S DeviceProcessor03.elf  > "DeviceProcessor03.list"
    text	   data	    bss	    dec	    hex	filename
-  59804	    592	  61608	 122004	  1dc94	DeviceProcessor03.elf
+  60244	    592	  61608	 122444	  1de4c	DeviceProcessor03.elf
 Finished building: default.size.stdout
  
 Finished building: DeviceProcessor03.list
+ 
+18:32:22 **** Incremental Build of configuration Debug for project DeviceProcessor03 ****
+make -j12 all 
+arm-none-eabi-size  DeviceProcessor03.elf 
+   text	   data	    bss	    dec	    hex	filename
+  60244	    592	  61608	 122444	  1de4c	DeviceProcessor03.elf
+Finished building: default.size.stdout
+ 
+18:34:20 **** Incremental Build of configuration Debug for project DeviceProcessor03 ****
+make -j12 all 
+arm-none-eabi-size  DeviceProcessor03.elf 
+   text	   data	    bss	    dec	    hex	filename
+  60244	    592	  61608	 122444	  1de4c	DeviceProcessor03.elf
+Finished building: default.size.stdout
+ 
+18:50:51 **** Incremental Build of configuration Debug for project DeviceProcessor03 ****
+make -j12 all 
+arm-none-eabi-size  DeviceProcessor03.elf 
+   text	   data	    bss	    dec	    hex	filename
+  60244	    592	  61608	 122444	  1de4c	DeviceProcessor03.elf
+Finished building: default.size.stdout
+ 
+19:16:41 **** Incremental Build of configuration Debug for project DeviceProcessor03 ****
+make -j12 all 
+arm-none-eabi-size  DeviceProcessor03.elf 
+   text	   data	    bss	    dec	    hex	filename
+  60244	    592	  61608	 122444	  1de4c	DeviceProcessor03.elf
+Finished building: default.size.stdout
  

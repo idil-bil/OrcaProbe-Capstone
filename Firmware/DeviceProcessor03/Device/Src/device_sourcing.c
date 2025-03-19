@@ -25,7 +25,7 @@ void set_pot_buffer(uint8_t *buffer, uint32_t cmd, uint32_t value) {
     buffer[1] = value;
 }
 
-int calculate_pot_value(float Current) {
+int calculate_pot_value_curr_mirr(float Current) {
 	// Function to calculate pot_value
     // Define the constants
 //    const float constant = 3.8765;

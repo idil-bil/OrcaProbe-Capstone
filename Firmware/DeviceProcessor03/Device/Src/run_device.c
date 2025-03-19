@@ -64,6 +64,7 @@ void run_device(){
 					break;
 				case IMPEDANCE_SPECTROSCOPY_2P:
 					dvc_exec_msr_impedance_spectroscopy_2p();
+					set_register(&device_registers,DVC_MEASUREMENT_CONFIG,0);
 					break;
 				case TRANSFER_CHARACTERISTICS:
 					dvc_exec_msr_transfer_characteristics();

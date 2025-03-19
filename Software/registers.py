@@ -15,31 +15,37 @@ DVC_2PM_IMPSPEC_2 = 0xC  # Address in decimal: 12
 DVC_2PM_IMPSPEC_3 = 0xD  # Address in decimal: 13
 DVC_2PM_IMPSPEC_4 = 0xE  # Address in decimal: 14
 DVC_2PM_IMPSPEC_5 = 0xF  # Address in decimal: 15
-DVC_3PM_TRANSCHAR_1 = 0x10  # Address in decimal: 16
-DVC_3PM_TRANSCHAR_2 = 0x11  # Address in decimal: 17
-DVC_3PM_TRANSCHAR_3 = 0x12  # Address in decimal: 18
-DVC_3PM_TRANSCHAR_4 = 0x13  # Address in decimal: 19
-DVC_3PM_TRANSCHAR_5 = 0x14  # Address in decimal: 20
-DVC_3PM_OUTCHAR_1 = 0x15  # Address in decimal: 21
-DVC_3PM_OUTCHAR_2 = 0x16  # Address in decimal: 22
-DVC_3PM_OUTCHAR_3 = 0x17  # Address in decimal: 23
-DVC_3PM_OUTCHAR_4 = 0x18  # Address in decimal: 24
-DVC_3PM_OUTCHAR_5 = 0x19  # Address in decimal: 25
-DVC_3PM_CAPVOLT_1 = 0x1A  # Address in decimal: 26
-DVC_3PM_CAPVOLT_2 = 0x1B  # Address in decimal: 27
-DVC_3PM_CAPVOLT_3 = 0x1C  # Address in decimal: 28
-DVC_3PM_ELECHEM_1 = 0x1D  # Address in decimal: 29
-DVC_3PM_ELECHEM_2 = 0x1E  # Address in decimal: 30
-DVC_3PM_ELECHEM_3 = 0x1F  # Address in decimal: 31
-DVC_3PM_ELECHEM_4 = 0x20  # Address in decimal: 32
-DVC_3PM_ELECHEM_5 = 0x21  # Address in decimal: 33
-DVC_4PM_PROBERESISTANCE_1 = 0x22  # Address in decimal: 34
-DVC_2PM_LOWRESISTANCE_1 = 0x23  # Address in decimal: 35
-DVC_4PM_IMPSPEC_1 = 0x24  # Address in decimal: 36
-DVC_4PM_IMPSPEC_2 = 0x25  # Address in decimal: 37
-DVC_4PM_IMPSPEC_3 = 0x26  # Address in decimal: 38
-DVC_4PM_IMPSPEC_4 = 0x27  # Address in decimal: 39
-DVC_4PM_IMPSPEC_5 = 0x28  # Address in decimal: 40
+DVC_2PM_IMPSPEC_6 = 0x10  # Address in decimal: 16
+DVC_2PM_IMPSPEC_7 = 0x11  # Address in decimal: 17
+DVC_2PM_IMPSPEC_8 = 0x12  # Address in decimal: 18
+DVC_3PM_TRANSCHAR_1 = 0x13  # Address in decimal: 19
+DVC_3PM_TRANSCHAR_2 = 0x14  # Address in decimal: 20
+DVC_3PM_TRANSCHAR_3 = 0x15  # Address in decimal: 21
+DVC_3PM_TRANSCHAR_4 = 0x16  # Address in decimal: 22
+DVC_3PM_TRANSCHAR_5 = 0x17  # Address in decimal: 23
+DVC_3PM_OUTCHAR_1 = 0x18  # Address in decimal: 24
+DVC_3PM_OUTCHAR_2 = 0x19  # Address in decimal: 25
+DVC_3PM_OUTCHAR_3 = 0x1A  # Address in decimal: 26
+DVC_3PM_OUTCHAR_4 = 0x1B  # Address in decimal: 27
+DVC_3PM_OUTCHAR_5 = 0x1C  # Address in decimal: 28
+DVC_3PM_CAPVOLT_1 = 0x1D  # Address in decimal: 29
+DVC_3PM_CAPVOLT_2 = 0x1E  # Address in decimal: 30
+DVC_3PM_CAPVOLT_3 = 0x1F  # Address in decimal: 31
+DVC_3PM_ELECHEM_1 = 0x20  # Address in decimal: 32
+DVC_3PM_ELECHEM_2 = 0x21  # Address in decimal: 33
+DVC_3PM_ELECHEM_3 = 0x22  # Address in decimal: 34
+DVC_3PM_ELECHEM_4 = 0x23  # Address in decimal: 35
+DVC_3PM_ELECHEM_5 = 0x24  # Address in decimal: 36
+DVC_4PM_PROBERESISTANCE_1 = 0x25  # Address in decimal: 37
+DVC_2PM_LOWRESISTANCE_1 = 0x26  # Address in decimal: 38
+DVC_4PM_IMPSPEC_1 = 0x27  # Address in decimal: 39
+DVC_4PM_IMPSPEC_2 = 0x28  # Address in decimal: 40
+DVC_4PM_IMPSPEC_3 = 0x29  # Address in decimal: 41
+DVC_4PM_IMPSPEC_4 = 0x2A  # Address in decimal: 42
+DVC_4PM_IMPSPEC_5 = 0x2B  # Address in decimal: 43
+DVC_4PM_IMPSPEC_6 = 0x2C  # Address in decimal: 44
+DVC_4PM_IMPSPEC_7 = 0x2D  # Address in decimal: 45
+DVC_4PM_IMPSPEC_8 = 0x2E  # Address in decimal: 46
 DVC_FLUSH_SAMPLE_DATA_1 = 0x64  # Address in decimal: 100
 DVC_FLUSH_SAMPLE_DATA_2 = 0x65  # Address in decimal: 101
 DVC_FLUSH_SAMPLE_DATA_3 = 0x66  # Address in decimal: 102
@@ -112,30 +118,42 @@ DVC_2PM_CAPVOLT_3_Increment_Volt_POSITION = 0
 DVC_2PM_CAPVOLT_3_Increment_Volt_LENGTH = 24
 
 # DVC_2PM_IMPSPEC_1
-DVC_2PM_IMPSPEC_1_Starting_Freq_POSITION = 0
-DVC_2PM_IMPSPEC_1_Starting_Freq_LENGTH = 14
+DVC_2PM_IMPSPEC_1_Starting_Freq_1_POSITION = 0
+DVC_2PM_IMPSPEC_1_Starting_Freq_1_LENGTH = 14
 
 # DVC_2PM_IMPSPEC_2
-DVC_2PM_IMPSPEC_2_Ending_Freq_POSITION = 0
-DVC_2PM_IMPSPEC_2_Ending_Freq_LENGTH = 14
+DVC_2PM_IMPSPEC_2_Starting_Freq_2_POSITION = 0
+DVC_2PM_IMPSPEC_2_Starting_Freq_2_LENGTH = 14
 
 # DVC_2PM_IMPSPEC_3
-DVC_2PM_IMPSPEC_3_Increment_Freq_POSITION = 0
-DVC_2PM_IMPSPEC_3_Increment_Freq_LENGTH = 14
+DVC_2PM_IMPSPEC_3_Ending_Freq_1_POSITION = 0
+DVC_2PM_IMPSPEC_3_Ending_Freq_1_LENGTH = 14
 
 # DVC_2PM_IMPSPEC_4
-DVC_2PM_IMPSPEC_4_Max_Peak_Volt_POSITION = 0
-DVC_2PM_IMPSPEC_4_Max_Peak_Volt_LENGTH = 24
+DVC_2PM_IMPSPEC_4_Ending_Freq_2_POSITION = 0
+DVC_2PM_IMPSPEC_4_Ending_Freq_2_LENGTH = 14
 
 # DVC_2PM_IMPSPEC_5
-DVC_2PM_IMPSPEC_5_Min_Peak_Volt_POSITION = 0
-DVC_2PM_IMPSPEC_5_Min_Peak_Volt_LENGTH = 24
+DVC_2PM_IMPSPEC_5_Increment_Freq_1_POSITION = 0
+DVC_2PM_IMPSPEC_5_Increment_Freq_1_LENGTH = 14
+
+# DVC_2PM_IMPSPEC_6
+DVC_2PM_IMPSPEC_6_Increment_Freq_2_POSITION = 0
+DVC_2PM_IMPSPEC_6_Increment_Freq_2_LENGTH = 14
+
+# DVC_2PM_IMPSPEC_7
+DVC_2PM_IMPSPEC_7_Max_Peak_Volt_POSITION = 0
+DVC_2PM_IMPSPEC_7_Max_Peak_Volt_LENGTH = 24
+
+# DVC_2PM_IMPSPEC_8
+DVC_2PM_IMPSPEC_8_Min_Peak_Volt_POSITION = 0
+DVC_2PM_IMPSPEC_8_Min_Peak_Volt_LENGTH = 24
 
 # DVC_3PM_TRANSCHAR_1
 DVC_3PM_TRANSCHAR_1_Gate_Probe_POSITION = 0
-DVC_3PM_TRANSCHAR_1_Gate_Probe_LENGTH = 24
-DVC_3PM_TRANSCHAR_1_Drain_Probe_POSITION = 0
-DVC_3PM_TRANSCHAR_1_Drain_Probe_LENGTH = 24
+DVC_3PM_TRANSCHAR_1_Gate_Probe_LENGTH = 4
+DVC_3PM_TRANSCHAR_1_Drain_Probe_POSITION = 4
+DVC_3PM_TRANSCHAR_1_Drain_Probe_LENGTH = 4
 
 # DVC_3PM_TRANSCHAR_2
 DVC_3PM_TRANSCHAR_2_Drain_Volt_POSITION = 0
@@ -155,9 +173,9 @@ DVC_3PM_TRANSCHAR_5_Increment_Volt_LENGTH = 24
 
 # DVC_3PM_OUTCHAR_1
 DVC_3PM_OUTCHAR_1_Gate_Probe_POSITION = 0
-DVC_3PM_OUTCHAR_1_Gate_Probe_LENGTH = 24
-DVC_3PM_OUTCHAR_1_Drain_Probe_POSITION = 0
-DVC_3PM_OUTCHAR_1_Drain_Probe_LENGTH = 24
+DVC_3PM_OUTCHAR_1_Gate_Probe_LENGTH = 4
+DVC_3PM_OUTCHAR_1_Drain_Probe_POSITION = 4
+DVC_3PM_OUTCHAR_1_Drain_Probe_LENGTH = 4
 
 # DVC_3PM_OUTCHAR_2
 DVC_3PM_OUTCHAR_2_Gate_Volt_POSITION = 0
@@ -216,24 +234,36 @@ DVC_2PM_LOWRESISTANCE_1_Test_Current_Value_POSITION = 0
 DVC_2PM_LOWRESISTANCE_1_Test_Current_Value_LENGTH = 24
 
 # DVC_4PM_IMPSPEC_1
-DVC_4PM_IMPSPEC_1_Starting_Freq_POSITION = 0
-DVC_4PM_IMPSPEC_1_Starting_Freq_LENGTH = 14
+DVC_4PM_IMPSPEC_1_Starting_Freq_1_POSITION = 0
+DVC_4PM_IMPSPEC_1_Starting_Freq_1_LENGTH = 14
 
 # DVC_4PM_IMPSPEC_2
-DVC_4PM_IMPSPEC_2_Ending_Freq_POSITION = 0
-DVC_4PM_IMPSPEC_2_Ending_Freq_LENGTH = 14
+DVC_4PM_IMPSPEC_2_Starting_Freq_2_POSITION = 0
+DVC_4PM_IMPSPEC_2_Starting_Freq_2_LENGTH = 14
 
 # DVC_4PM_IMPSPEC_3
-DVC_4PM_IMPSPEC_3_Increment_Freq_POSITION = 0
-DVC_4PM_IMPSPEC_3_Increment_Freq_LENGTH = 14
+DVC_4PM_IMPSPEC_3_Ending_Freq_1_POSITION = 0
+DVC_4PM_IMPSPEC_3_Ending_Freq_1_LENGTH = 14
 
 # DVC_4PM_IMPSPEC_4
-DVC_4PM_IMPSPEC_4_Max_Peak_Volt_POSITION = 0
-DVC_4PM_IMPSPEC_4_Max_Peak_Volt_LENGTH = 24
+DVC_4PM_IMPSPEC_4_Ending_Freq_2_POSITION = 0
+DVC_4PM_IMPSPEC_4_Ending_Freq_2_LENGTH = 14
 
 # DVC_4PM_IMPSPEC_5
-DVC_4PM_IMPSPEC_5_Min_Peak_Volt_POSITION = 0
-DVC_4PM_IMPSPEC_5_Min_Peak_Volt_LENGTH = 24
+DVC_4PM_IMPSPEC_5_Increment_Freq_1_POSITION = 0
+DVC_4PM_IMPSPEC_5_Increment_Freq_1_LENGTH = 14
+
+# DVC_4PM_IMPSPEC_6
+DVC_4PM_IMPSPEC_6_Increment_Freq_2_POSITION = 0
+DVC_4PM_IMPSPEC_6_Increment_Freq_2_LENGTH = 14
+
+# DVC_4PM_IMPSPEC_7
+DVC_4PM_IMPSPEC_7_Max_Peak_Volt_POSITION = 0
+DVC_4PM_IMPSPEC_7_Max_Peak_Volt_LENGTH = 24
+
+# DVC_4PM_IMPSPEC_8
+DVC_4PM_IMPSPEC_8_Min_Peak_Volt_POSITION = 0
+DVC_4PM_IMPSPEC_8_Min_Peak_Volt_LENGTH = 24
 
 # DVC_FLUSH_SAMPLE_DATA_1
 DVC_FLUSH_SAMPLE_DATA_1_Sample_POSITION = 0
@@ -265,7 +295,7 @@ class DVC_DVC_MEASUREMENT_CONFIG:
 
 class DVC_DVC_PROBE_CONFIG:
     def __init__(self):
-        self.Used_Probes = [0xDEAD,DVC_PROBE_CONFIG_Used_Probes_POSITION, DVC_PROBE_CONFIG_Used_Probes_LENGTH]
+        self.Used_Probes = [0,DVC_PROBE_CONFIG_Used_Probes_POSITION, DVC_PROBE_CONFIG_Used_Probes_LENGTH]
         self.Probe_1_Config = [0,DVC_PROBE_CONFIG_Probe_1_Config_POSITION, DVC_PROBE_CONFIG_Probe_1_Config_LENGTH]
         self.Probe_2_Config = [0,DVC_PROBE_CONFIG_Probe_2_Config_POSITION, DVC_PROBE_CONFIG_Probe_2_Config_LENGTH]
         self.Probe_3_Config = [0,DVC_PROBE_CONFIG_Probe_3_Config_POSITION, DVC_PROBE_CONFIG_Probe_3_Config_LENGTH]
@@ -305,23 +335,35 @@ class DVC_DVC_2PM_CAPVOLT_3:
 
 class DVC_DVC_2PM_IMPSPEC_1:
     def __init__(self):
-        self.Starting_Freq = [0xDEAD,DVC_2PM_IMPSPEC_1_Starting_Freq_POSITION, DVC_2PM_IMPSPEC_1_Starting_Freq_LENGTH]
+        self.Starting_Freq_1 = [0xDEAD,DVC_2PM_IMPSPEC_1_Starting_Freq_1_POSITION, DVC_2PM_IMPSPEC_1_Starting_Freq_1_LENGTH]
 
 class DVC_DVC_2PM_IMPSPEC_2:
     def __init__(self):
-        self.Ending_Freq = [0xDEAD,DVC_2PM_IMPSPEC_2_Ending_Freq_POSITION, DVC_2PM_IMPSPEC_2_Ending_Freq_LENGTH]
+        self.Starting_Freq_2 = [0xDEAD,DVC_2PM_IMPSPEC_2_Starting_Freq_2_POSITION, DVC_2PM_IMPSPEC_2_Starting_Freq_2_LENGTH]
 
 class DVC_DVC_2PM_IMPSPEC_3:
     def __init__(self):
-        self.Increment_Freq = [0xDEAD,DVC_2PM_IMPSPEC_3_Increment_Freq_POSITION, DVC_2PM_IMPSPEC_3_Increment_Freq_LENGTH]
+        self.Ending_Freq_1 = [0xDEAD,DVC_2PM_IMPSPEC_3_Ending_Freq_1_POSITION, DVC_2PM_IMPSPEC_3_Ending_Freq_1_LENGTH]
 
 class DVC_DVC_2PM_IMPSPEC_4:
     def __init__(self):
-        self.Max_Peak_Volt = [0xDEAD,DVC_2PM_IMPSPEC_4_Max_Peak_Volt_POSITION, DVC_2PM_IMPSPEC_4_Max_Peak_Volt_LENGTH]
+        self.Ending_Freq_2 = [0xDEAD,DVC_2PM_IMPSPEC_4_Ending_Freq_2_POSITION, DVC_2PM_IMPSPEC_4_Ending_Freq_2_LENGTH]
 
 class DVC_DVC_2PM_IMPSPEC_5:
     def __init__(self):
-        self.Min_Peak_Volt = [0xDEAD,DVC_2PM_IMPSPEC_5_Min_Peak_Volt_POSITION, DVC_2PM_IMPSPEC_5_Min_Peak_Volt_LENGTH]
+        self.Increment_Freq_1 = [0xDEAD,DVC_2PM_IMPSPEC_5_Increment_Freq_1_POSITION, DVC_2PM_IMPSPEC_5_Increment_Freq_1_LENGTH]
+
+class DVC_DVC_2PM_IMPSPEC_6:
+    def __init__(self):
+        self.Increment_Freq_2 = [0xDEAD,DVC_2PM_IMPSPEC_6_Increment_Freq_2_POSITION, DVC_2PM_IMPSPEC_6_Increment_Freq_2_LENGTH]
+
+class DVC_DVC_2PM_IMPSPEC_7:
+    def __init__(self):
+        self.Max_Peak_Volt = [0xDEAD,DVC_2PM_IMPSPEC_7_Max_Peak_Volt_POSITION, DVC_2PM_IMPSPEC_7_Max_Peak_Volt_LENGTH]
+
+class DVC_DVC_2PM_IMPSPEC_8:
+    def __init__(self):
+        self.Min_Peak_Volt = [0xDEAD,DVC_2PM_IMPSPEC_8_Min_Peak_Volt_POSITION, DVC_2PM_IMPSPEC_8_Min_Peak_Volt_LENGTH]
 
 class DVC_DVC_3PM_TRANSCHAR_1:
     def __init__(self):
@@ -407,23 +449,35 @@ class DVC_DVC_2PM_LOWRESISTANCE_1:
 
 class DVC_DVC_4PM_IMPSPEC_1:
     def __init__(self):
-        self.Starting_Freq = [0xDEAD,DVC_4PM_IMPSPEC_1_Starting_Freq_POSITION, DVC_4PM_IMPSPEC_1_Starting_Freq_LENGTH]
+        self.Starting_Freq_1 = [0xDEAD,DVC_4PM_IMPSPEC_1_Starting_Freq_1_POSITION, DVC_4PM_IMPSPEC_1_Starting_Freq_1_LENGTH]
 
 class DVC_DVC_4PM_IMPSPEC_2:
     def __init__(self):
-        self.Ending_Freq = [0xDEAD,DVC_4PM_IMPSPEC_2_Ending_Freq_POSITION, DVC_4PM_IMPSPEC_2_Ending_Freq_LENGTH]
+        self.Starting_Freq_2 = [0xDEAD,DVC_4PM_IMPSPEC_2_Starting_Freq_2_POSITION, DVC_4PM_IMPSPEC_2_Starting_Freq_2_LENGTH]
 
 class DVC_DVC_4PM_IMPSPEC_3:
     def __init__(self):
-        self.Increment_Freq = [0xDEAD,DVC_4PM_IMPSPEC_3_Increment_Freq_POSITION, DVC_4PM_IMPSPEC_3_Increment_Freq_LENGTH]
+        self.Ending_Freq_1 = [0xDEAD,DVC_4PM_IMPSPEC_3_Ending_Freq_1_POSITION, DVC_4PM_IMPSPEC_3_Ending_Freq_1_LENGTH]
 
 class DVC_DVC_4PM_IMPSPEC_4:
     def __init__(self):
-        self.Max_Peak_Volt = [0xDEAD,DVC_4PM_IMPSPEC_4_Max_Peak_Volt_POSITION, DVC_4PM_IMPSPEC_4_Max_Peak_Volt_LENGTH]
+        self.Ending_Freq_2 = [0xDEAD,DVC_4PM_IMPSPEC_4_Ending_Freq_2_POSITION, DVC_4PM_IMPSPEC_4_Ending_Freq_2_LENGTH]
 
 class DVC_DVC_4PM_IMPSPEC_5:
     def __init__(self):
-        self.Min_Peak_Volt = [0xDEAD,DVC_4PM_IMPSPEC_5_Min_Peak_Volt_POSITION, DVC_4PM_IMPSPEC_5_Min_Peak_Volt_LENGTH]
+        self.Increment_Freq_1 = [0xDEAD,DVC_4PM_IMPSPEC_5_Increment_Freq_1_POSITION, DVC_4PM_IMPSPEC_5_Increment_Freq_1_LENGTH]
+
+class DVC_DVC_4PM_IMPSPEC_6:
+    def __init__(self):
+        self.Increment_Freq_2 = [0xDEAD,DVC_4PM_IMPSPEC_6_Increment_Freq_2_POSITION, DVC_4PM_IMPSPEC_6_Increment_Freq_2_LENGTH]
+
+class DVC_DVC_4PM_IMPSPEC_7:
+    def __init__(self):
+        self.Max_Peak_Volt = [0xDEAD,DVC_4PM_IMPSPEC_7_Max_Peak_Volt_POSITION, DVC_4PM_IMPSPEC_7_Max_Peak_Volt_LENGTH]
+
+class DVC_DVC_4PM_IMPSPEC_8:
+    def __init__(self):
+        self.Min_Peak_Volt = [0xDEAD,DVC_4PM_IMPSPEC_8_Min_Peak_Volt_POSITION, DVC_4PM_IMPSPEC_8_Min_Peak_Volt_LENGTH]
 
 class DVC_DVC_FLUSH_SAMPLE_DATA_1:
     def __init__(self):
@@ -455,6 +509,9 @@ class DVC_RegisterMap:
         self.DVC_2PM_IMPSPEC_3 = DVC_DVC_2PM_IMPSPEC_3()
         self.DVC_2PM_IMPSPEC_4 = DVC_DVC_2PM_IMPSPEC_4()
         self.DVC_2PM_IMPSPEC_5 = DVC_DVC_2PM_IMPSPEC_5()
+        self.DVC_2PM_IMPSPEC_6 = DVC_DVC_2PM_IMPSPEC_6()
+        self.DVC_2PM_IMPSPEC_7 = DVC_DVC_2PM_IMPSPEC_7()
+        self.DVC_2PM_IMPSPEC_8 = DVC_DVC_2PM_IMPSPEC_8()
         self.DVC_3PM_TRANSCHAR_1 = DVC_DVC_3PM_TRANSCHAR_1()
         self.DVC_3PM_TRANSCHAR_2 = DVC_DVC_3PM_TRANSCHAR_2()
         self.DVC_3PM_TRANSCHAR_3 = DVC_DVC_3PM_TRANSCHAR_3()
@@ -480,6 +537,9 @@ class DVC_RegisterMap:
         self.DVC_4PM_IMPSPEC_3 = DVC_DVC_4PM_IMPSPEC_3()
         self.DVC_4PM_IMPSPEC_4 = DVC_DVC_4PM_IMPSPEC_4()
         self.DVC_4PM_IMPSPEC_5 = DVC_DVC_4PM_IMPSPEC_5()
+        self.DVC_4PM_IMPSPEC_6 = DVC_DVC_4PM_IMPSPEC_6()
+        self.DVC_4PM_IMPSPEC_7 = DVC_DVC_4PM_IMPSPEC_7()
+        self.DVC_4PM_IMPSPEC_8 = DVC_DVC_4PM_IMPSPEC_8()
         self.DVC_FLUSH_SAMPLE_DATA_1 = DVC_DVC_FLUSH_SAMPLE_DATA_1()
         self.DVC_FLUSH_SAMPLE_DATA_2 = DVC_DVC_FLUSH_SAMPLE_DATA_2()
         self.DVC_FLUSH_SAMPLE_DATA_3 = DVC_DVC_FLUSH_SAMPLE_DATA_3()

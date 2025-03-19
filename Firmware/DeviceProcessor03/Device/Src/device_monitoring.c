@@ -9,8 +9,8 @@
 #include "device_constants.h"
 extern TIM_HandleTypeDef htim8;
 extern DMA_HandleTypeDef handle_GPDMA1_Channel12;
-extern DMA_HandleTypeDef handle_GPDMA1_Channel14;
 extern DMA_HandleTypeDef handle_GPDMA1_Channel13;
+extern DMA_HandleTypeDef handle_GPDMA1_Channel14;
 extern uint16_t adc_samples_1[DVC_MAX_NUM_ADC_SAMPLES];
 extern uint16_t adc_samples_2[DVC_MAX_NUM_ADC_SAMPLES];
 extern uint16_t adc_samples_3[DVC_MAX_NUM_ADC_SAMPLES];
@@ -32,7 +32,7 @@ void set_adc_sampling_freq(uint32_t sample_freq){
 	TIM8->ARR = sample_freq_div-1;
 	TIM8->CCR1 = TIM8->ARR/2;
 	TIM8->CCR2 = TIM8->ARR/2;
-	TIM8->DIER = TIM_DIER_UDE;
+	TIM8->DIER |= TIM_DIER_UDE;
 	HAL_TIM_PWM_Start(&htim8, TIM_CHANNEL_2);
 }
 
@@ -83,7 +83,7 @@ HAL_StatusTypeDef collect_adc_samples2(uint8_t adc_num){
 	}
 	if(adc_num & 0x2){
 		adc_2_busy = 1;
-		result2 = HAL_DMA_Start_IT(&handle_GPDMA1_Channel12,(uint32_t)&GPIOF->IDR,(uint32_t)adc_samples_2,DVC_MAX_NUM_ADC_SAMPLES*sizeof(uint16_t));
+		result2 = HAL_DMA_Start_IT(&handle_GPDMA1_Channel13,(uint32_t)&GPIOF->IDR,(uint32_t)adc_samples_2,DVC_MAX_NUM_ADC_SAMPLES*sizeof(uint16_t));
 	}
 	if(adc_num & 0x4){
 		adc_3_busy = 1;

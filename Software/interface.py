@@ -75,23 +75,35 @@ def write_reg_DVC_2PM_CAPVOLT_3(ser, reg_map):
 
 def write_reg_DVC_2PM_IMPSPEC_1(ser, reg_map):
     write_register(ser, DVC_2PM_IMPSPEC_1, 
-                  (reg_map.DVC_2PM_IMPSPEC_1.Starting_Freq[0] << reg_map.DVC_2PM_IMPSPEC_1.Starting_Freq[1]))
+                  (reg_map.DVC_2PM_IMPSPEC_1.Starting_Freq_1[0] << reg_map.DVC_2PM_IMPSPEC_1.Starting_Freq_1[1]))
 
 def write_reg_DVC_2PM_IMPSPEC_2(ser, reg_map):
     write_register(ser, DVC_2PM_IMPSPEC_2, 
-                  (reg_map.DVC_2PM_IMPSPEC_2.Ending_Freq[0] << reg_map.DVC_2PM_IMPSPEC_2.Ending_Freq[1]))
+                  (reg_map.DVC_2PM_IMPSPEC_2.Starting_Freq_2[0] << reg_map.DVC_2PM_IMPSPEC_2.Starting_Freq_2[1]))
 
 def write_reg_DVC_2PM_IMPSPEC_3(ser, reg_map):
     write_register(ser, DVC_2PM_IMPSPEC_3, 
-                  (reg_map.DVC_2PM_IMPSPEC_3.Increment_Freq[0] << reg_map.DVC_2PM_IMPSPEC_3.Increment_Freq[1]))
+                  (reg_map.DVC_2PM_IMPSPEC_3.Ending_Freq_1[0] << reg_map.DVC_2PM_IMPSPEC_3.Ending_Freq_1[1]))
 
 def write_reg_DVC_2PM_IMPSPEC_4(ser, reg_map):
     write_register(ser, DVC_2PM_IMPSPEC_4, 
-                  (reg_map.DVC_2PM_IMPSPEC_4.Max_Peak_Volt[0] << reg_map.DVC_2PM_IMPSPEC_4.Max_Peak_Volt[1]))
+                  (reg_map.DVC_2PM_IMPSPEC_4.Ending_Freq_2[0] << reg_map.DVC_2PM_IMPSPEC_4.Ending_Freq_2[1]))
 
 def write_reg_DVC_2PM_IMPSPEC_5(ser, reg_map):
     write_register(ser, DVC_2PM_IMPSPEC_5, 
-                  (reg_map.DVC_2PM_IMPSPEC_5.Min_Peak_Volt[0] << reg_map.DVC_2PM_IMPSPEC_5.Min_Peak_Volt[1]))
+                  (reg_map.DVC_2PM_IMPSPEC_5.Increment_Freq_1[0] << reg_map.DVC_2PM_IMPSPEC_5.Increment_Freq_1[1]))
+
+def write_reg_DVC_2PM_IMPSPEC_6(ser, reg_map):
+    write_register(ser, DVC_2PM_IMPSPEC_6, 
+                  (reg_map.DVC_2PM_IMPSPEC_6.Increment_Freq_2[0] << reg_map.DVC_2PM_IMPSPEC_6.Increment_Freq_2[1]))
+
+def write_reg_DVC_2PM_IMPSPEC_7(ser, reg_map):
+    write_register(ser, DVC_2PM_IMPSPEC_7, 
+                  (reg_map.DVC_2PM_IMPSPEC_7.Max_Peak_Volt[0] << reg_map.DVC_2PM_IMPSPEC_7.Max_Peak_Volt[1]))
+
+def write_reg_DVC_2PM_IMPSPEC_8(ser, reg_map):
+    write_register(ser, DVC_2PM_IMPSPEC_8, 
+                  (reg_map.DVC_2PM_IMPSPEC_8.Min_Peak_Volt[0] << reg_map.DVC_2PM_IMPSPEC_8.Min_Peak_Volt[1]))
 
 def write_reg_DVC_3PM_TRANSCHAR_1(ser, reg_map):
     write_register(ser, DVC_3PM_TRANSCHAR_1, 
@@ -177,23 +189,35 @@ def write_reg_DVC_2PM_LOWRESISTANCE_1(ser, reg_map):
 
 def write_reg_DVC_4PM_IMPSPEC_1(ser, reg_map):
     write_register(ser, DVC_4PM_IMPSPEC_1, 
-                  (reg_map.DVC_4PM_IMPSPEC_1.Starting_Freq[0] << reg_map.DVC_4PM_IMPSPEC_1.Starting_Freq[1]))
+                  (reg_map.DVC_4PM_IMPSPEC_1.Starting_Freq_1[0] << reg_map.DVC_4PM_IMPSPEC_1.Starting_Freq_1[1]))
 
 def write_reg_DVC_4PM_IMPSPEC_2(ser, reg_map):
     write_register(ser, DVC_4PM_IMPSPEC_2, 
-                  (reg_map.DVC_4PM_IMPSPEC_2.Ending_Freq[0] << reg_map.DVC_4PM_IMPSPEC_2.Ending_Freq[1]))
+                  (reg_map.DVC_4PM_IMPSPEC_2.Starting_Freq_2[0] << reg_map.DVC_4PM_IMPSPEC_2.Starting_Freq_2[1]))
 
 def write_reg_DVC_4PM_IMPSPEC_3(ser, reg_map):
     write_register(ser, DVC_4PM_IMPSPEC_3, 
-                  (reg_map.DVC_4PM_IMPSPEC_3.Increment_Freq[0] << reg_map.DVC_4PM_IMPSPEC_3.Increment_Freq[1]))
+                  (reg_map.DVC_4PM_IMPSPEC_3.Ending_Freq_1[0] << reg_map.DVC_4PM_IMPSPEC_3.Ending_Freq_1[1]))
 
 def write_reg_DVC_4PM_IMPSPEC_4(ser, reg_map):
     write_register(ser, DVC_4PM_IMPSPEC_4, 
-                  (reg_map.DVC_4PM_IMPSPEC_4.Max_Peak_Volt[0] << reg_map.DVC_4PM_IMPSPEC_4.Max_Peak_Volt[1]))
+                  (reg_map.DVC_4PM_IMPSPEC_4.Ending_Freq_2[0] << reg_map.DVC_4PM_IMPSPEC_4.Ending_Freq_2[1]))
 
 def write_reg_DVC_4PM_IMPSPEC_5(ser, reg_map):
     write_register(ser, DVC_4PM_IMPSPEC_5, 
-                  (reg_map.DVC_4PM_IMPSPEC_5.Min_Peak_Volt[0] << reg_map.DVC_4PM_IMPSPEC_5.Min_Peak_Volt[1]))
+                  (reg_map.DVC_4PM_IMPSPEC_5.Increment_Freq_1[0] << reg_map.DVC_4PM_IMPSPEC_5.Increment_Freq_1[1]))
+
+def write_reg_DVC_4PM_IMPSPEC_6(ser, reg_map):
+    write_register(ser, DVC_4PM_IMPSPEC_6, 
+                  (reg_map.DVC_4PM_IMPSPEC_6.Increment_Freq_2[0] << reg_map.DVC_4PM_IMPSPEC_6.Increment_Freq_2[1]))
+
+def write_reg_DVC_4PM_IMPSPEC_7(ser, reg_map):
+    write_register(ser, DVC_4PM_IMPSPEC_7, 
+                  (reg_map.DVC_4PM_IMPSPEC_7.Max_Peak_Volt[0] << reg_map.DVC_4PM_IMPSPEC_7.Max_Peak_Volt[1]))
+
+def write_reg_DVC_4PM_IMPSPEC_8(ser, reg_map):
+    write_register(ser, DVC_4PM_IMPSPEC_8, 
+                  (reg_map.DVC_4PM_IMPSPEC_8.Min_Peak_Volt[0] << reg_map.DVC_4PM_IMPSPEC_8.Min_Peak_Volt[1]))
 
 def write_reg_DVC_FLUSH_SAMPLE_DATA_1(ser, reg_map):
     write_register(ser, DVC_FLUSH_SAMPLE_DATA_1, 
@@ -264,23 +288,35 @@ def read_reg_DVC_2PM_CAPVOLT_3(ser, reg_map):
 
 def read_reg_DVC_2PM_IMPSPEC_1(ser, reg_map):
     valR = read_register(ser, DVC_2PM_IMPSPEC_1)
-    reg_map.DVC_2PM_IMPSPEC_1.Starting_Freq[0] = (valR >> reg_map.DVC_2PM_IMPSPEC_1.Starting_Freq[1]) & ((1 << reg_map.DVC_2PM_IMPSPEC_1.Starting_Freq[2]) - 1)
+    reg_map.DVC_2PM_IMPSPEC_1.Starting_Freq_1[0] = (valR >> reg_map.DVC_2PM_IMPSPEC_1.Starting_Freq_1[1]) & ((1 << reg_map.DVC_2PM_IMPSPEC_1.Starting_Freq_1[2]) - 1)
 
 def read_reg_DVC_2PM_IMPSPEC_2(ser, reg_map):
     valR = read_register(ser, DVC_2PM_IMPSPEC_2)
-    reg_map.DVC_2PM_IMPSPEC_2.Ending_Freq[0] = (valR >> reg_map.DVC_2PM_IMPSPEC_2.Ending_Freq[1]) & ((1 << reg_map.DVC_2PM_IMPSPEC_2.Ending_Freq[2]) - 1)
+    reg_map.DVC_2PM_IMPSPEC_2.Starting_Freq_2[0] = (valR >> reg_map.DVC_2PM_IMPSPEC_2.Starting_Freq_2[1]) & ((1 << reg_map.DVC_2PM_IMPSPEC_2.Starting_Freq_2[2]) - 1)
 
 def read_reg_DVC_2PM_IMPSPEC_3(ser, reg_map):
     valR = read_register(ser, DVC_2PM_IMPSPEC_3)
-    reg_map.DVC_2PM_IMPSPEC_3.Increment_Freq[0] = (valR >> reg_map.DVC_2PM_IMPSPEC_3.Increment_Freq[1]) & ((1 << reg_map.DVC_2PM_IMPSPEC_3.Increment_Freq[2]) - 1)
+    reg_map.DVC_2PM_IMPSPEC_3.Ending_Freq_1[0] = (valR >> reg_map.DVC_2PM_IMPSPEC_3.Ending_Freq_1[1]) & ((1 << reg_map.DVC_2PM_IMPSPEC_3.Ending_Freq_1[2]) - 1)
 
 def read_reg_DVC_2PM_IMPSPEC_4(ser, reg_map):
     valR = read_register(ser, DVC_2PM_IMPSPEC_4)
-    reg_map.DVC_2PM_IMPSPEC_4.Max_Peak_Volt[0] = (valR >> reg_map.DVC_2PM_IMPSPEC_4.Max_Peak_Volt[1]) & ((1 << reg_map.DVC_2PM_IMPSPEC_4.Max_Peak_Volt[2]) - 1)
+    reg_map.DVC_2PM_IMPSPEC_4.Ending_Freq_2[0] = (valR >> reg_map.DVC_2PM_IMPSPEC_4.Ending_Freq_2[1]) & ((1 << reg_map.DVC_2PM_IMPSPEC_4.Ending_Freq_2[2]) - 1)
 
 def read_reg_DVC_2PM_IMPSPEC_5(ser, reg_map):
     valR = read_register(ser, DVC_2PM_IMPSPEC_5)
-    reg_map.DVC_2PM_IMPSPEC_5.Min_Peak_Volt[0] = (valR >> reg_map.DVC_2PM_IMPSPEC_5.Min_Peak_Volt[1]) & ((1 << reg_map.DVC_2PM_IMPSPEC_5.Min_Peak_Volt[2]) - 1)
+    reg_map.DVC_2PM_IMPSPEC_5.Increment_Freq_1[0] = (valR >> reg_map.DVC_2PM_IMPSPEC_5.Increment_Freq_1[1]) & ((1 << reg_map.DVC_2PM_IMPSPEC_5.Increment_Freq_1[2]) - 1)
+
+def read_reg_DVC_2PM_IMPSPEC_6(ser, reg_map):
+    valR = read_register(ser, DVC_2PM_IMPSPEC_6)
+    reg_map.DVC_2PM_IMPSPEC_6.Increment_Freq_2[0] = (valR >> reg_map.DVC_2PM_IMPSPEC_6.Increment_Freq_2[1]) & ((1 << reg_map.DVC_2PM_IMPSPEC_6.Increment_Freq_2[2]) - 1)
+
+def read_reg_DVC_2PM_IMPSPEC_7(ser, reg_map):
+    valR = read_register(ser, DVC_2PM_IMPSPEC_7)
+    reg_map.DVC_2PM_IMPSPEC_7.Max_Peak_Volt[0] = (valR >> reg_map.DVC_2PM_IMPSPEC_7.Max_Peak_Volt[1]) & ((1 << reg_map.DVC_2PM_IMPSPEC_7.Max_Peak_Volt[2]) - 1)
+
+def read_reg_DVC_2PM_IMPSPEC_8(ser, reg_map):
+    valR = read_register(ser, DVC_2PM_IMPSPEC_8)
+    reg_map.DVC_2PM_IMPSPEC_8.Min_Peak_Volt[0] = (valR >> reg_map.DVC_2PM_IMPSPEC_8.Min_Peak_Volt[1]) & ((1 << reg_map.DVC_2PM_IMPSPEC_8.Min_Peak_Volt[2]) - 1)
 
 def read_reg_DVC_3PM_TRANSCHAR_1(ser, reg_map):
     valR = read_register(ser, DVC_3PM_TRANSCHAR_1)
@@ -366,23 +402,35 @@ def read_reg_DVC_2PM_LOWRESISTANCE_1(ser, reg_map):
 
 def read_reg_DVC_4PM_IMPSPEC_1(ser, reg_map):
     valR = read_register(ser, DVC_4PM_IMPSPEC_1)
-    reg_map.DVC_4PM_IMPSPEC_1.Starting_Freq[0] = (valR >> reg_map.DVC_4PM_IMPSPEC_1.Starting_Freq[1]) & ((1 << reg_map.DVC_4PM_IMPSPEC_1.Starting_Freq[2]) - 1)
+    reg_map.DVC_4PM_IMPSPEC_1.Starting_Freq_1[0] = (valR >> reg_map.DVC_4PM_IMPSPEC_1.Starting_Freq_1[1]) & ((1 << reg_map.DVC_4PM_IMPSPEC_1.Starting_Freq_1[2]) - 1)
 
 def read_reg_DVC_4PM_IMPSPEC_2(ser, reg_map):
     valR = read_register(ser, DVC_4PM_IMPSPEC_2)
-    reg_map.DVC_4PM_IMPSPEC_2.Ending_Freq[0] = (valR >> reg_map.DVC_4PM_IMPSPEC_2.Ending_Freq[1]) & ((1 << reg_map.DVC_4PM_IMPSPEC_2.Ending_Freq[2]) - 1)
+    reg_map.DVC_4PM_IMPSPEC_2.Starting_Freq_2[0] = (valR >> reg_map.DVC_4PM_IMPSPEC_2.Starting_Freq_2[1]) & ((1 << reg_map.DVC_4PM_IMPSPEC_2.Starting_Freq_2[2]) - 1)
 
 def read_reg_DVC_4PM_IMPSPEC_3(ser, reg_map):
     valR = read_register(ser, DVC_4PM_IMPSPEC_3)
-    reg_map.DVC_4PM_IMPSPEC_3.Increment_Freq[0] = (valR >> reg_map.DVC_4PM_IMPSPEC_3.Increment_Freq[1]) & ((1 << reg_map.DVC_4PM_IMPSPEC_3.Increment_Freq[2]) - 1)
+    reg_map.DVC_4PM_IMPSPEC_3.Ending_Freq_1[0] = (valR >> reg_map.DVC_4PM_IMPSPEC_3.Ending_Freq_1[1]) & ((1 << reg_map.DVC_4PM_IMPSPEC_3.Ending_Freq_1[2]) - 1)
 
 def read_reg_DVC_4PM_IMPSPEC_4(ser, reg_map):
     valR = read_register(ser, DVC_4PM_IMPSPEC_4)
-    reg_map.DVC_4PM_IMPSPEC_4.Max_Peak_Volt[0] = (valR >> reg_map.DVC_4PM_IMPSPEC_4.Max_Peak_Volt[1]) & ((1 << reg_map.DVC_4PM_IMPSPEC_4.Max_Peak_Volt[2]) - 1)
+    reg_map.DVC_4PM_IMPSPEC_4.Ending_Freq_2[0] = (valR >> reg_map.DVC_4PM_IMPSPEC_4.Ending_Freq_2[1]) & ((1 << reg_map.DVC_4PM_IMPSPEC_4.Ending_Freq_2[2]) - 1)
 
 def read_reg_DVC_4PM_IMPSPEC_5(ser, reg_map):
     valR = read_register(ser, DVC_4PM_IMPSPEC_5)
-    reg_map.DVC_4PM_IMPSPEC_5.Min_Peak_Volt[0] = (valR >> reg_map.DVC_4PM_IMPSPEC_5.Min_Peak_Volt[1]) & ((1 << reg_map.DVC_4PM_IMPSPEC_5.Min_Peak_Volt[2]) - 1)
+    reg_map.DVC_4PM_IMPSPEC_5.Increment_Freq_1[0] = (valR >> reg_map.DVC_4PM_IMPSPEC_5.Increment_Freq_1[1]) & ((1 << reg_map.DVC_4PM_IMPSPEC_5.Increment_Freq_1[2]) - 1)
+
+def read_reg_DVC_4PM_IMPSPEC_6(ser, reg_map):
+    valR = read_register(ser, DVC_4PM_IMPSPEC_6)
+    reg_map.DVC_4PM_IMPSPEC_6.Increment_Freq_2[0] = (valR >> reg_map.DVC_4PM_IMPSPEC_6.Increment_Freq_2[1]) & ((1 << reg_map.DVC_4PM_IMPSPEC_6.Increment_Freq_2[2]) - 1)
+
+def read_reg_DVC_4PM_IMPSPEC_7(ser, reg_map):
+    valR = read_register(ser, DVC_4PM_IMPSPEC_7)
+    reg_map.DVC_4PM_IMPSPEC_7.Max_Peak_Volt[0] = (valR >> reg_map.DVC_4PM_IMPSPEC_7.Max_Peak_Volt[1]) & ((1 << reg_map.DVC_4PM_IMPSPEC_7.Max_Peak_Volt[2]) - 1)
+
+def read_reg_DVC_4PM_IMPSPEC_8(ser, reg_map):
+    valR = read_register(ser, DVC_4PM_IMPSPEC_8)
+    reg_map.DVC_4PM_IMPSPEC_8.Min_Peak_Volt[0] = (valR >> reg_map.DVC_4PM_IMPSPEC_8.Min_Peak_Volt[1]) & ((1 << reg_map.DVC_4PM_IMPSPEC_8.Min_Peak_Volt[2]) - 1)
 
 def read_reg_DVC_FLUSH_SAMPLE_DATA_1(ser, reg_map):
     valR = read_register(ser, DVC_FLUSH_SAMPLE_DATA_1)

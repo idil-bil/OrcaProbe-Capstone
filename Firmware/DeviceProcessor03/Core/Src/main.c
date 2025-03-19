@@ -44,7 +44,7 @@
 /* Private variables ---------------------------------------------------------*/
 
 DMA_HandleTypeDef handle_GPDMA1_Channel14;
-DMA_HandleTypeDef handle_GPDMA1_Channel13;
+DMA_HandleTypeDef handle_GPDMA1_Channel12;
 
 I2C_HandleTypeDef hi2c2;
 I2C_HandleTypeDef hi2c3;
@@ -53,7 +53,7 @@ SPI_HandleTypeDef hspi1;
 SPI_HandleTypeDef hspi2;
 
 TIM_HandleTypeDef htim8;
-DMA_HandleTypeDef handle_GPDMA1_Channel12;
+DMA_HandleTypeDef handle_GPDMA1_Channel13;
 
 PCD_HandleTypeDef hpcd_USB_OTG_FS;
 
@@ -142,42 +142,6 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-//	  if (test_cmd == '1'){
-//		  HAL_GPIO_TogglePin(GPIOD, SWNT_CTRL_17_Pin);
-//		  test_cmd = '0';
-//	  }
-//	  else if (test_cmd == '2'){
-//		  HAL_GPIO_TogglePin(GPIOD, SWNT_CTRL_18_Pin);
-//		  test_cmd = '0';
-//	  }
-//	  else if (test_cmd == '3'){
-//		  HAL_GPIO_TogglePin(GPIOD, SWNT_CTRL_19_Pin);
-//		  test_cmd = '0';
-//	  }
-//	  else if (test_cmd == '4'){
-//		  HAL_GPIO_TogglePin(GPIOD, SWNT_CTRL_20_Pin);
-//		  test_cmd = '0';
-//	  }
-//	  else if (test_cmd == '5'){
-//		  HAL_GPIO_TogglePin(GPIOD, SWNT_CTRL_21_Pin);
-//		  test_cmd = '0';
-//	  }
-//	  else if (test_cmd == '6'){
-//		  HAL_DMA_Abort(&handle_GPDMA1_Channel12);
-//		  HAL_Delay(1000);
-//		  HAL_DMA_Start(&handle_GPDMA1_Channel12,(uint32_t)&GPIOE->IDR,(uint32_t)&dmaValCheck1,500*sizeof(uint16_t));
-//		  HAL_Delay(1000);
-//		  HAL_DMA_Abort(&handle_GPDMA1_Channel12);
-//		  test_cmd = '0';
-//	  }
-//	  else if (test_cmd == '7'){
-//		  HAL_DMA_Abort(&handle_GPDMA1_Channel12);
-//		  HAL_Delay(1000);
-//		  HAL_DMA_Start(&handle_GPDMA1_Channel12,(uint32_t)&GPIOF->IDR,(uint32_t)&dmaValCheck2,500*sizeof(uint16_t));
-//		  HAL_Delay(1000);
-//		  HAL_DMA_Abort(&handle_GPDMA1_Channel12);
-//		  test_cmd = '0';
-//	  }
   }
   /* USER CODE END 3 */
 }
@@ -256,8 +220,8 @@ static void MX_GPDMA1_Init(void)
   __HAL_RCC_GPDMA1_CLK_ENABLE();
 
   /* GPDMA1 interrupt Init */
-    HAL_NVIC_SetPriority(GPDMA1_Channel12_IRQn, 0, 0);
-    HAL_NVIC_EnableIRQ(GPDMA1_Channel12_IRQn);
+    HAL_NVIC_SetPriority(GPDMA1_Channel13_IRQn, 0, 0);
+    HAL_NVIC_EnableIRQ(GPDMA1_Channel13_IRQn);
 
   /* USER CODE BEGIN GPDMA1_Init 1 */
 
@@ -284,25 +248,25 @@ static void MX_GPDMA1_Init(void)
   {
     Error_Handler();
   }
-  handle_GPDMA1_Channel13.Instance = GPDMA1_Channel13;
-  handle_GPDMA1_Channel13.Init.Request = DMA_REQUEST_SW;
-  handle_GPDMA1_Channel13.Init.BlkHWRequest = DMA_BREQ_SINGLE_BURST;
-  handle_GPDMA1_Channel13.Init.Direction = DMA_MEMORY_TO_MEMORY;
-  handle_GPDMA1_Channel13.Init.SrcInc = DMA_SINC_FIXED;
-  handle_GPDMA1_Channel13.Init.DestInc = DMA_DINC_FIXED;
-  handle_GPDMA1_Channel13.Init.SrcDataWidth = DMA_SRC_DATAWIDTH_BYTE;
-  handle_GPDMA1_Channel13.Init.DestDataWidth = DMA_DEST_DATAWIDTH_BYTE;
-  handle_GPDMA1_Channel13.Init.Priority = DMA_LOW_PRIORITY_LOW_WEIGHT;
-  handle_GPDMA1_Channel13.Init.SrcBurstLength = 1;
-  handle_GPDMA1_Channel13.Init.DestBurstLength = 1;
-  handle_GPDMA1_Channel13.Init.TransferAllocatedPort = DMA_SRC_ALLOCATED_PORT0|DMA_DEST_ALLOCATED_PORT0;
-  handle_GPDMA1_Channel13.Init.TransferEventMode = DMA_TCEM_BLOCK_TRANSFER;
-  handle_GPDMA1_Channel13.Init.Mode = DMA_NORMAL;
-  if (HAL_DMA_Init(&handle_GPDMA1_Channel13) != HAL_OK)
+  handle_GPDMA1_Channel12.Instance = GPDMA1_Channel12;
+  handle_GPDMA1_Channel12.Init.Request = DMA_REQUEST_SW;
+  handle_GPDMA1_Channel12.Init.BlkHWRequest = DMA_BREQ_SINGLE_BURST;
+  handle_GPDMA1_Channel12.Init.Direction = DMA_MEMORY_TO_MEMORY;
+  handle_GPDMA1_Channel12.Init.SrcInc = DMA_SINC_FIXED;
+  handle_GPDMA1_Channel12.Init.DestInc = DMA_DINC_FIXED;
+  handle_GPDMA1_Channel12.Init.SrcDataWidth = DMA_SRC_DATAWIDTH_BYTE;
+  handle_GPDMA1_Channel12.Init.DestDataWidth = DMA_DEST_DATAWIDTH_BYTE;
+  handle_GPDMA1_Channel12.Init.Priority = DMA_LOW_PRIORITY_LOW_WEIGHT;
+  handle_GPDMA1_Channel12.Init.SrcBurstLength = 1;
+  handle_GPDMA1_Channel12.Init.DestBurstLength = 1;
+  handle_GPDMA1_Channel12.Init.TransferAllocatedPort = DMA_SRC_ALLOCATED_PORT0|DMA_DEST_ALLOCATED_PORT0;
+  handle_GPDMA1_Channel12.Init.TransferEventMode = DMA_TCEM_BLOCK_TRANSFER;
+  handle_GPDMA1_Channel12.Init.Mode = DMA_NORMAL;
+  if (HAL_DMA_Init(&handle_GPDMA1_Channel12) != HAL_OK)
   {
     Error_Handler();
   }
-  if (HAL_DMA_ConfigChannelAttributes(&handle_GPDMA1_Channel13, DMA_CHANNEL_NPRIV) != HAL_OK)
+  if (HAL_DMA_ConfigChannelAttributes(&handle_GPDMA1_Channel12, DMA_CHANNEL_NPRIV) != HAL_OK)
   {
     Error_Handler();
   }
@@ -594,7 +558,7 @@ static void MX_TIM8_Init(void)
   {
     Error_Handler();
   }
-  sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
+  sMasterConfig.MasterOutputTrigger = TIM_TRGO_UPDATE;
   sMasterConfig.MasterOutputTrigger2 = TIM_TRGO2_RESET;
   sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
   if (HAL_TIMEx_MasterConfigSynchronization(&htim8, &sMasterConfig) != HAL_OK)

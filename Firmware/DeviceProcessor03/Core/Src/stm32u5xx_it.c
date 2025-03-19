@@ -55,7 +55,7 @@
 /* USER CODE END 0 */
 
 /* External variables --------------------------------------------------------*/
-extern DMA_HandleTypeDef handle_GPDMA1_Channel12;
+extern DMA_HandleTypeDef handle_GPDMA1_Channel13;
 extern PCD_HandleTypeDef hpcd_USB_OTG_FS;
 /* USER CODE BEGIN EV */
 extern PCD_HandleTypeDef hpcd_USB_FS;
@@ -214,17 +214,17 @@ void OTG_FS_IRQHandler(void)
 }
 
 /**
-  * @brief This function handles GPDMA1 Channel 12 global interrupt.
+  * @brief This function handles GPDMA1 Channel 13 global interrupt.
   */
-void GPDMA1_Channel12_IRQHandler(void)
+void GPDMA1_Channel13_IRQHandler(void)
 {
-  /* USER CODE BEGIN GPDMA1_Channel12_IRQn 0 */
+  /* USER CODE BEGIN GPDMA1_Channel13_IRQn 0 */
 
-  /* USER CODE END GPDMA1_Channel12_IRQn 0 */
-  HAL_DMA_IRQHandler(&handle_GPDMA1_Channel12);
-  /* USER CODE BEGIN GPDMA1_Channel12_IRQn 1 */
+  /* USER CODE END GPDMA1_Channel13_IRQn 0 */
+  HAL_DMA_IRQHandler(&handle_GPDMA1_Channel13);
+  /* USER CODE BEGIN GPDMA1_Channel13_IRQn 1 */
 
-  /* USER CODE END GPDMA1_Channel12_IRQn 1 */
+  /* USER CODE END GPDMA1_Channel13_IRQn 1 */
 }
 
 /* USER CODE BEGIN 1 */
