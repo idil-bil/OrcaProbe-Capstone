@@ -231,7 +231,7 @@ class MainWindow(QMainWindow):
             start_button.clicked.connect(lambda:self.start_dc_resistance_inputs())   
             button_layout = QVBoxLayout()                                   # Use QVBoxLayout to arrange buttons vertically
             button_layout.addWidget(start_button, alignment=Qt.AlignLeft)   # Add start button
-            button_layout.addWidget(stop_button, alignment=Qt.AlignLeft)    # Add stop button below
+            # button_layout.addWidget(stop_button, alignment=Qt.AlignLeft)    # Add stop button below
             layout.addLayout(button_layout)
 
             self.result_label = QLabel("")
@@ -899,7 +899,7 @@ class MainWindow(QMainWindow):
             start_button.clicked.connect(lambda:self.start_probe_resistance_inputs()) 
             button_layout = QVBoxLayout()                                   # Use QVBoxLayout to arrange buttons vertically
             button_layout.addWidget(start_button, alignment=Qt.AlignLeft)   # Add start button
-            button_layout.addWidget(stop_button, alignment=Qt.AlignLeft)    # Add stop button below
+            # button_layout.addWidget(stop_button, alignment=Qt.AlignLeft)    # Add stop button below
             layout.addLayout(button_layout)
 
         elif title == "Low-Resistance":
@@ -930,7 +930,7 @@ class MainWindow(QMainWindow):
             start_button.clicked.connect(lambda:self.start_low_resistance_inputs()) 
             button_layout = QVBoxLayout()                                   # Use QVBoxLayout to arrange buttons vertically
             button_layout.addWidget(start_button, alignment=Qt.AlignLeft)   # Add start button
-            button_layout.addWidget(stop_button, alignment=Qt.AlignLeft)    # Add stop button below
+            # button_layout.addWidget(stop_button, alignment=Qt.AlignLeft)    # Add stop button below
             layout.addLayout(button_layout)
 
         elif title == "Impedance Spectroscopy (4-p)":
@@ -1049,7 +1049,7 @@ class MainWindow(QMainWindow):
         # Indicators for different error statuses
         indicators = [
             ("Device Connection", True),
-            ("Probe Configuration Match", True),
+            # ("Probe Configuration Match", True),
             ("Power Good", True)
         ]
 
