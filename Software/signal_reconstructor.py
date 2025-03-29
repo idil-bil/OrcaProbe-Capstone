@@ -58,14 +58,13 @@ def reconstruct_signal(data):
     params, _ = curve_fit(sine_wave, filtered_time_intervals, filtered_data, p0=initial_guess)
 
     # Extract the fitted parameters
-    amplitude, fitted_frequency, phase, offset = params
+    fitted_amplitude, fitted_frequency, fitted_phase, fitted_offset = params
 
     # Display the results
-    print(f"Fitted Amplitude: {amplitude}")
+    print(f"Fitted Amplitude: {fitted_amplitude}")
     print(f"Fitted Frequency: {fitted_frequency} Hz")
-    print(f"Fitted Phase: {phase}")
-    print(f"Fitted Offset: {offset}")
-    print(f"Resistance: {offset/0.048}")
+    print(f"Fitted Phase: {fitted_phase}")
+    print(f"Fitted Offset: {fitted_offset}")
 
     # Step 5: Plot the results separately
 
@@ -98,6 +97,6 @@ def reconstruct_signal(data):
 
     # Show the plots
     plt.tight_layout()
-    # plt.show()
+    plt.show()
 
-    return time_intervals, sine_wave(time_intervals, *params)
+    return time_intervals, sine_wave(time_intervals, *params), fitted_amplitude, fitted_frequency, fitted_phase, fitted_offset

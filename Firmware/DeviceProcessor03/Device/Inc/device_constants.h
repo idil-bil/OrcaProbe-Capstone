@@ -36,6 +36,11 @@
 #define DVC_CUR_VOLT_2P_SEL_VOLT			1
 #define DVC_CUR_VOLT_2P_SEL_CURR			2
 
+#define DVC_USE_ADC_1_SAMPLING				1
+#define DVC_USE_ADC_2_SAMPLING				2
+#define DVC_USE_ADC_3_SAMPLING				4
+
+
 #define DVC_STATUS    				0
 #define DVC_MEASUREMENT_CONFIG    	1
 #define DVC_PROBE_CONFIG    		2

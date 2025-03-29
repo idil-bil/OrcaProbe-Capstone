@@ -8,4 +8,4 @@
 ../Device/Src/measurement_routines.c:227:6:dvc_exec_msr_electrochemical	4	static
 ../Device/Src/measurement_routines.c:231:6:dvc_exec_msr_low_resistance	4	static
 ../Device/Src/measurement_routines.c:235:6:dvc_exec_msr_dc_resistance_4p	16	static
-../Device/Src/measurement_routines.c:269:6:dvc_exec_msr_impedance_spectroscopy_4p	4	static
+../Device/Src/measurement_routines.c:272:6:dvc_exec_msr_impedance_spectroscopy_4p	4	static

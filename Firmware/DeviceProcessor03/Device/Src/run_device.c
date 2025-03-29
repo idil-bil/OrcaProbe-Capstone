@@ -94,7 +94,3 @@ void run_device(){
 	}
 }
 
-void Adc1SampleCompleteCallback(DMA_HandleTypeDef *hdma)
-{
-  __NOP(); //Line reached only if transfer was successful. Toggle a breakpoint here
-}

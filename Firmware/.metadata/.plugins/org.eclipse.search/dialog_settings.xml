@@ -15,7 +15,7 @@
 		</list>
 	</section>
 	<section name="SearchDialog.ScopePart">
-		<item key="scope" value="0"/>
+		<item key="scope" value="3"/>
 	</section>
 	<section name="DialogBounds_SearchDialog">
 		<item key="DIALOG_X_ORIGIN" value="635"/>

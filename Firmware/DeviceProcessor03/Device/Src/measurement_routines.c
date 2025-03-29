@@ -63,7 +63,7 @@ void dvc_exec_msr_dc_resistance_2p(void){
 	HAL_Delay(2000);
 
 	// collect ADC samples
-	collect_adc_samples2(2);
+	collect_adc_samples2(DVC_USE_ADC_2_SAMPLING);
 
 	// wait for adc dma to complete
 	while(adc_2_busy);
@@ -119,7 +119,7 @@ void dvc_exec_msr_current_voltage(void){
 		}
 
 		// collect ADC samples
-		collect_adc_samples2(2);
+		collect_adc_samples2(DVC_USE_ADC_2_SAMPLING);
 
 		// wait for adc dma to complete
 		while(adc_2_busy);
@@ -187,21 +187,21 @@ void dvc_exec_msr_impedance_spectroscopy_2p(void){
 		HAL_Delay(3000);
 
 		// collect ADC samples
-		collect_adc_samples2(2);
+		collect_adc_samples2(DVC_USE_ADC_2_SAMPLING | DVC_USE_ADC_1_SAMPLING);
 
 		// wait for adc dma to complete
-		while(adc_2_busy);
+		while(adc_2_busy || adc_1_busy);
 
-//		// clear busy flag to indicate a measurement is complete
-//		set_register(&device_registers,DVC_MEASUREMENT_CONFIG,
-//					 get_register(&device_registers,DVC_MEASUREMENT_CONFIG) & ~(0x4));
-//
-//		// wait for python to grab the data
-//		while(adc_2_full);
-//
-//		// set busy flag to indicate a measurement is in progress
-//		set_register(&device_registers,DVC_MEASUREMENT_CONFIG,
-//					 get_register(&device_registers,DVC_MEASUREMENT_CONFIG) | 0x4);
+		// clear busy flag to indicate a measurement is complete
+		set_register(&device_registers,DVC_MEASUREMENT_CONFIG,
+					 get_register(&device_registers,DVC_MEASUREMENT_CONFIG) & ~(0x4));
+
+		// wait for python to grab the data
+		while(adc_2_full || adc_1_full);
+
+		// set busy flag to indicate a measurement is in progress
+		set_register(&device_registers,DVC_MEASUREMENT_CONFIG,
+					 get_register(&device_registers,DVC_MEASUREMENT_CONFIG) | 0x4);
 	}
 
 	// disconnect switch network to cut power
@@ -253,10 +253,10 @@ void dvc_exec_msr_dc_resistance_4p(void){
 	HAL_Delay(2000);
 
 	// collect ADC samples
-	collect_adc_samples2(2);
+	collect_adc_samples2(DVC_USE_ADC_2_SAMPLING | DVC_USE_ADC_1_SAMPLING);
 
 	// wait for adc dma to complete
-	while(adc_2_busy);
+	while(adc_2_busy || adc_1_busy);
 
 	// disconnect switch network to cut power
 	clear_switch_network(&device_switch_network);
@@ -264,6 +264,9 @@ void dvc_exec_msr_dc_resistance_4p(void){
 	// clear busy flag to indicate a measurement is complete
 	set_register(&device_registers,DVC_MEASUREMENT_CONFIG,
 				 get_register(&device_registers,DVC_MEASUREMENT_CONFIG) & ~(0x4));
+
+	// wait for python to grab the data
+	while(adc_2_full || adc_1_full);
 }
 
 void dvc_exec_msr_impedance_spectroscopy_4p(void){
