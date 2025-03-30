@@ -1,1 +1,0 @@
-all the datasheets belonging to "important" components with clear file names
