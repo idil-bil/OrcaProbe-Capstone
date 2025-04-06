@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value=""/>
+		<item key="selection" value="    const float constant = 10.319;"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="    const float constant = 10.319;"/>
+			<item value="&#x09;set_pot_buffer(test_volt_src_offset_i2c_tx_buf,DVC_POT_MCP4531_WP0_WR_CMD,64);"/>
+			<item value="&#x09;test_switch_network(&amp;device_switch_network);"/>
+			<item value="&#x0D;&#x0A;&#x09;while(1){&#x0D;&#x0A;&#x09;&#x09;if(get_register(&amp;device_registers,DVC_MEASUREMENT_CONFIG)%2){&#x0D;&#x0A;&#x09;&#x09;&#x09;measurement_type = (get_register(&amp;device_registers,DVC_MEASUREMENT_CONFIG)&gt;&gt;6) &amp; 0xF;&#x0D;&#x0A;&#x09;&#x09;&#x09;switch (measurement_type) {&#x0D;&#x0A;&#x09;&#x09;&#x09;&#x09;case DC_RESISTANCE:&#x0D;&#x0A;&#x09;&#x09;&#x09;&#x09;&#x09;dvc_exec_msr_dc_resistance_2p();&#x0D;&#x0A;&#x09;&#x09;&#x09;&#x09;&#x09;set_register(&amp;device_registers,DVC_MEASUREMENT_CONFIG,0);&#x0D;&#x0A;&#x09;&#x09;&#x09;&#x09;&#x09;break;&#x0D;&#x0A;&#x09;&#x09;&#x09;&#x09;case CURRENT_VOLTAGE:&#x0D;&#x0A;&#x09;&#x09;&#x09;&#x09;&#x09;dvc_exec_msr_current_voltage();&#x0D;&#x0A;&#x09;&#x09;&#x09;&#x09;&#x09;set_register(&amp;device_registers,DVC_MEASUREMENT_CONFIG,0);&#x0D;&#x0A;&#x09;&#x09;&#x09;&#x09;&#x09;break;&#x0D;&#x0A;&#x09;&#x09;&#x09;&#x09;case CAPACITANCE_VOLTAGE_2P:&#x0D;&#x0A;&#x09;&#x09;&#x09;&#x09;&#x09;dvc_exec_msr_capacitance_voltage_2p();&#x0D;&#x0A;&#x09;&#x09;&#x09;&#x09;&#x09;break;&#x0D;&#x0A;&#x09;&#x09;&#x09;&#x09;case IMPEDANCE_SPECTROSCOPY_2P:&#x0D;&#x0A;&#x09;&#x09;&#x09;&#x09;&#x09;dvc_exec_msr_impedance_spectroscopy_2p();&#x0D;&#x0A;&#x09;&#x09;&#x09;&#x09;&#x09;set_register(&amp;device_registers,DVC_MEASUREMENT_CONFIG,0);&#x0D;&#x0A;&#x09;&#x09;&#x09;&#x09;&#x09;break;&#x0D;&#x0A;&#x09;&#x09;&#x09;&#x09;case TRANSFER_CHARACTERISTICS:&#x0D;&#x0A;&#x09;&#x09;&#x09;&#x09;&#x09;dvc_exec_msr_transfer_characteristics();&#x0D;&#x0A;&#x09;&#x09;&#x09;&#x09;&#x09;break;&#x0D;&#x0A;&#x09;&#x09;&#x09;&#x09;case OUTPUT_CHARACTERISTICS:&#x0D;&#x0A;&#x09;&#x09;&#x09;&#x09;&#x09;dvc_exec_msr_output_characteristics();&#x0D;&#x0A;&#x09;&#x09;&#x09;&#x09;&#x09;break;&#x0D;&#x0A;&#x09;&#x09;&#x09;&#x09;case CAPACITANCE_VOLTAGE_3P:&#x0D;&#x0A;&#x09;&#x09;&#x09;&#x09;&#x09;dvc_exec_msr_capacitance_voltage_3p();&#x0D;&#x0A;&#x09;&#x09;&#x09;&#x09;&#x09;break;&#x0D;&#x0A;&#x09;&#x09;&#x09;&#x09;case ELECTROCHEMICAL:&#x0D;&#x0A;&#x09;&#x09;&#x09;&#x09;&#x09;dvc_exec_msr_electrochemical();&#x0D;&#x0A;&#x09;&#x09;&#x09;&#x09;&#x09;break;&#x0D;&#x0A;&#x09;&#x09;&#x09;&#x09;case LOW_RESISTANCE:&#x0D;&#x0A;&#x09;&#x09;&#x09;&#x09;&#x09;dvc_exec_msr_low_resistance();&#x0D;&#x0A;&#x09;&#x09;&#x09;&#x09;&#x09;break;&#x0D;&#x0A;&#x09;&#x09;&#x09;&#x09;case PROBE_RESISTANCE:&#x0D;&#x0A;&#x09;&#x09;&#x09;&#x09;&#x09;dvc_exec_msr_dc_resistance_4p();&#x0D;&#x0A;&#x09;&#x09;&#x09;&#x09;&#x09;break;&#x0D;&#x0A;&#x09;&#x09;&#x09;&#x09;case IMPEDANCE_SPECTROSCOPY_4P:&#x0D;&#x0A;&#x09;&#x09;&#x09;&#x09;&#x09;dvc_exec_msr_impedance_spectroscopy_4p();&#x0D;&#x0A;&#x09;&#x09;&#x09;&#x09;&#x09;break;&#x0D;&#x0A;&#x09;&#x09;&#x09;&#x09;default:&#x0D;&#x0A;&#x09;&#x09;&#x09;&#x09;&#x09;break;&#x0D;&#x0A;&#x09;&#x09;&#x09;}&#x0D;&#x0A;&#x09;&#x09;}&#x0D;&#x0A;&#x09;}"/>
+			<item value="&#x09;for(int i = 0; i &lt;DVC_MAX_NUM_ADC_SAMPLES; i++){"/>
+			<item value="collect_adc_samples2"/>
 			<item value="HAL_TIM_Base_Start"/>
 			<item value="//  HAL_SPI_Transmit(&amp;hspi2, SPI_TX_Buffer1, 2, 1000);"/>
-			<item value="&#x09;  if (test_cmd == &apos;1&apos;){"/>
-			<item value="|"/>
-			<item value="&#x09;uint16_t dmaValCheck[500];"/>
-			<item value="&amp;dmaValCheck2"/>
-			<item value="&#x09;&#x09;&#x09;&#x09;HAL_DMA_Start(&amp;handle_GPDMA1_Channel12,(uint32_t)&amp;GPIOE-&gt;IDR,(uint32_t)&amp;dmaValCheck,500*sizeof(uint16_t));"/>
-			<item value="&#x09;  HAL_Delay(5000);"/>
-			<item value="Buf"/>
 		</list>
 		<list key="replacehistory">
+			<item value="collect_adc_samples_it"/>
 			<item value=","/>
 		</list>
 	</section>

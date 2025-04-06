@@ -7,6 +7,7 @@
 
 #include "main.h"
 #include "device_constants.h"
+#include "device_monitoring.h"
 extern TIM_HandleTypeDef htim8;
 extern DMA_HandleTypeDef handle_GPDMA1_Channel12;
 extern DMA_HandleTypeDef handle_GPDMA1_Channel13;
@@ -36,20 +37,23 @@ void set_adc_sampling_freq(uint32_t sample_freq){
 	TIM8->CCR2 = TIM8->ARR/2;
 	TIM8->DIER |= TIM_DIER_UDE;
 	HAL_TIM_PWM_Start(&htim8, TIM_CHANNEL_2);
-	for(int i = 0; i <DVC_MAX_NUM_ADC_SAMPLES; i++){
-		if(i%2){
-			dma_trig_test[i] = (1 << 12);
-		}
-		else{
-			dma_trig_test[i] = (1 << (12 + 16));
-		}
-	}
+//	for(int i = 0; i <DVC_MAX_NUM_ADC_SAMPLES; i++){
+//		if(i%2){
+//			dma_trig_test[i] = (1 << 12);
+//		}
+//		else{
+//			dma_trig_test[i] = (1 << (12 + 16));
+//		}
+//	}
 }
 
 void set_adc_dma_callback_routines(void){
 	adc_1_busy = 0;
 	adc_2_busy = 0;
 	adc_3_busy = 0;
+	adc_1_full = 0;
+	adc_2_full = 0;
+	adc_3_full = 0;
 	handle_GPDMA1_Channel12.XferCpltCallback = &dma_adc_1_cplt_callback;
 	handle_GPDMA1_Channel13.XferCpltCallback = &dma_adc_2_cplt_callback;
 	handle_GPDMA1_Channel14.XferCpltCallback = &dma_adc_3_cplt_callback;
@@ -82,7 +86,7 @@ HAL_StatusTypeDef collect_adc_samples(DMA_HandleTypeDef *dma_ptr, uint8_t adc_nu
 	return result;
 }
 
-HAL_StatusTypeDef collect_adc_samples2(uint8_t adc_num){
+HAL_StatusTypeDef collect_adc_samples_it(uint8_t adc_num){
 	HAL_StatusTypeDef result1, result2, result3;
 	result1 = HAL_OK;
 	result2 = HAL_OK;
@@ -95,12 +99,12 @@ HAL_StatusTypeDef collect_adc_samples2(uint8_t adc_num){
 	if(adc_num & 0x2){
 		adc_2_busy = 1;
 		HAL_TIM_Base_Start(&htim8);
-		result2 = HAL_DMA_Start_IT(&handle_GPDMA1_Channel13,(uint32_t)&GPIOF->IDR,(uint32_t)adc_samples_2,DVC_MAX_NUM_ADC_SAMPLES*sizeof(uint16_t));
+		result2 = HAL_DMA_Start_IT(&handle_GPDMA1_Channel13,(uint32_t)&GPIOD->IDR,(uint32_t)adc_samples_2,DVC_MAX_NUM_ADC_SAMPLES*sizeof(uint16_t));
 	}
 	if(adc_num & 0x4){
 		adc_3_busy = 1;
 		HAL_TIM_Base_Start(&htim8);
-		result3 = HAL_DMA_Start_IT(&handle_GPDMA1_Channel14,(uint32_t)&GPIOF->IDR,(uint32_t)adc_samples_3,DVC_MAX_NUM_ADC_SAMPLES*sizeof(uint16_t));
+		result3 = HAL_DMA_Start_IT(&handle_GPDMA1_Channel14,(uint32_t)&GPIOG->IDR,(uint32_t)adc_samples_3,DVC_MAX_NUM_ADC_SAMPLES*sizeof(uint16_t));
 	}
 	return result1 | result2 | result3;
 }
@@ -120,7 +124,6 @@ void reverse_buffer_bits_16(uint16_t *buffer, size_t size) {
 }
 
 void dma_adc_1_cplt_callback(DMA_HandleTypeDef *hdma){
-	reverse_buffer_bits_16(adc_samples_1,DVC_MAX_NUM_ADC_SAMPLES);
 	adc_1_busy = 0;
 	adc_1_full = 1;
 }

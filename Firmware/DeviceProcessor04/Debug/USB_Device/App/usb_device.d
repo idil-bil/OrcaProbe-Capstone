@@ -34,16 +34,16 @@ USB_Device/App/usb_device.o: ../USB_Device/App/usb_device.c \
  ../Drivers/STM32U5xx_HAL_Driver/Inc/stm32u5xx_ll_usb.h \
  ../Drivers/STM32U5xx_HAL_Driver/Inc/stm32u5xx_hal_pcd_ex.h \
  ../Drivers/STM32U5xx_HAL_Driver/Inc/stm32u5xx_hal_exti.h \
- C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc/usbd_def.h \
- C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/Target/usbd_conf.h \
- C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc/usbd_core.h \
- C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc/usbd_def.h \
- C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc/usbd_ioreq.h \
- C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc/usbd_core.h \
- C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc/usbd_ctlreq.h \
+ C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor04/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc/usbd_def.h \
+ C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor04/USB_Device/Target/usbd_conf.h \
+ C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor04/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc/usbd_core.h \
+ C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor04/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc/usbd_def.h \
+ C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor04/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc/usbd_ioreq.h \
+ C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor04/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc/usbd_core.h \
+ C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor04/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc/usbd_ctlreq.h \
  ../USB_Device/App/usbd_desc.h \
- C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Class/CDC/Inc/usbd_cdc.h \
- C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc/usbd_ioreq.h \
+ C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor04/USB_Lib/ST/STM32_USB_Device_Library/Class/CDC/Inc/usbd_cdc.h \
+ C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor04/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc/usbd_ioreq.h \
  ../USB_Device/App/usbd_cdc_if.h
 ../USB_Device/App/usb_device.h:
 ../Drivers/CMSIS/Device/ST/STM32U5xx/Include/stm32u5xx.h:
@@ -80,14 +80,14 @@ USB_Device/App/usb_device.o: ../USB_Device/App/usb_device.c \
 ../Drivers/STM32U5xx_HAL_Driver/Inc/stm32u5xx_ll_usb.h:
 ../Drivers/STM32U5xx_HAL_Driver/Inc/stm32u5xx_hal_pcd_ex.h:
 ../Drivers/STM32U5xx_HAL_Driver/Inc/stm32u5xx_hal_exti.h:
-C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc/usbd_def.h:
-C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Device/Target/usbd_conf.h:
-C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc/usbd_core.h:
-C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc/usbd_def.h:
-C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc/usbd_ioreq.h:
-C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc/usbd_core.h:
-C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc/usbd_ctlreq.h:
+C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor04/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc/usbd_def.h:
+C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor04/USB_Device/Target/usbd_conf.h:
+C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor04/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc/usbd_core.h:
+C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor04/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc/usbd_def.h:
+C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor04/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc/usbd_ioreq.h:
+C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor04/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc/usbd_core.h:
+C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor04/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc/usbd_ctlreq.h:
 ../USB_Device/App/usbd_desc.h:
-C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Class/CDC/Inc/usbd_cdc.h:
-C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc/usbd_ioreq.h:
+C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor04/USB_Lib/ST/STM32_USB_Device_Library/Class/CDC/Inc/usbd_cdc.h:
+C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor04/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc/usbd_ioreq.h:
 ../USB_Device/App/usbd_cdc_if.h:

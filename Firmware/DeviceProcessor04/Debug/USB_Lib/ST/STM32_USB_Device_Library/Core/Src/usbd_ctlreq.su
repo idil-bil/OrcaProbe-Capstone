@@ -1,4 +1,4 @@
-C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor03/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc/usbd_def.h:306:26:SWAPBYTE	32	static
+C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor04/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc/usbd_def.h:306:26:SWAPBYTE	32	static
 ../USB_Lib/ST/STM32_USB_Device_Library/Core/Src/usbd_ctlreq.c:100:20:USBD_StdDevReq	24	static
 ../USB_Lib/ST/STM32_USB_Device_Library/Core/Src/usbd_ctlreq.c:163:20:USBD_StdItfReq	24	static
 ../USB_Lib/ST/STM32_USB_Device_Library/Core/Src/usbd_ctlreq.c:214:20:USBD_StdEPReq	24	static

@@ -33,6 +33,9 @@ Device/Src/switch_network.o: ../Device/Src/switch_network.c \
  ../Drivers/STM32U5xx_HAL_Driver/Inc/stm32u5xx_ll_usb.h \
  ../Drivers/STM32U5xx_HAL_Driver/Inc/stm32u5xx_hal_pcd_ex.h \
  ../Drivers/STM32U5xx_HAL_Driver/Inc/stm32u5xx_hal_exti.h \
+ C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor04/Device/Inc/device_constants.h \
+ C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor04/Device/Inc/device_registers.h \
+ C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor04/Device/Inc/device_constants.h \
  ../Device/Src/../Inc/switch_network.h \
  ../Device/Src/../Inc/device_constants.h
 ../Core/Inc/main.h:
@@ -70,5 +73,8 @@ Device/Src/switch_network.o: ../Device/Src/switch_network.c \
 ../Drivers/STM32U5xx_HAL_Driver/Inc/stm32u5xx_ll_usb.h:
 ../Drivers/STM32U5xx_HAL_Driver/Inc/stm32u5xx_hal_pcd_ex.h:
 ../Drivers/STM32U5xx_HAL_Driver/Inc/stm32u5xx_hal_exti.h:
+C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor04/Device/Inc/device_constants.h:
+C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor04/Device/Inc/device_registers.h:
+C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor04/Device/Inc/device_constants.h:
 ../Device/Src/../Inc/switch_network.h:
 ../Device/Src/../Inc/device_constants.h:

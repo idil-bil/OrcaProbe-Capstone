@@ -95,38 +95,38 @@ void HAL_I2C_MspInit(I2C_HandleTypeDef* hi2c)
 {
   GPIO_InitTypeDef GPIO_InitStruct = {0};
   RCC_PeriphCLKInitTypeDef PeriphClkInit = {0};
-  if(hi2c->Instance==I2C2)
+  if(hi2c->Instance==I2C1)
   {
-  /* USER CODE BEGIN I2C2_MspInit 0 */
+  /* USER CODE BEGIN I2C1_MspInit 0 */
 
-  /* USER CODE END I2C2_MspInit 0 */
+  /* USER CODE END I2C1_MspInit 0 */
 
   /** Initializes the peripherals clock
   */
-    PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_I2C2;
-    PeriphClkInit.I2c2ClockSelection = RCC_I2C2CLKSOURCE_MSIK;
+    PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_I2C1;
+    PeriphClkInit.I2c1ClockSelection = RCC_I2C1CLKSOURCE_MSIK;
     if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
     {
       Error_Handler();
     }
 
     __HAL_RCC_GPIOB_CLK_ENABLE();
-    /**I2C2 GPIO Configuration
-    PB13     ------> I2C2_SCL
-    PB14     ------> I2C2_SDA
+    /**I2C1 GPIO Configuration
+    PB3 (JTDO/TRACESWO)     ------> I2C1_SDA
+    PB6     ------> I2C1_SCL
     */
-    GPIO_InitStruct.Pin = I2C_DAC2_CURR_POT_SCL_Pin|I2C_DAC2_CURR_POT_SDA_Pin;
+    GPIO_InitStruct.Pin = I2C_DAC1_POT_SDA_Pin|I2C_DAC1_POT_SCL_Pin;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_OD;
-    GPIO_InitStruct.Pull = GPIO_PULLUP;
-    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
-    GPIO_InitStruct.Alternate = GPIO_AF4_I2C2;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+    GPIO_InitStruct.Alternate = GPIO_AF4_I2C1;
     HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
     /* Peripheral clock enable */
-    __HAL_RCC_I2C2_CLK_ENABLE();
-  /* USER CODE BEGIN I2C2_MspInit 1 */
+    __HAL_RCC_I2C1_CLK_ENABLE();
+  /* USER CODE BEGIN I2C1_MspInit 1 */
 
-  /* USER CODE END I2C2_MspInit 1 */
+  /* USER CODE END I2C1_MspInit 1 */
   }
   else if(hi2c->Instance==I2C3)
   {
@@ -148,7 +148,7 @@ void HAL_I2C_MspInit(I2C_HandleTypeDef* hi2c)
     PC0     ------> I2C3_SCL
     PC1     ------> I2C3_SDA
     */
-    GPIO_InitStruct.Pin = I2C_DAC1_POT_SCL_Pin|I2C_DAC1_POT_SDA_Pin;
+    GPIO_InitStruct.Pin = I2C_DAC2_CURMR_POT_SCL_Pin|I2C_DAC2_CURMR_POT_SDA_Pin;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_OD;
     GPIO_InitStruct.Pull = GPIO_PULLUP;
     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
@@ -172,25 +172,25 @@ void HAL_I2C_MspInit(I2C_HandleTypeDef* hi2c)
 */
 void HAL_I2C_MspDeInit(I2C_HandleTypeDef* hi2c)
 {
-  if(hi2c->Instance==I2C2)
+  if(hi2c->Instance==I2C1)
   {
-  /* USER CODE BEGIN I2C2_MspDeInit 0 */
+  /* USER CODE BEGIN I2C1_MspDeInit 0 */
 
-  /* USER CODE END I2C2_MspDeInit 0 */
+  /* USER CODE END I2C1_MspDeInit 0 */
     /* Peripheral clock disable */
-    __HAL_RCC_I2C2_CLK_DISABLE();
+    __HAL_RCC_I2C1_CLK_DISABLE();
 
-    /**I2C2 GPIO Configuration
-    PB13     ------> I2C2_SCL
-    PB14     ------> I2C2_SDA
+    /**I2C1 GPIO Configuration
+    PB3 (JTDO/TRACESWO)     ------> I2C1_SDA
+    PB6     ------> I2C1_SCL
     */
-    HAL_GPIO_DeInit(I2C_DAC2_CURR_POT_SCL_GPIO_Port, I2C_DAC2_CURR_POT_SCL_Pin);
+    HAL_GPIO_DeInit(I2C_DAC1_POT_SDA_GPIO_Port, I2C_DAC1_POT_SDA_Pin);
 
-    HAL_GPIO_DeInit(I2C_DAC2_CURR_POT_SDA_GPIO_Port, I2C_DAC2_CURR_POT_SDA_Pin);
+    HAL_GPIO_DeInit(I2C_DAC1_POT_SCL_GPIO_Port, I2C_DAC1_POT_SCL_Pin);
 
-  /* USER CODE BEGIN I2C2_MspDeInit 1 */
+  /* USER CODE BEGIN I2C1_MspDeInit 1 */
 
-  /* USER CODE END I2C2_MspDeInit 1 */
+  /* USER CODE END I2C1_MspDeInit 1 */
   }
   else if(hi2c->Instance==I2C3)
   {
@@ -204,9 +204,9 @@ void HAL_I2C_MspDeInit(I2C_HandleTypeDef* hi2c)
     PC0     ------> I2C3_SCL
     PC1     ------> I2C3_SDA
     */
-    HAL_GPIO_DeInit(I2C_DAC1_POT_SCL_GPIO_Port, I2C_DAC1_POT_SCL_Pin);
+    HAL_GPIO_DeInit(I2C_DAC2_CURMR_POT_SCL_GPIO_Port, I2C_DAC2_CURMR_POT_SCL_Pin);
 
-    HAL_GPIO_DeInit(I2C_DAC1_POT_SDA_GPIO_Port, I2C_DAC1_POT_SDA_Pin);
+    HAL_GPIO_DeInit(I2C_DAC2_CURMR_POT_SDA_GPIO_Port, I2C_DAC2_CURMR_POT_SDA_Pin);
 
   /* USER CODE BEGIN I2C3_MspDeInit 1 */
 
@@ -280,12 +280,12 @@ void HAL_SPI_MspInit(SPI_HandleTypeDef* hspi)
     __HAL_RCC_SPI2_CLK_ENABLE();
 
     __HAL_RCC_GPIOC_CLK_ENABLE();
-    __HAL_RCC_GPIOD_CLK_ENABLE();
+    __HAL_RCC_GPIOB_CLK_ENABLE();
     /**SPI2 GPIO Configuration
     PC2     ------> SPI2_MISO
-    PD0     ------> SPI2_NSS
-    PD3     ------> SPI2_SCK
-    PD4     ------> SPI2_MOSI
+    PB13     ------> SPI2_SCK
+    PB15     ------> SPI2_MOSI
+    PB9     ------> SPI2_NSS
     */
     GPIO_InitStruct.Pin = SPI_DAC1_MISO_Pin;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
@@ -294,19 +294,12 @@ void HAL_SPI_MspInit(SPI_HandleTypeDef* hspi)
     GPIO_InitStruct.Alternate = GPIO_AF5_SPI2;
     HAL_GPIO_Init(SPI_DAC1_MISO_GPIO_Port, &GPIO_InitStruct);
 
-    GPIO_InitStruct.Pin = SPI_DAC1_NSS_Pin|SPI_DAC1_MOSI_Pin;
+    GPIO_InitStruct.Pin = SPI_DAC1_SCK_Pin|SPI_DAC1_MOSI_Pin|SPI_DAC1_NSS_Pin;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
     GPIO_InitStruct.Alternate = GPIO_AF5_SPI2;
-    HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
-
-    GPIO_InitStruct.Pin = SPI_DAC1_SCK_Pin;
-    GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-    GPIO_InitStruct.Pull = GPIO_NOPULL;
-    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-    GPIO_InitStruct.Alternate = GPIO_AF3_SPI2;
-    HAL_GPIO_Init(SPI_DAC1_SCK_GPIO_Port, &GPIO_InitStruct);
+    HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
   /* USER CODE BEGIN SPI2_MspInit 1 */
 
@@ -353,13 +346,13 @@ void HAL_SPI_MspDeInit(SPI_HandleTypeDef* hspi)
 
     /**SPI2 GPIO Configuration
     PC2     ------> SPI2_MISO
-    PD0     ------> SPI2_NSS
-    PD3     ------> SPI2_SCK
-    PD4     ------> SPI2_MOSI
+    PB13     ------> SPI2_SCK
+    PB15     ------> SPI2_MOSI
+    PB9     ------> SPI2_NSS
     */
     HAL_GPIO_DeInit(SPI_DAC1_MISO_GPIO_Port, SPI_DAC1_MISO_Pin);
 
-    HAL_GPIO_DeInit(GPIOD, SPI_DAC1_NSS_Pin|SPI_DAC1_SCK_Pin|SPI_DAC1_MOSI_Pin);
+    HAL_GPIO_DeInit(GPIOB, SPI_DAC1_SCK_Pin|SPI_DAC1_MOSI_Pin|SPI_DAC1_NSS_Pin);
 
   /* USER CODE BEGIN SPI2_MspDeInit 1 */
 
@@ -389,7 +382,7 @@ void HAL_TIM_Base_MspInit(TIM_HandleTypeDef* htim_base)
     handle_GPDMA1_Channel14.Instance = GPDMA1_Channel14;
     handle_GPDMA1_Channel14.Init.Request = GPDMA1_REQUEST_TIM8_UP;
     handle_GPDMA1_Channel14.Init.BlkHWRequest = DMA_BREQ_SINGLE_BURST;
-    handle_GPDMA1_Channel14.Init.Direction = DMA_MEMORY_TO_MEMORY;
+    handle_GPDMA1_Channel14.Init.Direction = DMA_PERIPH_TO_MEMORY;
     handle_GPDMA1_Channel14.Init.SrcInc = DMA_SINC_FIXED;
     handle_GPDMA1_Channel14.Init.DestInc = DMA_DINC_INCREMENTED;
     handle_GPDMA1_Channel14.Init.SrcDataWidth = DMA_SRC_DATAWIDTH_HALFWORD;
@@ -421,7 +414,7 @@ void HAL_TIM_Base_MspInit(TIM_HandleTypeDef* htim_base)
     handle_GPDMA1_Channel13.Init.DestInc = DMA_DINC_INCREMENTED;
     handle_GPDMA1_Channel13.Init.SrcDataWidth = DMA_SRC_DATAWIDTH_HALFWORD;
     handle_GPDMA1_Channel13.Init.DestDataWidth = DMA_DEST_DATAWIDTH_HALFWORD;
-    handle_GPDMA1_Channel13.Init.Priority = DMA_LOW_PRIORITY_LOW_WEIGHT;
+    handle_GPDMA1_Channel13.Init.Priority = DMA_LOW_PRIORITY_HIGH_WEIGHT;
     handle_GPDMA1_Channel13.Init.SrcBurstLength = 1;
     handle_GPDMA1_Channel13.Init.DestBurstLength = 1;
     handle_GPDMA1_Channel13.Init.TransferAllocatedPort = DMA_SRC_ALLOCATED_PORT0|DMA_DEST_ALLOCATED_PORT0;

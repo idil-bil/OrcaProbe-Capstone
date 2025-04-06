@@ -45,7 +45,7 @@ def generate_register_files(excel_path):
             if reg['bitfields']:
                 for field in reg['bitfields']:
                     bit_range, name = field.split(": ")
-                    f.write(f"        self.{name[0] + name[1:]} = [0xDEAD,{reg['name']}_{name}_POSITION, {reg['name']}_{name}_LENGTH]\n")
+                    f.write(f"        self.{name[0] + name[1:]} = [0x0,{reg['name']}_{name}_POSITION, {reg['name']}_{name}_LENGTH]\n")
             else:
                 f.write("    pass\n")
             f.write("\n")

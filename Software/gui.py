@@ -83,6 +83,8 @@ class MainWindow(QMainWindow):
         sidebar_layout.addStretch(1)                                                # Add a spacer to push items to the top of the sidebar
         sidebar.setLayout(sidebar_layout)
 
+        self.ser = init_ser_port('com4', 115200)   # open a serial connection on com8 with baud rate 115200
+        
         # Error bar at the bottom for showing the status of error checks
         error_bar = self.create_error_bar()
 
@@ -114,7 +116,7 @@ class MainWindow(QMainWindow):
         self.page_widget.addWidget(self.main_page)
 
         self.current_selected_measurement = None    # Initialize to track the selected measurement
-        self.ser = init_ser_port('com9', 115200)   # open a serial connection on com8 with baud rate 115200
+
 
         self.timer = QTimer(self)
         self.timer.timeout.connect(self.check_serial_data)  # Call periodically
@@ -902,6 +904,10 @@ class MainWindow(QMainWindow):
             # button_layout.addWidget(stop_button, alignment=Qt.AlignLeft)    # Add stop button below
             layout.addLayout(button_layout)
 
+            self.result_label = QLabel("")
+            self.result_label.setFont(QFont("Arial", 12))
+            layout.addWidget(self.result_label)
+
         elif title == "Low-Resistance":
             label = QLabel("Low-Resistance Measurement")
             label.setFont(QFont("Arial", 14, QFont.Bold))
@@ -1058,7 +1064,7 @@ class MainWindow(QMainWindow):
             indicator_layout = QHBoxLayout()
             label = QLabel(label_text)
             label.setFont(QFont("Arial", 10))
-            icon_label = QLabel("✔")
+            icon_label = QLabel("✘") if self.ser is None else QLabel("✔")
             icon_label.setFont(QFont("Arial", 10))
             indicator_layout.addWidget(label)
             indicator_layout.addWidget(icon_label)
@@ -1078,7 +1084,7 @@ class MainWindow(QMainWindow):
         probe_bar.setStyleSheet("background-color: #b7a9a9;")
 
         # Supply and Measure options for the dropdowns
-        supply_options = ["Choose Supply", "DC-Voltage Supply", "AC-Voltage Supply", "Current Supply", "Ground"]
+        supply_options = ["Choose Supply", "DC-Voltage Supply", "AC-Voltage Supply", "DC-Current Supply", "AC-Current Supply" ,"Ground"]
         measure_options = ["Choose Measurement", "Voltage Measure", "Current Measure"]
 
         # Add dropdowns for all 4 probes
@@ -1124,7 +1130,7 @@ class MainWindow(QMainWindow):
                 reg_map.DVC_MEASUREMENT_CONFIG.Valid_Measure_Config[0] = 0
                 reg_map.DVC_MEASUREMENT_CONFIG.Measure_Probe_Config[0] = GUI_2PROBES
                 reg_map.DVC_MEASUREMENT_CONFIG.Measure_Type_Config[0] = GUI_DC_RESISTANCE
-                reg_map.DVC_2PM_DCRESISTANCE_1.Test_Current_Value[0] = 172
+                reg_map.DVC_2PM_DCRESISTANCE_1.Test_Current_Value[0] = 60
                 write_reg_DVC_PROBE_CONFIG(self.ser, reg_map)
                 write_reg_DVC_2PM_DCRESISTANCE_1(self.ser, reg_map)
                 write_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
@@ -1132,12 +1138,12 @@ class MainWindow(QMainWindow):
                 read_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
                 while reg_map.DVC_MEASUREMENT_CONFIG.Measure_In_Progress[0]:
                     read_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
-                adc_samples = receive_samples(self.ser, 2,8192*2)
+                adc_samples = receive_samples(self.ser, 1,8192*2)
                 while adc_samples is None:
-                    adc_samples = receive_samples(self.ser, 2,8192*2)
+                    adc_samples = receive_samples(self.ser, 1,8192*2)
                 adc_samples = adc_samples/4096*5
                 voltage = np.average(adc_samples)
-                current = 0.05
+                current = 0.058
                 result = dc_resistance(voltage, current)
                 self.result_label.setText(result)
 
@@ -1152,9 +1158,9 @@ class MainWindow(QMainWindow):
                 try:
                     # Determine if voltage or current is being swept
                     sweep_type = 1 if "Sweep DC Voltage (V)" in dropdown[0].currentText() else 2
-                    start = int(inputs[0].text())
-                    end = int(inputs[1].text())
-                    increment = int(inputs[2].text())
+                    start = float(inputs[0].text())
+                    end = float(inputs[1].text())
+                    increment = float(inputs[2].text())
 
                     # Validate inputs
                     if increment <= 0 or end < start:
@@ -1171,9 +1177,14 @@ class MainWindow(QMainWindow):
                     reg_map.DVC_MEASUREMENT_CONFIG.Measure_Probe_Config[0] = GUI_2PROBES
                     reg_map.DVC_MEASUREMENT_CONFIG.Measure_Type_Config[0] = GUI_CURRENT_VOLTAGE
                     reg_map.DVC_2PM_CURRVOLT_1.Sweep_Param[0] = sweep_type
-                    reg_map.DVC_2PM_CURRVOLT_2.Starting_Param[0] = start
-                    reg_map.DVC_2PM_CURRVOLT_3.Ending_Param[0] = end
-                    reg_map.DVC_2PM_CURRVOLT_4.Increment_Param[0] = increment
+                    if sweep_type == 1:                    
+                        reg_map.DVC_2PM_CURRVOLT_2.Starting_Param[0] = int(start*1000)
+                        reg_map.DVC_2PM_CURRVOLT_3.Ending_Param[0] = int(end*1000)
+                        reg_map.DVC_2PM_CURRVOLT_4.Increment_Param[0] = int(increment*1000)
+                    else:
+                        reg_map.DVC_2PM_CURRVOLT_2.Starting_Param[0] = int(start)
+                        reg_map.DVC_2PM_CURRVOLT_3.Ending_Param[0] = int(end)
+                        reg_map.DVC_2PM_CURRVOLT_4.Increment_Param[0] = int(increment)
                     write_reg_DVC_PROBE_CONFIG(self.ser, reg_map)
                     write_reg_DVC_2PM_CURRVOLT_1(self.ser, reg_map)
                     write_reg_DVC_2PM_CURRVOLT_2(self.ser, reg_map)
@@ -1187,16 +1198,22 @@ class MainWindow(QMainWindow):
                     # **Generate synthetic y_values (e.g., linear relationship + noise)**
                     y_values = np.zeros(len(sweep_values))
 
+                    adc_to_use = 1 if sweep_type == 2 else 3
+
                     for i in range(len(y_values)):
                         read_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
                         while reg_map.DVC_MEASUREMENT_CONFIG.Measure_In_Progress[0]:
                             read_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
-                        adc_samples = receive_samples(self.ser, 2,8192*2)
+                        adc_samples = receive_samples(self.ser, adc_to_use,8192*2)
                         while adc_samples is None:
-                            adc_samples = receive_samples(self.ser, 2,8192*2)
-                        adc_samples = adc_samples/4096*5
+                            adc_samples = receive_samples(self.ser, adc_to_use,8192*2)
+                        if sweep_type == 1:
+                            adc_samples = (adc_samples*1000000/(4096*500))
+                        else:
+                            adc_samples = adc_samples/4096*5   
                         adc_sample_avg = np.average(adc_samples)
                         y_values[i] = adc_sample_avg
+                        print(f"rep {i} done")
 
                     # Update the GUI's Matplotlib plot
                     sweep_param = "voltage" if sweep_type == 1 else "current"
@@ -1215,8 +1232,9 @@ class MainWindow(QMainWindow):
             if page.objectName() == "Capacitance-Voltage (2-p)":
                 # Find all input fields in the page layout
                 inputs = page.findChildren(QLineEdit)
-                input_values = [input_field.text() for input_field in inputs]
-                print(page.objectName(), "Input Values:", input_values)
+                volt_start = float(inputs[0].text())
+                volt_end = float(inputs[1].text())
+                volt_incr = float(inputs[2].text())
                 selected_probes = self.get_selected_probes(2)
                 self.config_selected_probes(selected_probes,reg_map)
                 reg_map.DVC_MEASUREMENT_CONFIG.Start_Measure[0] = 1
@@ -1224,8 +1242,38 @@ class MainWindow(QMainWindow):
                 reg_map.DVC_MEASUREMENT_CONFIG.Measure_In_Progress[0] = 0
                 reg_map.DVC_MEASUREMENT_CONFIG.Valid_Measure_Config[0] = 0
                 reg_map.DVC_MEASUREMENT_CONFIG.Measure_Probe_Config[0] = GUI_2PROBES
-                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Type_Config[0] = GUI_DC_RESISTANCE
-                # write_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
+                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Type_Config[0] = GUI_CAPACITANCE_VOLTAGE_2P
+                reg_map.DVC_2PM_CAPVOLT_1.Starting_Volt[0] = int(volt_start*1000)
+                reg_map.DVC_2PM_CAPVOLT_2.Ending_Volt[0] = int(volt_end*1000)
+                reg_map.DVC_2PM_CAPVOLT_3.Increment_Volt[0] = int(volt_incr*1000)
+                write_reg_DVC_PROBE_CONFIG(self.ser, reg_map)
+                write_reg_DVC_2PM_CAPVOLT_1(self.ser, reg_map)
+                write_reg_DVC_2PM_CAPVOLT_2(self.ser, reg_map)
+                write_reg_DVC_2PM_CAPVOLT_3(self.ser, reg_map)
+                write_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
+
+                # Generate sweep values 
+                sweep_values = np.arange(volt_start, volt_end + volt_incr, volt_incr)
+
+                # **Generate synthetic y_values (e.g., linear relationship + noise)**
+                y_values = np.zeros(len(sweep_values))
+
+                for i in range(len(y_values)):
+                    read_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
+                    while reg_map.DVC_MEASUREMENT_CONFIG.Measure_In_Progress[0]:
+                        read_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
+                    adc_samples1 = receive_samples(self.ser, 3,8192*2)
+                    while adc_samples1 is None:
+                        adc_samples1 = receive_samples(self.ser, 3,8192*2)
+                    val_time2, val_volt2 , fitted_amplitude2, fitted_frequency2, fitted_phase2, fitted_offset2 = reconstruct_signal((adc_samples1[:400]*1000000/(4096*500)))
+                    self.update_plot_ac(val_time2,val_volt2)
+                    print("Current")
+                    print(f"fitted_amplitude : {fitted_amplitude2}")
+                    print(f"fitted_frequency : {fitted_frequency2}")
+                    print(f"fitted_phase : {fitted_phase2*180/3.14}")
+                    print(f"fitted_offset : {fitted_offset2}")
+                    print("----------------------------------------")
+                    print(f"rep {i} done")
 
     def start_impedance_spectroscopy_2p_inputs(self):
         # Find the measurement page
@@ -1238,8 +1286,8 @@ class MainWindow(QMainWindow):
                     start_freq = int(inputs[0].text())
                     end_freq = int(inputs[1].text())
                     increment_freq = int(inputs[2].text())
-                    max_peak_volt = int(inputs[3].text())
-                    min_peak_volt = int(inputs[4].text())
+                    max_peak_volt = float(inputs[3].text())
+                    min_peak_volt = float(inputs[4].text())
                     selected_probes = self.get_selected_probes(2)
                     self.config_selected_probes(selected_probes,reg_map)
                     start_freq_u14b,start_freq_l14b = self.encode_dds_freq(start_freq)
@@ -1257,44 +1305,51 @@ class MainWindow(QMainWindow):
                     reg_map.DVC_2PM_IMPSPEC_4.Ending_Freq_2[0] = end_freq_u14b
                     reg_map.DVC_2PM_IMPSPEC_5.Increment_Freq_1[0] = incr_freq_l14b
                     reg_map.DVC_2PM_IMPSPEC_6.Increment_Freq_2[0] = incr_freq_u14b
-                    reg_map.DVC_2PM_IMPSPEC_7.Max_Peak_Volt[0] = max_peak_volt
-                    reg_map.DVC_2PM_IMPSPEC_8.Min_Peak_Volt[0] = min_peak_volt
-                    # write_reg_DVC_PROBE_CONFIG(self.ser, reg_map)
-                    # write_reg_DVC_2PM_IMPSPEC_1(self.ser, reg_map)
-                    # write_reg_DVC_2PM_IMPSPEC_2(self.ser, reg_map)
-                    # write_reg_DVC_2PM_IMPSPEC_3(self.ser, reg_map)
-                    # write_reg_DVC_2PM_IMPSPEC_4(self.ser, reg_map)
-                    # write_reg_DVC_2PM_IMPSPEC_5(self.ser, reg_map)
-                    # write_reg_DVC_2PM_IMPSPEC_6(self.ser, reg_map)
-                    # write_reg_DVC_2PM_IMPSPEC_7(self.ser, reg_map)
-                    # write_reg_DVC_2PM_IMPSPEC_8(self.ser, reg_map)
-                    # write_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
+                    reg_map.DVC_2PM_IMPSPEC_7.Max_Peak_Volt[0] = int(max_peak_volt*1000)
+                    reg_map.DVC_2PM_IMPSPEC_8.Min_Peak_Volt[0] = int(min_peak_volt*1000)
+                    write_reg_DVC_PROBE_CONFIG(self.ser, reg_map)
+                    write_reg_DVC_2PM_IMPSPEC_1(self.ser, reg_map)
+                    write_reg_DVC_2PM_IMPSPEC_2(self.ser, reg_map)
+                    write_reg_DVC_2PM_IMPSPEC_3(self.ser, reg_map)
+                    write_reg_DVC_2PM_IMPSPEC_4(self.ser, reg_map)
+                    write_reg_DVC_2PM_IMPSPEC_5(self.ser, reg_map)
+                    write_reg_DVC_2PM_IMPSPEC_6(self.ser, reg_map)
+                    write_reg_DVC_2PM_IMPSPEC_7(self.ser, reg_map)
+                    write_reg_DVC_2PM_IMPSPEC_8(self.ser, reg_map)
+                    write_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
 
-                    # read_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
-                    # while reg_map.DVC_MEASUREMENT_CONFIG.Measure_In_Progress[0]:
-                    #     read_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
-                    # adc_samples1 = receive_samples(self.ser, 1,8192*2)
-                    # while adc_samples1 is None:
-                    #     adc_samples1 = receive_samples(self.ser, 1,8192*2)
-                    # adc_samples2 = receive_samples(self.ser, 2,8192*2)
-                    # while adc_samples2 is None:
-                    #     adc_samples2 = receive_samples(self.ser, 2,8192*2)
-                    # adc_samples2 = adc_samples2[:400]
-                    # adc_samples1 = adc_samples1[:400]
-                    # val_time1, val_volt1 , fitted_amplitude1, fitted_frequency1, fitted_phase1, fitted_offset1 = reconstruct_signal(adc_samples1/4096*5)
-                    # val_time2, val_volt2 , fitted_amplitude2, fitted_frequency2, fitted_phase2, fitted_offset2 = reconstruct_signal(adc_samples2/4096/500)
-                    data = np.array([6412, 6412, 7020, 7288, 7944, 7988, 8204, 8480, 8224, 8136, 7720, 7416, 7112, 6652, 6448, 6336, 6244, 6500, 6948, 7484, 7544, 8000, 8204, 8384, 8256, 8068, 7760, 7404, 7024, 6680, 6396, 6340, 6428, 6436, 6900, 7156, 7592, 8012, 8264, 8300, 8248, 8088, 7256, 7108, 6488, 6440, 6268, 6400, 0, 6632, 6824, 7408, 7584, 8160, 8168, 8288, 8152, 7904, 7760, 7104, 6992, 460, 6820, 6260, 6584, 6480, 6672, 7128, 7500, 7868, 8412, 8276, 8148, 7872, 7548, 7196, 6912, 6232, 6464, 6628, 6376, 6468, 6820, 7036, 7688, 7824, 8140, 8344, 8320, 7908, 7548, 7420, 6888, 6260, 6844, 6388, 6344, 6472, 6708, 7092, 7360, 7844, 8272, 8244, 8256, 8176, 7956, 7856, 7220, 6860, 6764, 6352, 6340, 6348, 6660, 7012, 7384, 7364, 8096, 8116, 8152, 8264, 7700, 7004, 6896, 6584, 5852, 8, 6480, 6712, 7156, 7260, 7424, 0, 8136, 8136, 7940, 8268, 8284, 7684, 7532, 6880, 6972, 6380, 6320, 6196, 6608, 6568, 7468, 7864, 7900, 8236, 7708, 7960, 7952, 7200, 6836, 7036, 6508, 6368, 6384, 6652, 6912, 7116, 7040, 7684, 7936, 8284, 8344, 8328, 8024, 7808, 7248, 7048, 6700, 6148, 6352, 6404, 6548, 6804, 7444, 7588, 7944, 7908, 8304, 8288, 8120, 7800, 7344, 6580, 6848, 6708, 6148, 6352, 6164, 6892, 7316, 7524, 8032, 8272, 8272, 8292, 8132, 7960, 7396, 7180, 6676, 6512, 6568, 6332, 6452, 6872, 7112, 7716, 7852, 8120, 8292, 8152, 8004, 7612, 6784, 6900, 6552, 6380, 6244, 6588, 6716, 7168, 7172, 7384, 7824, 8072, 8248, 8296, 8192, 7952, 7608, 7232, 6864, 6564, 6352, 6340, 6256, 6584, 7072, 7320, 7744, 7676, 7996, 8304, 7940, 7840, 7288, 6872, 6896, 6540, 6420, 5904, 6416, 6732, 7108, 7340, 8004, 8052, 8388, 8372, 8408, 8008, 7692, 7556, 6976, 6680, 6424, 6344, 6392, 6588, 7120, 7292, 7596, 8056, 8444, 8288, 8240, 8108, 7764, 7532, 6980, 6576, 6432, 6292, 6424, 6656, 6824, 7496, 7640, 7844, 8228, 8156, 1888, 7784, 7276, 7068, 6396, 6652, 6680, 6644, 6392, 6516, 6852, 6912, 7636, 7732, 8268, 8368, 8372, 8108, 7812, 7420, 7168, 6584, 6448, 6016, 6440, 6496, 6948, 7224, 7568, 7912, 8228, 8296, 8136, 7868, 7680, 7164, 8180, 6876, 6368, 6344, 5984, 6448, 6720, 7208, 7512, 7956, 8128, 8276, 7968, 8196, 8132, 7552, 7200, 6900, 6508, 6232, 6384, 6656, 6780, 7072, 7496, 7812, 8292, 8256, 8304, 8164, 7952, 7640, 7044, 7120, 6544, 6412, 6352, 6432, 6688, 7040, 7464, 7744, 8076, 8264, 8392, 8332, 7964, 7632, 7364, 7032, 6568, 6372, 6340, 6500, 6644, 7040, 7536, 7748, 8308, 8484, 8288, 8236, 8008, 7688, 7484, 6992, 6524, 6404, 6384, 6388, 6688, 7112, 7340, 7520, 8020, 8188, 8532, 7724, 7248, 6452, 6968, 6484, 0, 6808, 6104, 6084, 6708, 6880, 7364, 7656, 7976, 8188, 8252, 7784, 7804, 7616, 7032, 6656, 6728, 6504, 6320, 6004, 6580, 6464, 7160, 7596, 8064, 8164, 8264, 8544, 8100, 8004, 7460, 6996, 6928, 6468, 6388, 6356, 6176, 6848, 7324, 7544, 7928, 8184, 8496, 8080, 7812, 7568, 7040, 6656, 6132, 6564, 5992, 6404, 6528, 6784, 7124, 7492, 8124, 7936, 8112, 8140, 7888, 7552, 7176, 0, 6864, 6540, 6484, 6360, 6296, 6724, 7088, 7492, 7444, 8068, 8300, 8296, 8160, 7808, 7572, 7268, 6988, 6552, 6180, 6400])
-                    val_time2, val_volt2 , fitted_amplitude2, fitted_frequency2, fitted_phase2, fitted_offset2 = reconstruct_signal(data[:150]/4096*5/4)
-                    self.update_plot_ac(val_time2,val_volt2)
-                    # print(f"fitted_amplitude : {fitted_amplitude2}")
-                    # print(f"fitted_frequency : {fitted_frequency2}")
-                    # print(f"fitted_phase : {fitted_phase2}")
-                    # print(f"fitted_offset : {fitted_offset2}")
-                    # print("----------------------------------------")
-                    # print(f"fitted_amplitude : {fitted_amplitude1}")
-                    # print(f"fitted_frequency : {fitted_frequency1}")
-                    # print(f"fitted_phase : {fitted_phase1}")
-                    # print(f"fitted_offset : {fitted_offset1}")
+                    # Generate sweep values
+                    sweep_values = np.arange(start_freq, end_freq + increment_freq, increment_freq)
+
+                    # **Generate synthetic y_values (e.g., linear relationship + noise)**
+                    y_values = np.zeros(len(sweep_values))
+
+                    for i in range(len(y_values)):
+                        read_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
+                        while reg_map.DVC_MEASUREMENT_CONFIG.Measure_In_Progress[0]:
+                            read_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
+                        adc_samples1 = receive_samples(self.ser, 1,8192*2)
+                        while adc_samples1 is None:
+                            adc_samples1 = receive_samples(self.ser, 1,8192*2)
+                        adc_samples2 = receive_samples(self.ser, 3,8192*2)
+                        while adc_samples2 is None:
+                            adc_samples2 = receive_samples(self.ser, 3,8192*2)
+                        val_time1, val_volt1 , fitted_amplitude1, fitted_frequency1, fitted_phase1, fitted_offset1 = reconstruct_signal(adc_samples1[:400]/4096*5)
+                        val_time2, val_volt2 , fitted_amplitude2, fitted_frequency2, fitted_phase2, fitted_offset2 = reconstruct_signal((adc_samples2[:400]*1000000/(4096*500)))
+                        self.update_plot_ac(val_time2,val_volt2)
+                        print("Current")
+                        print(f"fitted_amplitude : {fitted_amplitude2}")
+                        print(f"fitted_frequency : {fitted_frequency2}")
+                        print(f"fitted_phase : {fitted_phase2*180/3.14}")
+                        print(f"fitted_offset : {fitted_offset2}")
+                        print("----------------------------------------")
+                        print("Voltage")
+                        print(f"fitted_amplitude : {fitted_amplitude1}")
+                        print(f"fitted_frequency : {fitted_frequency1}")
+                        print(f"fitted_phase : {fitted_phase1*180/3.14}")
+                        print(f"fitted_offset : {fitted_offset1}")
+
+                        print(f"rep {i} done")
 
                 except ValueError:
                     self.result_label.setText("Error: Please enter valid numerical inputs.")
@@ -1306,17 +1361,68 @@ class MainWindow(QMainWindow):
             if page.objectName() == "Transfer Characteristics":
                 # Find all input fields in the page layout
                 inputs = page.findChildren(QLineEdit)
-                input_values = [input_field.text() for input_field in inputs]
-                print(page.objectName(), "Input Values:", input_values)
-                selected_probes = self.get_selected_probes(2)
+                dropdown = page.findChildren(QComboBox)
+                drain_volt = float(inputs[0].text())
+                gate_volt_start = float(inputs[1].text())
+                gate_volt_end = float(inputs[2].text())
+                gate_volt_incr = float(inputs[3].text())
+                if "Probe 1" in dropdown[0].currentText():
+                    gate_probe = 1
+                elif "Probe 2" in dropdown[0].currentText():
+                    gate_probe = 2
+                elif "Probe 3" in dropdown[0].currentText():
+                    gate_probe = 4
+                elif "Probe 4" in dropdown[0].currentText():
+                    gate_probe = 8
+                if "Probe 1" in dropdown[1].currentText():
+                    drain_probe = 1
+                elif "Probe 2" in dropdown[1].currentText():
+                    drain_probe = 2
+                elif "Probe 3" in dropdown[1].currentText():
+                    drain_probe = 4
+                elif "Probe 4" in dropdown[1].currentText():
+                    drain_probe = 8
+                selected_probes = self.get_selected_probes(3)
                 self.config_selected_probes(selected_probes,reg_map)
                 reg_map.DVC_MEASUREMENT_CONFIG.Start_Measure[0] = 1
                 reg_map.DVC_MEASUREMENT_CONFIG.Stop_Measure[0] = 0
                 reg_map.DVC_MEASUREMENT_CONFIG.Measure_In_Progress[0] = 0
                 reg_map.DVC_MEASUREMENT_CONFIG.Valid_Measure_Config[0] = 0
-                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Probe_Config[0] = GUI_2PROBES
-                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Type_Config[0] = GUI_DC_RESISTANCE
-                # write_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
+                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Probe_Config[0] = GUI_3PROBES
+                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Type_Config[0] = GUI_TRANSFER_CHARACTERISTICS
+                reg_map.DVC_3PM_TRANSCHAR_1.Drain_Probe[0] = drain_probe
+                reg_map.DVC_3PM_TRANSCHAR_1.Gate_Probe[0] = gate_probe
+                reg_map.DVC_3PM_TRANSCHAR_2.Drain_Volt[0] = int(drain_volt*1000)
+                reg_map.DVC_3PM_TRANSCHAR_3.Starting_Volt[0] = int(gate_volt_start*1000)
+                reg_map.DVC_3PM_TRANSCHAR_4.Ending_Volt[0] = int(gate_volt_end*1000)
+                reg_map.DVC_3PM_TRANSCHAR_5.Increment_Volt[0] = int(gate_volt_incr*1000)
+                write_reg_DVC_PROBE_CONFIG(self.ser, reg_map)
+                write_reg_DVC_3PM_TRANSCHAR_1(self.ser, reg_map)
+                write_reg_DVC_3PM_TRANSCHAR_2(self.ser, reg_map)
+                write_reg_DVC_3PM_TRANSCHAR_3(self.ser, reg_map)
+                write_reg_DVC_3PM_TRANSCHAR_4(self.ser, reg_map)
+                write_reg_DVC_3PM_TRANSCHAR_5(self.ser, reg_map)
+                write_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
+
+                # Generate sweep values
+                sweep_values = np.arange(gate_volt_start, gate_volt_end + gate_volt_incr, gate_volt_incr)
+
+                # **Generate synthetic y_values (e.g., linear relationship + noise)**
+                y_values = np.zeros(len(sweep_values))
+
+                for i in range(len(y_values)):
+                    read_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
+                    while reg_map.DVC_MEASUREMENT_CONFIG.Measure_In_Progress[0]:
+                        read_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
+                    adc_samples = receive_samples(self.ser, 3,8192*2)
+                    while adc_samples is None:
+                        adc_samples = receive_samples(self.ser, 3,8192*2)
+                    adc_samples = (adc_samples*1000000/(4096*50))
+                    adc_sample_avg = np.average(adc_samples)
+                    y_values[i] = adc_sample_avg
+                    print(f"rep {i} done")
+
+                self.update_plot(sweep_values, y_values, "voltage")                
 
     def start_output_characteristics_inputs(self):
         # Find the measurement page
@@ -1325,17 +1431,68 @@ class MainWindow(QMainWindow):
             if page.objectName() == "Output Characteristics":
                 # Find all input fields in the page layout
                 inputs = page.findChildren(QLineEdit)
-                input_values = [input_field.text() for input_field in inputs]
-                print(page.objectName(), "Input Values:", input_values)
-                selected_probes = self.get_selected_probes(2)
+                dropdown = page.findChildren(QComboBox)
+                gate_volt = float(inputs[0].text())
+                drain_volt_start = float(inputs[1].text())
+                drain_volt_end = float(inputs[2].text())
+                drain_volt_incr = float(inputs[3].text())
+                if "Probe 1" in dropdown[0].currentText():
+                    gate_probe = 1
+                elif "Probe 2" in dropdown[0].currentText():
+                    gate_probe = 2
+                elif "Probe 3" in dropdown[0].currentText():
+                    gate_probe = 4
+                elif "Probe 4" in dropdown[0].currentText():
+                    gate_probe = 8
+                if "Probe 1" in dropdown[1].currentText():
+                    drain_probe = 1
+                elif "Probe 2" in dropdown[1].currentText():
+                    drain_probe = 2
+                elif "Probe 3" in dropdown[1].currentText():
+                    drain_probe = 4
+                elif "Probe 4" in dropdown[1].currentText():
+                    drain_probe = 8
+                selected_probes = self.get_selected_probes(3)
                 self.config_selected_probes(selected_probes,reg_map)
                 reg_map.DVC_MEASUREMENT_CONFIG.Start_Measure[0] = 1
                 reg_map.DVC_MEASUREMENT_CONFIG.Stop_Measure[0] = 0
                 reg_map.DVC_MEASUREMENT_CONFIG.Measure_In_Progress[0] = 0
                 reg_map.DVC_MEASUREMENT_CONFIG.Valid_Measure_Config[0] = 0
-                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Probe_Config[0] = GUI_2PROBES
-                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Type_Config[0] = GUI_DC_RESISTANCE
-                # write_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
+                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Probe_Config[0] = GUI_3PROBES
+                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Type_Config[0] = GUI_OUTPUT_CHARACTERISTICS
+                reg_map.DVC_3PM_OUTCHAR_1.Drain_Probe[0] = drain_probe
+                reg_map.DVC_3PM_OUTCHAR_1.Gate_Probe[0] = gate_probe
+                reg_map.DVC_3PM_OUTCHAR_2.Gate_Volt[0] = int(gate_volt*1000)
+                reg_map.DVC_3PM_OUTCHAR_3.Starting_Volt[0] = int(drain_volt_start*1000)
+                reg_map.DVC_3PM_OUTCHAR_4.Ending_Volt[0] = int(drain_volt_end*1000)
+                reg_map.DVC_3PM_OUTCHAR_5.Increment_Volt[0] = int(drain_volt_incr*1000)
+                write_reg_DVC_PROBE_CONFIG(self.ser, reg_map)
+                write_reg_DVC_3PM_TRANSCHAR_1(self.ser, reg_map)
+                write_reg_DVC_3PM_TRANSCHAR_2(self.ser, reg_map)
+                write_reg_DVC_3PM_TRANSCHAR_3(self.ser, reg_map)
+                write_reg_DVC_3PM_TRANSCHAR_4(self.ser, reg_map)
+                write_reg_DVC_3PM_TRANSCHAR_5(self.ser, reg_map)
+                write_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
+
+                # Generate sweep values
+                sweep_values = np.arange(drain_volt_start, drain_volt_end + drain_volt_incr, drain_volt_incr)
+
+                # **Generate synthetic y_values (e.g., linear relationship + noise)**
+                y_values = np.zeros(len(sweep_values))
+
+                for i in range(len(y_values)):
+                    read_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
+                    while reg_map.DVC_MEASUREMENT_CONFIG.Measure_In_Progress[0]:
+                        read_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
+                    adc_samples = receive_samples(self.ser, 3,8192*2)
+                    while adc_samples is None:
+                        adc_samples = receive_samples(self.ser, 3,8192*2)
+                    adc_samples = (adc_samples*1000000/(4096*50))
+                    adc_sample_avg = np.average(adc_samples)
+                    y_values[i] = adc_sample_avg
+                    print(f"rep {i} done")
+
+                self.update_plot(sweep_values, y_values, "voltage")     
 
     def start_capacitance_voltage_3p_inputs(self):
         # Find the measurement page
@@ -1380,15 +1537,35 @@ class MainWindow(QMainWindow):
         for index in range(self.page_widget.count()):
             page = self.page_widget.widget(index)
             if page.objectName() == "Probe Resistance":
-                selected_probes = self.get_selected_probes(2)
+                selected_probes = self.get_selected_probes(4)
                 self.config_selected_probes(selected_probes,reg_map)
                 reg_map.DVC_MEASUREMENT_CONFIG.Start_Measure[0] = 1
                 reg_map.DVC_MEASUREMENT_CONFIG.Stop_Measure[0] = 0
                 reg_map.DVC_MEASUREMENT_CONFIG.Measure_In_Progress[0] = 0
                 reg_map.DVC_MEASUREMENT_CONFIG.Valid_Measure_Config[0] = 0
-                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Probe_Config[0] = GUI_2PROBES
-                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Type_Config[0] = GUI_DC_RESISTANCE
-                # write_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
+                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Probe_Config[0] = GUI_4PROBES
+                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Type_Config[0] = GUI_PROBE_RESISTANCE
+                reg_map.DVC_4PM_PROBERESISTANCE_1.Test_Current_Value[0] = 60
+                write_reg_DVC_PROBE_CONFIG(self.ser, reg_map)
+                write_reg_DVC_4PM_PROBERESISTANCE_1(self.ser, reg_map)
+                write_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
+                time.sleep(0.1)
+                read_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
+                while reg_map.DVC_MEASUREMENT_CONFIG.Measure_In_Progress[0]:
+                    read_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
+                adc_samples1 = receive_samples(self.ser, 1,8192*2)
+                while adc_samples1 is None:
+                    adc_samples1 = receive_samples(self.ser, 1,8192*2)
+                adc_samples1 = adc_samples1/4096*5
+                voltage1 = np.average(adc_samples1)
+                adc_samples2 = receive_samples(self.ser, 2,8192*2)
+                while adc_samples2 is None:
+                    adc_samples2 = receive_samples(self.ser, 2,8192*2)
+                adc_samples2 = adc_samples2/4096*5
+                voltage2 = np.average(adc_samples1)
+                current = 0.058
+                result = dc_resistance(voltage1-voltage2, current)
+                self.result_label.setText(result)
 
     def start_low_resistance_inputs(self):
         # Find the measurement page
@@ -1493,7 +1670,8 @@ class MainWindow(QMainWindow):
         probe_config_map = {
             "DC-Voltage Supply": (GUI_PROBE_SUPPLY_DCV, True),  # Upper 3 bits
             "AC-Voltage Supply": (GUI_PROBE_SUPPLY_ACV, True),
-            "Current Supply": (GUI_PROBE_SUPPLY_CUR, True),
+            "DC-Current Supply": (GUI_PROBE_SUPPLY_DCI, True),
+            "AC-Current Supply": (GUI_PROBE_SUPPLY_ACI, True),
             "Ground": (GUI_PROBE_SUPPLY_GND, True),
             "Voltage Measure": (GUI_PROBE_MEASURE_VOL, False),  # Lower 2 bits
             "Current Measure": (GUI_PROBE_MEASURE_CUR, False),
@@ -1545,7 +1723,7 @@ class MainWindow(QMainWindow):
         ax = self.figure.add_subplot(111)
         ax.plot(x_values, y_values, marker='o', linestyle='-')
         ax.set_xlabel(f"{sweep_type.capitalize()} (swept)")
-        ax.set_ylabel("Current" if sweep_type == "voltage" else "Voltage")
+        ax.set_ylabel("Current (uA)" if sweep_type == "voltage" else "Voltage (V)")
         ax.set_title("Current-Voltage Measurement")
         ax.grid(True)
 

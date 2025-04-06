@@ -1,7 +1,10 @@
-../Device/Src/device_sourcing.c:10:6:set_ad9833_dds_buffer	1
-../Device/Src/device_sourcing.c:23:6:set_pot_buffer	1
-../Device/Src/device_sourcing.c:28:5:calculate_pot_value_curr_mirr	1
-../Device/Src/device_sourcing.c:45:19:config_dds_freq	1
-../Device/Src/device_sourcing.c:52:19:config_volt_src_gain	1
-../Device/Src/device_sourcing.c:59:19:config_volt_src_offset	1
-../Device/Src/device_sourcing.c:66:19:config_current_mirror	1
+../Device/Src/device_sourcing.c:18:6:set_ad9833_dds_buffer	1
+../Device/Src/device_sourcing.c:31:6:set_pot_buffer	1
+../Device/Src/device_sourcing.c:36:5:calculate_pot_value_curr_mirr	1
+../Device/Src/device_sourcing.c:52:5:calculate_pot_value_volt_offset	1
+../Device/Src/device_sourcing.c:65:5:calculate_pot_value_volt_gain	1
+../Device/Src/device_sourcing.c:78:19:config_dds_freq	1
+../Device/Src/device_sourcing.c:85:19:config_volt_src_gain	1
+../Device/Src/device_sourcing.c:92:19:config_volt_src_offset	1
+../Device/Src/device_sourcing.c:99:19:config_current_mirror	1
+../Device/Src/device_sourcing.c:106:6:pot_val_test	2
