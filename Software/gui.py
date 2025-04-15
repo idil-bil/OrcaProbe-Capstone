@@ -16,6 +16,7 @@ from constants import *
 from comm_device import *
 from calc import *
 from signal_reconstructor import *
+from log import *
 import time
 
 class MainWindow(QMainWindow):
@@ -117,9 +118,10 @@ class MainWindow(QMainWindow):
 
         self.current_selected_measurement = None    # Initialize to track the selected measurement
 
-
         self.timer = QTimer(self)
         self.timer.timeout.connect(self.check_serial_data)  # Call periodically
+
+        self.gui_alive_counter = 0
 
     def add_measurement_selection(self, layout, section_title, options):
         # For each measurement section (2-probe, 3-probe and 4-probe)
@@ -1122,6 +1124,9 @@ class MainWindow(QMainWindow):
         for index in range(self.page_widget.count()):
             page = self.page_widget.widget(index)
             if page.objectName() == "DC Resistance":
+                print(f"Measurement running - {page.objectName()} - DO NOT TOUCH THE GUI")
+                data_log_sel = page.findChildren(QRadioButton)
+                log_file = "csv" if data_log_sel[0].isChecked() else "json"
                 selected_probes = self.get_selected_probes(2)
                 self.config_selected_probes(selected_probes,reg_map)
                 reg_map.DVC_MEASUREMENT_CONFIG.Start_Measure[0] = 1
@@ -1138,23 +1143,30 @@ class MainWindow(QMainWindow):
                 read_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
                 while reg_map.DVC_MEASUREMENT_CONFIG.Measure_In_Progress[0]:
                     read_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
+                    self.keep_gui_alive()
                 adc_samples = receive_samples(self.ser, 1,8192*2)
                 while adc_samples is None:
                     adc_samples = receive_samples(self.ser, 1,8192*2)
+                    self.keep_gui_alive()
                 adc_samples = adc_samples/4096*5
                 voltage = np.average(adc_samples)
                 current = 0.058
                 result = dc_resistance(voltage, current)
                 self.result_label.setText(result)
+                save_to_file(adc_samples,None,log_file)
+                print(f"Measurement completed - {page.objectName()} - CAN TOUCH THE GUI")
 
     def start_current_voltage_inputs(self):
         """Starts the Current-Voltage measurement and embeds the graph in the GUI."""
         for index in range(self.page_widget.count()):
             page = self.page_widget.widget(index)
             if page.objectName() == "Current-Voltage":
+                print(f"Measurement running - {page.objectName()} - DO NOT TOUCH THE GUI")
                 # Find all input fields in the page layout
                 inputs = page.findChildren(QLineEdit)
                 dropdown = page.findChildren(QComboBox)
+                data_log_sel = page.findChildren(QRadioButton)
+                log_file = "csv" if data_log_sel[0].isChecked() else "json"
                 try:
                     # Determine if voltage or current is being swept
                     sweep_type = 1 if "Sweep DC Voltage (V)" in dropdown[0].currentText() else 2
@@ -1197,6 +1209,7 @@ class MainWindow(QMainWindow):
 
                     # **Generate synthetic y_values (e.g., linear relationship + noise)**
                     y_values = np.zeros(len(sweep_values))
+                    all_data = []
 
                     adc_to_use = 1 if sweep_type == 2 else 3
 
@@ -1204,23 +1217,29 @@ class MainWindow(QMainWindow):
                         read_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
                         while reg_map.DVC_MEASUREMENT_CONFIG.Measure_In_Progress[0]:
                             read_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
+                            self.keep_gui_alive()
                         adc_samples = receive_samples(self.ser, adc_to_use,8192*2)
                         while adc_samples is None:
                             adc_samples = receive_samples(self.ser, adc_to_use,8192*2)
+                            self.keep_gui_alive()
                         if sweep_type == 1:
                             adc_samples = (adc_samples*1000000/(4096*500))
                         else:
                             adc_samples = adc_samples/4096*5   
                         adc_sample_avg = np.average(adc_samples)
                         y_values[i] = adc_sample_avg
+                        all_data.append(adc_samples)
                         print(f"rep {i} done")
 
                     # Update the GUI's Matplotlib plot
-                    sweep_param = "voltage" if sweep_type == 1 else "current"
+                    sweep_param = "voltag (v)" if sweep_type == 1 else "current (uA)"
                     self.update_plot(sweep_values, y_values, sweep_param)
 
                     # Display confirmation message in the GUI
                     # self.result_label.setText(f"{sweep_param.capitalize()} sweep completed!")
+
+                    save_to_file(all_data,None,log_file)
+                    print(f"Measurement completed - {page.objectName()} - CAN TOUCH THE GUI")
 
                 except ValueError:
                     self.result_label.setText("Error: Please enter valid numerical inputs.")
@@ -1230,8 +1249,11 @@ class MainWindow(QMainWindow):
         for index in range(self.page_widget.count()):
             page = self.page_widget.widget(index)
             if page.objectName() == "Capacitance-Voltage (2-p)":
+                print(f"Measurement running - {page.objectName()} - DO NOT TOUCH THE GUI")
                 # Find all input fields in the page layout
                 inputs = page.findChildren(QLineEdit)
+                data_log_sel = page.findChildren(QRadioButton)
+                log_file = "csv" if data_log_sel[0].isChecked() else "json"
                 volt_start = float(inputs[0].text())
                 volt_end = float(inputs[1].text())
                 volt_incr = float(inputs[2].text())
@@ -1257,31 +1279,35 @@ class MainWindow(QMainWindow):
 
                 # **Generate synthetic y_values (e.g., linear relationship + noise)**
                 y_values = np.zeros(len(sweep_values))
+                all_data = []
 
                 for i in range(len(y_values)):
                     read_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
                     while reg_map.DVC_MEASUREMENT_CONFIG.Measure_In_Progress[0]:
                         read_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
+                        self.keep_gui_alive()
                     adc_samples1 = receive_samples(self.ser, 3,8192*2)
                     while adc_samples1 is None:
                         adc_samples1 = receive_samples(self.ser, 3,8192*2)
-                    val_time2, val_volt2 , fitted_amplitude2, fitted_frequency2, fitted_phase2, fitted_offset2 = reconstruct_signal((adc_samples1[:400]*1000000/(4096*500)))
-                    self.update_plot_ac(val_time2,val_volt2)
-                    print("Current")
-                    print(f"fitted_amplitude : {fitted_amplitude2}")
-                    print(f"fitted_frequency : {fitted_frequency2}")
-                    print(f"fitted_phase : {fitted_phase2*180/3.14}")
-                    print(f"fitted_offset : {fitted_offset2}")
-                    print("----------------------------------------")
-                    print(f"rep {i} done")
+                        self.keep_gui_alive()
+                    val_time2, val_volt2 , fitted_amplitude2, fitted_frequency2, fitted_phase2, fitted_offset2 = reconstruct_signal((adc_samples1[:2000]/(4096)-0.5)/50*1000000)
+                    y_values[i] = capacitance_voltage_2p(0.4,fitted_amplitude2*2*1000,fitted_frequency2)
+                    all_data.append(val_volt2)
+                
+                self.update_plot_cap(sweep_values,y_values)
+                save_to_file(all_data,val_time2,log_file)
+                print(f"Measurement completed - {page.objectName()} - CAN TOUCH THE GUI")
 
     def start_impedance_spectroscopy_2p_inputs(self):
         # Find the measurement page
         for index in range(self.page_widget.count()):
             page = self.page_widget.widget(index)
             if page.objectName() == "Impedance Spectroscopy (2-p)":
+                print(f"Measurement running - {page.objectName()} - DO NOT TOUCH THE GUI")
                 # Find all input fields in the page layout
                 inputs = page.findChildren(QLineEdit)
+                data_log_sel = page.findChildren(QRadioButton)
+                log_file = "csv" if data_log_sel[0].isChecked() else "json"
                 try:
                     start_freq = int(inputs[0].text())
                     end_freq = int(inputs[1].text())
@@ -1322,34 +1348,33 @@ class MainWindow(QMainWindow):
                     sweep_values = np.arange(start_freq, end_freq + increment_freq, increment_freq)
 
                     # **Generate synthetic y_values (e.g., linear relationship + noise)**
-                    y_values = np.zeros(len(sweep_values))
+                    y_values1 = np.zeros(len(sweep_values))
+                    y_values2 = np.zeros(len(sweep_values))
+                    all_data = []
 
-                    for i in range(len(y_values)):
+                    for i in range(len(y_values1)):
                         read_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
                         while reg_map.DVC_MEASUREMENT_CONFIG.Measure_In_Progress[0]:
                             read_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
+                            self.keep_gui_alive()
                         adc_samples1 = receive_samples(self.ser, 1,8192*2)
                         while adc_samples1 is None:
                             adc_samples1 = receive_samples(self.ser, 1,8192*2)
+                            self.keep_gui_alive()
                         adc_samples2 = receive_samples(self.ser, 3,8192*2)
                         while adc_samples2 is None:
                             adc_samples2 = receive_samples(self.ser, 3,8192*2)
-                        val_time1, val_volt1 , fitted_amplitude1, fitted_frequency1, fitted_phase1, fitted_offset1 = reconstruct_signal(adc_samples1[:400]/4096*5)
-                        val_time2, val_volt2 , fitted_amplitude2, fitted_frequency2, fitted_phase2, fitted_offset2 = reconstruct_signal((adc_samples2[:400]*1000000/(4096*500)))
-                        self.update_plot_ac(val_time2,val_volt2)
-                        print("Current")
-                        print(f"fitted_amplitude : {fitted_amplitude2}")
-                        print(f"fitted_frequency : {fitted_frequency2}")
-                        print(f"fitted_phase : {fitted_phase2*180/3.14}")
-                        print(f"fitted_offset : {fitted_offset2}")
-                        print("----------------------------------------")
-                        print("Voltage")
-                        print(f"fitted_amplitude : {fitted_amplitude1}")
-                        print(f"fitted_frequency : {fitted_frequency1}")
-                        print(f"fitted_phase : {fitted_phase1*180/3.14}")
-                        print(f"fitted_offset : {fitted_offset1}")
+                            self.keep_gui_alive()
+                        val_time1, val_volt1 , fitted_amplitude1, fitted_frequency1, fitted_phase1, fitted_offset1 = reconstruct_signal(adc_samples1/4096*5)
+                        val_time2, val_volt2 , fitted_amplitude2, fitted_frequency2, fitted_phase2, fitted_offset2 = reconstruct_signal((adc_samples2*1000000/(4096*50)))
+                        y_values1[i] = impd_spec_2p(fitted_amplitude1,fitted_amplitude2)*1000
+                        y_values2[i] = ((fitted_phase2-fitted_phase1)*180/np.pi) % 360
+                        all_data.append(val_volt1)
+                        all_data.append(val_volt2)
 
-                        print(f"rep {i} done")
+                    self.update_plot_impd_spec(sweep_values,y_values1,sweep_values,y_values2)
+                    save_to_file(all_data,val_time2,log_file)
+                    print(f"Measurement completed - {page.objectName()} - CAN TOUCH THE GUI")
 
                 except ValueError:
                     self.result_label.setText("Error: Please enter valid numerical inputs.")
@@ -1359,9 +1384,12 @@ class MainWindow(QMainWindow):
         for index in range(self.page_widget.count()):
             page = self.page_widget.widget(index)
             if page.objectName() == "Transfer Characteristics":
+                print(f"Measurement running - {page.objectName()} - DO NOT TOUCH THE GUI")
                 # Find all input fields in the page layout
                 inputs = page.findChildren(QLineEdit)
                 dropdown = page.findChildren(QComboBox)
+                data_log_sel = page.findChildren(QRadioButton)
+                log_file = "csv" if data_log_sel[0].isChecked() else "json"
                 drain_volt = float(inputs[0].text())
                 gate_volt_start = float(inputs[1].text())
                 gate_volt_end = float(inputs[2].text())
@@ -1409,29 +1437,38 @@ class MainWindow(QMainWindow):
 
                 # **Generate synthetic y_values (e.g., linear relationship + noise)**
                 y_values = np.zeros(len(sweep_values))
+                all_data = []
 
                 for i in range(len(y_values)):
                     read_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
                     while reg_map.DVC_MEASUREMENT_CONFIG.Measure_In_Progress[0]:
                         read_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
+                        self.keep_gui_alive()
                     adc_samples = receive_samples(self.ser, 3,8192*2)
                     while adc_samples is None:
                         adc_samples = receive_samples(self.ser, 3,8192*2)
+                        self.keep_gui_alive()
                     adc_samples = (adc_samples*1000000/(4096*50))
                     adc_sample_avg = np.average(adc_samples)
                     y_values[i] = adc_sample_avg
+                    all_data.append(adc_samples)
                     print(f"rep {i} done")
 
+                save_to_file(all_data,None,log_file)
                 self.update_plot(sweep_values, y_values, "voltage")                
+                print(f"Measurement completed - {page.objectName()} - CAN TOUCH THE GUI")
 
     def start_output_characteristics_inputs(self):
         # Find the measurement page
         for index in range(self.page_widget.count()):
             page = self.page_widget.widget(index)
             if page.objectName() == "Output Characteristics":
+                print(f"Measurement running - {page.objectName()} - DO NOT TOUCH THE GUI")
                 # Find all input fields in the page layout
                 inputs = page.findChildren(QLineEdit)
                 dropdown = page.findChildren(QComboBox)
+                data_log_sel = page.findChildren(QRadioButton)
+                log_file = "csv" if data_log_sel[0].isChecked() else "json"
                 gate_volt = float(inputs[0].text())
                 drain_volt_start = float(inputs[1].text())
                 drain_volt_end = float(inputs[2].text())
@@ -1467,11 +1504,11 @@ class MainWindow(QMainWindow):
                 reg_map.DVC_3PM_OUTCHAR_4.Ending_Volt[0] = int(drain_volt_end*1000)
                 reg_map.DVC_3PM_OUTCHAR_5.Increment_Volt[0] = int(drain_volt_incr*1000)
                 write_reg_DVC_PROBE_CONFIG(self.ser, reg_map)
-                write_reg_DVC_3PM_TRANSCHAR_1(self.ser, reg_map)
-                write_reg_DVC_3PM_TRANSCHAR_2(self.ser, reg_map)
-                write_reg_DVC_3PM_TRANSCHAR_3(self.ser, reg_map)
-                write_reg_DVC_3PM_TRANSCHAR_4(self.ser, reg_map)
-                write_reg_DVC_3PM_TRANSCHAR_5(self.ser, reg_map)
+                write_reg_DVC_3PM_OUTCHAR_1(self.ser, reg_map)
+                write_reg_DVC_3PM_OUTCHAR_2(self.ser, reg_map)
+                write_reg_DVC_3PM_OUTCHAR_3(self.ser, reg_map)
+                write_reg_DVC_3PM_OUTCHAR_4(self.ser, reg_map)
+                write_reg_DVC_3PM_OUTCHAR_5(self.ser, reg_map)
                 write_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
 
                 # Generate sweep values
@@ -1479,47 +1516,90 @@ class MainWindow(QMainWindow):
 
                 # **Generate synthetic y_values (e.g., linear relationship + noise)**
                 y_values = np.zeros(len(sweep_values))
+                all_data = []
 
                 for i in range(len(y_values)):
                     read_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
                     while reg_map.DVC_MEASUREMENT_CONFIG.Measure_In_Progress[0]:
                         read_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
+                        self.keep_gui_alive()
                     adc_samples = receive_samples(self.ser, 3,8192*2)
                     while adc_samples is None:
                         adc_samples = receive_samples(self.ser, 3,8192*2)
+                        self.keep_gui_alive()
                     adc_samples = (adc_samples*1000000/(4096*50))
                     adc_sample_avg = np.average(adc_samples)
                     y_values[i] = adc_sample_avg
+                    all_data.append(adc_samples)
                     print(f"rep {i} done")
 
+                save_to_file(all_data,None,log_file)
                 self.update_plot(sweep_values, y_values, "voltage")     
+                print(f"Measurement completed - {page.objectName()} - CAN TOUCH THE GUI")
 
     def start_capacitance_voltage_3p_inputs(self):
         # Find the measurement page
         for index in range(self.page_widget.count()):
             page = self.page_widget.widget(index)
             if page.objectName() == "Capacitance-Voltage (3-p)":
-                # Find all input fields in the page layout
+                print(f"Measurement running - {page.objectName()} - DO NOT TOUCH THE GUI")
                 inputs = page.findChildren(QLineEdit)
-                input_values = [input_field.text() for input_field in inputs]
-                print(page.objectName(), "Input Values:", input_values)
-                selected_probes = self.get_selected_probes(2)
+                data_log_sel = page.findChildren(QRadioButton)
+                log_file = "csv" if data_log_sel[0].isChecked() else "json"
+                volt_start = float(inputs[0].text())
+                volt_end = float(inputs[1].text())
+                volt_incr = float(inputs[2].text())
+                selected_probes = self.get_selected_probes(3)
                 self.config_selected_probes(selected_probes,reg_map)
                 reg_map.DVC_MEASUREMENT_CONFIG.Start_Measure[0] = 1
                 reg_map.DVC_MEASUREMENT_CONFIG.Stop_Measure[0] = 0
                 reg_map.DVC_MEASUREMENT_CONFIG.Measure_In_Progress[0] = 0
                 reg_map.DVC_MEASUREMENT_CONFIG.Valid_Measure_Config[0] = 0
-                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Probe_Config[0] = GUI_2PROBES
-                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Type_Config[0] = GUI_DC_RESISTANCE
-                # write_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
+                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Probe_Config[0] = GUI_3PROBES
+                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Type_Config[0] = GUI_CAPACITANCE_VOLTAGE_3P
+                reg_map.DVC_3PM_CAPVOLT_1.Starting_Volt[0] = int(volt_start*1000)
+                reg_map.DVC_3PM_CAPVOLT_2.Ending_Volt[0] = int(volt_end*1000)
+                reg_map.DVC_3PM_CAPVOLT_3.Increment_Volt[0] = int(volt_incr*1000)
+                write_reg_DVC_PROBE_CONFIG(self.ser, reg_map)
+                write_reg_DVC_3PM_CAPVOLT_1(self.ser, reg_map)
+                write_reg_DVC_3PM_CAPVOLT_2(self.ser, reg_map)
+                write_reg_DVC_3PM_CAPVOLT_3(self.ser, reg_map)
+                write_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
+
+                # Generate sweep values 
+                sweep_values = np.arange(volt_start, volt_end + volt_incr, volt_incr)
+
+                # **Generate synthetic y_values (e.g., linear relationship + noise)**
+                y_values = np.zeros(len(sweep_values))
+                all_data = []
+
+                for i in range(len(y_values)):
+                    read_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
+                    while reg_map.DVC_MEASUREMENT_CONFIG.Measure_In_Progress[0]:
+                        read_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
+                        self.keep_gui_alive()
+                    adc_samples1 = receive_samples(self.ser, 3,8192*2)
+                    while adc_samples1 is None:
+                        adc_samples1 = receive_samples(self.ser, 3,8192*2)
+                        self.keep_gui_alive()
+                    val_time2, val_volt2 , fitted_amplitude2, fitted_frequency2, fitted_phase2, fitted_offset2 = reconstruct_signal((adc_samples1[:400]/(4096)-0.5)/50*1000000)
+                    y_values[i] = capacitance_voltage_2p(3.0,fitted_amplitude2*2*1000,fitted_frequency2)
+                    all_data.append(val_volt2)
+                
+                self.update_plot_cap(sweep_values,y_values)
+                save_to_file(all_data,val_time2,log_file)
+                print(f"Measurement completed - {page.objectName()} - CAN TOUCH THE GUI")
 
     def start_electrochemical_inputs(self):
         # Find the measurement page
         for index in range(self.page_widget.count()):
             page = self.page_widget.widget(index)
             if page.objectName() == "Electrochemical":
+                print(f"Measurement running - {page.objectName()} - DO NOT TOUCH THE GUI")
                 # Find all input fields in the page layout
                 inputs = page.findChildren(QLineEdit)
+                data_log_sel = page.findChildren(QRadioButton)
+                log_file = "csv" if data_log_sel[0].isChecked() else "json"
                 input_values = [input_field.text() for input_field in inputs]
                 print(page.objectName(), "Input Values:", input_values)
                 selected_probes = self.get_selected_probes(2)
@@ -1531,12 +1611,16 @@ class MainWindow(QMainWindow):
                 reg_map.DVC_MEASUREMENT_CONFIG.Measure_Probe_Config[0] = GUI_2PROBES
                 reg_map.DVC_MEASUREMENT_CONFIG.Measure_Type_Config[0] = GUI_DC_RESISTANCE
                 # write_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
+                print(f"Measurement completed - {page.objectName()} - CAN TOUCH THE GUI")
 
     def start_probe_resistance_inputs(self):
         # Find the measurement page
         for index in range(self.page_widget.count()):
             page = self.page_widget.widget(index)
             if page.objectName() == "Probe Resistance":
+                print(f"Measurement running - {page.objectName()} - DO NOT TOUCH THE GUI")
+                data_log_sel = page.findChildren(QRadioButton)
+                log_file = "csv" if data_log_sel[0].isChecked() else "json"
                 selected_probes = self.get_selected_probes(4)
                 self.config_selected_probes(selected_probes,reg_map)
                 reg_map.DVC_MEASUREMENT_CONFIG.Start_Measure[0] = 1
@@ -1553,42 +1637,83 @@ class MainWindow(QMainWindow):
                 read_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
                 while reg_map.DVC_MEASUREMENT_CONFIG.Measure_In_Progress[0]:
                     read_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
+                    self.keep_gui_alive()
                 adc_samples1 = receive_samples(self.ser, 1,8192*2)
                 while adc_samples1 is None:
                     adc_samples1 = receive_samples(self.ser, 1,8192*2)
+                    self.keep_gui_alive()
                 adc_samples1 = adc_samples1/4096*5
                 voltage1 = np.average(adc_samples1)
                 adc_samples2 = receive_samples(self.ser, 2,8192*2)
                 while adc_samples2 is None:
                     adc_samples2 = receive_samples(self.ser, 2,8192*2)
+                    self.keep_gui_alive()
                 adc_samples2 = adc_samples2/4096*5
-                voltage2 = np.average(adc_samples1)
+                voltage2 = np.average(adc_samples2)
                 current = 0.058
-                result = dc_resistance(voltage1-voltage2, current)
+                result = dc_resistance(abs(voltage1-voltage2), current)
                 self.result_label.setText(result)
+                all_data = []
+                all_data.append(adc_samples1)
+                all_data.append(adc_samples2)
+                save_to_file(all_data,None,log_file)
+                print(f"Measurement completed - {page.objectName()} - CAN TOUCH THE GUI")
 
     def start_low_resistance_inputs(self):
         # Find the measurement page
         for index in range(self.page_widget.count()):
             page = self.page_widget.widget(index)
             if page.objectName() == "Low-Resistance":
-                selected_probes = self.get_selected_probes(2)
+                print(f"Measurement running - {page.objectName()} - DO NOT TOUCH THE GUI")
+                data_log_sel = page.findChildren(QRadioButton)
+                log_file = "csv" if data_log_sel[0].isChecked() else "json"
+                selected_probes = self.get_selected_probes(4)
                 self.config_selected_probes(selected_probes,reg_map)
                 reg_map.DVC_MEASUREMENT_CONFIG.Start_Measure[0] = 1
                 reg_map.DVC_MEASUREMENT_CONFIG.Stop_Measure[0] = 0
                 reg_map.DVC_MEASUREMENT_CONFIG.Measure_In_Progress[0] = 0
                 reg_map.DVC_MEASUREMENT_CONFIG.Valid_Measure_Config[0] = 0
-                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Probe_Config[0] = GUI_2PROBES
-                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Type_Config[0] = GUI_DC_RESISTANCE
-                # write_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
+                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Probe_Config[0] = GUI_4PROBES
+                reg_map.DVC_MEASUREMENT_CONFIG.Measure_Type_Config[0] = GUI_LOW_RESISTANCE
+                reg_map.DVC_2PM_LOWRESISTANCE_1.Test_Current_Value[0] = 100
+                write_reg_DVC_PROBE_CONFIG(self.ser, reg_map)
+                write_reg_DVC_2PM_LOWRESISTANCE_1(self.ser, reg_map)
+                write_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
+                time.sleep(0.1)
+                read_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
+                while reg_map.DVC_MEASUREMENT_CONFIG.Measure_In_Progress[0]:
+                    read_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
+                    self.keep_gui_alive()
+                adc_samples1 = receive_samples(self.ser, 1,8192*2)
+                while adc_samples1 is None:
+                    adc_samples1 = receive_samples(self.ser, 1,8192*2)
+                    self.keep_gui_alive()
+                adc_samples1 = adc_samples1/4096*5
+                voltage1 = np.average(adc_samples1)
+                adc_samples2 = receive_samples(self.ser, 2,8192*2)
+                while adc_samples2 is None:
+                    adc_samples2 = receive_samples(self.ser, 2,8192*2)
+                    self.keep_gui_alive()
+                adc_samples2 = adc_samples2/4096*5
+                voltage2 = np.average(adc_samples1)
+                current = 0.1
+                result = dc_resistance(voltage1-voltage2, current)
+                all_data = []
+                all_data.append(adc_samples1)
+                all_data.append(adc_samples2)
+                self.result_label.setText(result)
+                print(f"Measurement completed - {page.objectName()} - CAN TOUCH THE GUI")
 
     def start_impedance_spectroscopy_4p_inputs(self):
         # Find the measurement page
         for index in range(self.page_widget.count()):
             page = self.page_widget.widget(index)
             if page.objectName() == "Impedance Spectroscopy (4-p)":
+                print(f"Measurement running - {page.objectName()} - DO NOT TOUCH THE GUI")
                 # Find all input fields in the page layout
                 inputs = page.findChildren(QLineEdit)
+                data_log_sel = page.findChildren(QRadioButton)
+                log_file = "csv" if data_log_sel[0].isChecked() else "json"
                 input_values = [input_field.text() for input_field in inputs]
                 print(page.objectName(), "Input Values:", input_values)
                 selected_probes = self.get_selected_probes(4)
@@ -1600,6 +1725,7 @@ class MainWindow(QMainWindow):
                 reg_map.DVC_MEASUREMENT_CONFIG.Measure_Probe_Config[0] = GUI_2PROBES
                 reg_map.DVC_MEASUREMENT_CONFIG.Measure_Type_Config[0] = GUI_DC_RESISTANCE
                 # write_reg_DVC_MEASUREMENT_CONFIG(self.ser, reg_map)
+                print(f"Measurement completed - {page.objectName()} - CAN TOUCH THE GUI")
 
     def get_selected_probes(self, required_probes):
         """Fetch selected probes ensuring the total selected probes match the required count.
@@ -1741,8 +1867,48 @@ class MainWindow(QMainWindow):
 
         self.canvas.draw()  # Refresh the canvas with the updated plot
 
+    def update_plot_cap(self, x_values, y_values):
+        """Updates the Matplotlib plot embedded in the GUI."""
+        self.figure.clear()
+        ax = self.figure.add_subplot(111)
+        ax.plot(x_values, y_values, 'r--', linewidth=2.0)
+        ax.set_xlabel(f"Voltage offset level (V)")
+        ax.set_ylabel("Capacitance (nF)")
+        ax.set_title("Capacitance - Voltage Measurement")
+        ax.grid(True)
+
+        self.canvas.draw()  # Refresh the canvas with the updated plot
+
+    def update_plot_impd_spec(self, x_values1, y_values1, x_values2, y_values2):
+        """Updates the Matplotlib plot embedded in the GUI."""
+        self.figure.clear()
+        # First subplot (left)
+        ax1 = self.figure.add_subplot(1, 2, 1)
+        ax1.plot(x_values1, y_values1, 'r--', linewidth=2.0)
+        ax1.set_xlabel("Frequency (Hz)")
+        ax1.set_ylabel("Impedance (|Z|) (kOhms)")
+        ax1.set_title("Impedance - Frequency Measurement")
+        ax1.grid(True)
+
+        # Second subplot (right)
+        ax2 = self.figure.add_subplot(1, 2, 2)
+        ax2.plot(x_values2, y_values2, 'b-', linewidth=2.0)
+        ax2.set_xlabel("Frequency (Hz)")
+        ax2.set_ylabel("Phase difference (degrees)")
+        ax2.set_title("Phase - Frequency Measurement")
+        ax2.grid(True)
+
+        self.canvas.draw()  # Refresh the canvas with the updated plot
+
     def encode_dds_freq(self, freq):
         val = int(freq * (2**28) / 25000000)  # Compute val as an integer
         upper_14 = (val >> 14) & 0x3FFF  # Extract upper 14 bits
         lower_14 = val & 0x3FFF  # Extract lower 14 bits
         return upper_14, lower_14
+    
+    def keep_gui_alive(self,interval=100):
+        self.gui_alive_counter += 1
+        if self.gui_alive_counter % interval == 0:
+            QApplication.processEvents()
+            self.gui_alive_counter = 0
+

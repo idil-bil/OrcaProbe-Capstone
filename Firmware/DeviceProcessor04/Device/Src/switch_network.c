@@ -151,8 +151,9 @@ void map_switch_network(SwitchNetwork_TypeDef* switch_network, uint32_t switch_n
 		}
 		else if(probe_1_cfg_mon == DVC_PROBE_MEASURE_CUR){
 			switch_network->Relays[4].RelayState = GPIO_PIN_SET;
-			if(measurement_type == CAPACITANCE_VOLTAGE_2P){
+			if(measurement_type == CAPACITANCE_VOLTAGE_2P || measurement_type == CAPACITANCE_VOLTAGE_3P || measurement_type == IMPEDANCE_SPECTROSCOPY_2P ){
 				switch_network->Relays[22].RelayState = GPIO_PIN_SET;
+				switch_network->Relays[23].RelayState = GPIO_PIN_SET;
 			}
 			if(measurement_type == TRANSFER_CHARACTERISTICS || measurement_type == OUTPUT_CHARACTERISTICS){
 				switch_network->Relays[23].RelayState = GPIO_PIN_SET;
@@ -197,8 +198,9 @@ void map_switch_network(SwitchNetwork_TypeDef* switch_network, uint32_t switch_n
 		}
 		else if(probe_2_cfg_mon == DVC_PROBE_MEASURE_CUR){
 			switch_network->Relays[8].RelayState = GPIO_PIN_SET;
-			if(measurement_type == CAPACITANCE_VOLTAGE_2P){
+			if(measurement_type == CAPACITANCE_VOLTAGE_2P || measurement_type == CAPACITANCE_VOLTAGE_3P || measurement_type == IMPEDANCE_SPECTROSCOPY_2P ){
 				switch_network->Relays[22].RelayState = GPIO_PIN_SET;
+				switch_network->Relays[23].RelayState = GPIO_PIN_SET;
 			}
 			if(measurement_type == TRANSFER_CHARACTERISTICS || measurement_type == OUTPUT_CHARACTERISTICS){
 				switch_network->Relays[23].RelayState = GPIO_PIN_SET;
@@ -243,8 +245,9 @@ void map_switch_network(SwitchNetwork_TypeDef* switch_network, uint32_t switch_n
 		}
 		else if(probe_3_cfg_mon == DVC_PROBE_MEASURE_CUR){
 			switch_network->Relays[12].RelayState = GPIO_PIN_SET;
-			if(measurement_type == CAPACITANCE_VOLTAGE_2P){
+			if(measurement_type == CAPACITANCE_VOLTAGE_2P || measurement_type == CAPACITANCE_VOLTAGE_3P || measurement_type == IMPEDANCE_SPECTROSCOPY_2P ){
 				switch_network->Relays[22].RelayState = GPIO_PIN_SET;
+				switch_network->Relays[23].RelayState = GPIO_PIN_SET;
 			}
 			if(measurement_type == TRANSFER_CHARACTERISTICS || measurement_type == OUTPUT_CHARACTERISTICS){
 				switch_network->Relays[23].RelayState = GPIO_PIN_SET;
@@ -290,8 +293,9 @@ void map_switch_network(SwitchNetwork_TypeDef* switch_network, uint32_t switch_n
 		}
 		else if(probe_4_cfg_mon == DVC_PROBE_MEASURE_CUR){
 			switch_network->Relays[16].RelayState = GPIO_PIN_SET;
-			if(measurement_type == CAPACITANCE_VOLTAGE_2P){
+			if(measurement_type == CAPACITANCE_VOLTAGE_2P || measurement_type == CAPACITANCE_VOLTAGE_3P || measurement_type == IMPEDANCE_SPECTROSCOPY_2P ){
 				switch_network->Relays[22].RelayState = GPIO_PIN_SET;
+				switch_network->Relays[23].RelayState = GPIO_PIN_SET;
 			}
 			if(measurement_type == TRANSFER_CHARACTERISTICS || measurement_type == OUTPUT_CHARACTERISTICS){
 				switch_network->Relays[23].RelayState = GPIO_PIN_SET;

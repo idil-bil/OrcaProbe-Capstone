@@ -103,6 +103,6 @@ def receive_samples(ser, adc_num, buffer_size):
         # Since STM32 packs 12-bit ADC values into 16-bit containers, mask out the higher bits
         samples = samples & 0x0FFF  # Extract only the lower 12 bits
         
-        return samples
+        return samples[8:]
 
     return None  # No data available yet

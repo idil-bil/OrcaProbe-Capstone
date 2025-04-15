@@ -63,6 +63,7 @@ void run_device(){
 					break;
 				case CAPACITANCE_VOLTAGE_2P:
 					dvc_exec_msr_capacitance_voltage_2p();
+					set_register(&device_registers,DVC_MEASUREMENT_CONFIG,0);
 					break;
 				case IMPEDANCE_SPECTROSCOPY_2P:
 					dvc_exec_msr_impedance_spectroscopy_2p();
@@ -70,24 +71,31 @@ void run_device(){
 					break;
 				case TRANSFER_CHARACTERISTICS:
 					dvc_exec_msr_transfer_characteristics();
+					set_register(&device_registers,DVC_MEASUREMENT_CONFIG,0);
 					break;
 				case OUTPUT_CHARACTERISTICS:
 					dvc_exec_msr_output_characteristics();
+					set_register(&device_registers,DVC_MEASUREMENT_CONFIG,0);
 					break;
 				case CAPACITANCE_VOLTAGE_3P:
 					dvc_exec_msr_capacitance_voltage_3p();
+					set_register(&device_registers,DVC_MEASUREMENT_CONFIG,0);
 					break;
 				case ELECTROCHEMICAL:
 					dvc_exec_msr_electrochemical();
+					set_register(&device_registers,DVC_MEASUREMENT_CONFIG,0);
 					break;
 				case LOW_RESISTANCE:
 					dvc_exec_msr_low_resistance();
+					set_register(&device_registers,DVC_MEASUREMENT_CONFIG,0);
 					break;
 				case PROBE_RESISTANCE:
 					dvc_exec_msr_dc_resistance_4p();
+					set_register(&device_registers,DVC_MEASUREMENT_CONFIG,0);
 					break;
 				case IMPEDANCE_SPECTROSCOPY_4P:
 					dvc_exec_msr_impedance_spectroscopy_4p();
+					set_register(&device_registers,DVC_MEASUREMENT_CONFIG,0);
 					break;
 				default:
 					break;

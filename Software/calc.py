@@ -15,9 +15,6 @@ def dc_resistance(voltage, current):
     resistance = voltage / current
     return f"Resistance: {resistance:.2f} kΩ"
 
-import numpy as np
-import matplotlib.pyplot as plt
-
 def current_voltage(y_values):
     """
     Generates a current-voltage plot based on given inputs and computes the average of y_values.
@@ -35,38 +32,27 @@ def current_voltage(y_values):
     return np.mean(y_values)  # Compute and return the average of y_values
 
 
-def capacitance_voltage_2p():
+def capacitance_voltage_2p(voltage_pk_t_pk, current_pk_t_pk, freq):
     """
     Calculates capacitance for a 2-probe system and generates a capacitance-voltage plot.
     Prompts the user for AC voltage values and corresponding current values.
     """
-    start_voltage = float(input("Enter the starting AC voltage value (V): "))
-    end_voltage = float(input("Enter the ending AC voltage value (V): "))
-    increment_voltage = float(input("Enter the increment AC voltage value (V): "))
+    if current_pk_t_pk == 0:
+        return "Error: Current cannot be zero."
+    
+    impedance = voltage_pk_t_pk / current_pk_t_pk
+    return 1/(impedance*2*np.pi*freq)
 
-    if increment_voltage <= 0:
-        print("Increment value must be greater than zero.")
-        return
-
-    if end_voltage < start_voltage:
-        print("Ending value has to be bigger than the starting value.")
-        return
-
-    voltage_values = [start_voltage + i * increment_voltage for i in range(int((end_voltage - start_voltage) / increment_voltage) + 1)]
-    current_values = []
-
-    for voltage in voltage_values:
-        current = float(input(f"Enter the current value corresponding to {voltage} V: "))
-        current_values.append(current)
-
-    capacitances = [v / i if i != 0 else float('inf') for v, i in zip(voltage_values, current_values)]
-
-    plt.plot(voltage_values, capacitances, marker='o')
-    plt.xlabel("Voltage (V)")
-    plt.ylabel("Capacitance (F)")
-    plt.title("Capacitance-Voltage Plot (2-probe)")
-    plt.grid(True)
-    plt.show()
+def impd_spec_2p(voltage_pk_t_pk, current_pk_t_pk):
+    """
+    Calculates capacitance for a 2-probe system and generates a capacitance-voltage plot.
+    Prompts the user for AC voltage values and corresponding current values.
+    """
+    if current_pk_t_pk == 0:
+        return "Error: Current cannot be zero."
+    
+    impedance = voltage_pk_t_pk / current_pk_t_pk
+    return impedance
 
 def impedance_spectroscopy_2p():
     """

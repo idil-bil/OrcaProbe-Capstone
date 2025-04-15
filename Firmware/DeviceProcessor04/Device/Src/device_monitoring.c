@@ -36,7 +36,7 @@ void set_adc_sampling_freq(uint32_t sample_freq){
 //	TIM8->CCR1 = TIM8->ARR/2;
 	TIM8->CCR2 = TIM8->ARR/2;
 	TIM8->DIER |= TIM_DIER_UDE;
-	HAL_TIM_PWM_Start(&htim8, TIM_CHANNEL_2);
+//	HAL_TIM_PWM_Start(&htim8, TIM_CHANNEL_2);
 //	for(int i = 0; i <DVC_MAX_NUM_ADC_SAMPLES; i++){
 //		if(i%2){
 //			dma_trig_test[i] = (1 << 12);
@@ -91,21 +91,24 @@ HAL_StatusTypeDef collect_adc_samples_it(uint8_t adc_num){
 	result1 = HAL_OK;
 	result2 = HAL_OK;
 	result3 = HAL_OK;
+	HAL_TIM_PWM_Stop(&htim8, TIM_CHANNEL_2);
+	HAL_Delay(100);
 	if(adc_num & 0x1){
 		adc_1_busy = 1;
-		HAL_TIM_Base_Start(&htim8);
+//		HAL_TIM_Base_Start(&htim8);
 		result1 = HAL_DMA_Start_IT(&handle_GPDMA1_Channel12,(uint32_t)&GPIOE->IDR,(uint32_t)adc_samples_1,DVC_MAX_NUM_ADC_SAMPLES*sizeof(uint16_t));
 	}
 	if(adc_num & 0x2){
 		adc_2_busy = 1;
-		HAL_TIM_Base_Start(&htim8);
+//		HAL_TIM_Base_Start(&htim8);
 		result2 = HAL_DMA_Start_IT(&handle_GPDMA1_Channel13,(uint32_t)&GPIOD->IDR,(uint32_t)adc_samples_2,DVC_MAX_NUM_ADC_SAMPLES*sizeof(uint16_t));
 	}
 	if(adc_num & 0x4){
 		adc_3_busy = 1;
-		HAL_TIM_Base_Start(&htim8);
+//		HAL_TIM_Base_Start(&htim8);
 		result3 = HAL_DMA_Start_IT(&handle_GPDMA1_Channel14,(uint32_t)&GPIOG->IDR,(uint32_t)adc_samples_3,DVC_MAX_NUM_ADC_SAMPLES*sizeof(uint16_t));
 	}
+	HAL_TIM_PWM_Start(&htim8, TIM_CHANNEL_2);
 	return result1 | result2 | result3;
 }
 

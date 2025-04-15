@@ -60,6 +60,11 @@ def reconstruct_signal(data):
     # Extract the fitted parameters
     fitted_amplitude, fitted_frequency, fitted_phase, fitted_offset = params
 
+    # Ensure positive amplitude by adjusting phase
+    if fitted_amplitude < 0:
+        fitted_amplitude = -fitted_amplitude
+        fitted_phase += np.pi
+
     # Display the results
     print(f"Fitted Amplitude: {fitted_amplitude}")
     print(f"Fitted Frequency: {fitted_frequency} Hz")

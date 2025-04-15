@@ -173,10 +173,10 @@ void dvc_exec_msr_capacitance_voltage_2p(void){
 	uint32_t end_volt_offset = get_register(&device_registers,DVC_2PM_CAPVOLT_2);
 	uint32_t incr_volt_offset = get_register(&device_registers,DVC_2PM_CAPVOLT_3);
 
-	// configure the basic DC voltage source with 0Hz
+	// configure the basic DC voltage source with 10kHz
 	uint32_t freq_28b = 107374;
 
-	float amp_volt = 0.4;
+	float amp_volt = 400;
 	pot_val_gain = calculate_pot_value_volt_gain(amp_volt/1000.0);
 	set_pot_buffer(volt_src_gain_i2c_tx_buf,DVC_POT_MCP4531_WP0_WR_CMD,pot_val_gain);
 	config_volt_src_gain(&hi2c1,DVC_VOLT_SRC_1_AMP_POT_I2C_ADDR,volt_src_gain_i2c_tx_buf);
@@ -259,7 +259,7 @@ void dvc_exec_msr_impedance_spectroscopy_2p(void){
 	map_switch_network(&device_switch_network,get_register(&device_registers,DVC_PROBE_CONFIG));
 	set_switch_network(&device_switch_network);
 
-	for(int param = start_freq_28b; param <= end_freq_28b; param += incr_freq_28b){
+	for(int param = start_freq_28b; param <= end_freq_28b+5; param += incr_freq_28b){
 		set_ad9833_dds_buffer(volt_src_dds_spi_tx_buf,param);
 		config_dds_freq(&hspi2,volt_src_dds_spi_tx_buf);
 		HAL_Delay(2000);
@@ -455,7 +455,63 @@ void dvc_exec_msr_output_characteristics(void){
 }
 
 void dvc_exec_msr_capacitance_voltage_3p(void){
+	HAL_StatusTypeDef result;
+	uint32_t pot_val_gain, pot_val_offset;
 
+	// set busy flag to indicate a measurement is in progress
+	set_register(&device_registers,DVC_MEASUREMENT_CONFIG,
+				 get_register(&device_registers,DVC_MEASUREMENT_CONFIG) | 0x4);
+
+	// grab the measurement parameters from the registers;
+	uint32_t start_volt_offset = get_register(&device_registers,DVC_2PM_CAPVOLT_1);
+	uint32_t end_volt_offset = get_register(&device_registers,DVC_2PM_CAPVOLT_2);
+	uint32_t incr_volt_offset = get_register(&device_registers,DVC_2PM_CAPVOLT_3);
+
+	// configure the basic DC voltage source with 1MHz
+	uint32_t freq_28b = 10737418;
+
+	float amp_volt = 3000;
+	pot_val_gain = calculate_pot_value_volt_gain(amp_volt/1000.0);
+	set_pot_buffer(volt_src_gain_i2c_tx_buf,DVC_POT_MCP4531_WP0_WR_CMD,pot_val_gain);
+	config_volt_src_gain(&hi2c1,DVC_VOLT_SRC_1_AMP_POT_I2C_ADDR,volt_src_gain_i2c_tx_buf);
+
+	set_ad9833_dds_buffer(volt_src_dds_spi_tx_buf,freq_28b);
+	config_dds_freq(&hspi2,volt_src_dds_spi_tx_buf);
+
+	// configure the switch network
+	map_switch_network(&device_switch_network,get_register(&device_registers,DVC_PROBE_CONFIG));
+	set_switch_network(&device_switch_network);
+
+	for(int param = start_volt_offset; param <= end_volt_offset; param += incr_volt_offset){
+		pot_val_offset = calculate_pot_value_volt_offset(param/1000.0);
+		set_pot_buffer(volt_src_offset_i2c_tx_buf,DVC_POT_MCP4531_WP0_WR_CMD,pot_val_offset);
+		config_volt_src_offset(&hi2c1,DVC_VOLT_SRC_1_OFS_POT_I2C_ADDR,volt_src_offset_i2c_tx_buf);
+		HAL_Delay(2000);
+
+		// collect ADC samples
+		collect_adc_samples_it(DVC_USE_ADC_3_SAMPLING);
+
+		// wait for adc dma to complete
+		while(adc_3_busy);
+
+		// clear busy flag to indicate a measurement is complete
+		set_register(&device_registers,DVC_MEASUREMENT_CONFIG,
+					 get_register(&device_registers,DVC_MEASUREMENT_CONFIG) & ~(0x4));
+
+		// wait for python to grab the data
+		while(adc_3_full);
+
+		// set busy flag to indicate a measurement is in progress
+		set_register(&device_registers,DVC_MEASUREMENT_CONFIG,
+					 get_register(&device_registers,DVC_MEASUREMENT_CONFIG) | 0x4);
+	}
+
+	// disconnect switch network to cut power
+	clear_switch_network(&device_switch_network);
+
+	// clear busy flag to indicate a measurement is complete
+	set_register(&device_registers,DVC_MEASUREMENT_CONFIG,
+				 get_register(&device_registers,DVC_MEASUREMENT_CONFIG) & ~(0x4));
 }
 
 void dvc_exec_msr_electrochemical(void){
