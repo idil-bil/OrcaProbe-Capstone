@@ -65,43 +65,45 @@ def reconstruct_signal(data):
         fitted_amplitude = -fitted_amplitude
         fitted_phase += np.pi
 
-    # Display the results
-    print(f"Fitted Amplitude: {fitted_amplitude}")
-    print(f"Fitted Frequency: {fitted_frequency} Hz")
-    print(f"Fitted Phase: {fitted_phase}")
-    print(f"Fitted Offset: {fitted_offset}")
+    print("signal reconstruction done")
 
-    # Step 5: Plot the results separately
+    # # Display the results
+    # print(f"Fitted Amplitude: {fitted_amplitude}")
+    # print(f"Fitted Frequency: {fitted_frequency} Hz")
+    # print(f"Fitted Phase: {fitted_phase}")
+    # print(f"Fitted Offset: {fitted_offset}")
 
-    # Create a new figure with three subplots
-    plt.figure(figsize=(10, 8))
+    # # Step 5: Plot the results separately
 
-    # Plot the initial reconstructed data with outliers (raw data)
-    plt.subplot(3, 1, 1)  # First plot
-    plt.plot(time_intervals, data, 'k-', label='Initial Data with Outliers')
-    plt.title('Initial Reconstructed Data (With Outliers)')
-    plt.xlabel('Time (seconds)')
-    plt.ylabel('Amplitude')
-    plt.legend()
+    # # Create a new figure with three subplots
+    # plt.figure(figsize=(10, 8))
 
-    # Plot filtered data (after MAD filtering)
-    plt.subplot(3, 1, 2)  # Second plot
-    plt.plot(filtered_time_intervals, filtered_data, 'b-', label='Filtered Data')
-    plt.title('Filtered Data (After MAD Filtering)')
-    plt.xlabel('Time (seconds)')
-    plt.ylabel('Amplitude')
-    plt.legend()
+    # # Plot the initial reconstructed data with outliers (raw data)
+    # plt.subplot(3, 1, 1)  # First plot
+    # plt.plot(time_intervals, data, 'k-', label='Initial Data with Outliers')
+    # plt.title('Initial Reconstructed Data (With Outliers)')
+    # plt.xlabel('Time (seconds)')
+    # plt.ylabel('Amplitude')
+    # plt.legend()
 
-    # Plot fitted sine wave (from the filtered data)
-    plt.subplot(3, 1, 3)  # Third plot
-    plt.plot(time_intervals, sine_wave(time_intervals, *params), 'r--', label='Fitted Sine Wave')
-    plt.title('Fitted Sine Wave')
-    plt.xlabel('Time (seconds)')
-    plt.ylabel('Amplitude')
-    plt.legend()
+    # # Plot filtered data (after MAD filtering)
+    # plt.subplot(3, 1, 2)  # Second plot
+    # plt.plot(filtered_time_intervals, filtered_data, 'b-', label='Filtered Data')
+    # plt.title('Filtered Data (After MAD Filtering)')
+    # plt.xlabel('Time (seconds)')
+    # plt.ylabel('Amplitude')
+    # plt.legend()
 
-    # Show the plots
-    plt.tight_layout()
-    plt.show()
+    # # Plot fitted sine wave (from the filtered data)
+    # plt.subplot(3, 1, 3)  # Third plot
+    # plt.plot(time_intervals, sine_wave(time_intervals, *params), 'r--', label='Fitted Sine Wave')
+    # plt.title('Fitted Sine Wave')
+    # plt.xlabel('Time (seconds)')
+    # plt.ylabel('Amplitude')
+    # plt.legend()
+
+    # # Show the plots
+    # plt.tight_layout()
+    # plt.show()
 
     return time_intervals, sine_wave(time_intervals, *params), fitted_amplitude, fitted_frequency, fitted_phase, fitted_offset

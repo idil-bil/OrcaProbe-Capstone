@@ -1906,7 +1906,7 @@ class MainWindow(QMainWindow):
         lower_14 = val & 0x3FFF  # Extract lower 14 bits
         return upper_14, lower_14
     
-    def keep_gui_alive(self,interval=100):
+    def keep_gui_alive(self,interval=1):
         self.gui_alive_counter += 1
         if self.gui_alive_counter % interval == 0:
             QApplication.processEvents()

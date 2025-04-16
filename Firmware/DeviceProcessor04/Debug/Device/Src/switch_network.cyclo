@@ -2,4 +2,4 @@
 ../Device/Src/switch_network.c:47:6:clear_switch_network	2
 ../Device/Src/switch_network.c:57:6:set_switch_network	3
 ../Device/Src/switch_network.c:67:6:test_switch_network	1
-../Device/Src/switch_network.c:97:6:map_switch_network	56
+../Device/Src/switch_network.c:97:6:map_switch_network	64

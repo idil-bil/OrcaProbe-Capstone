@@ -1,37 +1,10 @@
-13:31:48 **** Incremental Build of configuration Debug for project DeviceProcessor04 ****
+15:47:00 **** Incremental Build of configuration Debug for project DeviceProcessor04 ****
 make -j12 all 
-arm-none-eabi-gcc "../Device/Src/measurement_routines.c" -mcpu=cortex-m33 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32U575xx -c -I../Core/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32U5xx/Include -I../Drivers/CMSIS/Include -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor04/USB_Lib/ST/STM32_USB_Device_Library/Core/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor04/USB_Lib/ST/STM32_USB_Device_Library/Class/CDC/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor04/Device/Inc" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor04/USB_Device/Target" -I"C:/UBC_4TH_YEAR/ELEC-491/JY-85/project/JY85/Firmware/DeviceProcessor04/USB_Device/App" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Device/Src/measurement_routines.d" -MT"Device/Src/measurement_routines.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Device/Src/measurement_routines.o"
-../Device/Src/measurement_routines.c: In function 'dvc_exec_msr_current_voltage':
-../Device/Src/measurement_routines.c:85:27: warning: unused variable 'result' [-Wunused-variable]
-   85 |         HAL_StatusTypeDef result;
-      |                           ^~~~~~
-../Device/Src/measurement_routines.c: In function 'dvc_exec_msr_capacitance_voltage_2p':
-../Device/Src/measurement_routines.c:164:27: warning: unused variable 'result' [-Wunused-variable]
-  164 |         HAL_StatusTypeDef result;
-      |                           ^~~~~~
-../Device/Src/measurement_routines.c: In function 'dvc_exec_msr_impedance_spectroscopy_2p':
-../Device/Src/measurement_routines.c:224:27: warning: unused variable 'result' [-Wunused-variable]
-  224 |         HAL_StatusTypeDef result;
-      |                           ^~~~~~
-../Device/Src/measurement_routines.c: In function 'dvc_exec_msr_transfer_characteristics':
-../Device/Src/measurement_routines.c:294:27: warning: unused variable 'result' [-Wunused-variable]
-  294 |         HAL_StatusTypeDef result;
-      |                           ^~~~~~
-../Device/Src/measurement_routines.c: In function 'dvc_exec_msr_output_characteristics':
-../Device/Src/measurement_routines.c:376:27: warning: unused variable 'result' [-Wunused-variable]
-  376 |         HAL_StatusTypeDef result;
-      |                           ^~~~~~
-arm-none-eabi-gcc -o "DeviceProcessor04.elf" @"objects.list"   -mcpu=cortex-m33 -T"C:\UBC_4TH_YEAR\ELEC-491\JY-85\project\JY85\Firmware\DeviceProcessor04\STM32U575ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DeviceProcessor04.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: DeviceProcessor04.elf
- 
 arm-none-eabi-size  DeviceProcessor04.elf 
-arm-none-eabi-objdump -h -S DeviceProcessor04.elf  > "DeviceProcessor04.list"
    text	   data	    bss	    dec	    hex	filename
-  64340	    600	  61632	 126572	  1ee6c	DeviceProcessor04.elf
+  64964	    600	  61632	 127196	  1f0dc	DeviceProcessor04.elf
 Finished building: default.size.stdout
  
-Finished building: DeviceProcessor04.list
- 
 
-13:31:49 Build Finished. 0 errors, 5 warnings. (took 1s.629ms)
+15:47:01 Build Finished. 0 errors, 0 warnings. (took 517ms)
 

@@ -4,8 +4,8 @@
 ../Device/Src/measurement_routines.c:223:6:dvc_exec_msr_impedance_spectroscopy_2p	72	static
 ../Device/Src/measurement_routines.c:293:6:dvc_exec_msr_transfer_characteristics	56	static
 ../Device/Src/measurement_routines.c:375:6:dvc_exec_msr_output_characteristics	56	static
-../Device/Src/measurement_routines.c:457:6:dvc_exec_msr_capacitance_voltage_3p	4	static
-../Device/Src/measurement_routines.c:461:6:dvc_exec_msr_electrochemical	4	static
-../Device/Src/measurement_routines.c:465:6:dvc_exec_msr_low_resistance	16	static
-../Device/Src/measurement_routines.c:502:6:dvc_exec_msr_dc_resistance_4p	16	static
-../Device/Src/measurement_routines.c:539:6:dvc_exec_msr_impedance_spectroscopy_4p	4	static
+../Device/Src/measurement_routines.c:457:6:dvc_exec_msr_capacitance_voltage_3p	40	static
+../Device/Src/measurement_routines.c:517:6:dvc_exec_msr_electrochemical	4	static
+../Device/Src/measurement_routines.c:521:6:dvc_exec_msr_low_resistance	16	static
+../Device/Src/measurement_routines.c:558:6:dvc_exec_msr_dc_resistance_4p	16	static
+../Device/Src/measurement_routines.c:595:6:dvc_exec_msr_impedance_spectroscopy_4p	4	static
