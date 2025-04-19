@@ -1,2 +1,2 @@
-# JY85
-JY-85 Reconfigurable electrical probing system for thin film devices
+# OrcaProbe: Reconfigurable Electrical Probing System for Thin Film Devices
+## Capstone Project (September 2024 - May 2025)
