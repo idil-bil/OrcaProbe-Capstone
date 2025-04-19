@@ -6,3 +6,6 @@ ELEC 491 - Capstone Project (September 2024 - May 2025)
 - Firmware: [Kerem Oktay](https://github.com/Kerem-Oktay)
 - Hardware: [Dipak Shrestha](https://github.com/Beanscode) - Peggy Yuan - Aaron Loh
 - Mechanical: Peggy Yuan
+
+### Client
+[Orca Advanced Materials Inc.](https://www.linkedin.com/in/orca-advanced-materials-154669328/)
